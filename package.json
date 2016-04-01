@@ -1,0 +1,22 @@
+{
+  "name": "stardew-farm-planner",
+  "version": "0.0.2",
+  "description": "Interactive Stardew Valley farm planner tool",
+  "main": "index.js",
+  "engines" : {
+    "node" : ">=4.1.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "bunyan": "^1.7.1",
+    "easy-config": "^0.5.1",
+    "express": "^4.13.4",
+    "uuid": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Henrik Peinar",
+  "license": "ISC"
+}

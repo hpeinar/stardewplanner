@@ -1,0 +1,13 @@
+.DS_Store
+
+.idea
+
+bower_components/
+
+config.*.json
+
+node_modules
+
+farms/*.json
+
+*.psd

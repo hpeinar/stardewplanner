@@ -1,0 +1,490 @@
+body {
+    background-color: #000;
+    color: #E2E2E2;
+    font-family: Helvetica;
+}
+
+.editor-loader {
+    margin-top: 5px;
+    width: 1280px;
+    height: 1040px;
+    position: relative;
+    border: 1px solid #002000;
+}
+
+.loader {
+    position: absolute;
+    text-align: center;
+    font-size: 24px;
+    margin: 0 auto 0 auto;
+    width: 400px;
+    height: 196px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.loader img {
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.key {
+    border: 1px solid #e0e0e0;
+    border-bottom-width: 2px;
+    color: #202020;
+    background: #f0f0f0;
+    border-radius: 3px;
+    padding: 2px 6px;
+    background: -webkit-linear-gradient(top,#f0f0f0,#fcfcfc);
+    background: -moz-linear-gradient(top,#f0f0f0,#fcfcfc);
+    background: linear-gradient(to bottom,#f0f0f0,#fcfcfc);
+    -moz-border-radius: 3px;
+    font-family: monospace;
+}
+
+.hide-email {
+    display: none;
+}
+
+.progress {
+    position: relative;
+}
+
+.progress-text {
+    font-size: 12px;
+    position: absolute;
+    left: 15px;
+    bottom: 2px;
+}
+
+.inner-wrap {
+    overflow-x: scroll;
+}
+
+.changelog li {
+    font-size: 11px;
+}
+
+.faq {
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+}
+.credits {
+    color: #000 !important;
+}
+
+/** Version notification **/
+.version-notification {
+    top: 10px;
+    left: 10px;
+}
+.open-source-notification {
+    top: 10px;
+    right: 10px;
+}
+
+.open-source-notification .header {
+    color: #00cc00;
+}
+
+
+.notification {
+    position: absolute;
+    font-family: "Helvetica Neue", Helvetica;
+    font-size: 12px;
+    color: #ccc;
+    display: none;
+}
+
+.notification a {
+    color: #999;
+    text-decoration: underline;
+}
+
+.notification .header {
+     background-color: #333;
+     padding: 5px;
+}
+
+.notification .header .hide-notification {
+    color: #9A1414;
+    float: right;
+}
+.notification .header .hide-notification:hover {
+    color: #D21616;
+}
+
+.notification .content {
+    background-color: #555;
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+
+/** TOP BAR **/
+.top-bar {
+    background-color: #333;
+    max-width: 1385px;
+    margin: 0 auto 0 auto;
+}
+
+
+/** Links styles **/
+.top-bar .dropdown li.tools div.link {
+    line-height: 25px !important;
+    border-bottom: 1px solid #444;
+    font-size: 11px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.top-bar .dropdown li.tools div.link:hover {
+    background-color: #444;
+}
+.top-bar .dropdown li.tools div.link:active {
+    background-color: #555;
+}
+
+.top-bar li.has-dropdown ul.dropdown li div.link {
+    padding-left: 8px;
+    padding-right: 30px;
+}
+
+.eraser div.link {
+    cursor: pointer;
+    color: #ee0000 !important;
+    font-size: 12px;
+    vertical-align: middle;
+    line-height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.eraser:hover {
+    background-color: #222 !important;
+}
+.select:hover {
+    background-color: #222 !important;
+}
+
+.eraser:active {
+    background-color: #444 !important;
+}
+.select:active {
+    background-color: #444 !important;
+}
+
+.select div.link {
+    cursor: pointer;
+    color: #00cc00 !important;
+    font-size: 12px;
+    vertical-align: middle;
+    line-height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.top-bar .active div.link {
+    background-color: #00cc00 !important;
+}
+
+.top-bar div.link.toggleable {
+    color: #f00 !important;
+}
+
+.top-bar div.link.toggleable.active {
+    color: #0f0 !important;
+}
+
+.top-bar li.divider {
+    border-right: 2px solid #000;
+}
+
+.save-icon {
+    background-color: #090 !important;
+}
+
+.import-icon {
+    background-color: #0f6699 !important;
+}
+
+.import-icon:hover {
+    background-color: #0c8ed3 !important;
+}
+
+.import-icon i {
+    color: #24ceff;
+}
+
+.save-icon:hover {
+    background-color: #0c0 !important;
+}
+
+.save-icon i {
+    color: #0f0;
+}
+
+.reset-icon {
+    background-color: #900 !important;
+}
+
+.reset-icon:hover {
+    background-color: #c00 !important;
+}
+
+.reset-icon i {
+    color: #f00;
+}
+
+
+/** editor styles **/
+.editor {
+    position: relative;
+    cursor: pointer;
+    margin: 5px auto 0 auto;
+    width: 1280px;
+    height: 1040px;
+}
+
+/** SIDE-BAR BUTTONS **/
+.side-nav #save {
+    color: #3a945b;
+}
+
+.side-nav #reset {
+    color: #cf2a0e;
+}
+
+.side-nav-icon {
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    vertical-align: middle;
+}
+
+/** CUSTOM STYLES FOR NICE SIDE-BAR **/
+
+.move-right .inner-wrap {
+    -ms-transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+}
+
+.left-off-canvas-menu {
+    -ms-transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+    position: fixed;
+    width: 0;
+    height: 100%;
+    margin-top:45px;
+}
+
+/** Sprite icons for the menu **/
+.sprite-icon {
+    display: block;
+    float:left;
+    width: 16px;
+    height: 16px;
+    margin-top: 4px;
+    margin-right: 4px;
+    background-size: cover;
+}
+
+
+/** Buildings **/
+.sprite-icon.silo {
+    background-image: url('../img/tiles/silo.png');
+}
+.sprite-icon.well {
+    background-image: url('../img/tiles/well.png');
+}
+.sprite-icon.stable {
+    background-image: url('../img/tiles/stable.png');
+}
+.sprite-icon.barn {
+    background-image: url('../img/tiles/barn.png');
+}
+.sprite-icon.slime-hutch {
+    background-image: url('../img/tiles/slime-hutch.png');
+}
+.sprite-icon.coop {
+    background-image: url('../img/tiles/coop.png');
+}
+
+/** equipment **/
+.sprite-icon.sprinkler {
+    background-image: url('../img/tiles/sprinkler.png');
+}
+.sprite-icon.irid-sprinkler {
+    background-image: url('../img/tiles/irid-sprinkler.png');
+}
+.sprite-icon.q-sprinkler {
+    background-image: url('../img/tiles/q-sprinkler.png');
+}
+.sprite-icon.scarecrow {
+    background-image: url('../img/tiles/scarecrow.png');
+}
+.sprite-icon.chest {
+    background-image: url('../img/tiles/chest.png');
+}
+.sprite-icon.furnace {
+    background-image: url('../img/tiles/furnace.png');
+}
+.sprite-icon.charcoal-klin {
+    background-image: url('../img/tiles/charcoal.png');
+}
+.sprite-icon.seed-maker {
+    background-image: url('../img/tiles/seed-maker.png');
+}
+.sprite-icon.crystal {
+    background-image: url('../img/tiles/crystal.png');
+}
+.sprite-icon.slime-egg {
+    background-image: url('../img/tiles/slime-hutch.png');
+}
+.sprite-icon.lighting-rod {
+    background-image: url('../img/tiles/lighting-rod.png');
+}
+.sprite-icon.recycling-machine {
+    background-image: url('../img/tiles/recycling-machine.png');
+}
+.sprite-icon.slime-incubator {
+    background-image: url('../img/tiles/slime-incubator.png');
+}
+.sprite-icon.worm-bin {
+    background-image: url('../img/tiles/worm-bin.png');
+}
+
+/** artisan **/
+.sprite-icon.apricot-tree {
+    background-image: url('../img/tiles/apricot.png');
+}
+.sprite-icon.cherry-tree {
+    background-image: url('../img/tiles/cherry-tree.png');
+}
+.sprite-icon.orange-tree {
+    background-image: url('../img/tiles/orange-tree.png');
+}
+.sprite-icon.peach-tree {
+    background-image: url('../img/tiles/peach.png');
+}
+.sprite-icon.apple-tree {
+    background-image: url('../img/tiles/apple.png');
+}
+.sprite-icon.pomegranate {
+    background-image: url('../img/tiles/pomegranate.png');
+}
+.sprite-icon.bee-hive {
+    background-image: url('../img/tiles/bee-hive.png');
+}
+.sprite-icon.mayo-machine {
+    background-image: url('../img/tiles/mayo.png');
+}
+.sprite-icon.cheese-press {
+    background-image: url('../img/tiles/cheese-press.png');
+}
+.sprite-icon.keg {
+    background-image: url('../img/tiles/keg.png');
+}
+.sprite-icon.loom {
+    background-image: url('../img/tiles/loom.png');
+}
+.sprite-icon.oil-maker {
+    background-image: url('../img/tiles/oil-maker.png');
+}
+.sprite-icon.preserves-jar {
+    background-image: url('../img/tiles/preserves.png');
+}
+
+/** Terrain **/
+.sprite-icon.grass {
+    background-image: url('../img/tiles/grass.png');
+}
+.sprite-icon.weed {
+     background-image: url('../img/tiles/weed.png');
+}
+.sprite-icon.crops {
+    background-image: url('../img/tiles/farmland.png');
+}
+.sprite-icon.tree {
+    background-image: url('../img/tiles/tree.png');
+}
+.sprite-icon.trellis {
+    background-image: url('../img/tiles/trellis.png');
+}
+.sprite-icon.flowers {
+    background-image: url('../img/tiles/tulips.png');
+}
+.sprite-icon.fence {
+    background-image: url('../img/tiles/fence.png');
+}
+.sprite-icon.stone-fence {
+    background-image: url('../img/tiles/stone-fence.png');
+}
+.sprite-icon.iron-fence {
+    background-image: url('../img/tiles/iron-fence.png');
+}
+.sprite-icon.hardwood-fence {
+    background-image: url('../img/tiles/hardwood-fence.png');
+}
+.sprite-icon.gate {
+    background-image: url('../img/tiles/gate.png');
+}
+.sprite-icon.torch {
+    background-image: url('../img/tiles/torch.png');
+}
+.sprite-icon.campfire {
+    background-image: url('../img/tiles/campfire.png');
+}
+
+/** Roads & floors **/
+.sprite-icon.cobblestone {
+    background-image: url('../img/tiles/road.png');
+}
+.sprite-icon.wood-path {
+    background-image: url('../img/tiles/wood-path.png');
+}
+.sprite-icon.gravel-path {
+    background-image: url('../img/tiles/gravel-path.png');
+}
+.sprite-icon.stone-path {
+    background-image: url('../img/tiles/steppingstone-path.png');
+}
+.sprite-icon.crystal-path {
+    background-image: url('../img/tiles/crystal-path.png');
+}
+.sprite-icon.wood-floor {
+    background-image: url('../img/tiles/wood-floor.png');
+}
+.sprite-icon.straw-floor {
+    background-image: url('../img/tiles/straw-floor.png');
+}
+.sprite-icon.weather-floor {
+    background-image: url('../img/tiles/weathered-floor.png');
+}
+.sprite-icon.stone-floor {
+    background-image: url('../img/tiles/stone-floor.png');
+}
+.sprite-icon.crystal-floor {
+    background-image: url('../img/tiles/crystal-floor.png');
+}

@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stardew Valley planner v2</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <meta name="twitter:card" content="Interactive farm planner for Stardew" />
+    <meta name="twitter:site" content="@nytimesbits" />
+    <meta name="twitter:creator" content="@hpeinar" />
+    <meta property="og:author" content="Henrik Peinar" />
+    <meta property="og:url" content="https://stardew.info/planner/" />
+    <meta property="og:title" content="Interactive farm planner for Stardew Valley" />
+    <meta property="og:description" content="Plan your Stardew Valley farm! ...on a coffee break!" />
+</head>
+<body>
+    <div class="off-canvas-wrap move-right" data-offcanvas>
+        <div class="inner-wrap">
+
+            <!-- top bar -->
+            <div class="fixed">
+                <nav class="top-bar" data-topbar role="navigation">
+                    <ul class="title-area">
+                        <li class="name">
+                            <h1><a href="#">Stardew planner <small>v2</small></a></h1>
+                        </li>
+
+                        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+                        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+                    </ul>
+
+                    <section class="top-bar-section">
+                        <ul class="left">
+                            <li class="divider"></li>
+                            <li class="has-dropdown">
+                                <a href="#">Buildings</a>
+                                <ul class="dropdown">
+                                    <li class="tools building" data-id="silo"><div class="link"><i class="sprite-icon silo"></i>Silo</div></li>
+                                    <li class="tools building" data-id="well"><div class="link"><i class="sprite-icon well"></i>Well</div></li>
+                                    <li class="tools building" data-id="coop" title="All coops (regular, big, deluxe) are the same size"><div class="link"><i class="sprite-icon coop"></i>Coop</div></li>
+                                    <li class="tools building" data-id="barn" title="All barns (regular, big, deluxe) are the same size"><div class="link"><i class="sprite-icon barn"></i>Barn</div></li>
+                                    <li class="tools building" data-id="stable"><div class="link"><i class="sprite-icon stable"></i>Stable</div></li>
+                                    <li class="tools building" data-id="slime-hutch"><div class="link"><i class="sprite-icon slime-hutch"></i>Slime-hutch</div></li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+
+                            <li class="has-dropdown">
+                                <a href="#">Equipment</a>
+                                <ul class="dropdown">
+                                    <li class="tools building" data-id="sprinkler"><div class="link"><i class="sprite-icon sprinkler"></i>Sprinkler</div></li>
+                                    <li class="tools building" data-id="q-sprinkler"><div class="link"><i class="sprite-icon q-sprinkler"></i>Q. sprinker</div></li>
+                                    <li class="tools building" data-id="irid-sprinkler"><div class="link"><i class="sprite-icon irid-sprinkler"></i>Irid. sprinker</div></li>
+                                    <li class="tools building" data-id="scarecrow"><div class="link"><i class="sprite-icon scarecrow"></i>Scarecrow</div></li>
+                                    <li class="tools building" data-id="chest"><div class="link"><i class="sprite-icon chest"></i>Chest</div></li>
+                                    <li class="tools building" data-id="furnace"><div class="link"><i class="sprite-icon furnace"></i>Furnace</div></li>
+                                    <li class="tools building" data-id="charcoal"><div class="link"><i class="sprite-icon charcoal-klin"></i>Charcoal Kiln</div></li>
+                                    <li class="tools building" data-id="seed-maker"><div class="link"><i class="sprite-icon seed-maker"></i>Seed Maker</div></li>
+                                    <li class="tools building" data-id="crystal"><div class="link"><i class="sprite-icon crystal"></i>Crystalarium</div></li>
+                                    <li class="tools building" data-id="egg-press"><div class="link"><i class="sprite-icon slime-egg"></i>Slime Egg-Press</div></li>
+                                    <li class="tools building" data-id="lighting-rod"><div class="link"><i class="sprite-icon lighting-rod"></i>Lightning Rod</div></li>
+                                    <li class="tools building" data-id="recycling-machine"><div class="link"><i class="sprite-icon recycling-machine"></i>Recycling Machine</div></li>
+                                    <li class="tools building" data-id="slime-incubator"><div class="link"><i class="sprite-icon slime-incubator"></i>Slime Incubator</div></li>
+                                    <li class="tools building" data-id="worm-bin"><div class="link"><i class="sprite-icon worm-bin"></i>Worm bin</div></li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+
+                            <li class="has-dropdown">
+                                <a href="#">Artisan</a>
+                                <ul class="dropdown">
+                                    <li class="tools building" data-id="apricot"><div class="link"><i class="sprite-icon apricot-tree"></i>Apricot tree</div></li>
+                                    <li class="tools building" data-id="cherry-tree"><div class="link"><i class="sprite-icon cherry-tree"></i>Cherry tree</div></li>
+                                    <li class="tools building" data-id="orange-tree"><div class="link"><i class="sprite-icon orange-tree"></i>Orange tree</div></li>
+                                    <li class="tools building" data-id="peach"><div class="link"><i class="sprite-icon peach-tree"></i>Peach tree</div></li>
+                                    <li class="tools building" data-id="apple"><div class="link"><i class="sprite-icon apple-tree"></i>Apple tree</div></li>
+                                    <li class="tools building" data-id="pomegranate"><div class="link"><i class="sprite-icon pomegranate"></i>Pomegranate</div></li>
+                                    <li class="tools building" data-id="bee-hive"><div class="link"><i class="sprite-icon bee-hive"></i>Bee-hive</div></li>
+                                    <li class="tools building" data-id="mayo"><div class="link"><i class="sprite-icon mayo-machine"></i>Mayo machine</div></li>
+                                    <li class="tools building" data-id="cheese-press"><div class="link"><i class="sprite-icon cheese-press"></i>Cheese press</div></li>
+                                    <li class="tools building" data-id="keg"><div class="link"><i class="sprite-icon keg"></i>Keg</div></li>
+                                    <li class="tools building" data-id="loom"><div class="link"><i class="sprite-icon loom"></i>Loom</div></li>
+                                    <li class="tools building" data-id="oil-maker"><div class="link"><i class="sprite-icon oil-maker"></i>Oil maker</div></li>
+                                    <li class="tools building" data-id="preserves"><div class="link"><i class="sprite-icon preserves-jar"></i>Preserves jar</div></li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+
+                            <li class="has-dropdown">
+                                <a href="#">Terrain</a>
+                                <ul class="dropdown">
+                                    <li class="tools brush" data-type="grass"><div class="link"><i class="sprite-icon grass"></i>Grass</div></li>
+                                    <li class="tools brush" data-type="farmland"><div class="link"><i class="sprite-icon crops"></i>Crops</div></li>
+                                    <li class="tools brush" data-type="trellis"><div class="link"><i class="sprite-icon trellis"></i>Trellis</div></li>
+                                    <li class="tools brush" data-type="tulips"><div class="link"><i class="sprite-icon flowers"></i>Flowers</div></li>
+                                    <li class="tools brush" data-type="fence"><div class="link"><i class="sprite-icon fence"></i>Fence</div></li>
+                                    <li class="tools brush" data-type="tree"><div class="link"><i class="sprite-icon tree"></i>Tree</div></li>
+                                    <li class="tools brush" data-type="stone-fence"><div class="link"><i class="sprite-icon stone-fence"></i>Stone fence</div></li>
+                                    <li class="tools brush" data-type="iron-fence"><div class="link"><i class="sprite-icon iron-fence"></i>Iron fence</div></li>
+                                    <li class="tools brush" data-type="hardwood-fence"><div class="link"><i class="sprite-icon hardwood-fence"></i>Hardwood fence</div></li>
+                                    <li class="tools building" data-id="gate"><div class="link"><i class="sprite-icon gate"></i>Gate</div></li>
+                                    <li class="tools building" data-id="torch"><div class="link"><i class="sprite-icon torch"></i>Torch</div></li>
+                                    <li class="tools building" data-id="campfire"><div class="link"><i class="sprite-icon campfire"></i>Campfire</div></li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+
+                            <li class="has-dropdown">
+                                <a href="#">Roads & floors</a>
+                                <ul class="dropdown">
+                                    <li class="tools brush" data-type="road"><div class="link"><i class="sprite-icon cobblestone"></i>Cobblestone</div></li>
+                                    <li class="tools brush" data-type="gravel-path"><div class="link"><i class="sprite-icon gravel-path"></i>Gravel path</div></li>
+                                    <li class="tools brush" data-type="wood-path"><div class="link"><i class="sprite-icon wood-path"></i>Wooden path</div></li>
+                                    <li class="tools brush" data-type="steppingstone-path"><div class="link"><i class="sprite-icon stone-path"></i>Steppingstone path</div></li>
+                                    <li class="tools brush" data-type="crystal-path"><div class="link"><i class="sprite-icon crystal-path"></i>Crystal path</div></li>
+                                    <li class="tools brush" data-type="wood-floor"><div class="link"><i class="sprite-icon wood-floor"></i>Wooden floor</div></li>
+                                    <li class="tools brush" data-type="straw-floor"><div class="link"><i class="sprite-icon straw-floor"></i>Straw floor</div></li>
+                                    <li class="tools brush" data-type="weathered-floor"><div class="link"><i class="sprite-icon weather-floor"></i>Weathered floor</div></li>
+                                    <li class="tools brush" data-type="stone-floor"><div class="link"><i class="sprite-icon stone-floor"></i>Stone floor</div></li>
+                                    <li class="tools brush" data-type="crystal-floor"><div class="link"><i class="sprite-icon crystal-floor"></i>Crystal floor</div></li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="tools brush eraser" data-type="eraser"><div class="link">Eraser</div></li>
+                            <li class="divider"></li>
+                            <li class="tools brush select" data-type="select"><div class="link">Select tool</div></li>
+                            <li class="divider"></li>
+                        </ul>
+                        <!-- Right Nav Section -->
+                        <ul class="right">
+                            <li class="divider"></li>
+                            <li class="has-dropdown">
+                                <a href="#">Highlights</a>
+                                <ul class="dropdown">
+                                    <li class="tools"><div class="toggle-highlight toggleable highlight-sprinkler link" data-highlight="sprinkler"><i class="fa fa-remove"></i> Sprinklers</div></li>
+                                    <li class="tools"><div class="toggle-highlight toggleable highlight-scarecrow link" data-highlight="scarecrow"><i class="fa fa-remove"></i> Scarecrows</div></li>
+                                    <li class="tools"><div class="toggle-highlight toggleable highlight-bee link" data-highlight="hive"><i class="fa fa-remove"></i> Bee-hives</div></li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="has-dropdown">
+                                <a href="#">Options</a>
+                                <ul class="dropdown">
+                                    <li class="tools"><div class="link toggleable greenhouse-switch"><i class="fa fa-remove"></i> Toggle greenhouse</div></li>
+                                    <li class="tools"><div class="link toggleable brush-overwrite"><i class="fa fa-remove"></i> Toggle brush overwriting</div></li>
+                                    <li class="tools"><div class="link toggleable freemode"><i class="fa fa-remove"></i> Toggle brush freemode</div></li>
+                                    <li class="tools"><div class="link toggleable coordinates"><i class="fa fa-remove"></i> Toggle coordinates</div></li>
+                                    <li class="tools"><div class="link toggleable active hide-stuff"><i class="fa fa-check"></i> Toggle grid + helpers</div></li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li id="save"><a class="save-icon" href="#"><i class="fa fa-save fa-2x side-nav-icon" title="Save current plan"></i></a></li>
+                            <li class="divider"></li>
+                            <li id="import"><a class="import-icon" href="#"><i class="fa fa-external-link fa-2x side-nav-icon" title="Import from savefile"></i></a></li>
+                            <li class="divider"></li>
+                            <li id="reset"><a class="reset-icon" href="#"><i class="fa fa-trash fa-2x side-nav-icon" title="Reset all"></i></a></li>
+                        </ul>
+                    </section>
+                </nav>
+            </div>
+
+            <form style="display: none;">
+                <input type="file" id="fileinput"/>
+            </form>
+
+
+            <!--main editor-->
+            <div class="editor">
+                <div class="editor-loader">
+                    <div class="loader">
+                        <img class="loader-icon" src="./img/hourglass.gif"><br>
+                        Loading farm, please wait...
+                    </div>
+                </div>
+                <svg width="1280" height="1040" id="editor"></svg>
+                <div class="version-notification notification">
+                    <div class="header">New version of #stardewplanner released!<div class="hide-version-notification hide-notification">HIDE</div></div>
+                    <div class="content">
+                        Please make sure to read <a href="#controls">controls</a> and <a href="#changelog">changelog</a> sections below! <br />
+                        If you have any problems / issues / feature requests, don't hesitate to <a href="#contact">contact me</a>
+                    </div>
+                </div>
+                <div class="open-source-notification notification">
+                    <div class="header">It went open source!<div class="hide-open-source-notification hide-notification">HIDE</div></div>
+                    <div class="content">
+                        This project is now available on <a href="https://github.com/hpeinar/stardewplanner" target="_blank">@GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ and credits -->
+            <div class="faq">
+                    <div class="panel info" id="controls">
+                        <h3>Controls:</h3>
+                        <ul>
+                            <li><span class="key">E</span> to easily select eraser brush, press again to restore last brush</li>
+                            <li><span class="key">Esc</span> discards picked up building</li>
+                            <li>To delete buildings, either drop it to non-buildable area, click on it with eraser or press either <span class="key">Del</span> or <span class="key">fn</span>+<span class="key">Backspace</span> or <span class="key">Esc</span> </li>
+                            <li>Hold <span class="key">⌘</span> or <span class="key">Ctrl</span> or <span class="key">Shift</span> when placing buildings to "duplicate" it.</li>
+                            <li>If you need to scroll the editor and can't see the horizontal scrollbar, use middle mouse button</li>
+                            <li>You can enable brush overwriting mode in options</li>
+                            <li>If something is truly broken you can also use the old version in <a href="https://v1.stardew.info/planner/">v1.stardew.info</a></li>
+                            <li>You can find your save game file from <code>%AppData%/StardewValley/Saves</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="panel info changelog" id="changelog">
+                        <h3>Changelog:</h3>
+                        <b>1th April</b>
+                        <ul>
+                            <li>Published source on <a href="https://github.com/hpeinar/stardewplanner" target="_blank">@GitHub</a></li>
+                        </ul>
+                        <b>30th March</b>
+                        <ul>
+                            <li>Highlight states and options now save!</li>
+                            <li>Fixed minor restriction areas (thanks Mai & R3ality)</li>
+                            <li>Added twitter share button</li>
+                            <li>Moved eraser out from the "tools" menu</li>
+                            <li>Added freemode possibility for the brush. Enable it in the options (this option does not save over reloads)</li>
+                            <li>Added tree & gravel path to the menu</li>
+                            <li>Added torch & campfire back to the menu</li>
+                        </ul>
+                        <b>29th March</b>
+                        <ul>
+                            <li>Added fancy notification about new version</li>
+                            <li>Highlights should be better now, also they are off by default now</li>
+                            <li>Added contact section</li>
+                        </ul>
+                        <b>28th March</b>
+                        <ul>
+                            <li>Made importing better (thanks Mai)</li>
+                            <li>Fixed menu word wrap problem</li>
+                            <li>Restriction area behind house is now 1 tile</li>
+                        </ul>
+                        <b>22th March</b>
+                        <ul>
+                            <li>Released new version to closed beta. New stuff:</li>
+                            <li>Using <a href="http://snapsvg.io/">SnapSVG</a> instead of <a href="http://dmitrybaranovskiy.github.io/raphael/">Raphael</a></li>
+                            <li>Better brush. It is now possible to brush big areas easier</li>
+                            <li>Better restriction handling.</li>
+                            <li>Showing coordinates for those who like to edit their saves</li>
+                            <li>Save game import!</li>
+                            <li>A lot more optimized way of drawing the SVG (using patterns and use elements)</li>
+                        </ul>
+                    </div>
+                    <div class="panel radius" id="donate">
+                        <h3>Donate:</h3>
+                        You can do so on <a href="https://github.com/hpeinar/stardewplanner" target="_blank">@GitHub</a>
+                    </div>
+                    <div class="panel radius" id="contact">
+                        <h3>Contact:</h3>
+                        <b>Reddit:</b> <a href="https://www.reddit.com/r/StardewValley/comments/4ckzzo/stardew_farm_planner_v2_is_out_save_importing/" target="_blank">v2 planner thread</a><br>
+                        <b>Stardew official forums:</b> <a href="http://community.playstarbound.com/threads/farm-planner-v2-out-now-save-importing-and-much-more.112098/" target="_blank">Official forums thread</a><br>
+                        <b>Steam thread:</b> <a href="http://steamcommunity.com/app/413150/discussions/0/365163537814721588/" target="_blank">Discussion thread</a><br>
+                        <b>E-mail: </b>henrik<span class="hide-email">yobots</span>peinar@<span class="hide-email">hotmail.com</span>gmai<span class="hide-email">lllll</span>l.com<br>
+                        <b>Twitter: <a href="https://twitter.com/hpeinar">@hpeinar</a> & #stardewplanner</b><br>
+                        <a href="https://twitter.com/intent/tweet?button_hashtag=stardewplanner&text=Plan%20you%20%23stardewvalley%20farm%20in" class="twitter-hashtag-button" data-related="hpeinar" data-url="https://stardew.info/planner">Tweet #stardewplanner</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    </div>
+                    <div class="panel callout radius" id="faq">
+                        <h3>FAQ:</h3>
+                        <dl>
+                            <dt>1. What is this?</dt>
+                            <dd>This is <a href="http://stardewvalley.net/" target="_blank">Stardew Valley</a> interactive farm planner</dd>
+
+                            <dt>2. Saving doesn't appear to do anything?</dt>
+                            <dd>When you press save, your farm layout is saved and page will be reloaded to confirm the save. You can then use the url to link to your farm (or bookmark it)</dd>
+
+                            <dt>3. Does this work on touch devices (tablets, phones)?</dt>
+                            <dd>Current version does not officially support touch devices yet but it is planned for future.</dd>
+
+                            <dt>4. How can I delete buildings?</dt>
+                            <dd>Please see <a href="#controls">controls section</a></dd>
+
+                            <dt>5. Not working? Having any issues?</dt>
+                            <dd>Feel free to contact me in <a href="https://www.reddit.com/user/hpeinar" target="_blank">reddit</a> or <a href="http://community.playstarbound.com/members/hpeinar.609256/" target="_blank">Stardew official forums</a></dd>
+                        </dl>
+                    </div>
+                    <div class="panel callout radius" id="credits">
+                        <h3>Credits:</h3>
+                        <a href="https://www.reddit.com/user/hpeinar" target="_blank"><div class="label success credits">Farm planner by <b>Henrik Peinar (/u/hpeinar)</b></div></a><br >
+                        <a href="https://www.reddit.com/user/zaxcz" target="_blank"><div class="label info">Background image exported from game by <b>/u/zaxcz</b></div></a><br >
+                        <a href="https://www.reddit.com/user/Jurk0wski" target="_blank"><div class="label info">Building sizes and door locations by <b>/u/Jurk0wski</b></div></a><br >
+                        <a href="https://www.reddit.com/user/ThisIsMyName777" target="_blank"><div class="label info">Base save importing code by <b>/u/ThisIsMyName777</b></div></a><br >
+                        <div class="label info">Tons of suggestions, fixes, testing and ideas by <b>R3ality</b></div><br>
+                        <div class="label info">Providing test save file with most of the items and ID's <b>Mai</b> from <a href="irc://irc.freenode.net/stardewvalley" target="_blank">#stardewvalley</a></div><br>
+                        <div class="label info">Being a cool guy and pointing me in the right direction with some coding stuff <b>TeMPOraL</b> from <a href="irc://irc.freenode.net/stardewvalley" target="_blank">#stardewvalley</a></div><br>
+                        <div class="label info">Helping to test and improve v2 version of the tool <b>speeder</b> from <a href="irc://irc.freenode.net/stardew-modding" target="_blank">#stardewvalley</a></div><br>
+                        <div class="label info">Sharing their epic farm saves <a href="https://www.reddit.com/user/ky13" target="_blank">/u/ky13</a> & <a href="https://www.reddit.com/user/Halfbloood" target="_blank">/u/Halfbloood</a></div><br>
+                        <div class="label success credits"><a href="http://stardewvalley.net/" target="_blank" class="credits">Stardew Valley by </a><b><a href="https://www.reddit.com/user/ConcernedApe" class="credits" target="_blank">ConcernedApe</a></b></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!-- raphael -->
+    <script type="text/javascript" src="vendor/snap.svg-min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/vendor/modernizr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+    <!-- local js -->
+    <script type="text/javascript" src="js/data/sprites.js"></script>
+
+    <script type="text/javascript" src="js/engine/building.js"></script>
+    <script type="text/javascript" src="js/engine/brush.js"></script>
+    <script type="text/javascript" src="js/engine/board.js"></script>
+    <script type="text/javascript" src="js/engine/import.js"></script>
+
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <script>
+        $(document).foundation();
+    </script>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-74517445-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</body>
+</html>
