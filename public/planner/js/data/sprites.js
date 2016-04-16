@@ -8,7 +8,7 @@ var data = {
     tiles: [
         'grass',
         'farmland',
-        'weed',
+        'weeds',
         'trellis',
         'tulips',
         'fence',
@@ -336,6 +336,21 @@ var data = {
             "sprite": "./img/tiles/iron-lamp-post.png",
             "width": 16,
             "height": 16
+        },
+        'large-log': {
+            "sprite": "./img/tiles/large-log.png",
+            "width": 32,
+            "height": 32
+        },
+        'large-rock': {
+            "sprite": "./img/tiles/large-rock.png",
+            "width": 32,
+            "height": 32
+        },
+        'large-stump': {
+            "sprite": "./img/tiles/large-stump.png",
+            "width": 32,
+            "height": 32
         }
     }
 };

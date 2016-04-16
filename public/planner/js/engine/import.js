@@ -61,6 +61,18 @@ Importer.prototype.parseData = function parseData(event) {
 
         importData.buildings.push({type: (objectNameMap[type] || type), x: convertedCoords.x, y: convertedCoords.y});
     });
+    // Parse for resource clumps (large rocks, stumps, logs).
+    $farm.find("resourceClumps > ResourceClump").each(function(i, clump){
+        var x = parseInt($(this).find("tile:first X").text(), 10);
+        var y = parseInt($(this).find("tile:first Y").text(), 10);
+        var convertedCoords = that.convertCoords(x, y);
+        var type = that.clumpToTile($(this).find("parentSheetIndex:first").text());
+        
+        if (!type) return;
+
+        var obj = { type: type, x: convertedCoords.x, y: convertedCoords.y };
+        importData.buildings.push(obj);
+    });
     // Parse the 'terrainFeatures', includes Flooring, Trees, HoeDirt etc.
     $farm.find("terrainFeatures > item").each(function(i, farmItem){
         var x = parseInt($(this).find("key:first X").text(), 10);
@@ -190,6 +202,11 @@ Importer.prototype.terrainToTile = function terrainToTile(name) {
     return name.toLowerCase().replace(/\s/g,"-");
 };
 
+Importer.prototype.clumpToTile = function clumpToTile(parentSheetIndex) {
+    // Convert resource clump parentSheetIndex to tile type
+    return (clumpNameMap[parentSheetIndex] || "");
+};
+
 Importer.prototype.convertCoords = function convertCoords(x, y) {
     return {x: x * this.board.tileSize, y: y * this.board.tileSize};
 };
@@ -204,4 +221,10 @@ var objectNameMap = {
     "quality sprinkler" : "q-sprinkler",
     "bee house" : "bee-hive",
     "slime hutch" : "slime-hutch"
+};
+
+var clumpNameMap = {
+    600: "large-stump",
+    602: "large-log",
+    672: "large-rock"
 };
