@@ -295,7 +295,7 @@ $().ready(function () {
         });
         for (var thing in count) {
             if (count[thing].name !== '' && count[thing].count !== 0) {
-                str += '<tr><td>' + count[thing].name + "</td><td>" + count[thing].count + '</td></tr>';
+                str += '<p>' + count[thing].name + ": " + count[thing].count + '</p>';
             }
         }
         $('.count-report-notification .content').html(str);
