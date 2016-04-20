@@ -281,23 +281,40 @@ $().ready(function () {
 
     /* Counts the number of each object and puts it in the notification box. */
     function countObjects(e) {
-        var str = '';
         var count = {};
+
         data.tiles.forEach(function(tile) {
             count[tile] = {name: $("li[data-type=" + tile + "]").text(), count: 0};
         });
         for (var building in data.buildings) {
             count[building] = {name: $("li[data-id=" + building + "]").text(), count: 0};
         }
+
         $("use").each(function(index) {
             var tile = $(this).attr('href').substring(1);
             count[tile].count += 1;
         });
+
+        var entries = [];
         for (var thing in count) {
-            if (count[thing].name !== '' && count[thing].count !== 0) {
-                str += '<p>' + count[thing].name + ": " + count[thing].count + '</p>';
-            }
+            entries.push(count[thing]);
         }
+
+        // Sort first by number, and then alphanumerically
+        entries.sort(function(a, b) {
+            if (a.count === b.count) {
+                return a.name.localeCompare(b.name);
+            }
+            return b.count - a.count;
+        });
+
+        var str = '';
+        entries.forEach(function(thing) {
+            if (thing.name !== '' && thing.count !== 0) {
+                str += '<div class="count-report-row"><div class="count-report-name">' + thing.name + ': </div><div class="count-report-count">' + thing.count + '</div></div>';
+            }
+        });
+
         $('.count-report-notification .content').html(str);
     }
 });
