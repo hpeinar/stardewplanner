@@ -9,6 +9,9 @@ $().ready(function () {
     var fileInput = $('#fileinput');
     window.board = board;
 
+    /* Collection for human-readable sprite names */
+    var spriteNames = getSpriteNames();
+
     var planId = window.location.pathname.match(/[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/)
     if (planId && planId.length && planId.length === 1) {
         $.get('/api/'+ planId, function (data) {
@@ -271,6 +274,36 @@ $().ready(function () {
         }
     }
 
+    /* Add names to spriteNames collection */
+    function getSpriteNames() {
+        var spriteNames = {};
+
+        data.tiles.forEach(function(tile) {
+            var name = $("li[data-type=" + tile + "]").text();
+            if (name === '') {
+                name = createSpriteName(tile);
+            }
+
+            spriteNames[tile] = name;
+        });
+        for (var building in data.buildings) {
+            var name = $("li[data-id=" + building + "]").text();
+            if (name === '') {
+                name = createSpriteName(building);
+            }
+
+            spriteNames[building] = name;
+        }
+
+        return spriteNames;
+    }
+
+    /* Creates sprite name from id */
+    function createSpriteName(id) {
+        var name = id.replace('-', ' ');
+        return name.charAt(0).toUpperCase() + name.substring(1);
+    }
+
     window.addEventListener('updateCount', countObjects);
 
     /* Displays the count box */
@@ -281,27 +314,21 @@ $().ready(function () {
 
     /* Counts the number of each object and puts it in the notification box. */
     function countObjects(e) {
-        var count = {};
-
-        data.tiles.forEach(function(tile) {
-            count[tile] = {name: $("li[data-type=" + tile + "]").text(), count: 0};
-        });
-        for (var building in data.buildings) {
-            count[building] = {name: $("li[data-id=" + building + "]").text(), count: 0};
-        }
+        var counts = {};
 
         $("use").each(function(index) {
-            var tile = $(this).attr('href').substring(1);
-            count[tile].count += 1;
+            var id = $(this).attr('href').substring(1);
+
+            if (!counts[id]) {
+                counts[id] = 1;
+            } else {
+                counts[id] += 1;
+            }
         });
 
         var entries = [];
-        for (var thing in count) {
-            if (count[thing].name === '') {
-                count[thing].name = thing.replace('-', ' ');
-                count[thing].name = count[thing].name.charAt(0).toUpperCase() + count[thing].name.substring(1);
-            }
-            entries.push(count[thing]);
+        for (var id in counts) {
+            entries.push({name: spriteNames[id], count: counts[id]});
         }
 
         // Sort first by number, and then alphanumerically
@@ -314,9 +341,7 @@ $().ready(function () {
 
         var str = '';
         entries.forEach(function(thing) {
-            if (thing.name !== '' && thing.count !== 0) {
-                str += '<div class="count-report-row"><div class="count-report-name">' + thing.name + ': </div><div class="count-report-count">' + thing.count + '</div></div>';
-            }
+            str += '<div class="count-report-row"><div class="count-report-name">' + thing.name + ': </div><div class="count-report-count">' + thing.count + '</div></div>';
         });
 
         $('.count-report-notification .content').html(str);
