@@ -103,19 +103,30 @@ body {
 .count-report-notification {
     top: 10px;
     left: 10px;
-    max-height: 1020px;
     overflow:hidden;
 }
 
 .count-report-notification .content {
-    padding: 5px;
-    max-height: 900px;
+    max-height: 750px;
+    width:200px;
     overflow:auto;
+    font-size:14px;
 }
 
-.count-report-notification .content p {
-    font-size:14px;
-    margin:0px;
+.count-report-row {
+    padding-left:8px;
+    padding-right:8px;
+    display:block;
+    clear: both;
+}
+
+.count-report-name {
+    display:inline;
+}
+
+.count-report-count {
+    display:inline;
+    float: right;
 }
 
 .notification {
