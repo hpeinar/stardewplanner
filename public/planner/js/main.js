@@ -297,6 +297,10 @@ $().ready(function () {
 
         var entries = [];
         for (var thing in count) {
+            if (count[thing].name === '') {
+                count[thing].name = thing.replace('-', ' ');
+                count[thing].name = count[thing].name.charAt(0).toUpperCase() + count[thing].name.substring(1);
+            }
             entries.push(count[thing]);
         }
 
