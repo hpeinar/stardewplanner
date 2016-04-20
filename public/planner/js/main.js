@@ -34,8 +34,8 @@ $().ready(function () {
                         board.background.attr('href', Board.toFullPath('img/full_background.jpg'));
                     }, data.options.greenhouse);
                 }
-                
-                
+
+
                 $('.editor-loader').hide();
             });
         });
@@ -51,6 +51,10 @@ $().ready(function () {
     $('.hide-version-notification').click(function (e) {
         localStorage.setItem('stardew:versionNotification', true);
         $('.version-notification').hide();
+    });
+
+    $('.hide-count-report-notification').click(function (e) {
+        $('.count-report-notification').hide();
     });
 
     // show open source version notificaiton
@@ -265,5 +269,35 @@ $().ready(function () {
         } catch(e) {
             return false;
         }
+    }
+
+    window.addEventListener('updateCount', countObjects);
+
+    /* Displays the count box */
+    $('#count').click(function(e) {
+        e.preventDefault();
+        $('.count-report-notification').show();
+    });
+
+    /* Counts the number of each object and puts it in the notification box. */
+    function countObjects(e) {
+        var str = '';
+        var count = {};
+        data.tiles.forEach(function(tile) {
+            count[tile] = {name: $("li[data-type=" + tile + "]").text(), count: 0};
+        });
+        for (var building in data.buildings) {
+            count[building] = {name: $("li[data-id=" + building + "]").text(), count: 0};
+        }
+        $("use").each(function(index) {
+            var tile = $(this).attr('href').substring(1);
+            count[tile].count += 1;
+        });
+        for (var thing in count) {
+            if (count[thing].name !== '' && count[thing].count !== 0) {
+                str += '<tr><td>' + count[thing].name + "</td><td>" + count[thing].count + '</td></tr>';
+            }
+        }
+        $('.count-report-notification .content').html(str);
     }
 });

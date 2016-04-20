@@ -100,6 +100,22 @@ body {
     color: #00cc00;
 }
 
+.count-report-notification {
+    top: 10px;
+    left: 10px;
+    max-height: 1020px;
+}
+
+.count-report-notification .content {
+    max-height: 100%;
+    overflow:auto;
+    font-size:12px;
+}
+
+.count-report-notification .content td {
+    padding-left: 4px;
+    padding-right: 4px;
+}
 
 .notification {
     position: absolute;
@@ -190,6 +206,15 @@ body {
 .select div.link {
     cursor: pointer;
     color: #00cc00 !important;
+    font-size: 12px;
+    vertical-align: middle;
+    line-height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#count div.link {
+    cursor: pointer;
     font-size: 12px;
     vertical-align: middle;
     line-height: 45px;
