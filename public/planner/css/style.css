@@ -107,7 +107,7 @@ body {
 }
 
 .count-report-notification .content {
-    max-height: 750px;
+    max-height:500px;
     width:200px;
     overflow:auto;
     font-size:14px;
@@ -218,15 +218,6 @@ body {
 .select div.link {
     cursor: pointer;
     color: #00cc00 !important;
-    font-size: 12px;
-    vertical-align: middle;
-    line-height: 45px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-#count div.link {
-    cursor: pointer;
     font-size: 12px;
     vertical-align: middle;
     line-height: 45px;

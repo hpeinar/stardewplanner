@@ -49,15 +49,13 @@ $().ready(function () {
     // show new version notification
     if (checkLocal() && !localStorage.getItem('stardew:versionNotification')) {
         $('.version-notification').show();
+        $('.count-report-notification').css('top', $('.version-notification').height() + 20);
     }
 
     $('.hide-version-notification').click(function (e) {
         localStorage.setItem('stardew:versionNotification', true);
         $('.version-notification').hide();
-    });
-
-    $('.hide-count-report-notification').click(function (e) {
-        $('.count-report-notification').hide();
+        $('.count-report-notification').css('top', 10);
     });
 
     // show open source version notificaiton
@@ -152,6 +150,10 @@ $().ready(function () {
 
     $('.coordinates').click(function (e) {
         toggleMenuItem(e, '.coordinates', board.showCoords.bind(board), board.hideCoords.bind(board));
+    });
+
+    $('.count-switch').click(function (e) {
+        toggleMenuItem(e, '.count-switch', toggleCountDisplay, toggleCountDisplay);
     });
 
     $('.brush-overwrite').click(function (e) {
@@ -306,11 +308,12 @@ $().ready(function () {
 
     window.addEventListener('updateCount', countObjects);
 
-    /* Displays the count box */
-    $('#count').click(function(e) {
-        e.preventDefault();
-        $('.count-report-notification').show();
-    });
+    function toggleCountDisplay() {
+        if($('.count-report-notification').css('display') === 'none') {
+            $('.count-report-notification').show();
+        }
+        else $('.count-report-notification').hide();
+    }
 
     /* Counts the number of each object and puts it in the notification box. */
     function countObjects(e) {
@@ -328,7 +331,8 @@ $().ready(function () {
 
         var entries = [];
         for (var id in counts) {
-            entries.push({name: spriteNames[id], count: counts[id]});
+            if (!spriteNames[id]) entries.push({name: createSpriteName(id), count: counts[id]});
+            else entries.push({name: spriteNames[id], count: counts[id]});
         }
 
         // Sort first by number, and then alphanumerically
