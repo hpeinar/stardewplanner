@@ -150,6 +150,7 @@ Board.prototype.removeBuilding = function removeBuilding(building) {
     if ((board.placingBuilding || {}).uuid === building.uuid) {
         board.placingBuilding = null;
     }
+    window.dispatchEvent(new Event('updateCount'));
 };
 
 /**
@@ -274,6 +275,7 @@ Board.prototype.mousedown = function mousedown(e) {
         } else {
             board.brush.restoreBrush();
         }
+        window.dispatchEvent(new Event('updateCount'));
     }
 };
 
@@ -341,7 +343,7 @@ Board.prototype.checkRestriction = function checkRestriction (restrictionPath, r
         { x: data.x, y: data.y + data.height},
         { x: data.x + data.width, y: data.y + data.height}
     ];
-    
+
     return points.some(function (p) {
         return Snap.path.isPointInside(restrictionPath, p.x, p.y);
     });
@@ -497,11 +499,13 @@ Board.prototype.drawTiles = function drawTiles(area, tile) {
             }
         }
 
+        window.dispatchEvent(new Event('updateCount'));
         return;
     }
 
     // not area, just draw this one tile to location
     this.drawTile(area, tile);
+    window.dispatchEvent(new Event('updateCount'));
 };
 
 /**
@@ -681,6 +685,8 @@ Board.prototype.importData = function importData(data, cb) {
     if (typeof cb === 'function') {
         cb();
     }
+
+    window.dispatchEvent(new Event('updateCount'));
 };
 
 /**

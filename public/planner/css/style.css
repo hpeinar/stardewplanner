@@ -100,6 +100,34 @@ body {
     color: #00cc00;
 }
 
+.count-report-notification {
+    top: 10px;
+    left: 10px;
+    overflow:hidden;
+}
+
+.count-report-notification .content {
+    max-height:500px;
+    width:200px;
+    overflow:auto;
+    font-size:14px;
+}
+
+.count-report-row {
+    padding-left:8px;
+    padding-right:8px;
+    display:block;
+    clear: both;
+}
+
+.count-report-name {
+    display:inline;
+}
+
+.count-report-count {
+    display:inline;
+    float: right;
+}
 
 .notification {
     position: absolute;

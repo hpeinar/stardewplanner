@@ -9,6 +9,9 @@ $().ready(function () {
     var fileInput = $('#fileinput');
     window.board = board;
 
+    /* Collection for human-readable sprite names */
+    var spriteNames = getSpriteNames();
+
     var planId = window.location.pathname.match(/[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/)
     if (planId && planId.length && planId.length === 1) {
         $.get('/api/'+ planId, function (data) {
@@ -34,8 +37,8 @@ $().ready(function () {
                         board.background.attr('href', Board.toFullPath('img/full_background.jpg'));
                     }, data.options.greenhouse);
                 }
-                
-                
+
+
                 $('.editor-loader').hide();
             });
         });
@@ -46,11 +49,13 @@ $().ready(function () {
     // show new version notification
     if (checkLocal() && !localStorage.getItem('stardew:versionNotification')) {
         $('.version-notification').show();
+        $('.count-report-notification').css('top', $('.version-notification').height() + 20);
     }
 
     $('.hide-version-notification').click(function (e) {
         localStorage.setItem('stardew:versionNotification', true);
         $('.version-notification').hide();
+        $('.count-report-notification').css('top', 10);
     });
 
     // show open source version notificaiton
@@ -145,6 +150,10 @@ $().ready(function () {
 
     $('.coordinates').click(function (e) {
         toggleMenuItem(e, '.coordinates', board.showCoords.bind(board), board.hideCoords.bind(board));
+    });
+
+    $('.count-switch').click(function (e) {
+        toggleMenuItem(e, '.count-switch', toggleCountDisplay, toggleCountDisplay);
     });
 
     $('.brush-overwrite').click(function (e) {
@@ -265,5 +274,80 @@ $().ready(function () {
         } catch(e) {
             return false;
         }
+    }
+
+    /* Add names to spriteNames collection */
+    function getSpriteNames() {
+        var spriteNames = {};
+
+        data.tiles.forEach(function(tile) {
+            var name = $("li[data-type=" + tile + "]").text();
+            if (name === '') {
+                name = createSpriteName(tile);
+            }
+
+            spriteNames[tile] = name;
+        });
+        for (var building in data.buildings) {
+            var name = $("li[data-id=" + building + "]").text();
+            if (name === '') {
+                name = createSpriteName(building);
+            }
+
+            spriteNames[building] = name;
+        }
+
+        return spriteNames;
+    }
+
+    /* Creates sprite name from id */
+    function createSpriteName(id) {
+        var name = id.replace('-', ' ');
+        return name.charAt(0).toUpperCase() + name.substring(1);
+    }
+
+    window.addEventListener('updateCount', countObjects);
+
+    function toggleCountDisplay() {
+        if($('.count-report-notification').css('display') === 'none') {
+            $('.count-report-notification').show();
+        }
+        else $('.count-report-notification').hide();
+    }
+
+    /* Counts the number of each object and puts it in the notification box. */
+    function countObjects(e) {
+        var counts = {};
+
+        $("use").each(function(index) {
+            var id = $(this).attr('href').substring(1);
+
+            if (!counts[id]) {
+                counts[id] = 1;
+            } else {
+                counts[id] += 1;
+            }
+        });
+
+        var entries = [];
+        for (var id in counts) {
+            if (!spriteNames[id]) entries.push({name: createSpriteName(id), count: counts[id]});
+            else entries.push({name: spriteNames[id], count: counts[id]});
+        }
+
+        // Sort first by number, and then alphanumerically
+        entries.sort(function(a, b) {
+            if (a.count === b.count) {
+                return a.name.localeCompare(b.name);
+            }
+            return b.count - a.count;
+        });
+
+        var str = '';
+        entries.forEach(function(thing) {
+            str += '<div class="count-report-row"><div class="count-report-name">' + thing.name + ': </div><div class="count-report-count">' + thing.count + '</div></div>';
+        });
+
+        $('.count-report-notification .content').html(str);
     }
 });
