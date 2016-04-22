@@ -28,6 +28,10 @@ Donations in any sum are very appreciated.
 `node index.js`     
 `open http://127.0.0.1:3000`
 
+# Contributors
+- [TheLostSoul](https://github.com/TheLostSoul)    
+- [echoenzo](https://github.com/echoenzo)
+
 # Credits
 Background image exported from game by [/u/zaxcz](https://www.reddit.com/user/zaxcz)    
 Building sizes and door locations by [/u/Jurk0wski](https://www.reddit.com/user/Jurk0wski)    
