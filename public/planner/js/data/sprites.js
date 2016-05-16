@@ -53,6 +53,11 @@ var data = {
             "width": 7*16,
             "height": 4*16
         },
+        "placeholder": {
+            "sprite": "./img/tiles/placeholder.png",
+            "width": 16,
+            "height": 16
+        },
         "coop": {
             "sprite": "./img/tiles/coop.png",
             "width": 6*16,

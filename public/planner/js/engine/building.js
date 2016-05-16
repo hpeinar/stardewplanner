@@ -13,8 +13,9 @@ function Building(board, id, x, y, dontPlace) {
     this.placed = false;
 
     if (!this.data) {
-        console.log('Unable to add building', id);
-        return;
+        console.log('Unable to add building, using placeholder ', id);
+        id = 'placeholder';
+        this.data = data.buildings[id];
     }
 
     this.sprite = this.R.use(id);
