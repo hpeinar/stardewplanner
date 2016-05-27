@@ -296,7 +296,7 @@ Board.prototype.checkPathRestriction = function checkPathRestriction (restricted
         x: bb.x + 4,
         y: bb.y + 4,
         x2: bb.x + bb.width - 4,
-        y2: bb.y + bb.height - 4,
+        y2: bb.y + bb.height - 4
     };
 
     var extraPaths = [
