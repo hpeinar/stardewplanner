@@ -31,13 +31,13 @@ body {
 }
 
 .loader img {
-    -webkit-animation:spin 4s linear infinite;
-    -moz-animation:spin 4s linear infinite;
-    animation:spin 4s linear infinite;
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
 }
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
 
 .key {
     border: 1px solid #e0e0e0;
@@ -103,29 +103,29 @@ body {
 .count-report-notification {
     top: 10px;
     left: 10px;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .count-report-notification .content {
-    max-height:500px;
-    width:200px;
-    overflow:auto;
-    font-size:14px;
+    max-height: 500px;
+    width: 200px;
+    overflow: auto;
+    font-size: 14px;
 }
 
 .count-report-row {
-    padding-left:8px;
-    padding-right:8px;
-    display:block;
+    padding-left: 8px;
+    padding-right: 8px;
+    display: block;
     clear: both;
 }
 
 .count-report-name {
-    display:inline;
+    display: inline;
 }
 
 .count-report-count {
-    display:inline;
+    display: inline;
     float: right;
 }
 
@@ -143,8 +143,8 @@ body {
 }
 
 .notification .header {
-     background-color: #333;
-     padding: 5px;
+    background-color: #333;
+    padding: 5px;
 }
 
 .notification .header .hide-notification {
@@ -324,13 +324,13 @@ body {
     position: fixed;
     width: 0;
     height: 100%;
-    margin-top:45px;
+    margin-top: 45px;
 }
 
 /** Sprite icons for the menu **/
 .sprite-icon {
     display: block;
-    float:left;
+    float: left;
     width: 16px;
     height: 16px;
     margin-top: 4px;
@@ -449,7 +449,7 @@ body {
     background-image: url('../img/tiles/grass.png');
 }
 .sprite-icon.weed {
-     background-image: url('../img/tiles/weed.png');
+    background-image: url('../img/tiles/weed.png');
 }
 .sprite-icon.crops {
     background-image: url('../img/tiles/farmland.png');
