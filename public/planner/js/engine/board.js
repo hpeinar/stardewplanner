@@ -77,9 +77,14 @@ Board.prototype.showHighlights = function showHighlights(type) {
 
     board.buildings.forEach(function (building) {
         if (board.keepHighlights.indexOf(building.typeGroup) !== -1) {
-            building.moveHighlight(true);
+            building.moveHighlight();
         }
     });
+
+
+
+
+
 };
 
 Board.prototype.hideHighlights = function hideHighlights(type) {
@@ -186,7 +191,8 @@ Board.prototype.buildingsToTop = function buildingsToTop(e) {
         if (b) {
             b.sprite.toBack();
         }
-
+    });
+    this.buildings.forEach(function (b) {
         if (b.highlight) {
             b.highlight.toBack();
         }
