@@ -82,8 +82,8 @@ body {
     margin-right: auto;
     margin-top: 5px;
 }
-.credits {
-    color: #000 !important;
+#credits .credits {
+    color: #000;
 }
 
 /** Version notification **/
@@ -172,7 +172,7 @@ body {
 
 /** Links styles **/
 .top-bar .dropdown li.tools div.link {
-    line-height: 25px !important;
+    line-height: 25px;
     border-bottom: 1px solid #444;
     font-size: 11px;
     cursor: pointer;
@@ -193,7 +193,7 @@ body {
 
 .eraser div.link {
     cursor: pointer;
-    color: #ee0000 !important;
+    color: #ee0000;
     font-size: 12px;
     vertical-align: middle;
     line-height: 45px;
@@ -202,22 +202,22 @@ body {
 }
 
 .eraser:hover {
-    background-color: #222 !important;
+    background-color: #222;
 }
 .select:hover {
-    background-color: #222 !important;
+    background-color: #222;
 }
 
 .eraser:active {
-    background-color: #444 !important;
+    background-color: #444;
 }
 .select:active {
-    background-color: #444 !important;
+    background-color: #444;
 }
 
 .select div.link {
     cursor: pointer;
-    color: #00cc00 !important;
+    color: #00cc00;
     font-size: 12px;
     vertical-align: middle;
     line-height: 45px;
@@ -225,52 +225,48 @@ body {
     padding-right: 10px;
 }
 
-.top-bar .active div.link {
-    background-color: #00cc00 !important;
-}
-
 .top-bar div.link.toggleable {
-    color: #f00 !important;
+    color: #f00;
 }
 
 .top-bar div.link.toggleable.active {
-    color: #0f0 !important;
+    color: #0f0;
 }
 
 .top-bar li.divider {
     border-right: 2px solid #000;
 }
 
-.save-icon {
-    background-color: #090 !important;
+#save .save-icon {
+    background-color: #090;
 }
 
-.import-icon {
-    background-color: #0f6699 !important;
+#import .import-icon {
+    background-color: #0f6699;
 }
 
-.import-icon:hover {
-    background-color: #0c8ed3 !important;
+#import .import-icon:hover {
+    background-color: #0c8ed3;
 }
 
 .import-icon i {
     color: #24ceff;
 }
 
-.save-icon:hover {
-    background-color: #0c0 !important;
+#save .save-icon:hover {
+    background-color: #0c0;
 }
 
 .save-icon i {
     color: #0f0;
 }
 
-.reset-icon {
-    background-color: #900 !important;
+#reset .reset-icon {
+    background-color: #900;
 }
 
-.reset-icon:hover {
-    background-color: #c00 !important;
+#reset .reset-icon:hover {
+    background-color: #c00;
 }
 
 .reset-icon i {
