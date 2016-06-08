@@ -85,7 +85,7 @@ Building.prototype.drawHighlight = function drawHighlight() {
             stroke: (this.data.highlight.color || '#006600'),
             strokeWidth: 2,
             opacity: 0,
-            fill: 'none',
+            fill: (this.data.highlight.color || '#006600'),
             pointerEvents: 'none'
         });
     }
@@ -106,8 +106,9 @@ Building.prototype.moveHighlight = function moveHighlight(noFill) {
         var highlightY = this.sprite.attr('y') - (this.data.highlight.height / 2 - (this.data.height / 2));
         this.highlight.transform('T'+ highlightX +','+ highlightY);
         this.highlight.attr({
-            fill: (noFill ? 'none' : 'black'),
-            opacity: .4
+            fill: (noFill ? 'none' : (this.data.highlight.color || '#006600')),
+            opacity: .5,
+            "fill-opacity": .75
         });
     }
 };
@@ -121,10 +122,6 @@ Building.prototype.mouseout = function mouseout(e) {
         if (this.board.keepHighlights.indexOf(this.typeGroup) === -1) {
             this.highlight.attr({
                 opacity: 0,
-                fill: 'none'
-            });
-        } else {
-            this.highlight.attr({
                 fill: 'none'
             });
         }
