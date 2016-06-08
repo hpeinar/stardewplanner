@@ -29,8 +29,10 @@ Donations in any sum are very appreciated.
 `open http://127.0.0.1:3000`
 
 # Contributors
+- [zwik](https://github.com/zwik) x2
 - [TheLostSoul](https://github.com/TheLostSoul)    
 - [echoenzo](https://github.com/echoenzo)
+- [Ailuridaes](https://github.com/Ailuridaes)
 
 # Credits
 Background image exported from game by [/u/zaxcz](https://www.reddit.com/user/zaxcz)    
