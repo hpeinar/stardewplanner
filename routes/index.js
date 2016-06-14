@@ -7,9 +7,22 @@
 let express = require('express');
 let fs = require('fs');
 let uuid = require('uuid');
+let importer = require('../lib/importer');
+let multipart = require('connect-multiparty');
+let multipartMiddleware = multipart();
 
 module.exports = function () {
     let app = express.Router();
+
+    app.post('/import', multipartMiddleware, function (req, res) {
+        importer(req.files.file.path).then(function (data) {
+            // TODO: Insert into DB
+            res.json(data);
+        }).catch(function (err) {
+            console.error(err);
+            res.send(500);
+        })
+    });
 
     app.get('/:id', function (req, res) {
         // check if ID is actually id...

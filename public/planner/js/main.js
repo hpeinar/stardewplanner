@@ -16,30 +16,7 @@ $().ready(function () {
     if (planId && planId.length && planId.length === 1) {
         $.get('/api/'+ planId, function (data) {
             board.importData(data, function () {
-                // handle switches if new save
-                if (data.options) {
-                    // highglihts
-                    toggleMenuItem(null, '.highlight-scarecrow', board.showHighlights.bind(board, 'scarecrow'), board.hideHighlights.bind(board, 'scarecrow'), data.options.highlights.scarecrow);
-                    toggleMenuItem(null, '.highlight-sprinkler', board.showHighlights.bind(board, 'sprinkler'), board.hideHighlights.bind(board, 'sprinkler'), data.options.highlights.sprinkler);
-                    toggleMenuItem(null, '.highlight-bee', board.showHighlights.bind(board, 'hive'), board.hideHighlights.bind(board, 'hive'), data.options.highlights.bee);
-
-                    // other options
-                    toggleMenuItem(null, '.hide-stuff', board.showStuff.bind(board), board.hideStuff.bind(board), data.options.hidestuff);
-                    toggleMenuItem(null, '.coordinates', board.showCoords.bind(board), board.hideCoords.bind(board), data.options.coordinates);
-                    toggleMenuItem(null, '.brush-overwrite', function () {
-                        board.brush.overwriting = true;
-                    }, function () {
-                        board.brush.overwriting = false;
-                    }, data.options.overwriting);
-                    toggleMenuItem(null, '.greenhouse-switch', function () {
-                        board.background.attr('href', Board.toFullPath('img/full_background_gh_finished.jpg'));
-                    }, function () {
-                        board.background.attr('href', Board.toFullPath('img/full_background.jpg'));
-                    }, data.options.greenhouse);
-                }
-
-
-                $('.editor-loader').hide();
+                loadData(data);
             });
         });
     } else {
@@ -227,22 +204,22 @@ $().ready(function () {
 
     /* Listens for fileinput change */
     fileInput.on('change', function (e) {
-        var file = $(this)[0].files[0];
-        var fr = new FileReader();
+        var formData = new FormData();
+        formData.append('file', $(this)[0].files[0]);
 
-        board.clear();
-        $('.editor-loader').show();
-        $('#editor').hide();
-        var importer = new Importer(board);
-        fr.onload = function (e) {
-            var data = importer.parseData.call(importer, e);
-            board.importData(data, function () {
-                $('.editor-loader').hide();
-                $('#editor').show();
-                console.log('Import done');
-            })
-        };
-        fr.readAsText(file);
+        $.ajax({
+            url: '/api/import',
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                board.importData(data, function () {
+                    loadData(data);
+                });
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
     });
 
     /* The form for file upload is hidden, if user click on the menu link, "forward" the click to the form */
@@ -256,11 +233,9 @@ $().ready(function () {
 
         if (!fileInput) {
             alert("Um, couldn't find the fileinput element.");
-        }
-        else if (!fileInput.files) {
+        } else if (!fileInput.files) {
             $('#fileinput').click();
-        }
-        else if (!fileInput.files[0]) {
+        } else if (!fileInput.files[0]) {
             alert("Please select a file before clicking 'Load'");
         }
     });
@@ -315,6 +290,32 @@ $().ready(function () {
         else $('.count-report-notification').hide();
     }
 
+    function loadData(data) {
+        // handle switches if new save
+        if (data.options) {
+            // highglihts
+            toggleMenuItem(null, '.highlight-scarecrow', board.showHighlights.bind(board, 'scarecrow'), board.hideHighlights.bind(board, 'scarecrow'), data.options.highlights.scarecrow);
+            toggleMenuItem(null, '.highlight-sprinkler', board.showHighlights.bind(board, 'sprinkler'), board.hideHighlights.bind(board, 'sprinkler'), data.options.highlights.sprinkler);
+            toggleMenuItem(null, '.highlight-bee', board.showHighlights.bind(board, 'hive'), board.hideHighlights.bind(board, 'hive'), data.options.highlights.bee);
+
+            // other options
+            toggleMenuItem(null, '.hide-stuff', board.showStuff.bind(board), board.hideStuff.bind(board), data.options.hidestuff);
+            toggleMenuItem(null, '.coordinates', board.showCoords.bind(board), board.hideCoords.bind(board), data.options.coordinates);
+            toggleMenuItem(null, '.brush-overwrite', function () {
+                board.brush.overwriting = true;
+            }, function () {
+                board.brush.overwriting = false;
+            }, data.options.overwriting);
+            toggleMenuItem(null, '.greenhouse-switch', function () {
+                board.background.attr('href', Board.toFullPath('img/full_background_gh_finished.jpg'));
+            }, function () {
+                board.background.attr('href', Board.toFullPath('img/full_background.jpg'));
+            }, data.options.greenhouse);
+        }
+
+
+        $('.editor-loader').hide();
+    }
     /* Counts the number of each object and puts it in the notification box. */
     function countObjects(e) {
         var counts = {};

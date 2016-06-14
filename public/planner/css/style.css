@@ -4,6 +4,11 @@ body {
     font-family: Helvetica;
 }
 
+/** Dropzone css **/
+body.dz-drag-hover {
+    opacity: .4;
+}
+
 .editor-loader {
     margin-top: 5px;
     width: 1280px;

@@ -3,14 +3,16 @@
   "version": "0.0.2",
   "description": "Interactive Stardew Valley farm planner tool",
   "main": "index.js",
-  "engines" : {
-    "node" : ">=4.1.1"
+  "engines": {
+    "node": ">=4.1.1"
   },
   "dependencies": {
     "body-parser": "^1.15.0",
     "bunyan": "^1.7.1",
+    "connect-multiparty": "^2.0.0",
     "easy-config": "^0.5.1",
     "express": "^4.13.4",
+    "libxmljs": "^0.18.0",
     "uuid": "^2.0.1"
   },
   "devDependencies": {},

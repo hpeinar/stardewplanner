@@ -359,3 +359,8 @@ var data = {
         }
     }
 };
+
+// nodeJS would also like to use this file
+if (typeof module !== 'undefined') {
+    module.exports = data;
+}

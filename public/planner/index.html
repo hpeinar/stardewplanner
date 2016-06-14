@@ -17,7 +17,7 @@
     <meta property="og:title" content="Interactive farm planner for Stardew Valley" />
     <meta property="og:description" content="Plan your Stardew Valley farm! ...on a coffee break!" />
 </head>
-<body>
+<body class="saveImportDrop">
     <div class="off-canvas-wrap move-right" data-offcanvas>
         <div class="inner-wrap">
 
@@ -164,7 +164,7 @@
                 </nav>
             </div>
 
-            <form style="display: none;">
+            <form id="fileuploadform" style="display: none;">
                 <input type="file" id="fileinput"/>
             </form>
 
@@ -323,6 +323,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/vendor/modernizr.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+
+    <!-- dropzone -->
+    <script src="vendor/dropzone.js"></script>
+
     <!-- local js -->
     <script type="text/javascript" src="js/data/sprites.js"></script>
 
