@@ -12,3 +12,5 @@ farms/*.json
 saves/*.xml
 
 *.psd
+
+.vagrant
