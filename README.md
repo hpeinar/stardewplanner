@@ -33,6 +33,7 @@ Donations in any sum are very appreciated.
 - [TheLostSoul](https://github.com/TheLostSoul)    
 - [echoenzo](https://github.com/echoenzo)
 - [Ailuridaes](https://github.com/Ailuridaes)
+- [rgson](https://github.com/rgson)
 
 # Integration
 POST `/api/import`     

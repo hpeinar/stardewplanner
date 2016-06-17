@@ -34,7 +34,7 @@ $().ready(function () {
         $('.version-notification').hide();
         $('.count-report-notification').css('top', 10);
     });
-    
+
     /* Saves your epic work */
     $('#save').click(function (e) {
         e.preventDefault();
@@ -65,6 +65,64 @@ $().ready(function () {
                 window.location.href = '/planner/' + data.id;
             }
         });
+    });
+
+    /* Exports to an image file */
+    $('#export-image').click(function () {
+        replaceImages($('#editor'), function (svg) {
+            drawSvgToCanvas(svg, function (canvas) {
+                downloadFromCanvas(canvas);
+            });
+        });
+        /* External images are not loaded for SVGs when expressed in data URL
+           form, so all <image> tags must be converted to data URLs. */
+        function replaceImages(svg, callback) {
+            svg = svg.clone(); // Don't modify the original.
+            var images = svg.find('image');
+            var remaining = images.length;
+            images.each(function (i, e) {
+                var element = $(e);
+                // Convert an image to a data URL by loading it into an <img>
+                // and then drawing it on a canvas.
+                $('<img/>')
+                    .load(function () {
+                        var canvas = $('<canvas/>')
+                            .prop({width: this.width, height: this.height})[0];
+                        canvas.getContext('2d').drawImage(this, 0, 0);
+                        element.attr('href', canvas.toDataURL());
+                        // Wait for all <image> elements to be converted.
+                        if (--remaining < 1) {
+                            callback(svg);
+                        }
+                    })
+                    .attr('src', element.attr('href'));
+            });
+        }
+        /* Convert an SVG to a PNG data URL by loading it into an <img>
+           element and then drawing it on a canvas. */
+        function drawSvgToCanvas(svg, callback) {
+            var data = new XMLSerializer().serializeToString(svg[0]);
+            $('<img/>')
+                .load(function () {
+                    var size = $('#editor')[0].getBoundingClientRect();
+                    var canvas = $('<canvas/>')
+                        .prop({width: size.width, height: size.height})[0];
+                    canvas.getContext('2d').drawImage(this, 0, 0);
+                    callback(canvas);
+                })
+                .attr('src', 'data:image/svg+xml,' + encodeURIComponent(data));
+        }
+        /* Download an image from a canvas element. */
+        function downloadFromCanvas(canvas) {
+            canvas.toBlob(function (blob) {
+                var a = $('<a/>')
+                    .attr('href', URL.createObjectURL(blob))
+                    .attr('download', 'stardewplanner.png')
+                    .appendTo('body');
+                a[0].click();
+                a.remove();
+            });
+        }
     });
 
     /* Clears board */
@@ -148,26 +206,6 @@ $().ready(function () {
         }, function () {
             board.background.attr('href', Board.toFullPath('img/full_background.jpg'));
         });
-    });
-
-    /** Currently not implemented as it doesn't render images correctly **/
-    $('.save-png').click(function (e) {
-        e.preventDefault();
-
-        var svgData  = new XMLSerializer().serializeToString(document.getElementById('editor'));
-        var img = document.createElement("img");
-        var canvas = document.createElement("canvas");
-        canvas.width = 1280;
-        canvas.height = 1040;
-        var ctx = canvas.getContext("2d");
-        img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData));
-
-        img.onload = function() {
-            ctx.drawImage(img, 0, 0, 1280, 1040);
-
-            // Now is done
-            window.open(canvas.toDataURL("image/png"));
-        };
     });
 
     /* Selects new brush */

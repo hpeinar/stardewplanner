@@ -266,6 +266,18 @@ body.dz-drag-hover {
     color: #0f0;
 }
 
+#export-image .export-image-icon {
+    background-color: #730099;
+}
+
+#export-image .export-image-icon:hover {
+    background-color: #9a00cc;
+}
+
+.export-image-icon i {
+    color: #c000ff;
+}
+
 #reset .reset-icon {
     background-color: #900;
 }
