@@ -34,17 +34,7 @@ $().ready(function () {
         $('.version-notification').hide();
         $('.count-report-notification').css('top', 10);
     });
-
-    // show open source version notificaiton
-    if (checkLocal() && !localStorage.getItem('stardew:opensourceNotification')) {
-        $('.open-source-notification').show();
-    }
-
-    $('.hide-open-source-notification').click(function (e) {
-        localStorage.setItem('stardew:opensourceNotification', true);
-        $('.open-source-notification').hide();
-    });
-
+    
     /* Saves your epic work */
     $('#save').click(function (e) {
         e.preventDefault();
