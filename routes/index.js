@@ -9,7 +9,9 @@ let fs = require('fs');
 let uuid = require('uuid');
 let importer = require('../lib/importer');
 let multipart = require('connect-multiparty');
-let multipartMiddleware = multipart();
+let multipartMiddleware = multipart({
+    maxFieldsSize: '25MB'
+});
 let cors = require('cors');
 let RateLimit = require('express-rate-limit');
 
