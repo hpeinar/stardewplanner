@@ -11,6 +11,8 @@ let log = bunyan.createLogger({name: "stardrew"});
 let bodyParser = require('body-parser');
 let app = express();
 
+app.enable('trust proxy');
+
 // increased bodyParser limit to allow big farms
 app.use(bodyParser.json({limit: '25mb'}));
 

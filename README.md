@@ -34,6 +34,32 @@ Donations in any sum are very appreciated.
 - [echoenzo](https://github.com/echoenzo)
 - [Ailuridaes](https://github.com/Ailuridaes)
 
+# Integration
+POST `/api/import`
+CORS enabled endpoint which imports given save game file to the planner.
+Expects saveGame.xml as file parameter in the post. 
+
+Note: This endpoint is rate limited to 600 requests per 15m (40 requests per minute)     
+Note: saveGame.xml limit is 25mb
+      
+Usage:      
+`curl --form "file=@saveFile.xml" https://stardew.info/api/import`    
+      
+Response:     
+```json
+{
+  "id": "uuid-of-the-save",
+  "absolutePath": "https://stardew.info/planner/uuid-of-the-save"
+}
+```
+     
+Error response:     
+```json 
+{
+  "message": "Missing file"
+}
+```
+
 # Credits
 Background image exported from game by [/u/zaxcz](https://www.reddit.com/user/zaxcz)    
 Building sizes and door locations by [/u/Jurk0wski](https://www.reddit.com/user/Jurk0wski)    

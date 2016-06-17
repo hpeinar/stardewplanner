@@ -11,11 +11,18 @@ let importer = require('../lib/importer');
 let multipart = require('connect-multiparty');
 let multipartMiddleware = multipart();
 let cors = require('cors');
+let RateLimit = require('express-rate-limit');
+
+let limiter = new RateLimit({
+    windowMs: 15*60*1000, // 15 minutes
+    max: 600s, // limit each IP to 100 requests per windowMs
+    delayMs: 0 // disable delaying - full speed until the max limit is reached,
+});
 
 module.exports = function () {
     let app = express.Router();
     
-    app.post('/import', [cors(), multipartMiddleware], function (req, res) {
+    app.post('/import', [limiter, cors(), multipartMiddleware], function (req, res) {
         if (!req.files || !req.files.file) {
             res.status(500).json({message: 'Missing file'});
             return;
