@@ -10,17 +10,26 @@ let uuid = require('uuid');
 let importer = require('../lib/importer');
 let multipart = require('connect-multiparty');
 let multipartMiddleware = multipart();
+let cors = require('cors');
 
 module.exports = function () {
     let app = express.Router();
+    
+    app.post('/import', [cors(), multipartMiddleware], function (req, res) {
+        if (!req.files || !req.files.file) {
+            res.status(500).json({message: 'Missing file'});
+            return;
+        }
 
-    app.post('/import', multipartMiddleware, function (req, res) {
         importer(req.files.file.path).then(function (data) {
-            // TODO: Insert into DB
-            res.json(data);
+            // include full url
+            res.json({
+                id: data.saveId,
+                absolutePath: 'https://stardew.info/planner/'+ data.saveId
+            });
         }).catch(function (err) {
             console.error(err);
-            res.send(500);
+            res.status(500).json({message: 'Failed to import save file'});
         })
     });
 

@@ -212,9 +212,9 @@ $().ready(function () {
             type: 'POST',
             data: formData,
             success: function (data) {
-                board.importData(data, function () {
-                    loadData(data);
-                });
+                if (data.id) {
+                    window.location.href = '/planner/' + data.id;
+                }
             },
             cache: false,
             contentType: false,

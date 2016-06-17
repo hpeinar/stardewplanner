@@ -9,5 +9,6 @@ config.*.json
 node_modules
 
 farms/*.json
+saves/*.xml
 
 *.psd
