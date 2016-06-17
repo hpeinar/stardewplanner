@@ -35,12 +35,12 @@ Donations in any sum are very appreciated.
 - [Ailuridaes](https://github.com/Ailuridaes)
 
 # Integration
-POST `/api/import`
-CORS enabled endpoint which imports given save game file to the planner.
-Expects saveGame.xml as file parameter in the post. 
-
-Note: This endpoint is rate limited to 600 requests per 15m (40 requests per minute)     
-Note: saveGame.xml limit is 25mb
+POST `/api/import`     
+CORS enabled endpoint which imports given save game file to the planner.     
+Expects saveGame.xml as file parameter in the post.    
+    
+Note: This endpoint is rate limited to 600 requests per 15m (40 requests per minute)         
+Note: saveGame.xml limit is 25mb    
       
 Usage:      
 `curl --form "file=@saveFile.xml" https://stardew.info/api/import`    
