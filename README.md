@@ -37,7 +37,7 @@ Donations in any sum are very appreciated.
 # Integration
 POST `/api/import`     
 CORS enabled endpoint which imports given save game file to the planner.     
-Expects saveGame.xml as file parameter in the post.    
+Expects saveGame.xml or saveGame.zip as file parameter in the post. Please note that it implements regular zip format, not gzip.    
     
 Note: This endpoint is rate limited to 600 requests per 15m (40 requests per minute)         
 Note: saveGame.xml limit is 25mb    
