@@ -42,6 +42,7 @@ Repeat steps 2 and 3 whenever you wish to start the VM. Subsequent startups are 
 For more in-depth instructions on how to use Vagrant, refer to the [Vagrant documentation](https://www.vagrantup.com/docs/).
 
 # Contributors
+- [rgson](https://github.com/rgson)
 - [zwik](https://github.com/zwik) x2
 - [TheLostSoul](https://github.com/TheLostSoul)    
 - [echoenzo](https://github.com/echoenzo)
