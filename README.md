@@ -46,6 +46,7 @@ For more in-depth instructions on how to use Vagrant, refer to the [Vagrant docu
 - [TheLostSoul](https://github.com/TheLostSoul)    
 - [echoenzo](https://github.com/echoenzo)
 - [Ailuridaes](https://github.com/Ailuridaes)
+- [rgson](https://github.com/rgson)
 
 # Integration
 POST `/api/import`     
