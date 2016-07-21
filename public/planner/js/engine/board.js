@@ -62,6 +62,7 @@ function Board (containerId, width, height) {
 
     // bind keybinds to window
     $(window).keydown(this.keydown.bind(this));
+    $(window).keyup(this.keyup.bind(this));
 
     this.R.drag(this.dragMove, this.dragStart, this.dragEnd, this, this, this);
 
@@ -80,11 +81,6 @@ Board.prototype.showHighlights = function showHighlights(type) {
             building.moveHighlight();
         }
     });
-
-
-
-
-
 };
 
 Board.prototype.hideHighlights = function hideHighlights(type) {
@@ -405,21 +401,39 @@ Board.prototype.mousemove = function mousemove(e) {
  */
 Board.prototype.keydown = function keydown(e) {
     // 'Del'
-    if (this.placingBuilding && e.which == 46) {
+    if (e.which == 46) {
         this.deselectBuilding();
     }
 
-    // 'E'
+    // 'E' for eraser
     if (e.which === 69) {
-        if (this.placingBuilding) {
-            this.deselectBuilding();
-        }
+        this.deselectBuilding();
 
         if (!this.brush.erase) {
             this.brush.changeBrush('eraser');
         } else {
             this.brush.restoreBrush();
         }
+    }
+
+    // 'S' for select tool
+    if (e.which === 83) {
+        this.deselectBuilding();
+
+        if (!this.brush.type && !this.brush.erase) {
+            this.brush.restoreBrush();
+        } else {
+            this.brush.changeBrush('select');
+        }
+    }
+
+    // 'w' for highlights
+    if (e.which === 87) {
+        this.highlightsState = [].concat(this.keepHighlights);
+
+        this.showHighlights('sprinkler');
+        this.showHighlights('scarecrow');
+        this.showHighlights('hive');
     }
 
     // 'Esc'
@@ -434,6 +448,28 @@ Board.prototype.keydown = function keydown(e) {
     }
 
     e.stopPropagation();
+};
+
+/**
+ * Keyup handler
+ * @param e
+ */
+Board.prototype.keyup = function keyup(e) {
+    // 'w' for highlights
+    if (e.which === 87) {
+
+        if (this.highlightsState.indexOf('sprinkler') === -1) {
+            this.hideHighlights('sprinkler');
+        }
+
+        if (this.highlightsState.indexOf('scarecrow') === -1) {
+            this.hideHighlights('scarecrow');
+        }
+
+        if (this.highlightsState.indexOf('hive') === -1) {
+            this.hideHighlights('hive');
+        }
+    }
 };
 
 /**
@@ -683,10 +719,6 @@ Board.prototype.importData = function importData(data, cb) {
 
     // show highlights
     this.showHighlights();
-
-    if (typeof cb === 'function') {
-        cb();
-    }
 
     if (typeof cb === 'function') {
         cb();
