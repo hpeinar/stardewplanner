@@ -12,9 +12,9 @@ $().ready(function () {
     /* Collection for human-readable sprite names */
     var spriteNames = getSpriteNames();
 
-    var planId = window.location.pathname.match(/[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}/)
-    if (planId && planId.length && planId.length === 1) {
-        $.get('/api/'+ planId, function (data) {
+    var planId = window.location.pathname.match(/\/planner\/(.*)\//);
+    if (planId && planId.length && planId.length === 2) {
+        $.get('/api/'+ planId[1], function (data) {
             board.importData(data, function () {
                 loadData(data);
             });
@@ -51,7 +51,8 @@ $().ready(function () {
             greenhouse: $('.greenhouse-switch').hasClass('active'),
             coordinates: $('.coordinates').hasClass('active'),
             hidestuff: $('.hide-stuff').hasClass('active'),
-            overwriting: $('.brush-overwrite').hasClass('active')
+            overwriting: $('.brush-overwrite').hasClass('active'),
+            objectCount: $('.count-switch').hasClass('active')
         };
 
 
@@ -328,6 +329,7 @@ $().ready(function () {
 
             // other options
             toggleMenuItem(null, '.hide-stuff', board.showStuff.bind(board), board.hideStuff.bind(board), data.options.hidestuff);
+            toggleMenuItem(null, '.count-switch', function () { $('.count-report-notification').show(); }, function () { $('.count-report-notification').hide(); }, data.options.objectCount);
             toggleMenuItem(null, '.coordinates', board.showCoords.bind(board), board.hideCoords.bind(board), data.options.coordinates);
             toggleMenuItem(null, '.brush-overwrite', function () {
                 board.brush.overwriting = true;

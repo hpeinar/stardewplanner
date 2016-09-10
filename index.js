@@ -4,17 +4,25 @@
 
 'use strict';
 
-let express = require('express');
-let config = require('easy-config');
-let bunyan = require('bunyan');
-let log = bunyan.createLogger({name: "stardrew"});
-let bodyParser = require('body-parser');
-let app = express();
+const express = require('express');
+const config = require('easy-config');
+const bunyan = require('bunyan');
+const log = bunyan.createLogger({name: "stardrew"});
+const bodyParser = require('body-parser');
+const app = express();
+const db = require('./lib/db');
 
 app.enable('trust proxy');
 
 // increased bodyParser limit to allow big farms
 app.use(bodyParser.json({limit: '25mb'}));
+app.use((req, res, next) => {
+    req.log = log;
+    next();
+});
+
+app.use(db.createConnection);
+
 
 // currently nothing is at root, redirect use directly to planner
 app.get('/', function (req, res) {
@@ -24,7 +32,7 @@ app.get('/', function (req, res) {
 // mount api endpoints
 app.use('/api', require('./routes')());
 
-// heartbeat endpoint for pinging applicatons
+// heartbeat endpoint for pinging applications
 app.get('/heartbeat', function (req, res) {
     res.sendStatus(200);
 });
@@ -33,7 +41,11 @@ app.get('/heartbeat', function (req, res) {
 app.use(express.static('./public'));
 app.use('/planner/:id', express.static('./public/planner'));
 
+app.use(db.closeConnection);
 
-app.listen(config.port, function () {
-    log.info('App listening on port', config.port);
+// do rethinkDB setup and then run express
+db.setup(log).then(function () {
+    app.listen(config.port, function () {
+        log.info('App listening on port', config.port);
+    });
 });

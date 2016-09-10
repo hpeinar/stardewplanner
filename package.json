@@ -15,7 +15,10 @@
     "easy-config": "^0.5.1",
     "express": "^4.13.4",
     "express-rate-limit": "^2.3.1",
+    "human-readable-ids": "^1.0.1",
     "libxmljs": "^0.18.0",
+    "mongodb": "^2.2.9",
+    "rethinkdb": "^2.3.3",
     "uuid": "^2.0.1"
   },
   "devDependencies": {},

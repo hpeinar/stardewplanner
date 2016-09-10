@@ -4,18 +4,19 @@
 
 'use strict';
 
-let express = require('express');
-let fs = require('fs');
-let uuid = require('uuid');
-let importer = require('../lib/importer');
-let multipart = require('connect-multiparty');
-let multipartMiddleware = multipart({
+const express = require('express');
+const fs = require('fs');
+const r = require('rethinkdb');
+const importer = require('../lib/importer');
+const multipart = require('connect-multiparty');
+const multipartMiddleware = multipart({
     maxFieldsSize: '25MB'
 });
-let cors = require('cors');
-let RateLimit = require('express-rate-limit');
+const cors = require('cors');
+const RateLimit = require('express-rate-limit');
+const hri = require('human-readable-ids').hri;
 
-let limiter = new RateLimit({
+const limiter = new RateLimit({
     windowMs: 15*60*1000, // 15 minutes
     max: 600, // limit each IP to 100 requests per windowMs
     delayMs: 0 // disable delaying - full speed until the max limit is reached,
@@ -30,54 +31,97 @@ module.exports = function () {
             return;
         }
 
+        let importData = null;
+
         importer(req.files.file.path).then(function (data) {
-            // include full url
-            res.json({
-                id: data.saveId,
-                absolutePath: 'https://stardew.info/planner/'+ data.saveId
+            importData = data;
+
+            return uniqueId(req);
+        }).then(function (readableId) {
+            let farm = {
+                id: readableId,
+                farmData: importData
+            };
+
+            r.table('farms').insert(farm).run(req._conn).then(function (results) {
+                if (results.inserted !== 1) {
+                    req.log.error('Failed to save imported farm');
+                    res.sendStatus(500);
+                    return;
+                }
+
+                res.json({
+                    id: readableId,
+                    absolutePath: 'https://stardew.info/planner/'+ readableId
+                });
+            }).error(function (err) {
+                req.log.error(err, 'RethinkDB error while saving imported farm');
+                res.sendStatus(500);
             });
+
         }).catch(function (err) {
-            console.error(err);
+            req.log.error(err);
             res.status(500).json({message: 'Failed to import save file'});
         })
     });
 
     app.get('/:id', function (req, res) {
-        // check if ID is actually id...
-        if(/^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/.test(req.params.id)) {
+        r.table('farms').filter(
+            r.or(
+                r.row('id').default('').eq(req.params.id),
+                r.row('oldId').default('').eq(req.params.id)
+            )
+        ).run(req._conn).then(farm => farm.toArray()).then(function (farm) {
+            if (!farm.length) {
+                res.sendStatus(404);
+                return;
+            }
 
-            fs.readFile(__dirname +'/../farms/'+ req.params.id +'.json', function (err, data) {
-                if (err) {
-                    res.status(500).json('Unable to find farm plan');
-                    return;
-                }
-
-                res.type('application/json');
-                res.send(data.toString());
-            });
-        } else {
-            res.status(500).json('Unable to find farm plan');
-        }
+            res.json(farm[0].farmData);
+        }).error(function (err) {
+            req.log.error(err, 'Failed to get farm');
+            res.sendStatus(404);
+        });
     });
 
     app.post('/save', function (req, res) {
-        let id = uuid.v4();
-        let data = null;
-        try {
-            data = JSON.stringify(req.body);
-        } catch(e) {
-            res.status(500).json('Failed to save farm plan');
-            return;
-        }
+        uniqueId(req).then(function (uniqueId) {
+            let farm = {
+                id: uniqueId,
+                farmData: req.body
+            };
 
-        fs.writeFile(__dirname +'/../farms/'+ id +'.json', data, function (err, data) {
-            if (err) {
-                res.status(500).json('Failed to save farm plan');
-                return;
-            }
-            res.json({id: id});
-        })
+            r.table('farms').insert(farm).run(req._conn).then(function (result) {
+                if (result.inserted !== 1) {
+                    console.log(result);
+                    req.log.error('Failed to insert farm');
+                    res.sendStatus(500);
+                    return;
+                }
+
+                res.json({id: uniqueId});
+            }).error(function (err) {
+                req.log.error(err, 'Failed to save farm');
+                res.sendStatus(500);
+            });
+        }).catch(function (err) {
+            req.log.error(err, 'Failed to save farm, in catch');
+            res.sendStatus(500);
+        });
     });
+
+    function uniqueId (req) {
+        let readableId = hri.random();
+        return new Promise(function (resolve, reject) {
+            r.table('farms').get(readableId).run(req._conn).then(function (results) {
+                if (results) {
+                    return uniqueId(req);
+                } else {
+                    resolve(readableId);
+                }
+            }).error(err => reject(err));
+        });
+    }
 
     return app;
 };
