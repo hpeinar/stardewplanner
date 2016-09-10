@@ -11,6 +11,7 @@ const log = bunyan.createLogger({name: "stardrew"});
 const bodyParser = require('body-parser');
 const app = express();
 const db = require('./lib/db');
+const favicon = require('serve-favicon');
 
 app.enable('trust proxy');
 
@@ -22,7 +23,7 @@ app.use((req, res, next) => {
 });
 
 app.use(db.createConnection);
-
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // currently nothing is at root, redirect use directly to planner
 app.get('/', function (req, res) {
