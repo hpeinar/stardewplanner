@@ -23,15 +23,15 @@ $().ready(function () {
        $('.editor-loader').hide();
     }
 
-    // show new version notification
-    if (checkLocal() && !localStorage.getItem('stardew:versionNotification')) {
-        $('.version-notification').show();
-        $('.count-report-notification').css('top', $('.version-notification').height() + 20);
+    // notification
+    if (checkLocal() && !localStorage.getItem('stardew:usNotification')) {
+        $('.us-notification').show();
+        $('.count-report-notification').css('top', $('.us-notification').height() + 20);
     }
 
-    $('.hide-version-notification').click(function (e) {
-        localStorage.setItem('stardew:versionNotification', true);
-        $('.version-notification').hide();
+    $('.hide-us-notification').click(function (e) {
+        localStorage.setItem('stardew:usNotification', true);
+        $('.us-notification').hide();
         $('.count-report-notification').css('top', 10);
     });
 
