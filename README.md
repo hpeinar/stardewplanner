@@ -63,8 +63,8 @@ Usage:
 Response:     
 ```json
 {
-  "id": "uuid-of-the-save",
-  "absolutePath": "https://stardew.info/planner/uuid-of-the-save"
+  "id": "readable-id-of-the-save",
+  "absolutePath": "https://stardew.info/planner/readable-id-of-the-save"
 }
 ```
      
