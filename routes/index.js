@@ -25,7 +25,7 @@ const limiter = new RateLimit({
 module.exports = function () {
     let app = express.Router();
     
-    app.post('/import', [limiter, cors(), multipartMiddleware], function (req, res) {
+    app.post('/import', [limiter, cors(), multipartMiddleware], function (req, res, next) {
         if (!req.files || !req.files.file) {
             res.status(500).json({message: 'Missing file'});
             return;
@@ -54,18 +54,24 @@ module.exports = function () {
                     id: readableId,
                     absolutePath: 'https://stardew.info/planner/'+ readableId
                 });
+
+                next();
             }).error(function (err) {
                 req.log.error(err, 'RethinkDB error while saving imported farm');
                 res.sendStatus(500);
+                next();
             });
 
         }).catch(function (err) {
             req.log.error(err);
             res.status(500).json({message: 'Failed to import save file'});
-        })
+            next();
+        });
+
+
     });
 
-    app.get('/:id', function (req, res) {
+    app.get('/:id', function (req, res, next) {
         r.table('farms').get(req.params.id).run(req._conn)
             .then(function (results) {
                 if (!results) {
@@ -92,13 +98,15 @@ module.exports = function () {
                 }
 
                 res.json((farm.farmData || farm[0].farmData));
+                next();
             }).error(function (err) {
                 req.log.error(err, 'Failed to get farm');
                 res.sendStatus(404);
+                next();
             });
     });
 
-    app.post('/save', function (req, res) {
+    app.post('/save', function (req, res, next) {
         uniqueId(req).then(function (uniqueId) {
             let farm = {
                 id: uniqueId,
@@ -113,13 +121,16 @@ module.exports = function () {
                 }
 
                 res.json({id: uniqueId});
+                next();
             }).error(function (err) {
                 req.log.error(err, 'Failed to save farm');
                 res.sendStatus(500);
+                next();
             });
         }).catch(function (err) {
             req.log.error(err, 'Failed to save farm, in catch');
             res.sendStatus(500);
+            next();
         });
     });
 
