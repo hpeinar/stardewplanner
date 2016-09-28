@@ -38,11 +38,12 @@ app.get('/heartbeat', function (req, res) {
     res.sendStatus(200);
 });
 
+app.use(db.closeConnection);
+
 // static mounts
 app.use(express.static('./public'));
 app.use('/planner/:id', express.static('./public/planner'));
 
-app.use(db.closeConnection);
 
 // do rethinkDB setup and then run express
 db.setup(log).then(function () {
