@@ -86,7 +86,6 @@ module.exports = function () {
             })
             .then(function (farm) {
 
-                console.log('got farm?', farm);
                 if (!farm.farmData && !farm.length) {
                     res.sendStatus(404);
                     return;
@@ -108,7 +107,6 @@ module.exports = function () {
 
             r.table('farms').insert(farm).run(req._conn).then(function (result) {
                 if (result.inserted !== 1) {
-                    console.log(result);
                     req.log.error('Failed to insert farm');
                     res.sendStatus(500);
                     return;
