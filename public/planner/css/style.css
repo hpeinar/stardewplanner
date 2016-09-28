@@ -183,8 +183,8 @@ body.dz-drag-hover {
 }
 
 /** Donation **/
-.donate a {
-    color: #0c8ed3;
+.donate {
+    color: #0c8ed3 !important;
 }
 
 .top-bar .dropdown li.tools div.link:hover {
