@@ -182,6 +182,11 @@ body.dz-drag-hover {
     white-space: nowrap;
 }
 
+/** Donation **/
+.donate a {
+    color: #0c8ed3;
+}
+
 .top-bar .dropdown li.tools div.link:hover {
     background-color: #444;
 }

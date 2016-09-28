@@ -18,6 +18,8 @@ $().ready(function () {
             board.importData(data, function () {
                 loadData(data);
             });
+        }).fail(function () {
+            $('.editor-loader').hide();
         });
     } else {
        $('.editor-loader').hide();

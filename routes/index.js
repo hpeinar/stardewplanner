@@ -66,22 +66,34 @@ module.exports = function () {
     });
 
     app.get('/:id', function (req, res) {
-        r.table('farms').filter(
-            r.or(
-                r.row('id').default('').eq(req.params.id),
-                r.row('oldId').default('').eq(req.params.id)
-            )
-        ).run(req._conn).then(farm => farm.toArray()).then(function (farm) {
-            if (!farm.length) {
-                res.sendStatus(404);
-                return;
-            }
+        r.table('farms').get(req.params.id).run(req._conn)
+            .then(function (results) {
+                if (!results) {
+                    return r.table('farms').getAll(req.params.id, {index: 'oldId'}).run(req._conn);
+                } else {
+                    return results;
+                }
+            })
+            .then(function (farm) {
+                if (typeof farm.toArray === 'function') {
+                    return farm.toArray();
+                } else {
+                    return farm;
+                }
+            })
+            .then(function (farm) {
 
-            res.json(farm[0].farmData);
-        }).error(function (err) {
-            req.log.error(err, 'Failed to get farm');
-            res.sendStatus(404);
-        });
+                console.log('got farm?', farm);
+                if (!farm.farmData && !farm.length) {
+                    res.sendStatus(404);
+                    return;
+                }
+
+                res.json((farm.farmData || farm[0].farmData));
+            }).error(function (err) {
+                req.log.error(err, 'Failed to get farm');
+                res.sendStatus(404);
+            });
     });
 
     app.post('/save', function (req, res) {
