@@ -83,8 +83,6 @@ module.exports = function () {
             .then(function (farm) {
                 if (typeof farm.toArray === 'function') {
                     let data = farm.toArray();
-                    farm.close();
-
                     return data;
                 } else {
                     return farm;
