@@ -76,7 +76,10 @@ module.exports = function () {
             })
             .then(function (farm) {
                 if (typeof farm.toArray === 'function') {
-                    return farm.toArray();
+                    let data = farm.toArray();
+                    farm.close();
+
+                    return data;
                 } else {
                     return farm;
                 }
