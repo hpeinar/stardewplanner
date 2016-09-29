@@ -78,9 +78,11 @@ var layouts = {
             y: 6
         }
     },
-    "wonderful-farm-hweetie-1": {
-        name: 'wonderful-farm-hweetie-1',
-        backgroundImage: 'wonderful-1.jpg',
+    "wonderful-farm-lfe": {
+        author: 'taintedwheat & JinxieWinxie',
+        url: 'http://community.playstarbound.com/threads/wonderful-farm-life-smapi-version-updated-7-2-now-with-grandpas-memorial-make-your-farm-sick.115384/',
+        name: 'wonderful-farm-lfe',
+        backgroundImage: 'wonderful-farm-lfe.jpg',
         restrictionPath: null,
         house: {
             x: 58,
