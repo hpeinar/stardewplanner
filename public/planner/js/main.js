@@ -37,6 +37,11 @@ $().ready(function () {
         $('.count-report-notification').css('top', 10);
     });
 
+    $('.switch-layout').click(function () {
+        console.log('loading layout', $(this).data('layout'));
+        board.loadLayout(layouts[$(this).data('layout')]);
+    });
+
     /* Saves your epic work */
     $('#save').click(function (e) {
         e.preventDefault();
@@ -197,17 +202,6 @@ $().ready(function () {
             board.brush.freemode = true;
         }, function () {
             board.brush.freemode = false;
-        });
-    });
-
-
-
-    /* Shows greenhouse repaired */
-    $('.greenhouse-switch').click(function (e) {
-        toggleMenuItem(e, '.greenhouse-switch', function () {
-            board.background.attr('href', Board.toFullPath('img/full_background_gh_finished.jpg'));
-        }, function () {
-            board.background.attr('href', Board.toFullPath('img/full_background.jpg'));
         });
     });
 

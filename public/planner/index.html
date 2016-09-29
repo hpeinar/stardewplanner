@@ -142,18 +142,23 @@
                         <ul class="right">
                             <li class="divider"></li>
                             <li class="has-dropdown">
-                                <a href="#">Highlights</a>
+                                <a href="#">Layouts</a>
                                 <ul class="dropdown">
-                                    <li class="tools"><div class="toggle-highlight toggleable highlight-sprinkler link" data-highlight="sprinkler"><i class="fa fa-remove"></i> Sprinklers</div></li>
-                                    <li class="tools"><div class="toggle-highlight toggleable highlight-scarecrow link" data-highlight="scarecrow"><i class="fa fa-remove"></i> Scarecrows</div></li>
-                                    <li class="tools"><div class="toggle-highlight toggleable highlight-bee link" data-highlight="hive"><i class="fa fa-remove"></i> Bee-hives</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-layout="regular">Regular layout</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-layout="combat">Combat layout</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-layout="fishing">Fishing layout</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-layout="foraging">Foraging layout</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-layout="mining">Mining layout</div></li>
                                 </ul>
                             </li>
                             <li class="divider"></li>
                             <li class="has-dropdown">
                                 <a href="#">Options</a>
                                 <ul class="dropdown">
-                                    <li class="tools"><div class="link toggleable greenhouse-switch"><i class="fa fa-remove"></i> Toggle greenhouse</div></li>
+                                    <li class="tools"><div class="toggle-highlight toggleable highlight-sprinkler link" data-highlight="sprinkler"><i class="fa fa-remove"></i> Toggle Sprinklers highlights</div></li>
+                                    <li class="tools"><div class="toggle-highlight toggleable highlight-scarecrow link" data-highlight="scarecrow"><i class="fa fa-remove"></i> Toggle Scarecrows highlights</div></li>
+                                    <li class="tools"><div class="toggle-highlight toggleable highlight-bee link" data-highlight="hive"><i class="fa fa-remove"></i> Toggle Bee-hives highlights</div></li>
+                                    <!--<li class="tools"><div class="link toggleable greenhouse-switch"><i class="fa fa-remove"></i> Toggle greenhouse</div></li>-->
                                     <li class="tools"><div class="link toggleable brush-overwrite"><i class="fa fa-remove"></i> Toggle brush overwriting</div></li>
                                     <li class="tools"><div class="link toggleable freemode"><i class="fa fa-remove"></i> Toggle brush freemode</div></li>
                                     <li class="tools"><div class="link toggleable coordinates"><i class="fa fa-remove"></i> Toggle coordinates</div></li>
@@ -354,6 +359,7 @@
 
     <!-- local js -->
     <script type="text/javascript" src="js/data/sprites.js"></script>
+    <script type="text/javascript" src="js/data/layouts.js"></script>
 
     <script type="text/javascript" src="js/engine/building.js"></script>
     <script type="text/javascript" src="js/engine/brush.js"></script>

@@ -107,7 +107,9 @@ Brush.prototype.move = function move(pos) {
         return;
     }
 
-    this.checkRestriction();
+    if (this.board.restrictionCheck) {
+        this.checkRestriction();
+    }
 
     this.rect.attr({
         x: pos.x,
@@ -177,7 +179,9 @@ Brush.prototype.drag = function drag(pos) {
         height: newHeight + this.board.tileSize
     });
 
-    this.checkRestriction();
+    if (this.board.restrictionCheck) {
+        this.checkRestriction();
+    }
 };
 
 /**

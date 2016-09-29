@@ -22,30 +22,15 @@ function Board (containerId, width, height) {
     this.tiles = [];
     this.buildings = [];
     this.grid = null;
-    this.background = this.R.image(Board.toFullPath('img/full_background.jpg'), 0, 0, width, height);
+    this.background = null;
     this.brush = new Brush(this);
     this.keepHighlights = [];
     this.placingBuilding = null;
-
+    this.restrictedPath = null;
     this.restrictionCheck = true;
 
-    this.restrictedPath = [
-        'M0,0L640,0L640,128L560,128L560,96L544,96L544,128L64,128L64,144L48,144L48,368L112,368L112,544L80,544L80,560L64,560L64,576L48,576L48,992L640,992L640,1040L0,1040z', // left side
-        'M672,0L672,128L736,128L736,112L768,112L768,128L784,128L784,112L848,112L848,144L880,144L880,160L1200,160L1200,176L1232,176L1232,160L1248,160L1248,176L1232,176L1232,192L1248,192L1248,240L1280,240L1280,0z', // top right
-        'M1232,304L1232,896L1168,896L1168,944L1104,944L1104,992L672,992L672,1040L1280,1040L1280,304z', // bottom right
-        'M400,160L512,160L512,256L400,256z', // greenhouse
-        'M944,176L1088,176L1088,256L1104,256L1104,272L944,272z', // house
-        'M1136,224L1168,224L1168,240L1136,240z', // ship box
-        'M1120,448L1200,448L1200,464L1216,464L1216,528L1200,528L1200,544L1136,544L1136,528L1120,528L1120,448z', // little pond
-        'M576,784L688,784L688,800L704,800L704,816L736,816L736,832L752,832L752,896L736,896L736,912L720,912L720,928L672,928L672,944L592,944L592,928L576,928L576,912L544,912L544,880L528,880L528,832L544,832L544,816L560,816L560,800L576,800L576,784z' // big pond
-    ].join('');
-
-    // TODO: actually use correct path
-    this.restrictedBuildingArea = this.R.path(this.restrictedPath);
-    this.restrictedBuildingArea.attr({
-        fill: 'none',
-        stroke: 'red'
-    });
+    // load regular layout by default
+    this.loadLayout(layouts.regular);
 
     this.positionHelpers = [this.R.text(0, 30, 'X: 0').attr({fill: 'white', pointerEvents: 'none', opacity: 0}), this.R.text(0, 15, 'Y: 0').attr({fill: 'white', pointerEvents: 'none', opacity: 0})];
     this.ghostPath = null; // used for debugging...
@@ -68,6 +53,32 @@ function Board (containerId, width, height) {
 
     return this;
 }
+
+Board.prototype.loadLayout = function loadLayout (layout) {
+    if (this.background) {
+        this.background.remove();
+    }
+
+    this.background = this.R.image(Board.toFullPath('img/layouts/'+ layout.backgroundImage), 0, 0, this.width, this.height);
+    this.background.toFront();
+
+    if (layout.restrictionPath) {
+        this.restrictedPath = layout.restrictionPath;
+        this.restrictionCheck = true;
+        // TODO: actually use correct path
+        this.restrictedBuildingArea = this.R.path(this.restrictedPath);
+        this.restrictedBuildingArea.attr({
+            fill: 'none',
+            stroke: 'red'
+        });
+    } else {
+        if (this.restrictedBuildingArea) {
+            this.restrictedBuildingArea.remove();
+        }
+        this.restrictedPath = null;
+        this.restrictionCheck = false;
+    }
+};
 
 Board.prototype.showHighlights = function showHighlights(type) {
     var board = this;
@@ -236,7 +247,7 @@ Board.prototype.dragEnd = function dragEnd(e) {
     this.brush.unlock();
 
     // check if rect happens to be inside of restricted area
-    if ($(e.target).data('custom-type') !== 'building' && (!this.brush.type || !this.checkRestriction(this.restrictedBuildingArea, this.brush.rect))) {
+    if (!this.restrictionCheck || ($(e.target).data('custom-type') !== 'building' && (!this.brush.type || !this.checkRestriction(this.restrictedBuildingArea, this.brush.rect)))) {
         this.drawTiles(this.brush.rect, this.brush.type);
     }
 
@@ -514,7 +525,7 @@ Board.normalizePos = function normalizePos(e, newTarget, snap) {
  */
 Board.prototype.drawTiles = function drawTiles(area, tile) {
     // first we check path restriction
-    if (this.brush.type && this.checkPathRestriction(this.restrictedBuildingArea, area)) {
+    if (this.restrictionCheck && this.brush.type && this.checkPathRestriction(this.restrictedBuildingArea, area)) {
         return;
     }
 
