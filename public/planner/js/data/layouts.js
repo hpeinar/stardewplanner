@@ -16,30 +16,70 @@ var layouts = {
             'M1136,224L1168,224L1168,240L1136,240z', // ship box
             'M1120,448L1200,448L1200,464L1216,464L1216,528L1200,528L1200,544L1136,544L1136,528L1120,528L1120,448z', // little pond
             'M576,784L688,784L688,800L704,800L704,816L736,816L736,832L752,832L752,896L736,896L736,912L720,912L720,928L672,928L672,944L592,944L592,928L576,928L576,912L544,912L544,880L528,880L528,832L544,832L544,816L560,816L560,800L576,800L576,784z' // big pond
-        ].join('')
+        ].join(''),
+        house: {
+            x: 58,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        }
     },
     combat: {
         name: 'combat',
         backgroundImage: 'farm_combat.jpg',
         backgroundImageGreenhouse: null,
-        restrictionPath: null
+        restrictionPath: null,
+        house: {
+            x: 58,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        }
     },
     fishing: {
         name: 'fishing',
         backgroundImage: 'farm_fishing.jpg',
         backgroundImageGreenhouse: null,
-        restrictionPath: null
+        restrictionPath: null,
+        house: {
+            x: 58,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        }
     },
     foraging: {
         name: 'foraging',
         backgroundImage: 'farm_foraging.jpg',
         backgroundImageGreenhouse: null,
-        restrictionPath: null
+        restrictionPath: null,
+        house: {
+            x: 58,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        }
     },
     mining: {
         name: 'mining',
         backgroundImage: 'farm_mining.jpg',
         backgroundImageGreenhouse: null,
-        restrictionPath: null
+        restrictionPath: null,
+        house: {
+            x: 58,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        }
     }
 };

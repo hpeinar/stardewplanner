@@ -29,6 +29,8 @@ function Board (containerId, width, height) {
     this.placingBuilding = null;
     this.restrictedPath = null;
     this.restrictionCheck = true;
+    this.house = null;
+    this.greenhouse = null;
 
     // load regular layout by default
     this.loadLayout(layouts.regular);
@@ -63,6 +65,24 @@ Board.prototype.loadLayout = function loadLayout (layout) {
     this.background = this.R.image(Board.toFullPath('img/layouts/'+ layout.backgroundImage), 0, 0, this.width, this.height);
     this.background.toFront();
 
+    if (this.house) {
+        this.house.remove();
+        this.house = null;
+    }
+
+    if (this.greenhouse) {
+        this.greenhouse.remove();
+        this.greenhouse = null;
+    }
+
+    if (this.restrictedBuildingArea) {
+        this.restrictedBuildingArea.remove();
+    }
+
+    this.restrictedPath = null;
+    this.restrictionCheck = false;
+
+    // start adding stuff
     if (layout.restrictionPath) {
         this.restrictedPath = layout.restrictionPath;
         this.restrictionCheck = true;
@@ -72,12 +92,14 @@ Board.prototype.loadLayout = function loadLayout (layout) {
             fill: 'none',
             stroke: 'red'
         });
-    } else {
-        if (this.restrictedBuildingArea) {
-            this.restrictedBuildingArea.remove();
-        }
-        this.restrictedPath = null;
-        this.restrictionCheck = false;
+    }
+
+    if (layout.house) {
+        this.house = new Building(this, 'house', layout.house.x*16, layout.house.y*16);
+    }
+
+    if (layout.greenhouse) {
+        this.greenhouse = new Building(this, 'greenhouse', layout.greenhouse.x*16, layout.greenhouse.y*16);
     }
 
     this.layout = layout;

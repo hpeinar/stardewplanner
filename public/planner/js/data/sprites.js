@@ -356,6 +356,16 @@ var data = {
             "sprite": "./img/tiles/large-stump.png",
             "width": 32,
             "height": 32
+        },
+        'house': {
+            "width": 160,
+            "height": 144,
+            "sprite": "./img/tiles/house.png"
+        },
+        'greenhouse': {
+            "width": 112,
+            "height": 160,
+            "sprite": "./img/tiles/greenhouse-broken.png"
         }
     }
 };
