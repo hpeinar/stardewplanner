@@ -22,6 +22,7 @@ function Board (containerId, width, height) {
     this.tiles = [];
     this.buildings = [];
     this.grid = null;
+    this.layout = null;
     this.background = null;
     this.brush = new Brush(this);
     this.keepHighlights = [];
@@ -78,6 +79,8 @@ Board.prototype.loadLayout = function loadLayout (layout) {
         this.restrictedPath = null;
         this.restrictionCheck = false;
     }
+
+    this.layout = layout;
 };
 
 Board.prototype.showHighlights = function showHighlights(type) {

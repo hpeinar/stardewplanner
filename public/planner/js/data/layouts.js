@@ -4,6 +4,7 @@
  */
 var layouts = {
     regular: {
+        name: 'regular',
         backgroundImage: 'full_background.jpg',
         backgroundImageGreenhouse: null,
         restrictionPath: [
@@ -18,21 +19,25 @@ var layouts = {
         ].join('')
     },
     combat: {
+        name: 'combat',
         backgroundImage: 'farm_combat.jpg',
         backgroundImageGreenhouse: null,
         restrictionPath: null
     },
     fishing: {
+        name: 'fishing',
         backgroundImage: 'farm_fishing.jpg',
         backgroundImageGreenhouse: null,
         restrictionPath: null
     },
     foraging: {
+        name: 'foraging',
         backgroundImage: 'farm_foraging.jpg',
         backgroundImageGreenhouse: null,
         restrictionPath: null
     },
     mining: {
+        name: 'mining',
         backgroundImage: 'farm_mining.jpg',
         backgroundImageGreenhouse: null,
         restrictionPath: null

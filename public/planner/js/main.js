@@ -38,7 +38,6 @@ $().ready(function () {
     });
 
     $('.switch-layout').click(function () {
-        console.log('loading layout', $(this).data('layout'));
         board.loadLayout(layouts[$(this).data('layout')]);
     });
 
@@ -50,6 +49,7 @@ $().ready(function () {
 
         // also add options and highlight states to the save
         exportData.options = {
+            layout: (board.layout.name || 'regular'),
             highlights: {
                 scarecrow: $('.highlight-scarecrow').hasClass('active'),
                 sprinkler: $('.highlight-sprinkler').hasClass('active'),
@@ -332,11 +332,8 @@ $().ready(function () {
             }, function () {
                 board.brush.overwriting = false;
             }, data.options.overwriting);
-            toggleMenuItem(null, '.greenhouse-switch', function () {
-                board.background.attr('href', Board.toFullPath('img/full_background_gh_finished.jpg'));
-            }, function () {
-                board.background.attr('href', Board.toFullPath('img/full_background.jpg'));
-            }, data.options.greenhouse);
+
+            board.loadLayout(layouts[data.options.layout || 'regular']);
         }
 
 
