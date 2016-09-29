@@ -109,6 +109,12 @@ body.dz-drag-hover {
     overflow: hidden;
 }
 
+.custom-layout-notification {
+    top: 10px;
+    right: 10px;
+    overflow: hidden;
+}
+
 .count-report-notification .content {
     max-height: 500px;
     width: 200px;

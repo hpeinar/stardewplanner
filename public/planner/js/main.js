@@ -38,8 +38,22 @@ $().ready(function () {
     });
 
     $('.switch-layout').click(function () {
-        board.loadLayout(layouts[$(this).data('layout')]);
+        var layout = layouts[$(this).data('layout')];
+        showLayoutAlert(layout);
+
+        board.loadLayout(layout);
     });
+
+    function showLayoutAlert(layout) {
+        $('.custom-layout-notification').hide();
+        if (!layout.official) {
+            $('.custom-layout-notification').show();
+            $('.layout-author').html(layout.author);
+            $('.layout-name').html((layout.prettyName || layout.name));
+            $('.layout-url').attr('src', layout.url);
+        }
+    }
+
 
     /* Saves your epic work */
     $('#save').click(function (e) {
@@ -333,7 +347,9 @@ $().ready(function () {
                 board.brush.overwriting = false;
             }, data.options.overwriting);
 
-            board.loadLayout(layouts[data.options.layout || 'regular']);
+            var layout = layouts[data.options.layout || 'regular'];
+            showLayoutAlert(layout);
+            board.loadLayout(layout);
         }
 
 

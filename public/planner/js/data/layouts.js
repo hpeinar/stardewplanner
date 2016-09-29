@@ -6,6 +6,7 @@ var layouts = {
     regular: {
         name: 'regular',
         backgroundImage: 'full_background.jpg',
+        official: true,
         restrictionPath: [
             'M0,0L640,0L640,128L560,128L560,96L544,96L544,128L64,128L64,144L48,144L48,368L112,368L112,544L80,544L80,560L64,560L64,576L48,576L48,992L640,992L640,1040L0,1040z', // left side
             'M672,0L672,128L736,128L736,112L768,112L768,128L784,128L784,112L848,112L848,144L880,144L880,160L1200,160L1200,176L1232,176L1232,160L1248,160L1248,176L1232,176L1232,192L1248,192L1248,240L1280,240L1280,0z', // top right
@@ -28,6 +29,7 @@ var layouts = {
     combat: {
         name: 'combat',
         backgroundImage: 'farm_combat.jpg',
+        official: true,
         restrictionPath: null,
         house: {
             x: 58,
@@ -41,6 +43,7 @@ var layouts = {
     fishing: {
         name: 'fishing',
         backgroundImage: 'farm_fishing.jpg',
+        official: true,
         backgroundImageGreenhouse: null,
         restrictionPath: null,
         house: {
@@ -55,6 +58,7 @@ var layouts = {
     foraging: {
         name: 'foraging',
         backgroundImage: 'farm_foraging.jpg',
+        official: true,
         restrictionPath: null,
         house: {
             x: 58,
@@ -68,6 +72,7 @@ var layouts = {
     mining: {
         name: 'mining',
         backgroundImage: 'farm_mining.jpg',
+        official: true,
         restrictionPath: null,
         house: {
             x: 58,
@@ -78,11 +83,12 @@ var layouts = {
             y: 6
         }
     },
-    "wonderful-farm-lfe": {
+    "wonderful-farm-life": {
         author: 'taintedwheat & JinxieWinxie',
         url: 'http://community.playstarbound.com/threads/wonderful-farm-life-smapi-version-updated-7-2-now-with-grandpas-memorial-make-your-farm-sick.115384/',
-        name: 'wonderful-farm-lfe',
-        backgroundImage: 'wonderful-farm-lfe.jpg',
+        name: 'wonderful-farm-life',
+        prettyName: 'WonderfulFarmLife',
+        backgroundImage: 'wonderful-farm-life.jpg',
         restrictionPath: null,
         house: {
             x: 58,
