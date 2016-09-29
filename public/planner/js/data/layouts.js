@@ -78,8 +78,8 @@ var layouts = {
             y: 6
         }
     },
-    "wonderful-farm-sweetie-1": {
-        name: 'wonderful-farm-sweetie-1',
+    "wonderful-farm-hweetie-1": {
+        name: 'wonderful-farm-hweetie-1',
         backgroundImage: 'wonderful-1.jpg',
         restrictionPath: null,
         house: {
