@@ -6,7 +6,6 @@ var layouts = {
     regular: {
         name: 'regular',
         backgroundImage: 'full_background.jpg',
-        backgroundImageGreenhouse: null,
         restrictionPath: [
             'M0,0L640,0L640,128L560,128L560,96L544,96L544,128L64,128L64,144L48,144L48,368L112,368L112,544L80,544L80,560L64,560L64,576L48,576L48,992L640,992L640,1040L0,1040z', // left side
             'M672,0L672,128L736,128L736,112L768,112L768,128L784,128L784,112L848,112L848,144L880,144L880,160L1200,160L1200,176L1232,176L1232,160L1248,160L1248,176L1232,176L1232,192L1248,192L1248,240L1280,240L1280,0z', // top right
@@ -29,7 +28,6 @@ var layouts = {
     combat: {
         name: 'combat',
         backgroundImage: 'farm_combat.jpg',
-        backgroundImageGreenhouse: null,
         restrictionPath: null,
         house: {
             x: 58,
@@ -57,7 +55,6 @@ var layouts = {
     foraging: {
         name: 'foraging',
         backgroundImage: 'farm_foraging.jpg',
-        backgroundImageGreenhouse: null,
         restrictionPath: null,
         house: {
             x: 58,
@@ -71,7 +68,19 @@ var layouts = {
     mining: {
         name: 'mining',
         backgroundImage: 'farm_mining.jpg',
-        backgroundImageGreenhouse: null,
+        restrictionPath: null,
+        house: {
+            x: 58,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        }
+    },
+    "wonderful-farm-sweetie-1": {
+        name: 'wonderful-farm-sweetie-1',
+        backgroundImage: 'wonderful-1.jpg',
         restrictionPath: null,
         house: {
             x: 58,
