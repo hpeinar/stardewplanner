@@ -50,7 +50,7 @@ $().ready(function () {
             $('.custom-layout-notification').show();
             $('.layout-author').html(layout.author);
             $('.layout-name').html((layout.prettyName || layout.name));
-            $('.layout-url').attr('src', layout.url);
+            $('.layout-url').attr('href', layout.url);
         }
     }
 
