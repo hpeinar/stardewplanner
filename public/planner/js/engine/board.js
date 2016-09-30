@@ -36,8 +36,10 @@ function Board (containerId, width, height) {
     this.loadLayout(layouts.regular);
 
     this.positionHelpers = [this.R.text(0, 30, 'X: 0').attr({fill: 'white', pointerEvents: 'none', opacity: 0}), this.R.text(0, 15, 'Y: 0').attr({fill: 'white', pointerEvents: 'none', opacity: 0})];
+
     this.ghostPath = null; // used for debugging...
-    this.pathPoints = []; // used for debugging...
+    this.ghostPathPoints = []; // used for debugging...
+    this.ghosting = false;
 
     this.drawGrid();
     this.drawHelpers();
@@ -286,6 +288,26 @@ Board.prototype.dragEnd = function dragEnd(e) {
  */
 Board.prototype.mousedown = function mousedown(e) {
     var board = this;
+
+    if (board.ghosting) {
+        var pos = Board.normalizePos(e, null, board.tileSize);
+
+        board.ghostPathPoints.push('L'+ pos.x +','+ pos.y);
+
+        if (board.ghostPath) {
+            board.ghostPath.remove();
+        }
+
+        let tempPath = 'M'+ board.ghostPathPoints.join('').substring(1);
+
+        board.ghostPath = board.R.path(tempPath);
+
+        board.ghostPath.attr({
+            fill: 'none',
+            stroke: 'blue',
+            strokeWidth: 3
+        });
+    }
 
     if (board.placingBuilding) {
 
