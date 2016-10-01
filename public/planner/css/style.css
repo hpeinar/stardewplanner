@@ -188,6 +188,11 @@ body.dz-drag-hover {
     white-space: nowrap;
 }
 
+.top-bar .dropdown li.tools a {
+    padding: 0;
+    font-weight: bold;
+}
+
 /** Donation **/
 .donate {
     color: #0c8ed3 !important;
