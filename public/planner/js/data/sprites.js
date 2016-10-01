@@ -390,7 +390,13 @@ var data = {
         'jumino-hut': {
             "width": 3*16,
             "height": 3*16,
-            "sprite": "./img/tiles/jumino-hut.png"
+            "sprite": "./img/tiles/jumino-hut.png",
+            "highlight": {
+                "path": ["M0,0", "L272,0", "L272,272", "L0,272", "z"],
+                "width": 272,
+                "height": 240,
+                "color": "#89CFF0"
+            }
         },
         'shed': {
             "width": 6*16,

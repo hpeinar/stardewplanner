@@ -492,6 +492,7 @@ Board.prototype.keydown = function keydown(e) {
         this.showHighlights('sprinkler');
         this.showHighlights('scarecrow');
         this.showHighlights('hive');
+        this.showHighlights('jumino');
     }
 
     // 'Esc'
@@ -526,6 +527,10 @@ Board.prototype.keyup = function keyup(e) {
 
         if (this.highlightsState.indexOf('hive') === -1) {
             this.hideHighlights('hive');
+        }
+
+        if (this.highlightsState.indexOf('jumino') === -1) {
+            this.hideHighlights('jumino');
         }
     }
 };
