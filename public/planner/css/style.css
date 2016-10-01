@@ -486,7 +486,7 @@ body.dz-drag-hover {
     background-image: url('/planner/img/tiles/grass.png');
 }
 .sprite-icon.weed {
-    background-image: url('/planner/img/tiles/weed.png');
+    background-image: url('/planner/img/tiles/weeds.png');
 }
 .sprite-icon.crops {
     background-image: url('/planner/img/tiles/farmland.png');
@@ -552,4 +552,22 @@ body.dz-drag-hover {
 }
 .sprite-icon.crystal-floor {
     background-image: url('/planner/img/tiles/crystal-floor.png');
+}
+
+
+/** Debris **/
+.sprite-icon.large-rock {
+    background-image: url('/planner/img/tiles/large-rock.png');
+}
+.sprite-icon.large-log {
+    background-image: url('/planner/img/tiles/large-log.png');
+}
+.sprite-icon.large-stump {
+    background-image: url('/planner/img/tiles/large-stump.png');
+}
+.sprite-icon.stone {
+    background-image: url('/planner/img/tiles/stone.png');
+}
+.sprite-icon.twig {
+    background-image: url('/planner/img/tiles/twig.png');
 }
