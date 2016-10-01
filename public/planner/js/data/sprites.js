@@ -391,6 +391,11 @@ var data = {
             "width": 3*16,
             "height": 3*16,
             "sprite": "./img/tiles/jumino-hut.png"
+        },
+        'shed': {
+            "width": 6*16,
+            "height": 5*16,
+            "sprite": "./img/tiles/shed.png"
         }
     }
 };

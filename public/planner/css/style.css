@@ -395,6 +395,9 @@ body.dz-drag-hover {
 .sprite-icon.jumino-hut {
     background-image: url('/planner/img/tiles/jumino-hut.png');
 }
+.sprite-icon.shed {
+    background-image: url('/planner/img/tiles/shed.png');
+}
 
 /** equipment **/
 .sprite-icon.sprinkler {
