@@ -4,13 +4,14 @@
 
 'use strict';
 
-function Building(board, id, x, y, dontPlace) {
+function Building(board, id, x, y, dontPlace, disabled) {
     this.board = board;
     this.R = board.R;
     this.type = id;
     this.typeGroup = id.split('-').pop();
     this.data = data.buildings[id];
     this.placed = false;
+    this.disabled = disabled;
 
     if (!this.data) {
         console.log('Unable to add building, using placeholder ', id);
@@ -35,8 +36,10 @@ function Building(board, id, x, y, dontPlace) {
         this.placed = !dontPlace;
     }
 
-    this.drawHighlight();
-    this.addEvents();
+    if (!this.disabled) {
+        this.drawHighlight();
+        this.addEvents();
+    }
 
     if (!this.placed) {
         this.pickUp();

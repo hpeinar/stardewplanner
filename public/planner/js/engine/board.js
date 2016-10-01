@@ -97,11 +97,11 @@ Board.prototype.loadLayout = function loadLayout (layout) {
     }
 
     if (layout.house) {
-        this.house = new Building(this, 'house', layout.house.x*16, layout.house.y*16);
+        this.house = new Building(this, 'house', layout.house.x*16, layout.house.y*16, false, true);
     }
 
     if (layout.greenhouse) {
-        this.greenhouse = new Building(this, 'greenhouse', layout.greenhouse.x*16, layout.greenhouse.y*16);
+        this.greenhouse = new Building(this, 'greenhouse', layout.greenhouse.x*16, layout.greenhouse.y*16, false, true);
     }
 
     this.layout = layout;
