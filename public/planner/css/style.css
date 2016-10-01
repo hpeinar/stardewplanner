@@ -380,6 +380,21 @@ body.dz-drag-hover {
 .sprite-icon.coop {
     background-image: url('/planner/img/tiles/coop.png');
 }
+.sprite-icon.water-obelisk {
+    background-image: url('/planner/img/tiles/water-obelisk.png');
+}
+.sprite-icon.earth-obelisk {
+    background-image: url('/planner/img/tiles/earth-obelisk.png');
+}
+.sprite-icon.gold-clock {
+    background-image: url('/planner/img/tiles/gold-clock.png');
+}
+.sprite-icon.mill {
+    background-image: url('/planner/img/tiles/mill.png');
+}
+.sprite-icon.jumino-hut {
+    background-image: url('/planner/img/tiles/jumino-hut.png');
+}
 
 /** equipment **/
 .sprite-icon.sprinkler {

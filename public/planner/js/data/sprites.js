@@ -366,6 +366,31 @@ var data = {
             "width": 112,
             "height": 160,
             "sprite": "./img/tiles/greenhouse-broken.png"
+        },
+        'earth-obelisk': {
+            "width": 3*16,
+            "height": 3*16,
+            "sprite": "./img/tiles/earth-obelisk.png"
+        },
+        'water-obelisk': {
+            "width": 3*16,
+            "height": 3*16,
+            "sprite": "./img/tiles/water-obelisk.png"
+        },
+        'gold-clock': {
+            "width": 3*16,
+            "height": 3*16,
+            "sprite": "./img/tiles/gold-clock.png"
+        },
+        'mill': {
+            "width": 4*16,
+            "height": 3*16,
+            "sprite": "./img/tiles/mill.png"
+        },
+        'jumino-hut': {
+            "width": 3*16,
+            "height": 3*16,
+            "sprite": "./img/tiles/jumino-hut.png"
         }
     }
 };
