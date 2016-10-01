@@ -338,10 +338,12 @@ $().ready(function () {
         // handle switches if new save
         if (data.options) {
             // highglihts
-            toggleMenuItem(null, '.highlight-scarecrow', board.showHighlights.bind(board, 'scarecrow'), board.hideHighlights.bind(board, 'scarecrow'), data.options.highlights.scarecrow);
-            toggleMenuItem(null, '.highlight-sprinkler', board.showHighlights.bind(board, 'sprinkler'), board.hideHighlights.bind(board, 'sprinkler'), data.options.highlights.sprinkler);
-            toggleMenuItem(null, '.highlight-bee', board.showHighlights.bind(board, 'hive'), board.hideHighlights.bind(board, 'hive'), data.options.highlights.bee);
-            toggleMenuItem(null, '.highlight-junimo-hut', board.showHighlights.bind(board, 'hut'), board.hideHighlights.bind(board, 'hut'), data.options.highlights.junimo);
+            if (data.options.highlights) {
+                toggleMenuItem(null, '.highlight-scarecrow', board.showHighlights.bind(board, 'scarecrow'), board.hideHighlights.bind(board, 'scarecrow'), data.options.highlights.scarecrow);
+                toggleMenuItem(null, '.highlight-sprinkler', board.showHighlights.bind(board, 'sprinkler'), board.hideHighlights.bind(board, 'sprinkler'), data.options.highlights.sprinkler);
+                toggleMenuItem(null, '.highlight-bee', board.showHighlights.bind(board, 'hive'), board.hideHighlights.bind(board, 'hive'), data.options.highlights.bee);
+                toggleMenuItem(null, '.highlight-junimo-hut', board.showHighlights.bind(board, 'hut'), board.hideHighlights.bind(board, 'hut'), data.options.highlights.junimo);
+            }
 
             // other options
             toggleMenuItem(null, '.hide-stuff', board.showStuff.bind(board), board.hideStuff.bind(board), data.options.hidestuff);
