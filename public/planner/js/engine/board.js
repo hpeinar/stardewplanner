@@ -866,7 +866,7 @@ Board.prototype.hideCoords = function hideCoords() {
  * @returns {string}
  */
 Board.toFullPath = function toFullPath(relativePath) {
-    return window.location.origin + window.location.pathname + relativePath;
+    return window.location.origin + '/planner/'+ relativePath;
 };
 
 /**
