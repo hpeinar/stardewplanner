@@ -387,10 +387,10 @@ var data = {
             "height": 3*16,
             "sprite": "./img/tiles/mill.png"
         },
-        'jumino-hut': {
+        'junimo-hut': {
             "width": 3*16,
             "height": 3*16,
-            "sprite": "./img/tiles/jumino-hut.png",
+            "sprite": "./img/tiles/junimo-hut.png",
             "highlight": {
                 "path": ["M0,0", "L272,0", "L272,272", "L0,272", "z"],
                 "width": 272,
