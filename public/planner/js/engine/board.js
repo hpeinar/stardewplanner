@@ -435,12 +435,12 @@ Board.prototype.mousemove = function mousemove(e) {
     // show pos
     var snappedPos = Board.normalizePos(e, null, this.tileSize);
     this.positionHelpers[0].attr({
-        'text': 'Y: '+ (+snappedPos.y / this.tileSize),
+        'text': 'Y: '+ (+snappedPos.y / this.tileSize) +' ('+ (+snappedPos.y) +')',
         'y': snappedPos.y - 16,
         'x': snappedPos.x - 3*16
     }).toBack();
     this.positionHelpers[1].attr({
-        'text': 'X: '+ (+snappedPos.x / this.tileSize),
+        'text': 'X: '+ (+snappedPos.x / this.tileSize) +' ('+ (+snappedPos.x) +')',
         'y': snappedPos.y,
         'x': snappedPos.x - 3*16
     }).toBack();
