@@ -191,6 +191,10 @@ $().ready(function () {
     });
 
 
+    $('.restriction-check').click(function (e) {
+        toggleMenuItem(e, '.restriction-check', function () { board.restrictionCheck = true; }, function () { board.restrictionCheck = false; });
+    });
+
     $('.hide-stuff').click(function (e) {
         toggleMenuItem(e, '.hide-stuff', board.showStuff.bind(board), board.hideStuff.bind(board));
     });
