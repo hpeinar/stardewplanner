@@ -379,22 +379,22 @@ var data = {
         },
         'gold-clock': {
             "width": 3*16,
-            "height": 3*16,
+            "height": 2*16,
             "sprite": "./img/tiles/gold-clock.png"
         },
         'mill': {
-            "width": 4*16,
-            "height": 3*16,
+            "width": 3*16,
+            "height": 2*16,
             "sprite": "./img/tiles/mill.png"
         },
         'junimo-hut': {
             "width": 3*16,
-            "height": 3*16,
+            "height": 2*16,
             "sprite": "./img/tiles/junimo-hut.png",
             "highlight": {
                 "path": ["M0,0", "L272,0", "L272,272", "L0,272", "z"],
                 "width": 272,
-                "height": 240,
+                "height": 256,
                 "color": "#89CFF0"
             }
         },
