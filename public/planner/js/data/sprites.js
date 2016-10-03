@@ -399,8 +399,8 @@ var data = {
             }
         },
         'shed': {
-            "width": 6*16,
-            "height": 5*16,
+            "width": 7*16,
+            "height": 3*16,
             "sprite": "./img/tiles/shed.png"
         }
     }
