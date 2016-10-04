@@ -26,14 +26,14 @@ $().ready(function () {
     }
 
     // notification
-    if (checkLocal() && !localStorage.getItem('stardew:usNotification')) {
-        $('.us-notification').show();
-        $('.count-report-notification').css('top', $('.us-notification').height() + 20);
+    if (checkLocal() && !localStorage.getItem('stardew:facebookNotification')) {
+        $('.facebook-notification').show();
+        $('.count-report-notification').css('top', $('.facebook-notification').height() + 20);
     }
 
-    $('.hide-us-notification').click(function (e) {
-        localStorage.setItem('stardew:usNotification', true);
-        $('.us-notification').hide();
+    $('.hide-facebook-notification').click(function (e) {
+        localStorage.setItem('stardew:facebookNotification', true);
+        $('.facebook-notification').hide();
         $('.count-report-notification').css('top', 10);
     });
 
