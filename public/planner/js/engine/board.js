@@ -298,7 +298,7 @@ Board.prototype.mousedown = function mousedown(e) {
             board.ghostPath.remove();
         }
 
-        let tempPath = 'M'+ board.ghostPathPoints.join('').substring(1);
+        var tempPath = 'M'+ board.ghostPathPoints.join('').substring(1);
 
         board.ghostPath = board.R.path(tempPath);
 
