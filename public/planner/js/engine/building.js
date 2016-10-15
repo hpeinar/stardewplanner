@@ -22,6 +22,7 @@ function Building(board, id, x, y, dontPlace, disabled) {
     this.sprite = this.R.use(id);
 
     this.sprite.attr({
+        href: Board.toFullPath(this.sprite.attr('href'), true),
         width: this.data.width,
         height: this.data.height,
         'data-custom-type': 'building'

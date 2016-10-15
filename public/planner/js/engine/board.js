@@ -649,6 +649,7 @@ Board.prototype.drawTile = function drawTile(location, tile) {
     if (tile) {
         var newTile = this.R.use(tile);
         newTile.attr({
+            href: Board.toFullPath(newTile.attr('href'), true),
             x: location.x,
             y: location.y,
             tileType: tile,
@@ -681,7 +682,7 @@ Board.prototype.drawGrid = function drawGrid() {
 
     this.grid = this.R.rect(0, 0, this.width, this.height);
     this.grid.attr({
-        fill: 'url(#grid)',
+        fill: 'url('+ Board.toFullPath('#grid', true) +')',
         pointerEvents: 'none'
     });
 };
@@ -870,8 +871,12 @@ Board.prototype.hideCoords = function hideCoords() {
  * @param relativePath
  * @returns {string}
  */
-Board.toFullPath = function toFullPath(relativePath) {
-    return window.location.origin + '/planner/'+ relativePath;
+Board.toFullPath = function toFullPath(relativePath, svg) {
+    if (window.isElectron) {
+        return relativePath;
+    } else {
+        return window.location.origin + (svg ? window.location.pathname : '/planner/')+ relativePath;
+    }
 };
 
 /**

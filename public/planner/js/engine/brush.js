@@ -65,7 +65,7 @@ Brush.prototype.changeBrush = function changeBrush(newType) {
 
     // switch brush fill to pattern
     this.rect.attr({
-        fill: 'url(#brushFill)'
+        fill: 'url('+ Board.toFullPath('#brushFill', true) +')'
     });
 
     this.erase = false;

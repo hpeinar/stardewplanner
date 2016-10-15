@@ -4,6 +4,10 @@
 
 'use strict';
 
+if (window && window.process && window.process.version) {
+    window.isElectron = true;
+}
+
 $().ready(function () {
     var board = new Board('#editor', 1280, 1040);
     var fileInput = $('#fileinput');
@@ -11,6 +15,13 @@ $().ready(function () {
 
     /* Collection for human-readable sprite names */
     var spriteNames = getSpriteNames();
+
+    if (window.isElectron && localStorage.getItem('stardew:save')) {
+        var farmData = JSON.parse(localStorage.getItem('stardew:save'));
+        board.importData(farmData, function () {
+            loadData(farmData);
+        });
+    }
 
     var planId = window.location.pathname.match(/\/planner\/(.*)\//);
     if (planId && planId.length && planId.length === 2) {
@@ -77,17 +88,22 @@ $().ready(function () {
             objectCount: $('.count-switch').hasClass('active')
         };
 
-
-        $.ajax({
-            url: '/api/save',
-            data: JSON.stringify(exportData),
-            method: 'POST',
-            contentType: 'application/json'
-        }).always(function (data) {
-            if (data.id) {
-                window.location.href = '/planner/' + data.id;
-            }
-        });
+        if (window.isElectron) {
+            localStorage.setItem('stardew:save', JSON.stringify(exportData));
+            // yes...alert, but this is fine in electron
+            alert('Saved successfully');
+        } else {
+            $.ajax({
+                url: '/api/save',
+                data: JSON.stringify(exportData),
+                method: 'POST',
+                contentType: 'application/json'
+            }).always(function (data) {
+                if (data.id) {
+                    window.location.href = '/planner/' + data.id;
+                }
+            });
+        }
     });
 
     /* Exports to an image file */
@@ -150,8 +166,13 @@ $().ready(function () {
 
     /* Clears board */
     $('#reset').click(function () {
-        if(window.confirm('Are you sure? You will lose all un-saved progress')) {
+        if(!window.isElectron && window.confirm('Are you sure? You will lose all un-saved progress')) {
             window.location.href = '/';
+        }
+
+        if (window.isElectron && window.confirm('Are you sure? This will delete everything!')) {
+            localStorage.removeItem('stardew:save');
+            window.location.reload();
         }
     });
 

@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <base href="/planner/">
-
     <meta charset="UTF-8">
     <title>Stardew Valley planner v2</title>
 
@@ -19,7 +17,7 @@
     <meta property="og:title" content="Interactive farm planner for Stardew Valley" />
     <meta property="og:description" content="Plan your Stardew Valley farm! ...on a coffee break!" />
 </head>
-<body class="saveImportDrop">
+<body>
     <div class="off-canvas-wrap move-right" data-offcanvas>
         <div class="inner-wrap">
 
@@ -196,10 +194,6 @@
                             <li class="divider"></li>
                             <li id="save"><a class="save-icon" href="#"><i class="fa fa-save fa-2x side-nav-icon" title="Save current plan"></i></a></li>
                             <li class="divider"></li>
-                            <li id="import"><a class="import-icon" href="#"><i class="fa fa-upload fa-2x side-nav-icon" title="Import from savefile"></i></a></li>
-                            <li class="divider"></li>
-                            <li id="export-image"><a class="export-image-icon" href="#"><i class="fa fa-image fa-2x side-nav-icon" title="Export to image file"></i></a></li>
-                            <li class="divider"></li>
                             <li id="reset"><a class="reset-icon" href="#"><i class="fa fa-trash fa-2x side-nav-icon" title="Reset all"></i></a></li>
                         </ul>
                     </section>
@@ -242,141 +236,141 @@
             </div>
             <!-- FAQ and credits -->
             <div class="faq">
-                    <div class="panel info" id="controls">
-                        <h3>Controls:</h3>
-                        <ul>
-                            <li><span class="key">E</span> to easily select eraser brush, press again to restore last brush</li>
-                            <li><span class="key">S</span> to easily select selector brush, press again to restore last brush</li>
-                            <li><span class="key">W</span> to toggle highlights temporarily (If you hold W and hover mouse to dropdowns it might break. Just toggle highlights in the highlight menu to fix for now)</li>
-                            <li><span class="key">Esc</span> discards picked up building</li>
-                            <li>To delete buildings, either drop it to non-buildable area, click on it with eraser or press either <span class="key">Del</span> or <span class="key">fn</span>+<span class="key">Backspace</span> or <span class="key">Esc</span> </li>
-                            <li>Hold <span class="key">⌘</span> or <span class="key">Ctrl</span> or <span class="key">Shift</span> when placing buildings to "duplicate" it.</li>
-                            <li>If you need to scroll the editor and can't see the horizontal scrollbar, use middle mouse button</li>
-                            <li>You can enable brush overwriting mode in options</li>
-                            <li>You can open object counter window from the options menu</li>
-                            <li>You can find your save game file from <code>%AppData%/StardewValley/Saves</code></li>
-                        </ul>
-                    </div>
+                <div class="panel info" id="controls">
+                    <h3>Controls:</h3>
+                    <ul>
+                        <li><span class="key">E</span> to easily select eraser brush, press again to restore last brush</li>
+                        <li><span class="key">S</span> to easily select selector brush, press again to restore last brush</li>
+                        <li><span class="key">W</span> to toggle highlights temporarily (If you hold W and hover mouse to dropdowns it might break. Just toggle highlights in the highlight menu to fix for now)</li>
+                        <li><span class="key">Esc</span> discards picked up building</li>
+                        <li>To delete buildings, either drop it to non-buildable area, click on it with eraser or press either <span class="key">Del</span> or <span class="key">fn</span>+<span class="key">Backspace</span> or <span class="key">Esc</span> </li>
+                        <li>Hold <span class="key">⌘</span> or <span class="key">Ctrl</span> or <span class="key">Shift</span> when placing buildings to "duplicate" it.</li>
+                        <li>If you need to scroll the editor and can't see the horizontal scrollbar, use middle mouse button</li>
+                        <li>You can enable brush overwriting mode in options</li>
+                        <li>You can open object counter window from the options menu</li>
+                        <li>You can find your save game file from <code>%AppData%/StardewValley/Saves</code></li>
+                    </ul>
+                </div>
 
-                    <div class="panel info changelog" id="changelog">
-                        <h3>Changelog:</h3>
-                        <b>1st Oct</b>
-                        <ul>
-                            <li>Did the restriction paths for the new layouts</li>
-                            <li>Added new buildings (obelisks, mill, shed, junimo hut, gold clock)</li>
-                            <li>Added some debris to the menu (log, stone, stumps etc)</li>
-                        </ul>
-                        <b>30th Sept</b>
-                        <ul>
-                            <li>Added new farm layout and made it possible to support custom maps too</li>
-                            <li>Fixed some issues with nginx and static file serving</li>
-                        </ul>
-                        <b>27th Sept</b>
-                        <ul>
-                            <li>Moved to <a href="https://rethinkdb.com/" target="_blank">RethinkDB</a> from fs</li>
-                            <li>Moved the server to US (NYC-3). Sorry EU users, but as most of the users are from US, it made more sense to have the server there</li>
-                            <li>Switched UUIDv4 out with more human readable id system</li>
-                        </ul>
-                        <b>21th July</b>
-                        <ul>
-                            <li>Added 'W' and 'S' shortcuts</li>
-                            <li>Removed the cause of the <a href="https://www.reddit.com/r/StardewValley/comments/4sri6s/stardewinfoplanner_outage/" target="_blank">last outage</a></li>
-                        </ul>
-                        <b>11th July</b>
-                        <ul>
-                            <li>Image exporting by <a href="https://github.com/rgson" target="_blank">rgson</a></li>
-                        </ul>
-                        <b>17th June</b>
-                        <ul>
-                            <li>Moved save game importing to backend</li>
-                            <li>Added /api/import endpoint which can be use to integrate planner with your own site! More on: <a href="https://github.com/hpeinar/stardewplanner" target="_blank">@GitHub</a></li>
-                        </ul>
-                        <b>8th June</b>
-                        <ul>
-                            <li>Merged some PR's from GitHub</li>
-                        </ul>
-                        <b>16th May</b>
-                        <ul>
-                            <li>Fixed import when building doesn't exist (mods?)</li>
-                        </ul>
-                        <b>22th April (community update)</b>
-                        <ul>
-                            <li>Import icon changed for more convenient one <a href="https://github.com/TheLostSoul" target="_blank">TheLostSoul</a></li>
-                            <li>Import now imports large rocks, stumps and logs. Also weeds are fixed now. <a href="https://github.com/TheLostSoul" target="_blank">TheLostSoul</a></li>
-                            <li>Added object counter window <a href="https://github.com/echoenzo" target="_blank">echoenzo</a></li>
-                        </ul>
-                        <b>1th April</b>
-                        <ul>
-                            <li>Published source on <a href="https://github.com/hpeinar/stardewplanner" target="_blank">@GitHub</a></li>
-                        </ul>
-                        <b>30th March</b>
-                        <ul>
-                            <li>Highlight states and options now save!</li>
-                            <li>Fixed minor restriction areas (thanks Mai & R3ality)</li>
-                            <li>Added twitter share button</li>
-                            <li>Moved eraser out from the "tools" menu</li>
-                            <li>Added freemode possibility for the brush. Enable it in the options (this option does not save over reloads)</li>
-                            <li>Added tree & gravel path to the menu</li>
-                            <li>Added torch & campfire back to the menu</li>
-                        </ul>
-                        <b>29th March</b>
-                        <ul>
-                            <li>Added fancy notification about new version</li>
-                            <li>Highlights should be better now, also they are off by default now</li>
-                            <li>Added contact section</li>
-                        </ul>
-                        <b>28th March</b>
-                        <ul>
-                            <li>Made importing better (thanks Mai)</li>
-                            <li>Fixed menu word wrap problem</li>
-                            <li>Restriction area behind house is now 1 tile</li>
-                        </ul>
-                        <b>22th March</b>
-                        <ul>
-                            <li>Released new version to closed beta. New stuff:</li>
-                            <li>Using <a href="http://snapsvg.io/">SnapSVG</a> instead of <a href="http://dmitrybaranovskiy.github.io/raphael/">Raphael</a></li>
-                            <li>Better brush. It is now possible to brush big areas easier</li>
-                            <li>Better restriction handling.</li>
-                            <li>Showing coordinates for those who like to edit their saves</li>
-                            <li>Save game import!</li>
-                            <li>A lot more optimized way of drawing the SVG (using patterns and use elements)</li>
-                        </ul>
-                    </div>
-                    <div class="panel radius" id="donate">
-                        <h3>Donate:</h3>
-                        You can do so on <a href="https://github.com/hpeinar/stardewplanner" target="_blank">@GitHub</a>
-                    </div>
-                    <div class="panel radius" id="contact">
-                        <h3>Contact:</h3>
-                        <b><a href="https://www.facebook.com/groups/stardewplanner/">Facebook group</a></b><br />
-                        <b>GitHub: <a href="https://github.com/hpeinar/stardewplanner" target="_blank">@GitHub</a></b><br />
-                        <b>Reddit:</b> <a href="https://www.reddit.com/r/StardewValley/comments/4ckzzo/stardew_farm_planner_v2_is_out_save_importing/" target="_blank">v2 planner thread</a><br>
-                        <b>Stardew official forums:</b> <a href="http://community.playstarbound.com/threads/farm-planner-v2-out-now-save-importing-and-much-more.112098/" target="_blank">Official forums thread</a><br>
-                        <b>Steam thread:</b> <a href="http://steamcommunity.com/app/413150/discussions/0/365163537814721588/" target="_blank">Discussion thread</a><br>
-                        <b>E-mail: </b>henrik<span class="hide-email">yobots</span>peinar@<span class="hide-email">hotmail.com</span>gmai<span class="hide-email">lllll</span>l.com<br>
-                        <b>Twitter: <a href="https://twitter.com/hpeinar">@hpeinar</a> & #stardewplanner</b><br>
-                        <a href="https://twitter.com/intent/tweet?button_hashtag=stardewplanner&text=Plan%20you%20%23stardewvalley%20farm%20in" class="twitter-hashtag-button" data-related="hpeinar" data-url="https://stardew.info/planner">Tweet #stardewplanner</a>
-                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                    </div>
-                    <div class="panel callout radius" id="faq">
-                        <h3>FAQ:</h3>
-                        <dl>
-                            <dt>1. What is this?</dt>
-                            <dd>This is <a href="http://stardewvalley.net/" target="_blank">Stardew Valley</a> interactive farm planner</dd>
+                <div class="panel info changelog" id="changelog">
+                    <h3>Changelog:</h3>
+                    <b>1st Oct</b>
+                    <ul>
+                        <li>Did the restriction paths for the new layouts</li>
+                        <li>Added new buildings (obelisks, mill, shed, junimo hut, gold clock)</li>
+                        <li>Added some debris to the menu (log, stone, stumps etc)</li>
+                    </ul>
+                    <b>30th Sept</b>
+                    <ul>
+                        <li>Added new farm layout and made it possible to support custom maps too</li>
+                        <li>Fixed some issues with nginx and static file serving</li>
+                    </ul>
+                    <b>27th Sept</b>
+                    <ul>
+                        <li>Moved to <a href="https://rethinkdb.com/" target="_blank">RethinkDB</a> from fs</li>
+                        <li>Moved the server to US (NYC-3). Sorry EU users, but as most of the users are from US, it made more sense to have the server there</li>
+                        <li>Switched UUIDv4 out with more human readable id system</li>
+                    </ul>
+                    <b>21th July</b>
+                    <ul>
+                        <li>Added 'W' and 'S' shortcuts</li>
+                        <li>Removed the cause of the <a href="https://www.reddit.com/r/StardewValley/comments/4sri6s/stardewinfoplanner_outage/" target="_blank">last outage</a></li>
+                    </ul>
+                    <b>11th July</b>
+                    <ul>
+                        <li>Image exporting by <a href="https://github.com/rgson" target="_blank">rgson</a></li>
+                    </ul>
+                    <b>17th June</b>
+                    <ul>
+                        <li>Moved save game importing to backend</li>
+                        <li>Added /api/import endpoint which can be use to integrate planner with your own site! More on: <a href="https://github.com/hpeinar/stardewplanner" target="_blank">@GitHub</a></li>
+                    </ul>
+                    <b>8th June</b>
+                    <ul>
+                        <li>Merged some PR's from GitHub</li>
+                    </ul>
+                    <b>16th May</b>
+                    <ul>
+                        <li>Fixed import when building doesn't exist (mods?)</li>
+                    </ul>
+                    <b>22th April (community update)</b>
+                    <ul>
+                        <li>Import icon changed for more convenient one <a href="https://github.com/TheLostSoul" target="_blank">TheLostSoul</a></li>
+                        <li>Import now imports large rocks, stumps and logs. Also weeds are fixed now. <a href="https://github.com/TheLostSoul" target="_blank">TheLostSoul</a></li>
+                        <li>Added object counter window <a href="https://github.com/echoenzo" target="_blank">echoenzo</a></li>
+                    </ul>
+                    <b>1th April</b>
+                    <ul>
+                        <li>Published source on <a href="https://github.com/hpeinar/stardewplanner" target="_blank">@GitHub</a></li>
+                    </ul>
+                    <b>30th March</b>
+                    <ul>
+                        <li>Highlight states and options now save!</li>
+                        <li>Fixed minor restriction areas (thanks Mai & R3ality)</li>
+                        <li>Added twitter share button</li>
+                        <li>Moved eraser out from the "tools" menu</li>
+                        <li>Added freemode possibility for the brush. Enable it in the options (this option does not save over reloads)</li>
+                        <li>Added tree & gravel path to the menu</li>
+                        <li>Added torch & campfire back to the menu</li>
+                    </ul>
+                    <b>29th March</b>
+                    <ul>
+                        <li>Added fancy notification about new version</li>
+                        <li>Highlights should be better now, also they are off by default now</li>
+                        <li>Added contact section</li>
+                    </ul>
+                    <b>28th March</b>
+                    <ul>
+                        <li>Made importing better (thanks Mai)</li>
+                        <li>Fixed menu word wrap problem</li>
+                        <li>Restriction area behind house is now 1 tile</li>
+                    </ul>
+                    <b>22th March</b>
+                    <ul>
+                        <li>Released new version to closed beta. New stuff:</li>
+                        <li>Using <a href="http://snapsvg.io/">SnapSVG</a> instead of <a href="http://dmitrybaranovskiy.github.io/raphael/">Raphael</a></li>
+                        <li>Better brush. It is now possible to brush big areas easier</li>
+                        <li>Better restriction handling.</li>
+                        <li>Showing coordinates for those who like to edit their saves</li>
+                        <li>Save game import!</li>
+                        <li>A lot more optimized way of drawing the SVG (using patterns and use elements)</li>
+                    </ul>
+                </div>
+                <div class="panel radius" id="donate">
+                    <h3>Donate:</h3>
+                    You can do so on <a href="https://github.com/hpeinar/stardewplanner" target="_blank">@GitHub</a>
+                </div>
+                <div class="panel radius" id="contact">
+                    <h3>Contact:</h3>
+                    <b><a href="https://www.facebook.com/groups/stardewplanner/">Facebook group</a></b><br />
+                    <b>GitHub: <a href="https://github.com/hpeinar/stardewplanner" target="_blank">@GitHub</a></b><br />
+                    <b>Reddit:</b> <a href="https://www.reddit.com/r/StardewValley/comments/4ckzzo/stardew_farm_planner_v2_is_out_save_importing/" target="_blank">v2 planner thread</a><br>
+                    <b>Stardew official forums:</b> <a href="http://community.playstarbound.com/threads/farm-planner-v2-out-now-save-importing-and-much-more.112098/" target="_blank">Official forums thread</a><br>
+                    <b>Steam thread:</b> <a href="http://steamcommunity.com/app/413150/discussions/0/365163537814721588/" target="_blank">Discussion thread</a><br>
+                    <b>E-mail: </b>henrik<span class="hide-email">yobots</span>peinar@<span class="hide-email">hotmail.com</span>gmai<span class="hide-email">lllll</span>l.com<br>
+                    <b>Twitter: <a href="https://twitter.com/hpeinar">@hpeinar</a> & #stardewplanner</b><br>
+                    <a href="https://twitter.com/intent/tweet?button_hashtag=stardewplanner&text=Plan%20you%20%23stardewvalley%20farm%20in" class="twitter-hashtag-button" data-related="hpeinar" data-url="https://stardew.info/planner">Tweet #stardewplanner</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+                <div class="panel callout radius" id="faq">
+                    <h3>FAQ:</h3>
+                    <dl>
+                        <dt>1. What is this?</dt>
+                        <dd>This is <a href="http://stardewvalley.net/" target="_blank">Stardew Valley</a> interactive farm planner</dd>
 
-                            <dt>2. Saving doesn't appear to do anything?</dt>
-                            <dd>When you press save, your farm layout is saved and page will be reloaded to confirm the save. You can then use the url to link to your farm (or bookmark it)</dd>
+                        <dt>2. Saving doesn't appear to do anything?</dt>
+                        <dd>When you press save, your farm layout is saved and page will be reloaded to confirm the save. You can then use the url to link to your farm (or bookmark it)</dd>
 
-                            <dt>3. Does this work on touch devices (tablets, phones)?</dt>
-                            <dd>Current version does not officially support touch devices yet but it is planned for future.</dd>
+                        <dt>3. Does this work on touch devices (tablets, phones)?</dt>
+                        <dd>Current version does not officially support touch devices yet but it is planned for future.</dd>
 
-                            <dt>4. How can I delete buildings?</dt>
-                            <dd>Please see <a href="#controls">controls section</a></dd>
+                        <dt>4. How can I delete buildings?</dt>
+                        <dd>Please see <a href="#controls">controls section</a></dd>
 
-                            <dt>5. Not working? Having any issues?</dt>
-                            <dd>Feel free to contact me in <a href="https://www.reddit.com/user/hpeinar" target="_blank">reddit</a> or <a href="http://community.playstarbound.com/members/hpeinar.609256/" target="_blank">Stardew official forums</a></dd>
-                        </dl>
-                    </div>
+                        <dt>5. Not working? Having any issues?</dt>
+                        <dd>Feel free to contact me in <a href="https://www.reddit.com/user/hpeinar" target="_blank">reddit</a> or <a href="http://community.playstarbound.com/members/hpeinar.609256/" target="_blank">Stardew official forums</a></dd>
+                    </dl>
+                </div>
                 <div class="panel callout radius" id="custom-layout">
                     <h3>How to get your custom layout to the planner:</h3>
                     <ul>
@@ -389,24 +383,27 @@
                         <li>Your mod has to be somewhat popular as it takes time for me to add the layout.</li>
                     </ul>
                 </div>
-                    <div class="panel callout radius" id="credits">
-                        <h3>Credits:</h3>
-                        <a href="https://www.reddit.com/user/hpeinar" target="_blank"><div class="label success credits">Farm planner by <b>Henrik Peinar (/u/hpeinar)</b></div></a><br >
-                        <a href="https://www.reddit.com/user/zaxcz" target="_blank"><div class="label info">Background image exported from game by <b>/u/zaxcz</b></div></a><br >
-                        <a href="https://www.reddit.com/user/Jurk0wski" target="_blank"><div class="label info">Building sizes and door locations by <b>/u/Jurk0wski</b></div></a><br >
-                        <a href="https://www.reddit.com/user/ThisIsMyName777" target="_blank"><div class="label info">Base save importing code by <b>/u/ThisIsMyName777</b></div></a><br >
-                        <div class="label info">Tons of suggestions, fixes, testing and ideas by <b>R3ality</b></div><br>
-                        <div class="label info">Providing test save file with most of the items and ID's <b>Mai</b> from <a href="irc://irc.freenode.net/stardewvalley" target="_blank">#stardewvalley</a></div><br>
-                        <div class="label info">Being a cool guy and pointing me in the right direction with some coding stuff <b>TeMPOraL</b> from <a href="irc://irc.freenode.net/stardewvalley" target="_blank">#stardewvalley</a></div><br>
-                        <div class="label info">Helping to test and improve v2 version of the tool <b>speeder</b> from <a href="irc://irc.freenode.net/stardew-modding" target="_blank">#stardewvalley</a></div><br>
-                        <div class="label info">Sharing their epic farm saves <a href="https://www.reddit.com/user/ky13" target="_blank">/u/ky13</a> & <a href="https://www.reddit.com/user/Halfbloood" target="_blank">/u/Halfbloood</a></div><br>
-                        <div class="label info">Raven, hweetipie, paraskeet Kylindra from <a href=" https://discordapp.com/invite/stardewvalley" target="_blank">Stardew Valley discod</a> for much help!</div><br/>
-                        <div class="label info"><a href="http://community.playstarbound.com/members/uselessdragonfly.636240/" target="_blank">uselessdragonfly</a> for providing test save files for 1.1</div><br />
-                        <div class="label success credits"><a href="http://stardewvalley.net/" target="_blank" class="credits">Stardew Valley by </a><b><a href="https://www.reddit.com/user/ConcernedApe" class="credits" target="_blank">ConcernedApe</a></b></div>
-                    </div>
+                <div class="panel callout radius" id="credits">
+                    <h3>Credits:</h3>
+                    <a href="https://www.reddit.com/user/hpeinar" target="_blank"><div class="label success credits">Farm planner by <b>Henrik Peinar (/u/hpeinar)</b></div></a><br >
+                    <a href="https://www.reddit.com/user/zaxcz" target="_blank"><div class="label info">Background image exported from game by <b>/u/zaxcz</b></div></a><br >
+                    <a href="https://www.reddit.com/user/Jurk0wski" target="_blank"><div class="label info">Building sizes and door locations by <b>/u/Jurk0wski</b></div></a><br >
+                    <a href="https://www.reddit.com/user/ThisIsMyName777" target="_blank"><div class="label info">Base save importing code by <b>/u/ThisIsMyName777</b></div></a><br >
+                    <div class="label info">Tons of suggestions, fixes, testing and ideas by <b>R3ality</b></div><br>
+                    <div class="label info">Providing test save file with most of the items and ID's <b>Mai</b> from <a href="irc://irc.freenode.net/stardewvalley" target="_blank">#stardewvalley</a></div><br>
+                    <div class="label info">Being a cool guy and pointing me in the right direction with some coding stuff <b>TeMPOraL</b> from <a href="irc://irc.freenode.net/stardewvalley" target="_blank">#stardewvalley</a></div><br>
+                    <div class="label info">Helping to test and improve v2 version of the tool <b>speeder</b> from <a href="irc://irc.freenode.net/stardew-modding" target="_blank">#stardewvalley</a></div><br>
+                    <div class="label info">Sharing their epic farm saves <a href="https://www.reddit.com/user/ky13" target="_blank">/u/ky13</a> & <a href="https://www.reddit.com/user/Halfbloood" target="_blank">/u/Halfbloood</a></div><br>
+                    <div class="label info">Raven, hweetipie, paraskeet Kylindra from <a href=" https://discordapp.com/invite/stardewvalley" target="_blank">Stardew Valley discod</a> for much help!</div><br/>
+                    <div class="label info"><a href="http://community.playstarbound.com/members/uselessdragonfly.636240/" target="_blank">uselessdragonfly</a> for providing test save files for 1.1</div><br />
+                    <div class="label success credits"><a href="http://stardewvalley.net/" target="_blank" class="credits">Stardew Valley by </a><b><a href="https://www.reddit.com/user/ConcernedApe" class="credits" target="_blank">ConcernedApe</a></b></div>
                 </div>
+            </div>
         </div>
     </div>
+
+    <!-- Fix for electron http://stackoverflow.com/questions/32621988/electron-jquery-is-not-defined  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
