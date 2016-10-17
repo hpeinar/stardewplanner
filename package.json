@@ -1,6 +1,6 @@
 {
   "name": "stardew-farm-planner",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Interactive Stardew Valley farm planner tool",
   "main": "index.js",
   "engines": {
@@ -23,7 +23,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-all": "mkdir tmp && cp -R public/ tmp/public/ && cp -R electron/ tmp/ && electron-packager ./tmp Planner --platform all --out ./dist --version 1.4.3 && rm -rf ./tmp/",
+    "build-osx": "mkdir tmp && cp -R public/ tmp/public/ && cp -R electron/ tmp/ && electron-packager ./tmp Planner --platform darwin --out ./dist --version 1.4.3 && rm -rf ./tmp/"
   },
   "author": "Henrik Peinar",
   "license": "ISC"
