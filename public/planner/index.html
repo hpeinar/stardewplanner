@@ -211,10 +211,20 @@
 
             <!--main editor-->
             <div class="editor">
+                <!-- editor loader -->
                 <div class="editor-loader">
                     <div class="loader">
                         <img class="loader-icon" src="./img/hourglass.gif"><br>
                         Loading farm, please wait...
+                    </div>
+                </div>
+
+                <!-- Upload loader -->
+                <div class="upload-loader">
+                    <div class="loader">
+                        <img class="loader-icon" src="./img/hourglass.gif"><br>
+                        Uploading your saveGame file, please wait...<br />
+                        <span class="upload-progress">0</span>%
                     </div>
                 </div>
                 <svg width="1280" height="1040" id="editor"></svg>
@@ -258,6 +268,10 @@
 
                     <div class="panel info changelog" id="changelog">
                         <h3>Changelog:</h3>
+                        <b>17th Oct</b>
+                        <ul>
+                            <li>Added progress indicator for uploading your saveGame file</li>
+                        </ul>
                         <b>16th Oct</b>
                         <ul>
                             <li>Fixed mill size</li>

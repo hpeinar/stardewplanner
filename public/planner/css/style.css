@@ -9,12 +9,17 @@ body.dz-drag-hover {
     opacity: .4;
 }
 
-.editor-loader {
+.editor-loader,
+.upload-loader {
     margin-top: 5px;
     width: 1280px;
     height: 1040px;
     position: relative;
     border: 1px solid #002000;
+}
+
+.upload-loader {
+    display: none;
 }
 
 .loader {

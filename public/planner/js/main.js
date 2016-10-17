@@ -251,10 +251,28 @@ $().ready(function () {
         var formData = new FormData();
         formData.append('file', $(this)[0].files[0]);
 
+        $('.upload-loader').show();
+        $('.upload-progress').html(0);
+
         $.ajax({
             url: '/api/import',
             type: 'POST',
             data: formData,
+            // http://stackoverflow.com/questions/20095002/how-to-show-progress-bar-while-loading-using-ajax
+            xhr: function() {
+                var xhr = new window.XMLHttpRequest();
+
+                // Upload progress
+                xhr.upload.addEventListener("progress", function(evt){
+                    if (evt.lengthComputable) {
+                        var percentComplete = evt.loaded / evt.total * 100;
+
+                        $('.upload-progress').html(Math.round(percentComplete));
+                    }
+                }, false);
+
+                return xhr;
+            },
             success: function (data) {
                 if (data.id) {
                     window.location.href = '/planner/' + data.id;
@@ -263,6 +281,8 @@ $().ready(function () {
             cache: false,
             contentType: false,
             processData: false
+        }).always(function () {
+            $('.upload-loader').hide();
         });
     });
 
