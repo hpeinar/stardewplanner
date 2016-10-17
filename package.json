@@ -1,6 +1,6 @@
 {
   "name": "stardew-farm-planner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Interactive Stardew Valley farm planner tool",
   "main": "index.js",
   "engines": {

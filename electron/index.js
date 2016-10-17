@@ -24,7 +24,9 @@ function createWindow () {
     }
 
     // Open the DevTools.
-    win.webContents.openDevTools();
+    if (process.env.NODE_ENV == 'development') {
+        win.webContents.openDevTools();
+    }
 
 
     win.on('close', function(e) { //   <---- Catch close event
