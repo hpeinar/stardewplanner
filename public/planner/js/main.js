@@ -36,6 +36,7 @@ $().ready(function () {
        $('.editor-loader').hide();
     }
 
+
     // notification
     if (checkLocal() && !localStorage.getItem('stardew:facebookNotification')) {
         $('.facebook-notification').show();

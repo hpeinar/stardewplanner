@@ -95,6 +95,7 @@ body.dz-drag-hover {
 .facebook-notification,
 .us-notification,
 .version-notification,
+.electron-notification,
 .open-source-notification {
     top: 10px;
     left: 10px;
