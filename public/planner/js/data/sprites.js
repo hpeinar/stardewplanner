@@ -383,7 +383,7 @@ var data = {
             "sprite": "./img/tiles/gold-clock.png"
         },
         'mill': {
-            "width": 3*16,
+            "width": 4*16,
             "height": 2*16,
             "sprite": "./img/tiles/mill.png"
         },
