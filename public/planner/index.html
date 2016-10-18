@@ -196,7 +196,16 @@
                             <li class="divider"></li>
                             <li id="import"><a class="import-icon" href="#"><i class="fa fa-upload fa-2x side-nav-icon" title="Import from savefile"></i></a></li>
                             <li class="divider"></li>
-                            <li id="export-image"><a class="export-image-icon" href="#"><i class="fa fa-image fa-2x side-nav-icon" title="Export to image file"></i></a></li>
+                            <li class="has-dropdown">
+                                <a class="export-image-icon" href="#"><i class="fa fa-image fa-2x side-nav-icon" title="Export to image file"></i></a>
+                                <ul class="dropdown">
+                                    <li class="tools"><div class="link render-farm" data-season="spring">Render in spring</div></li>
+                                    <li class="tools"><div class="link render-farm" data-season="winter">Render in winter</div></li>
+                                    <li class="tools"><div class="link render-farm" data-season="summer">Render in summer</div></li>
+                                    <li class="tools"><div class="link render-farm" data-season="fall">Render in fall</div></li>
+                                    <li><a id="uploadFarm" href="http://upload.farm/" target="_blank" class="powered-by">powered by upload.farm</a></li>
+                                </ul>
+                            </li>
                             <li class="divider"></li>
                             <li id="reset"><a class="reset-icon" href="#"><i class="fa fa-trash fa-2x side-nav-icon" title="Reset all"></i></a></li>
                         </ul>

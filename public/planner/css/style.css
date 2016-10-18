@@ -194,6 +194,16 @@ body.dz-drag-hover {
     white-space: nowrap;
 }
 
+#uploadFarm {
+    color: #666;
+    font-size: 9px;
+    cursor: pointer;
+    padding: 3px;
+    text-align: center;
+    line-height: 14px;
+    height:20px;
+}
+
 .top-bar .dropdown li.tools a {
     padding: 0;
     font-weight: bold;

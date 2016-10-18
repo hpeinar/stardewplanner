@@ -56,7 +56,10 @@ $().ready(function () {
 
 
     /* Saves your epic work */
-    $('#save').click(function (e) {
+    $('#save,.render-farm').click(function (e) {
+
+        var season = $(this).data('season');
+
         e.preventDefault();
 
         var exportData = board.exportData();
@@ -79,15 +82,28 @@ $().ready(function () {
 
 
         $.ajax({
-            url: '/api/save',
+            url: '/api/'+ (season ? 'render' : 'save'),
             data: JSON.stringify(exportData),
             method: 'POST',
             contentType: 'application/json'
         }).always(function (data) {
+            
             if (data.id) {
                 window.location.href = '/planner/' + data.id;
             }
         });
+    });
+
+    /* Sends farm data to upload.farm */
+    $('.render-farm').click(function (e) {
+        var season = $(this).data('season');
+
+        var exportData = board.exportData();
+
+        // also add options and highlight states to the save
+        exportData.options = {
+            layout: (board.layout.name || 'regular')
+        };
     });
 
     /* Exports to an image file */

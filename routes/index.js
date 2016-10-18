@@ -12,6 +12,7 @@ const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart({
     maxFieldsSize: '25MB'
 });
+const request = require('request');
 const cors = require('cors');
 const RateLimit = require('express-rate-limit');
 const hri = require('human-readable-ids').hri;
@@ -105,26 +106,9 @@ module.exports = function () {
     });
 
     app.post('/save', function (req, res, next) {
-        uniqueId(req).then(function (uniqueId) {
-            let farm = {
-                id: uniqueId,
-                farmData: req.body
-            };
-
-            r.table('farms').insert(farm).run(req._conn).then(function (result) {
-                if (result.inserted !== 1) {
-                    req.log.error('Failed to insert farm');
-                    res.sendStatus(500);
-                    return;
-                }
-
-                res.json({id: uniqueId});
-                next();
-            }).error(function (err) {
-                req.log.error(err, 'Failed to save farm');
-                res.sendStatus(500);
-                next();
-            });
+        save(req.body, req._conn).then(function (result) {
+            res.json({id: result.id});
+            next();
         }).catch(function (err) {
             req.log.error(err, 'Failed to save farm, in catch');
             res.sendStatus(500);
@@ -132,12 +116,63 @@ module.exports = function () {
         });
     });
 
-    function uniqueId (req) {
+    app.post('/render', function (req, res, next) {
+        save(req.body, req._conn).then(function (result) {
+            // after saving, post it to upload.farm
+            request({
+                method: 'POST',
+                uri: 'http://upload.farm/api/v1/plan',
+                body: {
+                    plan_json: req.body,
+                    season: req.body.season || 'spring',
+                    source_url: 'https://stardew.info/planner/'+ result.id
+                },
+                json: true
+            }, function (error, response, body) {
+                console.log('RENDER ANSWER', error, response,body);
+
+                if (error) {
+                    res.status(500).json(error);
+                    return next();
+                }
+
+                res.json(response);
+                next();
+            });
+
+
+        }).catch(function (err) {
+            req.log.error(err, 'Failed to save farm, in catch');
+            res.sendStatus(500);
+            next();
+        });
+    });
+
+    function save (farmData, conn) {
+        return uniqueId(conn).then(function (uniqueId) {
+            let farm = {
+                id: uniqueId,
+                farmData: farmData
+            };
+
+            return r.table('farms').insert(farm).run(conn).then(function (result) {
+                if (result.inserted !== 1) {
+                    throw new Error('Failed to insert farm')
+                }
+
+                return {id: uniqueId};
+            }).error(function (err) {
+                throw new Error('Failed to save farm');
+            });
+        });
+    }
+
+    function uniqueId (conn) {
         let readableId = hri.random();
         return new Promise(function (resolve, reject) {
-            r.table('farms').get(readableId).run(req._conn).then(function (results) {
+            r.table('farms').get(readableId).run(conn).then(function (results) {
                 if (results) {
-                    return uniqueId(req);
+                    return uniqueId(conn);
                 } else {
                     resolve(readableId);
                 }
