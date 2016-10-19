@@ -102,6 +102,7 @@ body.dz-drag-hover {
 .facebook-notification,
 .us-notification,
 .version-notification,
+.render-notification,
 .open-source-notification {
     top: 10px;
     left: 10px;
@@ -165,11 +166,11 @@ body.dz-drag-hover {
 }
 
 .notification .header .hide-notification {
-    color: #9A1414;
+    color: #d21616;
     float: right;
 }
 .notification .header .hide-notification:hover {
-    color: #D21616;
+    color: #e41616;
 }
 
 .notification .content {
@@ -196,7 +197,7 @@ body.dz-drag-hover {
     white-space: nowrap;
 }
 
-#uploadFarm {
+#uploadFarm,.powered-by {
     color: #666;
     font-size: 9px;
     cursor: pointer;

@@ -37,6 +37,10 @@ $().ready(function () {
         $('.count-report-notification').css('top', 10);
     });
 
+    $('.hide-render-notification').click(function (e) {
+        $('.render-notification').hide();
+    });
+
     $('.switch-layout').click(function () {
         var layout = layouts[$(this).data('layout')];
         showLayoutAlert(layout);
@@ -93,8 +97,14 @@ $().ready(function () {
 
             if (season) {
                 if (data.status === 'success') {
+                    // in case popup is blocked, open notification
+                    $('.render-notification').show();
+                    $('.render-url').attr('href', data.url);
+                    $('.render-display-url').html(data.url);
+
                     // this was render
                     window.open(data.url);
+
                 } else {
                     alert('Rendering failed. Please try again in few minutes');
                 }
