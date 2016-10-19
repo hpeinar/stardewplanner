@@ -124,19 +124,18 @@ module.exports = function () {
                 uri: 'http://upload.farm/api/v1/plan',
                 body: {
                     plan_json: req.body,
-                    season: req.body.season || 'spring',
+                    season: req.body.options.season || 'spring',
                     source_url: 'https://stardew.info/planner/'+ result.id
                 },
                 json: true
             }, function (error, response, body) {
-                console.log('RENDER ANSWER', error, response,body);
 
                 if (error) {
-                    res.status(500).json(error);
+                    res.status(500).json(body);
                     return next();
                 }
 
-                res.json(response);
+                res.json(body);
                 next();
             });
 

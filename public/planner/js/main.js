@@ -64,8 +64,10 @@ $().ready(function () {
 
         var exportData = board.exportData();
 
+        $('.save-loader').show();
         // also add options and highlight states to the save
         exportData.options = {
+            season: season,
             layout: (board.layout.name || 'regular'),
             highlights: {
                 scarecrow: $('.highlight-scarecrow').hasClass('active'),
@@ -87,9 +89,20 @@ $().ready(function () {
             method: 'POST',
             contentType: 'application/json'
         }).always(function (data) {
-            
-            if (data.id) {
-                window.location.href = '/planner/' + data.id;
+            $('.save-loader').hide();
+
+            if (season) {
+                if (data.status === 'success') {
+                    // this was render
+                    window.open(data.url);
+                } else {
+                    alert('Rendering failed. Please try again in few minutes');
+                }
+
+            } else {
+                if (data.id) {
+                    window.location.href = '/planner/' + data.id;
+                }
             }
         });
     });
