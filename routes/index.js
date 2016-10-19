@@ -12,6 +12,7 @@ const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart({
     maxFieldsSize: '25MB'
 });
+const crypto = require('crypto');
 const request = require('request');
 const cors = require('cors');
 const RateLimit = require('express-rate-limit');
@@ -148,21 +149,37 @@ module.exports = function () {
     });
 
     function save (farmData, conn) {
-        return uniqueId(conn).then(function (uniqueId) {
-            let farm = {
-                id: uniqueId,
-                farmData: farmData
-            };
+        // generate unique hash but take the season out of it
+        let oldSeason = null;
+        if (farmData.options.season) {
+            oldSeason = farmData.options.season;
+            delete farmData.options.season;
+        }
+        let uniqueHash = crypto.createHash('md5').update(JSON.stringify(farmData)).digest("hex");
+        farmData.options.season = oldSeason;
 
-            return r.table('farms').insert(farm).run(conn).then(function (result) {
-                if (result.inserted !== 1) {
-                    throw new Error('Failed to insert farm')
-                }
+        return r.table('farms').getAll(uniqueHash, {index: 'md5'}).run(conn).then(farms => farms.toArray()).then(function (results) {
+            if (results.length) {
+                return Promise.resolve({id: results[0].id});
+            } else {
+                return uniqueId(conn).then(function (uniqueId) {
+                    let farm = {
+                        id: uniqueId,
+                        md5: uniqueHash,
+                        farmData: farmData
+                    };
 
-                return {id: uniqueId};
-            }).error(function (err) {
-                throw new Error('Failed to save farm');
-            });
+                    return r.table('farms').insert(farm).run(conn).then(function (result) {
+                        if (result.inserted !== 1) {
+                            throw new Error('Failed to insert farm')
+                        }
+
+                        return Promise.resolve({id: uniqueId});
+                    })
+                });
+            }
+        }).error(function (err) {
+            throw new Error('Failed to save farm');
         });
     }
 
