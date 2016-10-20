@@ -45,7 +45,7 @@ module.exports = function () {
                 farmData: importData
             };
 
-            r.table('farms').insert(farm).run(req._conn).then(function (results) {
+            return r.table('farms').insert(farm).run(req._conn).then(function (results) {
                 if (results.inserted !== 1) {
                     req.log.error('Failed to save imported farm');
                     res.sendStatus(500);
