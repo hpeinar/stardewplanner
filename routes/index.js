@@ -38,7 +38,7 @@ module.exports = function () {
         importer(req.files.file.path).then(function (data) {
             importData = data;
 
-            return uniqueId(req);
+            return uniqueId(req._conn);
         }).then(function (readableId) {
             let farm = {
                 id: readableId,
