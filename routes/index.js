@@ -144,7 +144,9 @@ module.exports = function () {
             delete hashedData.options.season;
         }
         let uniqueHash = crypto.createHash('md5').update(JSON.stringify(hashedData)).digest("hex");
-
+        if (oldSeason) {
+            farmData.options.season = oldSeason;
+        }
         return r.table('farms').getAll(uniqueHash, {index: 'md5'}).run(conn).then(farms => farms.toArray()).then(function (results) {
             if (results.length) {
                 return Promise.resolve({id: results[0].id});
