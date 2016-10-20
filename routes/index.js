@@ -33,33 +33,15 @@ module.exports = function () {
             return;
         }
 
-        let importData = null;
-
-        importer(req.files.file.path).then(function (data) {
-            importData = data;
-
-            return uniqueId(req._conn);
-        }).then(function (readableId) {
-            let farm = {
-                id: readableId,
-                farmData: importData
-            };
-
-            return r.table('farms').insert(farm).run(req._conn).then(function (results) {
-                if (results.inserted !== 1) {
-                    req.log.error('Failed to save imported farm');
-                    res.sendStatus(500);
-                    return;
-                }
-
+        importer(req.files.file.path).then(function (farmData) {
+            return save(farmData, req._conn).then(function (result) {
                 res.json({
-                    id: readableId,
-                    absolutePath: 'https://stardew.info/planner/'+ readableId
+                    id: result.id,
+                    absolutePath: 'https://stardew.info/planner/'+ result.id
                 });
-
                 next();
-            }).error(function (err) {
-                req.log.error(err, 'RethinkDB error while saving imported farm');
+            }).catch(function (err) {
+                req.log.error(err, 'Failed to save farm, in catch');
                 res.sendStatus(500);
                 next();
             });
@@ -149,14 +131,19 @@ module.exports = function () {
     });
 
     function save (farmData, conn) {
+
+        let hashedData = {
+            buildings: farmData.buildings,
+            tiles: farmData.tiles,
+            options: farmData.options
+        };
+
         // generate unique hash but take the season out of it
         let oldSeason = null;
-        if (farmData.options.season) {
-            oldSeason = farmData.options.season;
-            delete farmData.options.season;
+        if (hashedData.options.season) {
+            delete hashedData.options.season;
         }
-        let uniqueHash = crypto.createHash('md5').update(JSON.stringify(farmData)).digest("hex");
-        farmData.options.season = oldSeason;
+        let uniqueHash = crypto.createHash('md5').update(JSON.stringify(hashedData)).digest("hex");
 
         return r.table('farms').getAll(uniqueHash, {index: 'md5'}).run(conn).then(farms => farms.toArray()).then(function (results) {
             if (results.length) {
