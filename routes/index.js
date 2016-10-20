@@ -141,6 +141,7 @@ module.exports = function () {
         // generate unique hash but take the season out of it
         let oldSeason = null;
         if (hashedData.options.season) {
+            oldSeason = hashedData.options.season;
             delete hashedData.options.season;
         }
         let uniqueHash = crypto.createHash('md5').update(JSON.stringify(hashedData)).digest("hex");
