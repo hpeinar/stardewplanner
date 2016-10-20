@@ -12,10 +12,11 @@ body.dz-drag-hover {
 .editor-loader,
 .upload-loader,
 .save-loader {
-    margin-top: 5px;
     width: 1280px;
     height: 1040px;
-    position: relative;
+    position: fixed;
+    background-color: #000;
+    opacity: 0.9;
     border: 1px solid #002000;
 }
 
