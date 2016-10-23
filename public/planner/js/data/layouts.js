@@ -135,5 +135,53 @@ var layouts = {
             x: 25,
             y: 6
         }
+    },
+    "hill-top-forest": {
+        author: 'Minnue',
+        url: 'http://www.nexusmods.com/stardewvalley/mods/601',
+        name: 'hill-top-forest',
+        prettyName: 'Hill-Top Forest',
+        backgroundImage: 'hill-top-forest.jpg',
+        restrictionPath: null,
+        house: {
+            x: 58,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        }
+    },
+    "secret-forest": {
+        author: 'Mushfae',
+        url: 'http://community.playstarbound.com/threads/alis-secret-forest-farm-map-and-buildings.117561/',
+        name: 'secret-forest',
+        prettyName: 'Secret Forest',
+        backgroundImage: 'secret-forest.jpg',
+        restrictionPath: null,
+        house: {
+            x: 58,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        }
+    },
+    "fancy-farm": {
+        author: 'Williambeepbeep',
+        url: 'http://www.nexusmods.com/stardewvalley/mods/270/?',
+        name: 'fancy-farm',
+        prettyName: 'Fancy farm',
+        backgroundImage: 'fancy-farm.jpg',
+        restrictionPath: null,
+        house: {
+            x: 58,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        }
     }
 };
