@@ -18,7 +18,7 @@ var layouts = {
             'M576,784L688,784L688,800L704,800L704,816L736,816L736,832L752,832L752,896L736,896L736,912L720,912L720,928L672,928L672,944L592,944L592,928L576,928L576,912L544,912L544,880L528,880L528,832L544,832L544,816L560,816L560,800L576,800L576,784z' // big pond
         ].join(''),
         house: {
-            x: 58,
+            x: 59,
             y: 8
         },
         greenhouse: {
@@ -40,7 +40,7 @@ var layouts = {
             'M704,384,L816,384,L816,400,L832,400,L832,416,L864,416,L864,432,L880,432,L880,464,L896,464,L896,480,L928,480,L928,560,L880,560,L880,576,L880,592,L864,592,L864,608,L848,608,L848,624,L800,624,L800,640,L720,640,L720,624,L704,624,L704,608,L672,608,L672,592,L656,592,L656,576,L640,576,L640,560,L624,560,L624,464,L656,464,L656,432,L672,432,L672,416,L688,416,L688,400,L704,400,L704,384z' // middle lake
         ].join(''),
         house: {
-            x: 58,
+            x: 59,
             y: 8
         },
         greenhouse: {
@@ -63,7 +63,7 @@ var layouts = {
             'M944,176L1088,176L1088,256L1104,256L1104,272L944,272z', // house
         ].join(''),
         house: {
-            x: 58,
+            x: 59,
             y: 8
         },
         greenhouse: {
@@ -87,7 +87,7 @@ var layouts = {
             'M944,176L1088,176L1088,256L1104,256L1104,272L944,272z', // house
         ].join(''),
         house: {
-            x: 58,
+            x: 59,
             y: 8
         },
         greenhouse: {
@@ -112,7 +112,7 @@ var layouts = {
             'M944,176L1088,176L1088,256L1104,256L1104,272L944,272z', // house
         ].join(''),
         house: {
-            x: 58,
+            x: 59,
             y: 8
         },
         greenhouse: {
@@ -128,7 +128,7 @@ var layouts = {
         backgroundImage: 'wonderful-farm-life.jpg',
         restrictionPath: null,
         house: {
-            x: 58,
+            x: 59,
             y: 8
         },
         greenhouse: {
@@ -144,7 +144,7 @@ var layouts = {
         backgroundImage: 'hill-top-forest.jpg',
         restrictionPath: null,
         house: {
-            x: 58,
+            x: 59,
             y: 8
         },
         greenhouse: {
@@ -160,7 +160,7 @@ var layouts = {
         backgroundImage: 'secret-forest.jpg',
         restrictionPath: null,
         house: {
-            x: 58,
+            x: 59,
             y: 8
         },
         greenhouse: {
@@ -176,7 +176,7 @@ var layouts = {
         backgroundImage: 'fancy-farm.jpg',
         restrictionPath: null,
         house: {
-            x: 58,
+            x: 59,
             y: 8
         },
         greenhouse: {

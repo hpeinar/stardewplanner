@@ -358,7 +358,7 @@ var data = {
             "height": 32
         },
         'house': {
-            "width": 160,
+            "width": 144,
             "height": 144,
             "sprite": "./img/tiles/house.png"
         },
