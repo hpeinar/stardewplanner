@@ -215,7 +215,7 @@ body.dz-drag-hover {
 
 /** Donation **/
 .donate {
-    width:90px;
+    width:90px !important;
     color: #0c8ed3 !important;
 }
 
