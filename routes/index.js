@@ -114,6 +114,7 @@ module.exports = function () {
             }, function (error, response, body) {
 
                 if (error) {
+                    req.log.error(error, 'Failed to render in upload.farm');
                     res.status(500).json(body);
                     return next();
                 }
