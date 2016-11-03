@@ -41,6 +41,10 @@ $().ready(function () {
         $('.render-notification').hide();
     });
 
+    $('.hide-google-notification').click(function (e) {
+        $('.google-notification').hide();
+    });
+
     $('.switch-layout').click(function () {
         var layout = layouts[$(this).data('layout')];
         showLayoutAlert(layout);

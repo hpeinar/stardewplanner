@@ -180,6 +180,17 @@ body.dz-drag-hover {
     border: 1px solid #333;
 }
 
+.google-notification {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    display: block;
+}
+
+.hide-google-notification {
+    cursor: pointer;
+}
+
 
 /** TOP BAR **/
 .top-bar {
