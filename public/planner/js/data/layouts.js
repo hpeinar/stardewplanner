@@ -24,7 +24,9 @@ var layouts = {
         greenhouse: {
             x: 25,
             y: 6
-        }
+        },
+        width: 1280,
+        height: 1040
     },
     combat: {
         name: 'combat',
@@ -46,7 +48,9 @@ var layouts = {
         greenhouse: {
             x: 25,
             y: 6
-        }
+        },
+        width: 1280,
+        height: 1040
     },
     fishing: {
         name: 'fishing',
@@ -69,7 +73,9 @@ var layouts = {
         greenhouse: {
             x: 25,
             y: 6
-        }
+        },
+        width: 1280,
+        height: 1040
     },
     foraging: {
         name: 'foraging',
@@ -93,7 +99,9 @@ var layouts = {
         greenhouse: {
             x: 25,
             y: 6
-        }
+        },
+        width: 1280,
+        height: 1040
     },
     mining: {
         name: 'mining',
@@ -118,7 +126,9 @@ var layouts = {
         greenhouse: {
             x: 25,
             y: 6
-        }
+        },
+        width: 1280,
+        height: 1040
     },
     "wonderful-farm-life": {
         author: 'taintedwheat & JinxieWinxie',
@@ -134,7 +144,9 @@ var layouts = {
         greenhouse: {
             x: 25,
             y: 6
-        }
+        },
+        width: 1280,
+        height: 1040
     },
     "hill-top-forest": {
         author: 'Minnue',
@@ -150,7 +162,9 @@ var layouts = {
         greenhouse: {
             x: 25,
             y: 6
-        }
+        },
+        width: 1280,
+        height: 1040
     },
     "secret-forest": {
         author: 'Mushfae',
@@ -166,7 +180,9 @@ var layouts = {
         greenhouse: {
             x: 25,
             y: 6
-        }
+        },
+        width: 1280,
+        height: 1040
     },
     "fancy-farm": {
         author: 'Williambeepbeep',
@@ -182,6 +198,22 @@ var layouts = {
         greenhouse: {
             x: 25,
             y: 6
-        }
+        },
+        width: 1280,
+        height: 1040
+    },
+
+    // inside layouts
+    greenhouse: {
+        name: 'greenhouse',
+        prettyName: 'Greenhouse',
+        official: true,
+        backgroundImage: 'greenhouse.jpg',
+        restrictionPath: [
+            'M0,0L1280,0L1280,1040L0,1040',
+            'M64,160L256,160L256,320L64,320L64,160z'
+        ],
+        width: 320,
+        height: 384
     }
 };

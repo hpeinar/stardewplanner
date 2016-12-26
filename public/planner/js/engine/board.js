@@ -64,7 +64,7 @@ Board.prototype.loadLayout = function loadLayout (layout) {
         this.background.remove();
     }
 
-    this.background = this.R.image(Board.toFullPath('img/layouts/'+ layout.backgroundImage), 0, 0, this.width, this.height);
+    this.background = this.R.image(Board.toFullPath('img/layouts/'+ layout.backgroundImage), 0, 0, layout.width, layout.height);
     this.background.toFront();
 
     if (this.house) {
