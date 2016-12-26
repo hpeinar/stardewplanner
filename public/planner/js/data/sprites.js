@@ -407,6 +407,16 @@ var data = {
             "width": 7*16,
             "height": 3*16,
             "sprite": "./img/tiles/shed.png"
+        },
+        'object-restriction': {
+            "width": 16,
+            "height": 16,
+            "sprite": "./img/tiles/object-restriction.png"
+        },
+        'building-restriction': {
+            "width": 16,
+            "height": 16,
+            "sprite": "./img/tiles/building-restriction.png"
         }
     }
 };

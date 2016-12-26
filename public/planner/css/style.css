@@ -611,3 +611,10 @@ body.dz-drag-hover {
 .sprite-icon.twig {
     background-image: url('/planner/img/tiles/twig.png');
 }
+
+.sprite-icon.object-restriction {
+    background-image: url('/planner/img/tiles/object-restriction.png');
+}
+.sprite-icon.building-restriction {
+    background-image: url('/planner/img/tiles/building-restriction.png');
+}
