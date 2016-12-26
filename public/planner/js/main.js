@@ -427,7 +427,7 @@ $().ready(function () {
             board.loadLayout(layout);
 
             // greenhouse is loaded with the layout
-            toggleMenuItem(null, '.greenhouse-switch', board.toggleGreenhouse.bind(board), board.toggleGreenhouse.bind(board), data.options.greenhouse);
+            toggleMenuItem(null, '.greenhouse-switch', board.toggleGreenhouse.bind(board, 'greenhouse-fixed'), board.toggleGreenhouse.bind(board, 'greenhouse'), data.options.greenhouse);
         }
 
 

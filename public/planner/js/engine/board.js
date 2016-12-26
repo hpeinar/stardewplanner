@@ -107,20 +107,21 @@ Board.prototype.loadLayout = function loadLayout (layout) {
     this.layout = layout;
 };
 
-Board.prototype.toggleGreenhouse = function toggleGreenhouse() {
+Board.prototype.toggleGreenhouse = function toggleGreenhouse(forcedState) {
     if (!this.layout.greenhouse) {
         return;
     }
 
     var currentGreenhouse = this.greenhouse.type;
+    var newState = (currentGreenhouse == 'greenhouse') ? 'greenhouse-fixed' : 'greenhouse';
 
     this.greenhouse.remove();
 
-    if (currentGreenhouse == 'greenhouse') {
-        this.greenhouse = new Building(this, 'greenhouse-fixed', this.layout.greenhouse.x*this.tileSize, this.layout.greenhouse.y*this.tileSize, false, true);
-    } else {
-        this.greenhouse = new Building(this, 'greenhouse', this.layout.greenhouse.x*this.tileSize, this.layout.greenhouse.y*this.tileSize, false, true);
+    if (forcedState) {
+        newState = forcedState;
     }
+
+    this.greenhouse = new Building(this, newState, this.layout.greenhouse.x*this.tileSize, this.layout.greenhouse.y*this.tileSize, false, true);
 };
 
 
