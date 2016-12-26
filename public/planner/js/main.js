@@ -243,6 +243,10 @@ $().ready(function () {
         toggleMenuItem(e, '.hide-stuff', board.showStuff.bind(board), board.hideStuff.bind(board));
     });
 
+    $('.greenhouse-switch').click(function (e) {
+        toggleMenuItem(e, '.greenhouse-switch', board.toggleGreenhouse.bind(board), board.toggleGreenhouse.bind(board));
+    });
+
     $('.coordinates').click(function (e) {
         toggleMenuItem(e, '.coordinates', board.showCoords.bind(board), board.hideCoords.bind(board));
     });
@@ -421,6 +425,9 @@ $().ready(function () {
             var layout = layouts[data.options.layout || 'regular'];
             showLayoutAlert(layout);
             board.loadLayout(layout);
+
+            // greenhouse is loaded with the layout
+            toggleMenuItem(null, '.greenhouse-switch', board.toggleGreenhouse.bind(board), board.toggleGreenhouse.bind(board), data.options.greenhouse);
         }
 
 

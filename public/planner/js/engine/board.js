@@ -97,15 +97,32 @@ Board.prototype.loadLayout = function loadLayout (layout) {
     }
 
     if (layout.house) {
-        this.house = new Building(this, 'house', layout.house.x*16, layout.house.y*16, false, true);
+        this.house = new Building(this, 'house', layout.house.x*this.tileSize, layout.house.y*this.tileSize, false, true);
     }
 
     if (layout.greenhouse) {
-        this.greenhouse = new Building(this, 'greenhouse', layout.greenhouse.x*16, layout.greenhouse.y*16, false, true);
+        this.greenhouse = new Building(this, 'greenhouse', layout.greenhouse.x*this.tileSize, layout.greenhouse.y*this.tileSize, false, true);
     }
 
     this.layout = layout;
 };
+
+Board.prototype.toggleGreenhouse = function toggleGreenhouse() {
+    if (!this.layout.greenhouse) {
+        return;
+    }
+
+    var currentGreenhouse = this.greenhouse.type;
+
+    this.greenhouse.remove();
+
+    if (currentGreenhouse == 'greenhouse') {
+        this.greenhouse = new Building(this, 'greenhouse-fixed', this.layout.greenhouse.x*this.tileSize, this.layout.greenhouse.y*this.tileSize, false, true);
+    } else {
+        this.greenhouse = new Building(this, 'greenhouse', this.layout.greenhouse.x*this.tileSize, this.layout.greenhouse.y*this.tileSize, false, true);
+    }
+};
+
 
 Board.prototype.showHighlights = function showHighlights(type) {
     var board = this;

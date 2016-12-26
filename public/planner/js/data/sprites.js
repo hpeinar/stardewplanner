@@ -367,6 +367,11 @@ var data = {
             "height": 160,
             "sprite": "./img/tiles/greenhouse-broken.png"
         },
+        'greenhouse-fixed': {
+            "width": 112,
+            "height": 160,
+            "sprite": "./img/tiles/greenhouse-fixed.png"
+        },
         'earth-obelisk': {
             "width": 3*16,
             "height": 3*16,
