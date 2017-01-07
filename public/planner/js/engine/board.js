@@ -306,9 +306,9 @@ Board.prototype.dragEnd = function dragEnd(e) {
  */
 Board.prototype.mousedown = function mousedown(e) {
     var board = this;
+    var pos = Board.normalizePos(e, null, board.tileSize);
 
     if (board.ghosting) {
-        var pos = Board.normalizePos(e, null, board.tileSize);
 
         board.ghostPathPoints.push('L'+ pos.x +','+ pos.y);
 
@@ -334,12 +334,19 @@ Board.prototype.mousedown = function mousedown(e) {
             return;
         }
         var bIndex = board.buildings.map(function (b) { return (b || {}).uuid; }).indexOf((board.placingBuilding || {}).uuid);
-        var pos = Board.normalizePos(e, null, board.tileSize);
+        var tileX = pos.x/board.tileSize;
+        var tileY = pos.y/board.tileSize;
         var buildingId = board.placingBuilding.type;
 
         board.placingBuilding.move(pos);
         board.placingBuilding.putDown();
-        if (bIndex === -1) {
+
+        // if it is a torch and placed on a fence, we turn the fence into torch-{type}-fence
+        if (board.placingBuilding.type == 'torch' && (board.tiles[tileY] && board.tiles[tileY][tileX] && board.tiles[tileY][tileX].attr('tileType').indexOf('fence') !== -1)) {
+            board.drawTile(pos, 'torch-'+ board.tiles[tileY][tileX].attr('tileType'), true);
+
+            board.placingBuilding.remove();
+        } else if (bIndex === -1) {
             board.buildings.push(board.placingBuilding);
         }
 
@@ -635,9 +642,10 @@ Board.prototype.drawTiles = function drawTiles(area, tile) {
  * Draws tile to given location, also does all the checking work
  * @param location
  * @param tile
+ * @param replace
  * @return {*}
  */
-Board.prototype.drawTile = function drawTile(location, tile) {
+Board.prototype.drawTile = function drawTile(location, tile, replace) {
     var hardX = location.x / this.tileSize;
     var hardY = location.y / this.tileSize;
 
@@ -652,7 +660,7 @@ Board.prototype.drawTile = function drawTile(location, tile) {
     if (this.tiles[hardY][hardX]) {
         // there seems to be a tile in place here already, remove it
 
-        if (!this.brush.overwriting && !this.brush.erase) {
+        if (!this.brush.overwriting && !this.brush.erase && !replace) {
             return;
         } else {
             this.tiles[hardY][hardX].remove();
