@@ -558,6 +558,12 @@ body.dz-drag-hover {
 .sprite-icon.torch {
     background-image: url('/planner/img/tiles/torch.png');
 }
+.sprite-icon.wood-lamp-post {
+    background-image: url('/planner/img/tiles/wood-lamp-post.png');
+}
+.sprite-icon.iron-lamp-post {
+    background-image: url('/planner/img/tiles/iron-lamp-post.png');
+}
 .sprite-icon.campfire {
     background-image: url('/planner/img/tiles/campfire.png');
 }
