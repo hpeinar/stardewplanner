@@ -5,5 +5,11 @@
     "port": "28015",
     "authkey": "",
     "db": "stardew"
+  },
+  "db": {
+    "host": "127.0.0.1",
+    "user": "",
+    "password": "",
+    "name": "planner"
   }
 }
