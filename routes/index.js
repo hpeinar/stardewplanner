@@ -141,7 +141,7 @@ module.exports = () => {
         if (oldSeason) {
             farmData.options.season = oldSeason;
         }
-        return db.select('id').from('farms').where({md5: uniqueHash}).then((results) => {
+        return db.select('id', 'slug').from('farms').where({md5: uniqueHash}).then((results) => {
             if (results.length) {
                 return Promise.resolve({id: results[0].slug});
             } else {
