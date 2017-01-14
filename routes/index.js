@@ -51,14 +51,23 @@ module.exports = () => {
     });
 
     app.get('/:id', (req, res, next) => {
-        db.select('farmData').from('farms').where({slug: req.params.id}).orWhere({oldId: req.params.id})
+        db.select('farmData', 'parentId').from('farms').where({slug: req.params.id}).orWhere({oldId: req.params.id})
+            .then(farm => farm[0])
+            .then(farm => {
+                // if farm has parent, show parent
+                if (farm && farm.parentId && farm.parentId > 0) {
+                    return db.select('farmData').from('farms').where({id: farm.parentId});
+                }
+
+                return farm;
+            })
             .then((farm) => {
-                if (!farm.farmData && !farm.length) {
+                if (!farm || !farm.farmData) {
                     res.sendStatus(404);
                     return;
                 }
 
-                res.json(JSON.parse(farm.farmData || farm[0].farmData));
+                res.json(JSON.parse(farm.farmData));
                 next();
             }).catch((err) => {
                 req.log.error(err, 'Failed to get farm');

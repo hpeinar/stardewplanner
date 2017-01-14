@@ -47,3 +47,6 @@ CREATE TABLE `farms` (
 
 ALTER TABLE farms SET ROW_FORMAT=COMPRESSED;
 -- Dump completed on 2017-01-07 14:45:36
+
+ALTER TABLE `planner`.`farms`
+ADD COLUMN `parentId` INT(11) UNSIGNED NULL AFTER `oldId`;
