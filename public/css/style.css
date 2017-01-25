@@ -1,4 +1,759 @@
 body {
-    background-color: #232221;;
-    color:#E2E2E2;
+    background-color: #000;
+    color: #E2E2E2;
+    font-family: Helvetica;
+}
+
+/** Dropzone css **/
+body.dz-drag-hover {
+    opacity: .4;
+}
+
+.editor-loader,
+.upload-loader,
+.save-loader {
+    width: 1280px;
+    height: 1040px;
+    position: fixed;
+    background-color: #000;
+    opacity: 0.9;
+    border: 1px solid #002000;
+}
+
+.upload-loader,
+.save-loader {
+    display: none;
+}
+
+.loader {
+    position: absolute;
+    text-align: center;
+    font-size: 24px;
+    margin: 0 auto 0 auto;
+    width: 400px;
+    height: 196px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.loader img {
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
+
+.key {
+    border: 1px solid #e0e0e0;
+    border-bottom-width: 2px;
+    color: #202020;
+    background: #f0f0f0;
+    border-radius: 3px;
+    padding: 2px 6px;
+    background: -webkit-linear-gradient(top,#f0f0f0,#fcfcfc);
+    background: -moz-linear-gradient(top,#f0f0f0,#fcfcfc);
+    background: linear-gradient(to bottom,#f0f0f0,#fcfcfc);
+    -moz-border-radius: 3px;
+    font-family: monospace;
+}
+
+.hide-email {
+    display: none;
+}
+
+.progress {
+    position: relative;
+}
+
+.progress-text {
+    font-size: 12px;
+    position: absolute;
+    left: 15px;
+    bottom: 2px;
+}
+
+.inner-wrap {
+    overflow-x: scroll;
+}
+
+.changelog li {
+    font-size: 11px;
+}
+
+.faq {
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+}
+#credits .credits {
+    color: #000;
+}
+
+/** Version notification **/
+.facebook-notification,
+.us-notification,
+.version-notification,
+.render-notification,
+.open-source-notification {
+    top: 10px;
+    left: 10px;
+}
+
+.open-source-notification .header {
+    color: #00cc00;
+}
+
+.count-report-notification {
+    top: 10px;
+    left: 10px;
+    overflow: hidden;
+}
+
+.custom-layout-notification {
+    top: 10px;
+    right: 10px;
+    overflow: hidden;
+}
+
+.count-report-notification .content {
+    max-height: 500px;
+    width: 200px;
+    overflow: auto;
+    font-size: 14px;
+}
+
+.count-report-row {
+    padding-left: 8px;
+    padding-right: 8px;
+    display: block;
+    clear: both;
+}
+
+.count-report-name {
+    display: inline;
+}
+
+.count-report-count {
+    display: inline;
+    float: right;
+}
+
+.notification {
+    position: absolute;
+    font-family: "Helvetica Neue", Helvetica;
+    font-size: 12px;
+    color: #ccc;
+    display: none;
+}
+
+.notification a {
+    color: #999;
+    text-decoration: underline;
+}
+
+.notification .header {
+    background-color: #333;
+    padding: 5px;
+}
+
+.notification .header .hide-notification {
+    color: #d21616;
+    float: right;
+}
+.notification .header .hide-notification:hover {
+    color: #e41616;
+}
+
+.notification .content {
+    background-color: #555;
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+.google-notification {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    display: block;
+}
+
+.hide-google-notification {
+    cursor: pointer;
+}
+
+
+/** TOP BAR **/
+.top-bar {
+    background-color: #333;
+    max-width: 1280px;
+    margin: 0 auto 0 auto;
+}
+
+
+/** Links styles **/
+.top-bar .dropdown li.tools div.link {
+    line-height: 25px;
+    border-bottom: 1px solid #444;
+    font-size: 11px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+#uploadFarm,.powered-by {
+    color: #666;
+    font-size: 9px;
+    cursor: pointer;
+    padding: 3px;
+    text-align: center;
+    line-height: 14px;
+    height:20px;
+}
+
+.top-bar .dropdown li.tools a {
+    padding: 0;
+    font-weight: bold;
+}
+
+/** Donation **/
+.donate {
+    width:90px !important;
+    color: #0c8ed3 !important;
+}
+
+.top-bar .dropdown li.tools div.link:hover {
+    background-color: #444;
+}
+.top-bar .dropdown li.tools div.link:active {
+    background-color: #555;
+}
+
+.top-bar li.has-dropdown ul.dropdown li div.link {
+    padding-left: 8px;
+    padding-right: 30px;
+}
+
+.eraser div.link {
+    cursor: pointer;
+    color: #ee0000;
+    font-size: 12px;
+    vertical-align: middle;
+    line-height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.eraser:hover {
+    background-color: #222;
+}
+.select:hover {
+    background-color: #222;
+}
+
+.eraser:active {
+    background-color: #444;
+}
+.select:active {
+    background-color: #444;
+}
+
+.select div.link {
+    cursor: pointer;
+    color: #00cc00;
+    font-size: 12px;
+    vertical-align: middle;
+    line-height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.top-bar div.link.toggleable {
+    color: #f00;
+}
+
+.top-bar div.link.toggleable.active {
+    color: #0f0;
+}
+
+.top-bar li.divider {
+    border-right: 2px solid #000;
+}
+
+/** Crops Submenus **/
+.submenu {
+	position: absolute;
+	left: 84px;
+	top: 0px;
+	display: none !important;
+}
+
+.parent:hover + ul.submenu {
+	display: block !important;
+}
+
+ul.submenu:hover {
+	display: block !important;
+}
+
+ul.submenu li {
+	background: #555;
+}
+
+#save .save-icon {
+    background-color: #090;
+}
+
+#import .import-icon {
+    background-color: #0f6699;
+}
+
+#import .import-icon:hover {
+    background-color: #0c8ed3;
+}
+
+.import-icon i {
+    color: #24ceff;
+}
+
+#save .save-icon:hover {
+    background-color: #0c0;
+}
+
+.save-icon i {
+    color: #0f0;
+}
+
+#export-image .export-image-icon {
+    background-color: #730099;
+}
+
+#export-image .export-image-icon:hover {
+    background-color: #9a00cc;
+}
+
+.export-image-icon i {
+    color: #c000ff;
+}
+
+#reset .reset-icon {
+    background-color: #900;
+}
+
+#reset .reset-icon:hover {
+    background-color: #c00;
+}
+
+.reset-icon i {
+    color: #f00;
+}
+
+
+/** editor styles **/
+.editor {
+    position: relative;
+    cursor: pointer;
+    margin: 5px auto 0 auto;
+    width: 1280px;
+    height: 1040px;
+}
+
+/** SIDE-BAR BUTTONS **/
+.side-nav #save {
+    color: #3a945b;
+}
+
+.side-nav #reset {
+    color: #cf2a0e;
+}
+
+.side-nav-icon {
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    vertical-align: middle;
+}
+
+/** CUSTOM STYLES FOR NICE SIDE-BAR **/
+
+.move-right .inner-wrap {
+    -ms-transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+}
+
+.left-off-canvas-menu {
+    -ms-transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+    position: fixed;
+    width: 0;
+    height: 100%;
+    margin-top: 45px;
+}
+
+/** Sprite icons for the menu **/
+.sprite-icon {
+    display: block;
+    float: left;
+    width: 16px;
+    height: 16px;
+    margin-top: 4px;
+    margin-right: 4px;
+    background-size: cover;
+}
+
+
+/** Buildings **/
+.sprite-icon.silo {
+    background-image: url('/planner/img/tiles/silo.png');
+}
+.sprite-icon.well {
+    background-image: url('/planner/img/tiles/well.png');
+}
+.sprite-icon.stable {
+    background-image: url('/planner/img/tiles/stable.png');
+}
+.sprite-icon.barn {
+    background-image: url('/planner/img/tiles/barn.png');
+}
+.sprite-icon.slime-hutch {
+    background-image: url('/planner/img/tiles/slime-hutch.png');
+}
+.sprite-icon.coop {
+    background-image: url('/planner/img/tiles/coop.png');
+}
+.sprite-icon.water-obelisk {
+    background-image: url('/planner/img/tiles/water-obelisk.png');
+}
+.sprite-icon.earth-obelisk {
+    background-image: url('/planner/img/tiles/earth-obelisk.png');
+}
+.sprite-icon.gold-clock {
+    background-image: url('/planner/img/tiles/gold-clock.png');
+}
+.sprite-icon.mill {
+    background-image: url('/planner/img/tiles/mill.png');
+}
+.sprite-icon.junimo-hut {
+    background-image: url('/planner/img/tiles/junimo-hut.png');
+}
+.sprite-icon.shed {
+    background-image: url('/planner/img/tiles/shed.png');
+}
+
+/** equipment **/
+.sprite-icon.sprinkler {
+    background-image: url('/planner/img/tiles/sprinkler.png');
+}
+.sprite-icon.irid-sprinkler {
+    background-image: url('/planner/img/tiles/irid-sprinkler.png');
+}
+.sprite-icon.q-sprinkler {
+    background-image: url('/planner/img/tiles/q-sprinkler.png');
+}
+.sprite-icon.scarecrow {
+    background-image: url('/planner/img/tiles/scarecrow.png');
+}
+.sprite-icon.chest {
+    background-image: url('/planner/img/tiles/chest.png');
+}
+.sprite-icon.furnace {
+    background-image: url('/planner/img/tiles/furnace.png');
+}
+.sprite-icon.charcoal-klin {
+    background-image: url('/planner/img/tiles/charcoal.png');
+}
+.sprite-icon.seed-maker {
+    background-image: url('/planner/img/tiles/seed-maker.png');
+}
+.sprite-icon.crystal {
+    background-image: url('/planner/img/tiles/crystal.png');
+}
+.sprite-icon.slime-egg {
+    background-image: url('/planner/img/tiles/slime-hutch.png');
+}
+.sprite-icon.lighting-rod {
+    background-image: url('/planner/img/tiles/lighting-rod.png');
+}
+.sprite-icon.recycling-machine {
+    background-image: url('/planner/img/tiles/recycling-machine.png');
+}
+.sprite-icon.slime-incubator {
+    background-image: url('/planner/img/tiles/slime-incubator.png');
+}
+.sprite-icon.worm-bin {
+    background-image: url('/planner/img/tiles/worm-bin.png');
+}
+
+/** artisan **/
+.sprite-icon.apricot-tree {
+    background-image: url('/planner/img/tiles/apricot.png');
+}
+.sprite-icon.cherry-tree {
+    background-image: url('/planner/img/tiles/cherry-tree.png');
+}
+.sprite-icon.orange-tree {
+    background-image: url('/planner/img/tiles/orange-tree.png');
+}
+.sprite-icon.peach-tree {
+    background-image: url('/planner/img/tiles/peach.png');
+}
+.sprite-icon.apple-tree {
+    background-image: url('/planner/img/tiles/apple.png');
+}
+.sprite-icon.pomegranate {
+    background-image: url('/planner/img/tiles/pomegranate.png');
+}
+.sprite-icon.bee-hive {
+    background-image: url('/planner/img/tiles/bee-hive.png');
+}
+.sprite-icon.mayo-machine {
+    background-image: url('/planner/img/tiles/mayo.png');
+}
+.sprite-icon.cheese-press {
+    background-image: url('/planner/img/tiles/cheese-press.png');
+}
+.sprite-icon.keg {
+    background-image: url('/planner/img/tiles/keg.png');
+}
+.sprite-icon.loom {
+    background-image: url('/planner/img/tiles/loom.png');
+}
+.sprite-icon.oil-maker {
+    background-image: url('/planner/img/tiles/oil-maker.png');
+}
+.sprite-icon.preserves-jar {
+    background-image: url('/planner/img/tiles/preserves.png');
+}
+
+/** Terrain **/
+.sprite-icon.grass {
+    background-image: url('/planner/img/tiles/grass.png');
+}
+.sprite-icon.weed {
+    background-image: url('/planner/img/tiles/weeds.png');
+}
+.sprite-icon.crops {
+    background-image: url('/planner/img/tiles/farmland.png');
+}
+.sprite-icon.tree {
+    background-image: url('/planner/img/tiles/tree.png');
+}
+.sprite-icon.trellis {
+    background-image: url('/planner/img/tiles/trellis.png');
+}
+.sprite-icon.flowers {
+    background-image: url('/planner/img/tiles/tulips.png');
+}
+.sprite-icon.fence {
+    background-image: url('/planner/img/tiles/fence.png');
+}
+.sprite-icon.stone-fence {
+    background-image: url('/planner/img/tiles/stone-fence.png');
+}
+.sprite-icon.iron-fence {
+    background-image: url('/planner/img/tiles/iron-fence.png');
+}
+.sprite-icon.hardwood-fence {
+    background-image: url('/planner/img/tiles/hardwood-fence.png');
+}
+.sprite-icon.gate {
+    background-image: url('/planner/img/tiles/gate.png');
+}
+.sprite-icon.torch {
+    background-image: url('/planner/img/tiles/torch.png');
+}
+.sprite-icon.wood-lamp-post {
+    background-image: url('/planner/img/tiles/wood-lamp-post.png');
+}
+.sprite-icon.iron-lamp-post {
+    background-image: url('/planner/img/tiles/iron-lamp-post.png');
+}
+.sprite-icon.campfire {
+    background-image: url('/planner/img/tiles/campfire.png');
+}
+
+/** Roads & floors **/
+.sprite-icon.cobblestone {
+    background-image: url('/planner/img/tiles/road.png');
+}
+.sprite-icon.wood-path {
+    background-image: url('/planner/img/tiles/wood-path.png');
+}
+.sprite-icon.gravel-path {
+    background-image: url('/planner/img/tiles/gravel-path.png');
+}
+.sprite-icon.stone-path {
+    background-image: url('/planner/img/tiles/steppingstone-path.png');
+}
+.sprite-icon.crystal-path {
+    background-image: url('/planner/img/tiles/crystal-path.png');
+}
+.sprite-icon.wood-floor {
+    background-image: url('/planner/img/tiles/wood-floor.png');
+}
+.sprite-icon.straw-floor {
+    background-image: url('/planner/img/tiles/straw-floor.png');
+}
+.sprite-icon.weather-floor {
+    background-image: url('/planner/img/tiles/weathered-floor.png');
+}
+.sprite-icon.stone-floor {
+    background-image: url('/planner/img/tiles/stone-floor.png');
+}
+.sprite-icon.crystal-floor {
+    background-image: url('/planner/img/tiles/crystal-floor.png');
+}
+
+
+/** Debris **/
+.sprite-icon.large-rock {
+    background-image: url('/planner/img/tiles/large-rock.png');
+}
+.sprite-icon.large-log {
+    background-image: url('/planner/img/tiles/large-log.png');
+}
+.sprite-icon.large-stump {
+    background-image: url('/planner/img/tiles/large-stump.png');
+}
+.sprite-icon.stone {
+    background-image: url('/planner/img/tiles/stone.png');
+}
+.sprite-icon.twig {
+    background-image: url('/planner/img/tiles/twig.png');
+}
+
+.sprite-icon.object-restriction {
+    background-image: url('/planner/img/tiles/object-restriction.png');
+}
+.sprite-icon.building-restriction {
+    background-image: url('/planner/img/tiles/building-restriction.png');
+}
+
+/** Crops **/
+.sprite-icon.blue-jazz{
+	background-image: url('/planner/img/tiles/blue-jazz.png');
+}
+.sprite-icon.cauliflower{
+	background-image: url('/planner/img/tiles/cauliflower.png');
+}
+.sprite-icon.garlic{
+	background-image: url('/planner/img/tiles/garlic.png');
+}
+.sprite-icon.green-bean{
+	background-image: url('/planner/img/tiles/green-bean.png');
+}
+.sprite-icon.kale{
+	background-image: url('/planner/img/tiles/kale.png');
+}
+.sprite-icon.parsnip{
+	background-image: url('/planner/img/tiles/parsnip.png');
+}
+.sprite-icon.potato{
+	background-image: url('/planner/img/tiles/potato.png');
+}
+.sprite-icon.rhubarb{
+	background-image: url('/planner/img/tiles/rhubarb.png');
+}
+.sprite-icon.strawberry{
+	background-image: url('/planner/img/tiles/strawberry.png');
+}
+.sprite-icon.tulip{
+	background-image: url('/planner/img/tiles/tulip.png');
+}
+.sprite-icon.summer{
+	background-image: url('/planner/img/tiles/summer.png');
+}
+.sprite-icon.blueberry{
+	background-image: url('/planner/img/tiles/blueberry.png');
+}
+.sprite-icon.corn{
+	background-image: url('/planner/img/tiles/corn.png');
+}
+.sprite-icon.hops{
+	background-image: url('/planner/img/tiles/hops.png');
+}
+.sprite-icon.hot-pepper{
+	background-image: url('/planner/img/tiles/hot-pepper.png');
+}
+.sprite-icon.melon{
+	background-image: url('/planner/img/tiles/melon.png');
+}
+.sprite-icon.poppy{
+	background-image: url('/planner/img/tiles/poppy.png');
+}
+.sprite-icon.radish{
+	background-image: url('/planner/img/tiles/radish.png');
+}
+.sprite-icon.red-cabbage{
+	background-image: url('/planner/img/tiles/red-cabbage.png');
+}
+.sprite-icon.starfruit{
+	background-image: url('/planner/img/tiles/starfruit.png');
+}
+.sprite-icon.summer-spangle{
+	background-image: url('/planner/img/tiles/summer-spangle.png');
+}
+.sprite-icon.tomato{
+	background-image: url('/planner/img/tiles/tomato.png');
+}
+.sprite-icon.wheat{
+	background-image: url('/planner/img/tiles/wheat.png');
+}
+.sprite-icon.fall{
+	background-image: url('/planner/img/tiles/fall.png');
+}
+.sprite-icon.amaranth{
+	background-image: url('/planner/img/tiles/amaranth.png');
+}
+.sprite-icon.ancient-fruit{
+	background-image: url('/planner/img/tiles/ancient-fruit.png');
+}
+.sprite-icon.artichoke{
+	background-image: url('/planner/img/tiles/artichoke.png');
+}
+.sprite-icon.beet{
+	background-image: url('/planner/img/tiles/beet.png');
+}
+.sprite-icon.bok-choy{
+	background-image: url('/planner/img/tiles/bok-choy.png');
+}
+.sprite-icon.corn{
+	background-image: url('/planner/img/tiles/corn.png');
+}
+.sprite-icon.cranberry{
+	background-image: url('/planner/img/tiles/cranberry.png');
+}
+.sprite-icon.eggplant{
+	background-image: url('/planner/img/tiles/eggplant.png');
+}
+.sprite-icon.fairy-rose{
+	background-image: url('/planner/img/tiles/fairy-rose.png');
+}
+.sprite-icon.grape{
+	background-image: url('/planner/img/tiles/grape.png');
+}
+.sprite-icon.pumpkin{
+	background-image: url('/planner/img/tiles/pumpkin.png');
+}
+.sprite-icon.sunflower{
+	background-image: url('/planner/img/tiles/sunflower.png');
+}
+.sprite-icon.yam{
+	background-image: url('/planner/img/tiles/yam.png');
 }
