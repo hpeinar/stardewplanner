@@ -360,7 +360,7 @@ Board.prototype.mousedown = function mousedown(e) {
         } else {
             board.brush.restoreBrush();
         }
-        //window.dispatchEvent(new Event('updateCount'));
+        window.dispatchEvent(new Event('updateCount'));
     }
 };
 
@@ -629,7 +629,7 @@ Board.prototype.drawTiles = function drawTiles(area, tile) {
             }
         }
 
-        //window.dispatchEvent(new Event('updateCount'));
+        window.dispatchEvent(new Event('updateCount'));
         return;
     }
 

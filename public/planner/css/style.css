@@ -676,9 +676,6 @@ ul.submenu li {
 .sprite-icon.tulip{
 	background-image: url('/planner/img/tiles/tulip.png');
 }
-.sprite-icon.summer{
-	background-image: url('/planner/img/tiles/summer.png');
-}
 .sprite-icon.blueberry{
 	background-image: url('/planner/img/tiles/blueberry.png');
 }
@@ -714,9 +711,6 @@ ul.submenu li {
 }
 .sprite-icon.wheat{
 	background-image: url('/planner/img/tiles/wheat.png');
-}
-.sprite-icon.fall{
-	background-image: url('/planner/img/tiles/fall.png');
 }
 .sprite-icon.amaranth{
 	background-image: url('/planner/img/tiles/amaranth.png');
