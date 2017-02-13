@@ -288,6 +288,26 @@ body.dz-drag-hover {
     border-right: 2px solid #000;
 }
 
+/** Crops Submenus **/
+.submenu {
+	position: absolute;
+	left: 84px;
+	top: 0px;
+	display: none !important;
+}
+
+.parent:hover + ul.submenu {
+	display: block !important;
+}
+
+ul.submenu:hover {
+	display: block !important;
+}
+
+ul.submenu li {
+	background: #555;
+}
+
 #save .save-icon {
     background-color: #090;
 }
@@ -623,4 +643,111 @@ body.dz-drag-hover {
 }
 .sprite-icon.building-restriction {
     background-image: url('/planner/img/tiles/building-restriction.png');
+}
+
+/** Crops **/
+.sprite-icon.blue-jazz{
+	background-image: url('/planner/img/tiles/blue-jazz.png');
+}
+.sprite-icon.cauliflower{
+	background-image: url('/planner/img/tiles/cauliflower.png');
+}
+.sprite-icon.garlic{
+	background-image: url('/planner/img/tiles/garlic.png');
+}
+.sprite-icon.green-bean{
+	background-image: url('/planner/img/tiles/green-bean.png');
+}
+.sprite-icon.kale{
+	background-image: url('/planner/img/tiles/kale.png');
+}
+.sprite-icon.parsnip{
+	background-image: url('/planner/img/tiles/parsnip.png');
+}
+.sprite-icon.potato{
+	background-image: url('/planner/img/tiles/potato.png');
+}
+.sprite-icon.rhubarb{
+	background-image: url('/planner/img/tiles/rhubarb.png');
+}
+.sprite-icon.strawberry{
+	background-image: url('/planner/img/tiles/strawberry.png');
+}
+.sprite-icon.tulip{
+	background-image: url('/planner/img/tiles/tulip.png');
+}
+.sprite-icon.blueberry{
+	background-image: url('/planner/img/tiles/blueberry.png');
+}
+.sprite-icon.corn{
+	background-image: url('/planner/img/tiles/corn.png');
+}
+.sprite-icon.hops{
+	background-image: url('/planner/img/tiles/hops.png');
+}
+.sprite-icon.hot-pepper{
+	background-image: url('/planner/img/tiles/hot-pepper.png');
+}
+.sprite-icon.melon{
+	background-image: url('/planner/img/tiles/melon.png');
+}
+.sprite-icon.poppy{
+	background-image: url('/planner/img/tiles/poppy.png');
+}
+.sprite-icon.radish{
+	background-image: url('/planner/img/tiles/radish.png');
+}
+.sprite-icon.red-cabbage{
+	background-image: url('/planner/img/tiles/red-cabbage.png');
+}
+.sprite-icon.starfruit{
+	background-image: url('/planner/img/tiles/starfruit.png');
+}
+.sprite-icon.summer-spangle{
+	background-image: url('/planner/img/tiles/summer-spangle.png');
+}
+.sprite-icon.tomato{
+	background-image: url('/planner/img/tiles/tomato.png');
+}
+.sprite-icon.wheat{
+	background-image: url('/planner/img/tiles/wheat.png');
+}
+.sprite-icon.amaranth{
+	background-image: url('/planner/img/tiles/amaranth.png');
+}
+.sprite-icon.ancient-fruit{
+	background-image: url('/planner/img/tiles/ancient-fruit.png');
+}
+.sprite-icon.artichoke{
+	background-image: url('/planner/img/tiles/artichoke.png');
+}
+.sprite-icon.beet{
+	background-image: url('/planner/img/tiles/beet.png');
+}
+.sprite-icon.bok-choy{
+	background-image: url('/planner/img/tiles/bok-choy.png');
+}
+.sprite-icon.corn{
+	background-image: url('/planner/img/tiles/corn.png');
+}
+.sprite-icon.cranberry{
+	background-image: url('/planner/img/tiles/cranberry.png');
+}
+.sprite-icon.eggplant{
+	background-image: url('/planner/img/tiles/eggplant.png');
+}
+.sprite-icon.fairy-rose{
+	background-image: url('/planner/img/tiles/fairy-rose.png');
+}
+.sprite-icon.grape{
+	background-image: url('/planner/img/tiles/grape.png');
+}
+.sprite-icon.pumpkin{
+	background-image: url('/planner/img/tiles/pumpkin.png');
+}
+.sprite-icon.sunflower{
+	background-image: url('/planner/img/tiles/sunflower.png');
+}
+.sprite-icon.yam{
+	background-image: url('/planner/img/tiles/yam.png');
 }

@@ -110,7 +110,12 @@ $().ready(function () {
                     window.open(data.url);
 
                 } else {
-                    alert('Rendering failed. Please try again in few minutes');
+                    if (data.status == 429) {
+                        return alert('Upload.farm is currently rate limited. Please try again in few minutes')
+                    }
+
+                    alert('Upload.farm rendering failed. Please try again in few minutes. If the problem persists, please contact us.');
+
                 }
 
             } else {
@@ -119,18 +124,6 @@ $().ready(function () {
                 }
             }
         });
-    });
-
-    /* Sends farm data to upload.farm */
-    $('.render-farm').click(function (e) {
-        var season = $(this).data('season');
-
-        var exportData = board.exportData();
-
-        // also add options and highlight states to the save
-        exportData.options = {
-            layout: (board.layout.name || 'regular')
-        };
     });
 
     /* Exports to an image file */
