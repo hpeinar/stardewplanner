@@ -279,6 +279,21 @@ var data = {
             "width": 48,
             "height": 48
         },
+        "oak-tree": {
+            "sprite": "img/tiles/oak-tree.png",
+            "width": 48,
+            "height": 48
+        },
+        "maple-tree": {
+            "sprite": "img/tiles/maple-tree.png",
+            "width": 48,
+            "height": 48
+        },
+        "pine-tree": {
+            "sprite": "img/tiles/pine-tree.png",
+            "width": 48,
+            "height": 48
+        },
         "apple": {
             "sprite": "img/tiles/apple.png",
             "width": 48,

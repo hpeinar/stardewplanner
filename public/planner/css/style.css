@@ -507,6 +507,15 @@ ul.submenu li {
 .sprite-icon.cherry-tree {
     background-image: url('/planner/img/tiles/cherry-tree.png');
 }
+.sprite-icon.pine-tree {
+    background-image: url('/planner/img/tiles/pine-tree.png');
+}
+.sprite-icon.oak-tree {
+    background-image: url('/planner/img/tiles/oak-tree.png');
+}
+.sprite-icon.maple-tree {
+    background-image: url('/planner/img/tiles/maple-tree.png');
+}
 .sprite-icon.orange-tree {
     background-image: url('/planner/img/tiles/orange-tree.png');
 }
