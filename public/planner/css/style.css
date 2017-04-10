@@ -417,6 +417,10 @@ ul.submenu li {
     background-size: cover;
 }
 
+.facebook-icon i {
+    vertical-align: middle;
+}
+
 
 /** Buildings **/
 .sprite-icon.silo {
