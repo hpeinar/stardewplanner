@@ -202,6 +202,24 @@ var layouts = {
         width: 1280,
         height: 1040
     },
+    "sv-expansion": {
+        author: 'tegobash',
+        url: 'http://www.nexusmods.com/stardewvalley/mods/284/?',
+        name: 'sv-expansion',
+        prettyName: 'Stardew Valley Expansion',
+        backgroundImage: 'stardew_valley_expansion.jpg',
+        restrictionPath: null,
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1280,
+        height: 1424
+    },
 
     // inside layouts
     greenhouse: {
