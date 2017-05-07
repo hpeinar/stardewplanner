@@ -47,6 +47,10 @@ $().ready(function () {
 
     $('.switch-layout').click(function () {
         var layout = layouts[$(this).data('layout')];
+        loadLayout(layout);
+    });
+
+    function loadLayout (layout) {
         var oldData = board.exportData();
         showLayoutAlert(layout);
 
@@ -68,7 +72,7 @@ $().ready(function () {
         if (oldData) {
             board.importData(oldData);
         }
-    });
+    }
 
     function showLayoutAlert(layout) {
         $('.custom-layout-notification').hide();
@@ -435,7 +439,7 @@ $().ready(function () {
 
             var layout = layouts[data.options.layout || 'regular'];
             showLayoutAlert(layout);
-            board.loadLayout(layout);
+            loadLayout(layout);
 
             // greenhouse is loaded with the layout
             toggleMenuItem(null, '.greenhouse-switch', board.toggleGreenhouse.bind(board, 'greenhouse-fixed'), board.toggleGreenhouse.bind(board, 'greenhouse'), data.options.greenhouse);
