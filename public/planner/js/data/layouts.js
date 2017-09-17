@@ -166,12 +166,84 @@ var layouts = {
         width: 1280,
         height: 1040
     },
+    "alis-farm-map-edit": {
+        author: 'Mushfae',
+        url: 'http://www.nexusmods.com/stardewvalley/mods/426/',
+        name: 'alis-farm-map-edit',
+        prettyName: 'Ali\'s Farm map edit',
+        backgroundImage: 'alis_farm_map_edit.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+        width: 1280,
+        height: 1040
+    },
+    "alis-flower-farm": {
+        author: 'Mushfae',
+        url: 'http://www.nexusmods.com/stardewvalley/mods/1266/',
+        name: 'alis-flower-farm',
+        prettyName: 'Ali\'s Flower Farm',
+        backgroundImage: 'alis_flower_farm_map.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+        width: 1280,
+        height: 1040
+    },
+    "alis-foraging-map": {
+        author: 'Mushfae',
+        url: 'http://www.nexusmods.com/stardewvalley/mods/1122/',
+        name: 'alis-foraging-map',
+        prettyName: 'Ali\'s Foraging Map',
+        backgroundImage: 'alis_foraging_map.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+        width: 1280,
+        height: 1040
+    },
+    "alis-mountain-map": {
+      author: 'Mushfae',
+      url: 'http://www.nexusmods.com/stardewvalley/mods/1095/',
+      name: 'alis-mountain-map',
+      prettyName: 'Ali\'s Mountain Farm',
+      backgroundImage: 'alis_mountain_map.jpg',
+      restrictionPath: null,
+      house: {
+        x: 59,
+        y: 8
+      },
+      greenhouse: {
+        x: 25,
+        y: 6
+      },
+      width: 1280,
+      height: 1040
+    },
     "secret-forest": {
         author: 'Mushfae',
         url: 'http://community.playstarbound.com/threads/alis-secret-forest-farm-map-and-buildings.117561/',
         name: 'secret-forest',
         prettyName: 'Secret Forest',
-        backgroundImage: 'secret-forest.jpg',
+        backgroundImage: 'alis_secret_forest.jpg',
         restrictionPath: null,
         house: {
             x: 59,
@@ -201,6 +273,24 @@ var layouts = {
         },
         width: 1280,
         height: 1040
+    },
+    "sv-expansion": {
+        author: 'tegobash',
+        url: 'http://www.nexusmods.com/stardewvalley/mods/284/?',
+        name: 'sv-expansion',
+        prettyName: 'Stardew Valley Expansion',
+        backgroundImage: 'stardew_valley_expansion.jpg',
+        restrictionPath: null,
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1280,
+        height: 1424
     },
 
     // inside layouts

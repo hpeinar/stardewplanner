@@ -43,11 +43,11 @@ For more in-depth instructions on how to use Vagrant, refer to the [Vagrant docu
 
 # Contributors
 - [rgson](https://github.com/rgson)
-- [zwik](https://github.com/zwik) x2
+- [zwik](https://github.com/zwik)
 - [TheLostSoul](https://github.com/TheLostSoul)    
 - [echoenzo](https://github.com/echoenzo)
 - [Ailuridaes](https://github.com/Ailuridaes)
-- [rgson](https://github.com/rgson)
+- [ClairelyClaire](https://github.com/ClairelyClaire)
 
 # Integration
 POST `/api/import`     
@@ -76,15 +76,16 @@ Error response:
 ```
 
 # Credits
-Background image exported from game by [/u/zaxcz](https://www.reddit.com/user/zaxcz)    
-Building sizes and door locations by [/u/Jurk0wski](https://www.reddit.com/user/Jurk0wski)    
-Base save importing code by [/u/ThisIsMyName777](https://www.reddit.com/user/ThisIsMyName777)    
-Tons of suggestions, fixes, testing and ideas by **R3ality**    
-Providing test save file with most of the items and ID's **Mai** from [#stardewvalley](irc://irc.freenode.net/stardewvalley)     
-Being a cool guy and pointing me in the right direction with some coding stuff **TeMPOraL** from [#stardewvalley](irc://irc.freenode.net/stardewvalley)    
-Helping to test and improve v2 version of the tool **speeder** from [#stardewvalley](irc://irc.freenode.net/stardew-modding)     
-Sharing their epic farm saves [/u/ky13](https://www.reddit.com/user/ky13) & [/u/Halfbloood](https://www.reddit.com/user/Halfbloood)      
-[Stardew Valley by](http://stardewvalley.net/) **[ConcernedApe](https://www.reddit.com/user/ConcernedApe)**
+- Background image exported from game by [/u/zaxcz](https://www.reddit.com/user/zaxcz)
+- Building sizes and door locations by [/u/Jurk0wski](https://www.reddit.com/user/Jurk0wski)
+- Base save importing code by [/u/ThisIsMyName777](https://www.reddit.com/user/ThisIsMyName777)
+- All crops from all seasons by [ClairelyClaire](https://github.com/ClairelyClaire)
+- Tons of suggestions, fixes, testing and ideas by **R3ality**
+- Providing test save file with most of the items and ID's **Mai** from [#stardewvalley](irc://irc.freenode.net/stardewvalley)
+- Being a cool guy and pointing me in the right direction with some coding stuff **TeMPOraL** from [#stardewvalley](irc://irc.freenode.net/stardewvalley)
+- Helping to test and improve v2 version of the tool **speeder** from [#stardewvalley](irc://irc.freenode.net/stardew-modding)
+- Sharing their epic farm saves [/u/ky13](https://www.reddit.com/user/ky13) & [/u/Halfbloood](https://www.reddit.com/user/Halfbloood)
+- [Stardew Valley by](http://stardewvalley.net/) **[ConcernedApe](https://www.reddit.com/user/ConcernedApe)**
 
 # License
 Stardew Valley by ConcernedApe, Chucklefish LTD Copyright 2012     

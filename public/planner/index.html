@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
-    <link rel="stylesheet" href="/planner/css/style.css?v=13022017">
+    <link rel="stylesheet" href="/planner/css/style.css?v=07052017">
 
     <meta name="twitter:card" content="Interactive farm planner for Stardew" />
     <meta name="twitter:site" content="@nytimesbits" />
@@ -37,7 +37,8 @@
                         <ul class="left">
                             <li class="divider"></li>
                             <li class="has-dropdown">
-                                <a href="#">Buildings</a>
+                                <a href="#" class="show-for-xlarge-up" title="Buildings">Buildings</a>
+                                <a href="#" class="hide-for-xlarge-up" title="Buildings">B</a>
                                 <ul class="dropdown">
                                     <li class="tools building" data-id="silo"><div class="link"><i class="sprite-icon silo"></i>Silo</div></li>
                                     <li class="tools building" data-id="well"><div class="link"><i class="sprite-icon well"></i>Well</div></li>
@@ -56,7 +57,8 @@
                             <li class="divider"></li>
 
                             <li class="has-dropdown">
-                                <a href="#">Equipment</a>
+                                <a href="#" class="show-for-xlarge-up" title="Equipment">Equipment</a>
+                                <a href="#" class="hide-for-xlarge-up" title="Equipment">E</a>
                                 <ul class="dropdown">
                                     <li class="tools building" data-id="sprinkler"><div class="link"><i class="sprite-icon sprinkler"></i>Sprinkler</div></li>
                                     <li class="tools building" data-id="q-sprinkler"><div class="link"><i class="sprite-icon q-sprinkler"></i>Q. sprinker</div></li>
@@ -77,13 +79,17 @@
                             <li class="divider"></li>
 
                             <li class="has-dropdown">
-                                <a href="#">Artisan</a>
+                                <a href="#" class="show-for-xlarge-up" title="Artisan">Artisan</a>
+                                <a href="#" class="hide-for-xlarge-up" title="Artisan">A</a>
                                 <ul class="dropdown">
                                     <li class="tools building" data-id="apricot"><div class="link"><i class="sprite-icon apricot-tree"></i>Apricot tree</div></li>
                                     <li class="tools building" data-id="cherry-tree"><div class="link"><i class="sprite-icon cherry-tree"></i>Cherry tree</div></li>
                                     <li class="tools building" data-id="orange-tree"><div class="link"><i class="sprite-icon orange-tree"></i>Orange tree</div></li>
                                     <li class="tools building" data-id="peach"><div class="link"><i class="sprite-icon peach-tree"></i>Peach tree</div></li>
                                     <li class="tools building" data-id="apple"><div class="link"><i class="sprite-icon apple-tree"></i>Apple tree</div></li>
+                                    <li class="tools building" data-id="oak-tree"><div class="link"><i class="sprite-icon oak-tree"></i>Oak tree</div></li>
+                                    <li class="tools building" data-id="pine-tree"><div class="link"><i class="sprite-icon pine-tree"></i>Pine tree</div></li>
+                                    <li class="tools building" data-id="maple-tree"><div class="link"><i class="sprite-icon maple-tree"></i>Maple tree</div></li>
                                     <li class="tools building" data-id="pomegranate"><div class="link"><i class="sprite-icon pomegranate"></i>Pomegranate</div></li>
                                     <li class="tools building" data-id="bee-hive"><div class="link"><i class="sprite-icon bee-hive"></i>Bee-hive</div></li>
                                     <li class="tools building" data-id="mayo"><div class="link"><i class="sprite-icon mayo-machine"></i>Mayo machine</div></li>
@@ -97,7 +103,8 @@
                             <li class="divider"></li>
 
                             <li class="has-dropdown">
-                                <a href="#">Terrain</a>
+                                <a href="#" class="show-for-xlarge-up" title="Terrain">Terrain</a>
+                                <a href="#" class="hide-for-xlarge-up" title="Terrain">T</a>
                                 <ul class="dropdown">
                                     <li class="tools brush" data-type="grass"><div class="link"><i class="sprite-icon grass"></i>Grass</div></li>
                                     <li class="tools brush" data-type="farmland"><div class="link"><i class="sprite-icon crops"></i>Crops</div></li>
@@ -174,7 +181,8 @@
                             <li class="divider"></li>
 
                             <li class="has-dropdown">
-                                <a href="#">Roads & floors</a>
+                                <a href="#" class="show-for-xlarge-up" title="Roads & floors">Roads & floors</a>
+                                <a href="#" class="hide-for-xlarge-up" title="Roads & floors">R&F</a>
                                 <ul class="dropdown">
                                     <li class="tools brush" data-type="road"><div class="link"><i class="sprite-icon cobblestone"></i>Cobblestone</div></li>
                                     <li class="tools brush" data-type="gravel-path"><div class="link"><i class="sprite-icon gravel-path"></i>Gravel path</div></li>
@@ -189,9 +197,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li class="tools brush eraser" data-type="eraser"><div class="link">Eraser</div></li>
+                            <li class="tools brush eraser" data-type="eraser"><div class="link" title="Eraser tool"><i class="fa fa-eraser"></i></div></li>
                             <li class="divider"></li>
-                            <li class="tools brush select" data-type="select"><div class="link">Select tool</div></li>
+                            <li class="tools brush select" data-type="select"><div class="link" title="Select tool"><i class="fa fa-mouse-pointer"></i></div></li>
                             <li class="divider"></li>
                             <li class="has-dropdown">
                                 <a href="#" class="donate">Donate!</a>
@@ -210,6 +218,8 @@
                         <!-- Right Nav Section -->
                         <ul class="right">
                             <li class="divider"></li>
+                            <li class="facebook-icon"><a href="https://www.facebook.com/groups/stardewplanner/" target="_blank" ><i class="fa fa-facebook-official fa-2x"></i></a></li>
+                            <li class="divider"></li>
                             <li class="has-dropdown">
                                 <a href="#">Layouts</a>
                                 <ul class="dropdown">
@@ -225,7 +235,13 @@
                                     <li class="tools"><div class="link switch-layout" data-layout="wonderful-farm-life" title="by taintedwheat & JinxieWinxie">WonderfulFarmLife</div></li>
                                     <li class="tools"><div class="link switch-layout" data-layout="hill-top-forest" title="by Minnue">Hill-top forest</div></li>
                                     <li class="tools"><div class="link switch-layout" data-layout="fancy-farm" title="by Williambeepbeep">Fancy farm</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="secret-forest" title="by Mushfae">Ali's Secret Forest Farm</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-layout="sv-expansion" title="by tegobash">Stardew Valley Expansion</div></li>
+                                    <li class="tools"><div class="link"><b><u>Ali's maps:</u></b></div></li>
+                                    <li class="tools"><div class="link switch-layout" data-layout="alis-farm-map-edit" title="by Mushfae"><img src="/planner/img/alis_avatar.jpg" width="20px" height="20px"> Ali's Farm map edit</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-layout="alis-flower-farm" title="by Mushfae"><img src="/planner/img/alis_avatar.jpg" width="20px" height="20px"> Ali's Flower Farm</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-layout="alis-foraging-map" title="by Mushfae"><img src="/planner/img/alis_avatar.jpg" width="20px" height="20px"> Ali's Foraging Map</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-layout="alis-mountain-map" title="by Mushfae"><img src="/planner/img/alis_avatar.jpg" width="20px" height="20px"> Ali's Mountain Farm</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-layout="secret-forest" title="by Mushfae"><img src="/planner/img/alis_avatar.jpg" width="20px" height="20px"> Ali's Secret Forest Farm</div></li>
                                     <li class="tools"><a href="#custom-layout"><div class="link"><u>Missing a layout?</u></div></a></li>
                                 </ul>
                             </li>
@@ -312,7 +328,7 @@
                     </div>
                 </div>
                 <div class="custom-layout-notification notification">
-                    <div class="header">You are using modded farm layout!<div class="custom-layout-notification hide-notification">HIDE</div></div>
+                    <div class="header">You are using modded farm layout!</div>
                     <div class="content">
                         <a href="" target="_blank" class="layout-url"><span class="layout-name">WonderfulLifeFarm</span></a> by <span class="layout-author">taintedwheat & JinxieWinxie</span>
                     </div>
@@ -346,25 +362,42 @@
                             <li>You can find your save game file from <code>%AppData%/StardewValley/Saves</code></li>
                         </ul>
                     </div>
-                    <div class="panel info" id="google">
-                        <h3>Ads:</h3>
-                        <!-- google ads -->
-                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <!-- after-controls-large -->
-                        <ins class="adsbygoogle"
-                             style="display:inline-block;width:728px;height:90px"
-                             data-ad-client="ca-pub-7596140300521041"
-                             data-ad-slot="6900160017"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                        <!-- google ads -->
+                    <div class="panel info" id="google" style="text-align: center;">
+                        <h3>Stardew Valley merchandise shop!:</h3>
+                        <a href="http://blog.chucklefish.org/shop/#Stardew" target="_blank"><img style="margin: auto" src="/planner/img/SDV_merchshopad.png" width="760" height="80" alt="Stardew Valley merchandise shop"></a>
                     </div>
                     <div class="panel info changelog" id="changelog">
                         <h3>Changelog:</h3>
+                        <b>6th Sept 2017</b>
+                        <ul>
+                            <li>Fixed saving map to picture. Thanks Stefanie Carter for reporting this.</li>
+                        </ul>
+                        <b>25th Aug 2017</b>
+                        <ul>
+                            <li>Added 4 new map layouts from Ali</li>
+                        </ul>
+                        <b>22th June 2017</b>
+                        <ul>
+                            <li>Added Stardew Valley merchandise shop banner. <a href="http://blog.chucklefish.org/shop/#Stardew" target="_blank">Be sure to get your Junimos!</a></li>
+                        </ul>
+                        <b>7th Mai 2017</b>
+                        <ul>
+                            <li>Added Stardew Valley expansion map under custom layouts</li>
+                            <li>Changed how layout changing works. If you have any problems with it, please let me know</li>
+                            <li>Added Discord contact</li>
+                        </ul>
+                        <b>10th Apri 2017</b>
+                        <ul>
+                            <li>Menu items are now more compact on smaller screens</li>
+                            <li>Added facebook button so people would find our FB group more easily</li>
+                        </ul>
+						<b>25th Mar 2017</b>
+						<ul>
+							<li>Added pine, oak and maple trees</li>
+						</ul>
 						<b>13th Feb 2017</b>
 						<ul>
-							<li>Merged pull request by <a href="https://github.com/ClairelyClaire" target="_blank">ClairelyClaire</a> to add all the different crops. Please note that upload.farm rendering does not yet support these new crops.</li>
+							<li>Merged pull request by <a href="https://github.com/ClairelyClaire" target="_blank">ClairelyClaire</a> to add all the different crops.</li>
 						</ul>
                         <b>7th Jan 2017</b>
                         <ul>
@@ -494,6 +527,7 @@
                     <div class="panel radius" id="contact">
                         <h3>Contact:</h3>
                         <b><a href="https://www.facebook.com/groups/stardewplanner/">Facebook group</a></b><br />
+                        <b>Discord: <a href="https://discord.gg/RRPKc4Z">Stardew Valley discord @hpeinar</a></b><br />
                         <b>GitHub: <a href="https://github.com/hpeinar/stardewplanner" target="_blank">@GitHub</a></b><br />
                         <b>Reddit:</b> <a href="https://www.reddit.com/r/StardewValley/comments/4ckzzo/stardew_farm_planner_v2_is_out_save_importing/" target="_blank">v2 planner thread</a><br>
                         <b>Stardew official forums:</b> <a href="http://community.playstarbound.com/threads/farm-planner-v2-out-now-save-importing-and-much-more.112098/" target="_blank">Official forums thread</a><br>
@@ -581,14 +615,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
 
     <!-- local js -->
-    <script type="text/javascript" src="/planner/js/data/sprites.js?v=13022017"></script>
-    <script type="text/javascript" src="/planner/js/data/layouts.js?v=13022017"></script>
+    <script type="text/javascript" src="/planner/js/data/sprites.js?v=07052017"></script>
+    <script type="text/javascript" src="/planner/js/data/layouts.js?v=07052017"></script>
 
-    <script type="text/javascript" src="/planner/js/engine/building.js?v=13022017"></script>
-    <script type="text/javascript" src="/planner/js/engine/brush.js?v=13022017"></script>
-    <script type="text/javascript" src="/planner/js/engine/board.js?v=13022017"></script>
+    <script type="text/javascript" src="/planner/js/engine/building.js?v=07052017"></script>
+    <script type="text/javascript" src="/planner/js/engine/brush.js?v=07052017"></script>
+    <script type="text/javascript" src="/planner/js/engine/board.js?v=07052017"></script>
 
-    <script type="text/javascript" src="/planner/js/main.js?v=13022017"></script>
+    <script type="text/javascript" src="/planner/js/main.js?v=07052017"></script>
 
     <script>
         $(document).foundation();

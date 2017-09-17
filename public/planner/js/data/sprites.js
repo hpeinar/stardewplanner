@@ -46,7 +46,6 @@ var data = {
 		'rhubarb',
 		'strawberry',
 		'tulip',
-		'summer',
 		'blueberry',
 		'hops',
 		'hot-pepper',
@@ -58,7 +57,6 @@ var data = {
 		'summer-spangle',
 		'tomato',
 		'wheat',
-		'fall',
 		'amaranth',
 		'ancient-fruit',
 		'artichoke',
@@ -276,6 +274,21 @@ var data = {
         },
         "orange-tree": {
             "sprite": "img/tiles/orange-tree.png",
+            "width": 48,
+            "height": 48
+        },
+        "oak-tree": {
+            "sprite": "img/tiles/oak-tree.png",
+            "width": 48,
+            "height": 48
+        },
+        "maple-tree": {
+            "sprite": "img/tiles/maple-tree.png",
+            "width": 48,
+            "height": 48
+        },
+        "pine-tree": {
+            "sprite": "img/tiles/pine-tree.png",
             "width": 48,
             "height": 48
         },

@@ -47,10 +47,32 @@ $().ready(function () {
 
     $('.switch-layout').click(function () {
         var layout = layouts[$(this).data('layout')];
+        loadLayout(layout);
+    });
+
+    function loadLayout (layout) {
+        var oldData = board.exportData();
         showLayoutAlert(layout);
 
+        // clear snapSVG
+        board.R.clear();
+
+        // delete canvas
+        $('#editor').html('');
+
+        // init new board with right sizes
+        board = new Board('#editor', layout.width, layout.height);
+        $('#editor,.editor').css({
+            width: layout.width < 1280 ? 1280 : layout.width,
+            height: layout.height < 1040 ? 1040 : layout.height
+        });
+
         board.loadLayout(layout);
-    });
+
+        if (oldData) {
+            board.importData(oldData);
+        }
+    }
 
     function showLayoutAlert(layout) {
         $('.custom-layout-notification').hide();
@@ -417,7 +439,7 @@ $().ready(function () {
 
             var layout = layouts[data.options.layout || 'regular'];
             showLayoutAlert(layout);
-            board.loadLayout(layout);
+            loadLayout(layout);
 
             // greenhouse is loaded with the layout
             toggleMenuItem(null, '.greenhouse-switch', board.toggleGreenhouse.bind(board, 'greenhouse-fixed'), board.toggleGreenhouse.bind(board, 'greenhouse'), data.options.greenhouse);
