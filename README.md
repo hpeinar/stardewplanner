@@ -29,18 +29,6 @@ Donations in any sum are very appreciated.
 `node index.js`     
 `open http://127.0.0.1:3000`
 
-## Alternative 2: Vagrant
-[Vagrant](https://www.vagrantup.com/) can be used to automatically install the project in a virtual machine.
-
-To use the provided Vagrant configuration you should:
-1. Install [Vagrant](https://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
-2. Run `vagrant up` in the repository's root directory, using your terminal/command prompt.
-3. Once the setup has finished, open `http://127.0.0.1:3000` in your browser.
-
-Repeat steps 2 and 3 whenever you wish to start the VM. Subsequent startups are significantly faster.
-
-For more in-depth instructions on how to use Vagrant, refer to the [Vagrant documentation](https://www.vagrantup.com/docs/).
-
 # Contributors
 - [rgson](https://github.com/rgson)
 - [zwik](https://github.com/zwik)

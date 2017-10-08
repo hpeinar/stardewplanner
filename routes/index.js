@@ -39,15 +39,11 @@ module.exports = () => {
                     id: result.id,
                     absolutePath: 'https://stardew.info/planner/'+ result.id
                 });
-                next();
             });
         }).catch(function (err) {
             req.log.error(err);
             res.status(500).json({message: 'Failed to import save file'});
-            next();
         });
-
-
     });
 
     app.get('/:id', (req, res, next) => {
@@ -79,16 +75,14 @@ module.exports = () => {
     app.post('/save', (req, res, next) => {
         return save(req.body).then((result) => {
             res.json({id: result.id});
-            next();
         }).catch((err) => {
             req.log.error({err}, 'Failed to save farm, in catch');
             res.sendStatus(500);
-            next();
         });
     });
 
     app.post('/render', (req, res, next) => {
-        save(req.body).then((result) => {
+        return save(req.body).then((result) => {
             // after saving, post it to upload.farm
             request({
                 method: 'POST',
@@ -107,15 +101,24 @@ module.exports = () => {
                     return next();
                 }
 
-                res.json(body);
-                next();
+                return db('farm')
+                  .update({
+                      render_url: body.url
+                  })
+                  .where('id', result.id)
+                  .then(() => {
+                    res.json(body);
+                  })
+                  .catch(() => {
+                    req.log.error(err, 'Failed to save farm, in catch');
+                    res.sendStatus(500);
+                  });
             });
 
 
         }).catch((err) => {
             req.log.error(err, 'Failed to save farm, in catch');
             res.sendStatus(500);
-            next();
         });
     });
 
@@ -141,6 +144,8 @@ module.exports = () => {
         if (oldSeason) {
             farmData.options.season = oldSeason;
         }
+
+        console.log(farmData);
         return db.select('id', 'slug').from('farm').where({md5: uniqueHash}).then((results) => {
             if (results.length) {
                 return Promise.resolve({id: results[0].slug});
@@ -149,7 +154,10 @@ module.exports = () => {
                     let farm = {
                         slug: uniqueId,
                         md5: uniqueHash,
-                        farmData: JSON.stringify(farmData)
+                        farmData: farmData,
+                        options: hashedData.options,
+                        season: oldSeason,
+                        layout: hashedData.layout
                     };
 
                     return db('farm').insert(farm).then(() => {
