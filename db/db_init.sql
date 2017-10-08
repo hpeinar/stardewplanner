@@ -16,16 +16,16 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `farms`
+-- Table structure for table `farm`
 --
 
-DROP TABLE IF EXISTS `farms`;
+DROP TABLE IF EXISTS `farm`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `farms` (
+CREATE TABLE `farm` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `slug` varchar(255) NOT NULL,
-  `farmData` blob,
+  `farmData` json,
   `oldId` varchar(255) DEFAULT NULL,
   `md5` varchar(255) DEFAULT NULL,
   `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -45,8 +45,8 @@ CREATE TABLE `farms` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 
-ALTER TABLE farms SET ROW_FORMAT=COMPRESSED;
+ALTER TABLE farm SET ROW_FORMAT=COMPRESSED;
 -- Dump completed on 2017-01-07 14:45:36
 
-ALTER TABLE `planner`.`farms`
+ALTER TABLE `farm`
 ADD COLUMN `parentId` INT(11) UNSIGNED NULL AFTER `oldId`;

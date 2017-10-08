@@ -51,12 +51,12 @@ module.exports = () => {
     });
 
     app.get('/:id', (req, res, next) => {
-        db.select('farmData', 'parentId').from('farms').where({slug: req.params.id}).orWhere({oldId: req.params.id})
+        db.select('farmData', 'parentId').from('farm').where({slug: req.params.id}).orWhere({oldId: req.params.id})
             .then(farm => farm[0])
             .then(farm => {
                 // if farm has parent, show parent
                 if (farm && farm.parentId && farm.parentId > 0) {
-                    return db.select('farmData').from('farms').where({id: farm.parentId});
+                    return db.select('farmData').from('farm').where({id: farm.parentId});
                 }
 
                 return farm;
@@ -141,7 +141,7 @@ module.exports = () => {
         if (oldSeason) {
             farmData.options.season = oldSeason;
         }
-        return db.select('id', 'slug').from('farms').where({md5: uniqueHash}).then((results) => {
+        return db.select('id', 'slug').from('farm').where({md5: uniqueHash}).then((results) => {
             if (results.length) {
                 return Promise.resolve({id: results[0].slug});
             } else {
@@ -152,7 +152,7 @@ module.exports = () => {
                         farmData: JSON.stringify(farmData)
                     };
 
-                    return db('farms').insert(farm).then(() => {
+                    return db('farm').insert(farm).then(() => {
                         return Promise.resolve({id: uniqueId});
                     });
                 });
@@ -163,7 +163,7 @@ module.exports = () => {
     /** Generated unique readable slug for the farm **/
     function uniqueId () {
         let readableId = hri.random();
-        return db.select('id').from('farms').where({slug: readableId}).then((results) => {
+        return db.select('id').from('farm').where({slug: readableId}).then((results) => {
             if (results.length) {
                 return uniqueId();
             } else {
