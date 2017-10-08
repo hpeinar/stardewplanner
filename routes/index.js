@@ -105,7 +105,7 @@ module.exports = () => {
                   .update({
                       render_url: body.url
                   })
-                  .where('id', result.id)
+                  .where('slug', result.id)
                   .then(() => {
                     res.json(body);
                   })
@@ -145,7 +145,9 @@ module.exports = () => {
             farmData.options.season = oldSeason;
         }
 
-        console.log(farmData);
+        let jsonFarmData = JSON.stringify(farmData);
+        let jsonOptions = JSON.stringify(farmData.options);
+
         return db.select('id', 'slug').from('farm').where({md5: uniqueHash}).then((results) => {
             if (results.length) {
                 return Promise.resolve({id: results[0].slug});
@@ -154,8 +156,8 @@ module.exports = () => {
                     let farm = {
                         slug: uniqueId,
                         md5: uniqueHash,
-                        farmData: farmData,
-                        options: hashedData.options,
+                        farmData: jsonFarmData,
+                        options: jsonOptions,
                         season: oldSeason,
                         layout: hashedData.layout
                     };
