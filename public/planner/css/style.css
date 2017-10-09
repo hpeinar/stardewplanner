@@ -385,6 +385,14 @@ ul.submenu li {
     height: 1040px;
 }
 
+.paypal-blue {
+    color: #0c8ed3;
+}
+
+.patreon-orange {
+    color: orange;
+}
+
 /** SIDE-BAR BUTTONS **/
 .side-nav #save {
     color: #3a945b;
