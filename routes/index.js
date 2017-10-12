@@ -101,15 +101,17 @@ module.exports = () => {
                     return next();
                 }
 
-                return db('farm')
-                  .update({
-                      render_url: body.url
+                return db('render')
+                  .insert({
+                    farm_id: result.insertId,
+                    render_url: body.url,
+                    season: req.body.options.season || 'spring',
+                    layout: req.body.options.layout
                   })
-                  .where('slug', result.id)
                   .then(() => {
                     res.json(body);
                   })
-                  .catch(() => {
+                  .catch((err) => {
                     req.log.error(err, 'Failed to save farm, in catch');
                     res.sendStatus(500);
                   });
@@ -162,8 +164,8 @@ module.exports = () => {
                         layout: hashedData.layout
                     };
 
-                    return db('farm').insert(farm).then(() => {
-                        return Promise.resolve({id: uniqueId});
+                    return db('farm').insert(farm).then((insertId) => {
+                        return Promise.resolve({id: uniqueId, insertId: insertId[0]});
                     });
                 });
             }
