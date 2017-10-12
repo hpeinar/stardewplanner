@@ -26,6 +26,37 @@ const limiter = new RateLimit({
 
 module.exports = () => {
     let app = express.Router();
+
+    app.get('/renders', (req, res) => {
+        return db('render')
+          .join('farm', 'farm.id', '=', 'render.farm_id')
+          .limit(10)
+          .orderBy('createdAt', 'DESC')
+          .then((renders) => {
+            res.json(renders);
+          })
+          .catch((err) => {
+            req.log.error(err);
+            res.status(500).json({message: 'Failed to list renders'});
+          });
+    });
+
+    app.get('/featured', (req, res) => {
+      return db('farm')
+        .join('render', 'render.farm_id', '=', 'farm.id')
+        .where('farm.featured', true)
+        .whereNotNull('render.id')
+        .orderBy('farm.featuredAt', 'DESC')
+        .limit(1)
+        .first()
+        .then((renders) => {
+          res.json(renders);
+        })
+        .catch((err) => {
+          req.log.error(err);
+          res.status(500).json({message: 'Failed to list renders'});
+        });
+    });
     
     app.post('/import', [limiter, cors(), multipartMiddleware],(req, res, next) => {
         if (!req.files || !req.files.file) {
