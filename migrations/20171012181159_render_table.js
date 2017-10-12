@@ -13,9 +13,9 @@ exports.up = function (knex, Promise) {
   }).then(() => {
     return knex.raw('INSERT INTO render (farm_id, render_url, layout, season) SELECT id, render_url, layout, season FROM farm WHERE farm.render_url IS NOT NULL')
   }).then(() => {
-    // return knex.schema.table('farm', (table) => {
-    //   table.dropColumn('renderUrl');
-    // });
+    return knex.schema.table('farm', (table) => {
+      table.dropColumn('renderUrl');
+    });
   });
 };
 
