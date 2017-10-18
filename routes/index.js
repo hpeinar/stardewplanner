@@ -36,7 +36,7 @@ module.exports = () => {
 
 
         return Promise.all([
-            baseQuery.clone().orderBy('createdAt', 'DESC'),
+            baseQuery.clone().orderBy('render.created_at', 'DESC'),
             baseQuery.clone().orderBy('popular_at', 'DESC'),
             baseQuery.clone().orderBy('useful_at', 'DESC')
         ]).then(([latest, popular, useful]) => {
