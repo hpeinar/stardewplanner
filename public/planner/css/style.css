@@ -448,6 +448,14 @@ ul.submenu li {
     vertical-align: middle;
 }
 
+.show-more-changelog {
+    cursor: pointer;
+}
+
+.more-changelog {
+    display: none;
+}
+
 /** Patrons **/
 #patrons h1 {
     font-size: 18px;

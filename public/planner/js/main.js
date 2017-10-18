@@ -61,6 +61,11 @@ $().ready(function () {
         loadLayout(layout);
     });
 
+    $('.show-more-changelog').click(function () {
+        $('.show-more-changelog').hide();
+        $('.more-changelog').show();
+    });
+
     function loadLayout (layout) {
         var oldData = board.exportData();
         showLayoutAlert(layout);
