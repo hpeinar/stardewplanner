@@ -28,17 +28,27 @@ module.exports = () => {
     let app = express.Router();
 
     app.get('/renders', (req, res) => {
-        return db('render')
-          .join('farm', 'farm.id', '=', 'render.farm_id')
-          .limit(10)
-          .orderBy('createdAt', 'DESC')
-          .then((renders) => {
-            res.json(renders);
-          })
-          .catch((err) => {
+        let baseQuery = db('render')
+            .join('farm', 'farm.id', '=', 'render.farm_id')
+            .limit(8)
+            .select('render.*', 'farm.slug', 'farm.id AS farm_id')
+            .whereNotNull('render.render_url');
+
+
+        return Promise.all([
+            baseQuery.clone().orderBy('createdAt', 'DESC'),
+            baseQuery.clone().orderBy('popular_at', 'DESC'),
+            baseQuery.clone().orderBy('useful_at', 'DESC')
+        ]).then(([latest, popular, useful]) => {
+            res.json({
+              latest,
+              popular,
+              useful
+            });
+        }).catch((err) => {
             req.log.error(err);
             res.status(500).json({message: 'Failed to list renders'});
-          });
+        });
     });
 
     app.get('/featured', (req, res) => {

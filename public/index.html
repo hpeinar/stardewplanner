@@ -2,12 +2,97 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Stardew Valley fansite</title>
+    <title>Stardew Valley planner v2</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <!--<link rel="stylesheet" href="/css/style.css?v=07052017">-->
+
+    <meta name="twitter:card" content="Interactive farm planner for Stardew" />
+    <meta name="twitter:site" content="@hpeinar" />
+    <meta name="twitter:creator" content="@hpeinar" />
+    <meta property="og:author" content="Henrik Peinar" />
+    <meta property="og:url" content="https://stardew.info/planner/" />
+    <meta property="og:title" content="Interactive farm planner for Stardew Valley" />
+    <meta property="og:description" content="Plan your Stardew Valley farm! ...on a coffee break!" />
 </head>
 <body>
-    Nothing here yet
+
+<div class="hero">
+    <div class="row align-center">
+        <div class="large-7 columns large-centered text-center">
+            <h1>Stardew Planner</h1>
+            <h5>This excellent tool helps you to plan out your farm easily and make it possible to test different <img src="/img/sw-logo.png" alt=""> layouts with ease.</h5>
+
+            <div class="credits">
+                Renders provided by <a href="http://upload.farm/" target="_blank">Upload.Farm</a> | Page design by <a href="https://dribbble.com/kedin" target="_blank">Karel Eding</a>
+            </div>
+            <a class="button" href="/planner/" target="_self">Start Planning</a>
+        </div>
+    </div>
+    <div class="gradient"></div>
+</div>
+
+<div class="row map-gallery">
+    <!-- Popular -->
+    <div class="row popular-gallery">
+        <div class="large-12 columns header text-center medium-text-left">
+            <h4>Popular <small>These are selected renders that are popular by either views or in community</small></h4>
+        </div>
+    </div>
+
+    <!-- latest renders -->
+    <div class="row latest-gallery">
+        <div class="large-12 columns header text-center medium-text-left">
+            <h4>Latest <small>Latest renders by time</small></h4>
+        </div>
+    </div>
+
+    <!-- useful renders -->
+    <div class="row useful-gallery">
+        <div class="large-12 columns header text-center medium-text-left">
+            <h4>Useful <small>Plans that show effective placement or some other tricks</small></h4>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/vendor/modernizr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.5/jquery.lazy.min.js"></script>
+<!-- local js -->
+<script type="text/javascript" src="/js/main.js?v=07052017"></script>
+
+<script>
+  $(document).foundation();
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-74517445-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-7596140300521041",
+    enable_page_level_ads: true
+  });
+</script>
 </body>
 </html>
