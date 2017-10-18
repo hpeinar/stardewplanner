@@ -448,6 +448,117 @@ ul.submenu li {
     vertical-align: middle;
 }
 
+/** Patrons **/
+#patrons h1 {
+    font-size: 18px;
+    font-family: sans-serif;
+    color: grey;
+    position: relative;
+    border: 1p;
+}
+
+#patrons h1:before {
+    content: attr(data-content);
+    font-weight: inherit;
+    font-size: inherit;
+    position: absolute;
+
+    color: rgba(255,255,255,0.1);
+    opacity: 0.8;
+    background-color: #222;
+    background: -webkit-radial-gradient(circle, #ffa500, #ff0, #008000, #0ff, #00f, #ee82ee);
+    background: -moz-radial-gradient(circle, #ffa500, #ff0, #008000, #0ff, #00f, #ee82ee);
+    background: radial-gradient(circle, #ffa500, #ff0, #008000, #0ff, #00f, #ee82ee);
+    /*background: -webkit-radial-gradient(circle, #ffa500, #ff0, #e33d55, #ff27bc, #e9ff30, #ee8e08);*/
+    /*background: -moz-radial-gradient(circle, #ffa500, #ff0, #e33d55, #ff27bc, #e9ff30, #ee8e08);*/
+    /*background: radial-gradient(circle, #ffa500, #ff0, #e33d55, #ff27bc, #e9ff30, #ee8e08);*/
+    -webkit-background-size: 80% 100px;
+    -moz-background-size: 80% 100px;
+    background-size: 80% 100px;
+    background-position: 0 0;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-animation-name: shimmer;
+    -moz-animation-name: shimmer;
+    animation-name: shimmer;
+    -webkit-animation-duration: 15s;
+    -moz-animation-duration: 15s;
+    animation-duration: 15s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+@keyframes shimmer {
+    0% {
+        opacity: 0.8;
+        background-position: 0 0%;
+    }
+    33% {
+        opacity: 0.7;
+        background-position: 0% 100%;
+    }
+    66% {
+        opacity: 0.9;
+        background-position: 100% 0%;
+    }
+    100% {
+        opacity: 0.5;
+        background-position: 0 0%;
+    }
+}
+#patrons h1:after {
+    mix-blend-mode: hue;
+    content: attr(data-content);
+    font-weight: inherit;
+    font-size: inherit;
+    position: absolute;
+    left: 0;
+    color: rgba(255,255,255,0.1);
+    opacity: 0.8;
+    background-color: #222;
+    background: -webkit-radial-gradient(circle, #ffa500, #ff0, #008000, #0ff, #00f, #ee82ee);
+    background: -moz-radial-gradient(circle, #ffa500, #ff0, #008000, #0ff, #00f, #ee82ee);
+    background: radial-gradient(circle, #ffa500, #ff0, #008000, #0ff, #00f, #ee82ee);
+    /*background: -webkit-radial-gradient(circle, #ffa500, #ff0, #e33d55, #ff27bc, #e9ff30, #ee8e08);*/
+    /*background: -moz-radial-gradient(circle, #ffa500, #ff0, #e33d55, #ff27bc, #e9ff30, #ee8e08);*/
+    /*background: radial-gradient(circle, #ffa500, #ff0, #e33d55, #ff27bc, #e9ff30, #ee8e08);*/
+    -webkit-background-size: 80% 100px;
+    -moz-background-size: 80% 100px;
+    background-size: 80% 100px;
+    background-position: 0 0;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-animation-name: shimmer2;
+    -moz-animation-name: shimmer2;
+    animation-name: shimmer2;
+    -webkit-animation-duration: 5s;
+    -moz-animation-duration: 5s;
+    animation-duration: 5s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+@keyframes shimmer2 {
+    0% {
+        opacity: 0.4;
+        background-position: 100% 0%;
+    }
+    33% {
+        opacity: 0.6;
+        background-position: 0% 50%;
+    }
+    66% {
+        opacity: 0.8;
+        background-position: 50% 0%;
+    }
+    100% {
+        opacity: 0.9;
+        background-position: 100% 0%;
+    }
+}
+
 
 /** Buildings **/
 .sprite-icon.silo {
