@@ -193,7 +193,7 @@ module.exports = () => {
 
         return db.select('id', 'slug').from('farm').where({md5: uniqueHash}).then((results) => {
             if (results.length) {
-                return Promise.resolve({id: results[0].slug});
+                return Promise.resolve({id: results[0].slug, insertId: results[0].id});
             } else {
                 return uniqueId().then((uniqueId) => {
                     let farm = {
