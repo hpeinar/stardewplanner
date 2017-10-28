@@ -32,6 +32,9 @@ function Board (containerId, width, height) {
     this.house = null;
     this.greenhouse = null;
 
+    this.restrictedBuildingArea = null;
+    this.restrictedTillingArea = null;
+
     // load regular layout by default
     this.loadLayout(layouts.regular);
 
@@ -81,6 +84,10 @@ Board.prototype.loadLayout = function loadLayout (layout) {
         this.restrictedBuildingArea.remove();
     }
 
+    if (this.restrictedTillingArea) {
+      this.restrictedTillingArea.remove();
+    }
+
     this.restrictedPath = null;
     this.restrictionCheck = false;
 
@@ -89,11 +96,23 @@ Board.prototype.loadLayout = function loadLayout (layout) {
         this.restrictedPath = layout.restrictionPath;
         this.restrictionCheck = true;
         // TODO: actually use correct path
-        this.restrictedBuildingArea = this.R.path(this.restrictedPath);
-        this.restrictedBuildingArea.attr({
+        this.restrictedTillingArea = this.R.path(this.restrictedPath);
+        this.restrictedTillingArea.attr({
             fill: 'none',
-            stroke: 'red'
+            stroke: 'brown'
         });
+    }
+
+    if (layout.restrictionPath && !layout.buildingRestrictionPath) {
+        layout.buildingRestrictionPath = layout.restrictionPath;
+    }
+
+    if (layout.buildingRestrictionPath) {
+      this.restrictedBuildingArea = this.R.path(layout.buildingRestrictionPath);
+      this.restrictedBuildingArea.attr({
+        fill: 'none',
+        stroke: 'red'
+      });
     }
 
     if (layout.house) {
@@ -292,7 +311,7 @@ Board.prototype.dragEnd = function dragEnd(e) {
     this.brush.unlock();
 
     // check if rect happens to be inside of restricted area
-    if (!this.restrictionCheck || ($(e.target).data('custom-type') !== 'building' && (!this.brush.type || !this.checkRestriction(this.restrictedBuildingArea, this.brush.rect)))) {
+    if (!this.restrictionCheck || ($(e.target).data('custom-type') !== 'building' && (!this.brush.type || !this.checkRestriction(this.restrictedTillingArea, this.brush.rect)))) {
         this.drawTiles(this.brush.rect, this.brush.type);
     }
 
@@ -610,7 +629,7 @@ Board.normalizePos = function normalizePos(e, newTarget, snap) {
  */
 Board.prototype.drawTiles = function drawTiles(area, tile) {
     // first we check path restriction
-    if (this.restrictionCheck && this.brush.type && this.checkPathRestriction(this.restrictedBuildingArea, area)) {
+    if (this.restrictionCheck && this.brush.type && this.checkPathRestriction(this.restrictedTillingArea, area)) {
         return;
     }
 
@@ -879,6 +898,7 @@ Board.prototype.modifiyStuff = function modifyStuff(attr) {
     this.helperX.attr(attr);
     this.grid.attr(attr);
     this.restrictedBuildingArea.attr(attr);
+    this.restrictedTillingArea.attr(attr);
 };
 
 /**
