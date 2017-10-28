@@ -5,7 +5,7 @@
 'use strict';
 
 const express = require('express');
-const fs = require('fs');
+const config = require('easy-config');
 const db = require('../lib/db');
 const importer = require('../lib/importer');
 const multipart = require('connect-multiparty');
@@ -154,11 +154,17 @@ module.exports = () => {
                     // We'll mirror upload.farm images to our storage to avoid excess bandwidth to their servers
                     // this will be done async, user does not have to wait for it
                     if (config.google.projectId) {
-                      uploader(body.url, config.google.renderBucket, result.id + '.png')
-                        .then((result) => {
-                          return db('render').update({
-                            render_url: ''
-                          }).where('id', renderInsertId[0]);
+
+                      let renderID = body.url.split('/').pop();
+                      let renderPicture = `http://upload.farm/static/renders/${renderID}/${renderID}-plan.png`;
+
+                      uploader(renderPicture, config.google.renderBucket, result.id + '.png')
+                        .then((renderUrl) => {
+                          if (renderUrl) {
+                            return db('render').update({
+                              render_url: renderUrl
+                            }).where('id', renderInsertId[0]);
+                          }
                         })
                         .catch((err) => {
                           console.error(err, 'Failed to upload render to google cloud storage');

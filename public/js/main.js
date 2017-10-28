@@ -22,13 +22,10 @@ $().ready(function () {
 
 
 function getPlanHTML (planData) {
-
-  let renderID = planData.render_url.split('/').pop();
-  let renderPicture = `http://upload.farm/static/renders/${renderID}/${renderID}-plan.png`;
   return `<div class="large-3 columns map-item">
-            <a class="th lightbox" href="${renderPicture}" target="_blank">
-                <img class="lazy" data-src="${renderPicture}" />
-            </a>
-            <a class="button hollow secondary small" target="_blank" href="/planner/${planData.slug}">Plan</a>
-        </div>`;
+      <a class="th lightbox" href="${planData.render_url}" target="_blank">
+          <img class="lazy" data-src="${planData.render_url}" />
+      </a>
+      <a class="button hollow secondary small" target="_blank" href="/planner/${planData.slug}">Plan</a>
+  </div>`;
 }
