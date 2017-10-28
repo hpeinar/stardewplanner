@@ -310,6 +310,14 @@ Board.prototype.mousedown = function mousedown(e) {
 
     if (board.ghosting) {
 
+        if (e.shiftKey) {
+            pos.x += board.tileSize;
+        }
+
+        if (e.altKey) {
+            pos.y += board.tileSize;
+        }
+
         board.ghostPathPoints.push('L'+ pos.x +','+ pos.y);
 
         if (board.ghostPath) {
