@@ -7,6 +7,7 @@
     "node": ">=4.1.1"
   },
   "dependencies": {
+    "@google-cloud/storage": "^1.4.0",
     "adm-zip": "^0.4.7",
     "body-parser": "^1.15.0",
     "bunyan": "^1.7.1",

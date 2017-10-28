@@ -17,6 +17,7 @@ const request = require('request');
 const cors = require('cors');
 const RateLimit = require('express-rate-limit');
 const hri = require('human-readable-ids').hri;
+const uploader = require('../lib/uploader');
 
 const limiter = new RateLimit({
     windowMs: 15*60*1000, // 15 minutes
@@ -145,11 +146,25 @@ module.exports = () => {
                 return db('render')
                   .insert({
                     farm_id: result.insertId,
-                    render_url: body.url,
+                    original_url: body.url,
                     season: req.body.options.season || 'spring',
                     layout: req.body.options.layout
                   })
-                  .then(() => {
+                  .then(renderInsertId => {
+                    // We'll mirror upload.farm images to our storage to avoid excess bandwidth to their servers
+                    // this will be done async, user does not have to wait for it
+                    if (config.google.projectId) {
+                      uploader(body.url, config.google.renderBucket, result.id + '.png')
+                        .then((result) => {
+                          return db('render').update({
+                            render_url: ''
+                          }).where('id', renderInsertId[0]);
+                        })
+                        .catch((err) => {
+                          console.error(err, 'Failed to upload render to google cloud storage');
+                        })
+                    }
+
                     res.json(body);
                   })
                   .catch((err) => {

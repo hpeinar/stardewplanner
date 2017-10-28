@@ -11,5 +11,10 @@
     "user": "",
     "password": "",
     "name": "planner"
+  },
+  "google": {
+    "projectId": "",
+    "renderBucket": "",
+    "keyFileName": "stardewplanner-240e85cf0603.key.json"
   }
 }
