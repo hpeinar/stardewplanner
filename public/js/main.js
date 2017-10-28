@@ -13,11 +13,9 @@ $().ready(function () {
     $('.lazy').lazy({
       effect: 'fadeIn',
       effectTime: 1300,
-      onFinishedAll: function() {
-        baguetteBox.run('.map-gallery');
-      }
     });
 
+    baguetteBox.run('.map-gallery');
 
   });
 });
