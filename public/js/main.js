@@ -4,7 +4,6 @@ $().ready(function () {
 
   $.get('/api/renders', function (data) {
     // append plans
-
     Object.keys(data).forEach(function (planType) {
       data[planType].forEach(function (plan) {
         $('.' + planType + '-gallery').append(getPlanHTML(plan));
@@ -13,10 +12,13 @@ $().ready(function () {
 
     $('.lazy').lazy({
       effect: 'fadeIn',
-      effectTime: 1300
+      effectTime: 1300,
+      onFinishedAll: function() {
+        baguetteBox.run('.map-gallery');
+      }
     });
 
-    baguetteBox.run('.map-gallery');
+
   });
 });
 
@@ -24,7 +26,7 @@ $().ready(function () {
 function getPlanHTML (planData) {
   return `<div class="large-3 columns map-item">
       <a class="th lightbox" href="${planData.render_url}" target="_blank">
-          <img class="lazy" data-src="${planData.render_url}" />
+          <img class="lazy" data-src="${planData.render_url}" src="" />
       </a>
       <a class="button hollow secondary small" target="_blank" href="/planner/${planData.slug}">Plan</a>
   </div>`;
