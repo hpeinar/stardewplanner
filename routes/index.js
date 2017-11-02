@@ -128,7 +128,7 @@ module.exports = () => {
             // after saving, post it to upload.farm
             request({
                 method: 'POST',
-                uri: 'http://upload.farm/api/v1/plan',
+                uri: 'https://upload.farm/api/v1/plan',
                 body: {
                     plan_json: req.body,
                     season: req.body.options.season || 'spring',
@@ -156,7 +156,7 @@ module.exports = () => {
                     if (config.google.projectId) {
 
                       let renderID = body.url.split('/').pop();
-                      let renderPicture = `http://upload.farm/static/renders/${renderID}/${renderID}-plan.png`;
+                      let renderPicture = `https://upload.farm/static/renders/${renderID}/${renderID}-plan.png`;
 
                       uploader(renderPicture, config.google.renderBucket, result.id + '-' + (req.body.options.season || 'spring') + '.png')
                         .then((renderUrl) => {
