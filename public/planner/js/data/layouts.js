@@ -297,6 +297,24 @@ var layouts = {
         width: 1280,
         height: 1424
     },
+    "white-farm": {
+        author: 'Meevers',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1293',
+        name: 'white-farm',
+        prettyName: 'White Water Farm Map',
+        backgroundImage: 'white-farm.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+        width: 1280,
+        height: 1040
+    },
 
     // inside layouts
     greenhouse: {

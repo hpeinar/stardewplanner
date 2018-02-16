@@ -21,7 +21,6 @@
     "libxmljs": "^0.18.0",
     "mysql": "^2.15.0",
     "request": "^2.75.0",
-    "rethinkdb": "^2.3.3",
     "serve-favicon": "^2.3.0",
     "uuid": "^2.0.1"
   },
