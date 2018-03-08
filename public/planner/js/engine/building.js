@@ -71,6 +71,8 @@ Building.prototype.putDown = function putDown() {
         pointerEvents: 'all',
         opacity: 1
     });
+
+    this.hidehighlight();
 };
 
 Building.prototype.pickUp = function pickUp() {
@@ -121,15 +123,19 @@ Building.prototype.mouseover = function mouseover(e) {
 };
 
 Building.prototype.mouseout = function mouseout(e) {
-    if (this.highlight) {
-        if (this.board.keepHighlights.indexOf(this.typeGroup) === -1) {
-            this.highlight.attr({
-                opacity: 0,
-                fill: 'none'
-            });
-        }
-    }
+    this.hidehighlight();
 };
+
+Building.prototype.hidehighlight = function () {
+  if (this.highlight) {
+    if (this.board.keepHighlights.indexOf(this.typeGroup) === -1) {
+      this.highlight.attr({
+        opacity: 0,
+        fill: 'none'
+      });
+    }
+  }
+}
 
 Building.prototype.mousedown = function mouseodwn(e) {
     var building = this;
