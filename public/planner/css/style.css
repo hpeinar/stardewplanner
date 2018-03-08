@@ -449,6 +449,15 @@ ul.submenu li {
     vertical-align: middle;
 }
 
+.discord-icon {
+    vertical-align: middle;
+}
+
+.discord-icon-inner {
+    width: auto;
+    height: 40px;
+}
+
 .show-more-changelog {
     cursor: pointer;
 }
