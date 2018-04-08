@@ -204,7 +204,6 @@ Board.prototype.deselectBuilding = function deselectBuilding() {
     var board = this;
     if (board.placingBuilding) {
         board.removeBuilding(board.placingBuilding);
-        board.placingBuilding = null;
     }
 };
 
@@ -215,10 +214,9 @@ Board.prototype.deselectBuilding = function deselectBuilding() {
 Board.prototype.removeBuilding = function removeBuilding(building) {
     var board = this;
     var bIndex = board.buildings.map(function (b) { return (b || {}).uuid; }).indexOf((building || {}).uuid);
-    board.buildings.splice(bIndex, 1);
 
-    if (building.highlight) {
-        building.highlight.remove();
+    if (bIndex >= 0) {
+        board.buildings.splice(bIndex, 1);
     }
 
     building.remove();
