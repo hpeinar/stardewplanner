@@ -315,6 +315,21 @@ var layouts = {
         width: 1280,
         height: 1040
     },
+    "immersive-farm-2": {
+        author: 'Zander',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1531/',
+        name: 'immersive-farm-2',
+        prettyName: 'Immersive Farm 2',
+        backgroundImage: 'immersive_farm_2.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: null,
+        width: 2880,
+        height: 1792
+    },
 
     // inside layouts
     greenhouse: {
