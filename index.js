@@ -9,8 +9,10 @@ const config = require('easy-config');
 const bunyan = require('bunyan');
 const log = bunyan.createLogger({name: "stardrew"});
 const bodyParser = require('body-parser');
-const app = express();
+const app = require('express')();
+const http = require('http').Server(app);
 const favicon = require('serve-favicon');
+const io = require('socket.io')(http);
 
 app.enable('trust proxy');
 
@@ -40,8 +42,35 @@ app.get('/heartbeat', (req, res) => {
 app.use(express.static('./public'));
 app.use('/planner/:id', express.static('./public/planner'));
 
+// socket stuff
+io.on('connection', function(socket) {
+  console.log('a user connected');
+
+  socket.broadcast.emit('join', socket.id);
+
+  // make other sockets join this new socket
+  io.of('/').clients((err, sockets) => {
+    sockets.forEach((sId) => {
+      if (sId !== socket.id) {
+        socket.emit('join', sId);
+      }
+    });
+  });
+
+  socket.on('move_helpers', function (data) {
+    socket.broadcast.emit('move_helpers', Object.assign(data, { socketId: socket.id }));
+  });
+
+  socket.on('draw_tile', function (data) {
+    socket.broadcast.emit('draw_tile', Object.assign(data, { socketId: socket.id }));
+  });
+
+  socket.on('disconnect', function () {
+    socket.broadcast.emit('leave', socket.id);
+  });
+});
 
 // run express
-app.listen(config.port, () => {
+http.listen(config.port, () => {
     log.info('App listening on port', config.port);
 });

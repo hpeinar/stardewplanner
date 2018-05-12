@@ -22,6 +22,7 @@
     "mysql": "^2.15.0",
     "request": "^2.75.0",
     "serve-favicon": "^2.3.0",
+    "socket.io": "^2.1.0",
     "uuid": "^2.0.1"
   },
   "devDependencies": {},

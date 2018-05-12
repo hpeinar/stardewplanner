@@ -31,6 +31,11 @@ function Board (containerId, width, height) {
     this.restrictionCheck = true;
     this.house = null;
     this.greenhouse = null;
+    this.socket = window.socket;
+    this.selfSocketId = this.socket.id;
+
+    this.helperX = {};
+    this.helperY = {};
 
     this.restrictedBuildingArea = null;
     this.restrictedTillingArea = null;
@@ -44,23 +49,68 @@ function Board (containerId, width, height) {
     this.ghostPathPoints = []; // used for debugging...
     this.ghosting = false;
 
-    this.drawGrid();
-    this.drawHelpers();
-    this.preDrawSprites();
+    var that = this;
+    this.listenSocket(function () {
+      that.drawGrid();
+      that.drawHelpers(that.selfSocketId);
+      that.preDrawSprites();
 
-    this.R.mousemove(this.mousemove.bind(this));
+      that.R.mousemove(that.mousemove.bind(that));
 
-    // yes... same event name
-    this.R.mouseup(this.mousedown.bind(this));
+      // multiplayer stuff
 
-    // bind keybinds to window
-    $(window).keydown(this.keydown.bind(this));
-    $(window).keyup(this.keyup.bind(this));
+      // yes... same event name
+      that.R.mouseup(that.mousedown.bind(that));
 
-    this.R.drag(this.dragMove, this.dragStart, this.dragEnd, this, this, this);
+      // bind keybinds to window
+      $(window).keydown(that.keydown.bind(that));
+      $(window).keyup(that.keyup.bind(that));
+
+      that.R.drag(that.dragMove, that.dragStart, that.dragEnd, that, that, that);
+    });
 
     return this;
 }
+
+Board.prototype.listenSocket = function listenSocket (onConnectCb) {
+    var that = this;
+    this.socket.on('connect', function () {
+        that.selfSocketId = that.socket.id;
+        onConnectCb();
+    });
+
+    this.socket.on('join', function (clientSocketId) {
+        console.log('user joined', clientSocketId);
+        that.drawHelpers(clientSocketId);
+    });
+
+    this.socket.on('move_helpers', function (data) {
+        that.moveHelpers(data, data.socketId);
+    });
+
+    this.socket.on('leave', function (clientSocketId) {
+        that.cleanUpClient.call(that, clientSocketId);
+    });
+
+    this.socket.on('draw_tile', function (data) {
+        console.log('DRAWING TILE', data);
+        that.drawTile.call(that, {
+            x: data.x,
+            y: data.y,
+        }, data.tile, data['replace'], data.overwriting, data.erase, data.socketId);
+        that.buildingsToTop.call(that);
+    });
+};
+
+Board.prototype.cleanUpClient = function cleanUpClient (clientSocketId) {
+  if (this.helperX[clientSocketId]) {
+    this.helperX[clientSocketId].remove();
+  }
+
+  if (this.helperY[clientSocketId]) {
+    this.helperY[clientSocketId].remove();
+  }
+};
 
 Board.prototype.loadLayout = function loadLayout (layout) {
     if (this.background) {
@@ -172,7 +222,7 @@ Board.prototype.hideHighlights = function hideHighlights(type) {
     }
 };
 
-Board.prototype.drawHelpers = function drawHelpers() {
+Board.prototype.drawHelpers = function drawHelpers(socketId) {
     var helperAttr = {
         fill: 'none',
         pointerEvents: 'none',
@@ -181,20 +231,24 @@ Board.prototype.drawHelpers = function drawHelpers() {
         opacity: 1
     };
 
-    this.helperX = this.R.rect(0, 0, this.width, this.tileSize);
-    this.helperY = this.R.rect(0, 0, this.tileSize, this.height);
+    this.helperX[socketId] = this.R.rect(0, 0, this.width, this.tileSize);
+    this.helperY[socketId] = this.R.rect(0, 0, this.tileSize, this.height);
 
-    this.helperX.attr(helperAttr);
-    this.helperY.attr(helperAttr);
+    this.helperX[socketId].attr(helperAttr);
+    this.helperY[socketId].attr(helperAttr);
 };
 
-Board.prototype.moveHelpers = function moveHelpers(pos) {
-    this.helperX.attr({
+Board.prototype.moveHelpers = function moveHelpers(pos, socketId) {
+    this.helperX[socketId].attr({
         y: pos.y
     });
-    this.helperY.attr({
+    this.helperY[socketId].attr({
         x: pos.x
     });
+
+    if (socketId === this.selfSocketId) {
+        this.socket.emit('move_helpers', pos);
+    }
 };
 
 /**
@@ -269,8 +323,8 @@ Board.prototype.buildingsToTop = function buildingsToTop(e) {
         }
     });
 
-    this.helperX.toBack();
-    this.helperY.toBack();
+    this.helperX[this.selfSocketId].toBack();
+    this.helperY[this.selfSocketId].toBack();
     this.brush.rect.toBack();
 };
 
@@ -296,7 +350,7 @@ Board.prototype.dragStart = function dragStart(x, y, e) {
 Board.prototype.dragMove = function dragMove(dx, dy, x, y, e) {
     if (this.brush.freemode) {
         var pos = Board.normalizePos(e, this.background.node, this.tileSize);
-        this.drawTile(pos, this.brush.type);
+        this.drawTile(pos, this.brush.type, false, this.brush.overwriting, this.brush.erase);
     } else {
         this.brush.drag(this.snap(Board.normalizePos(e, this.background.node)));
     }
@@ -502,7 +556,7 @@ Board.prototype.mousemove = function mousemove(e) {
     this.brush.move(snappedPos);
 
     // move helpers
-    this.moveHelpers(snappedPos);
+    this.moveHelpers(snappedPos, this.selfSocketId);
 };
 
 /**
@@ -652,7 +706,7 @@ Board.prototype.drawTiles = function drawTiles(area, tile) {
                 this.drawTile({
                     x: x,
                     y: y
-                }, tile);
+                }, tile, false, this.brush.overwriting, this.brush.erase);
             }
         }
 
@@ -661,7 +715,7 @@ Board.prototype.drawTiles = function drawTiles(area, tile) {
     }
 
     // not area, just draw this one tile to location
-    this.drawTile(area, tile);
+    this.drawTile(area, tile, false, this.brush.overwriting, this.brush.erase);
     window.dispatchEvent(new Event('updateCount'));
 };
 
@@ -670,9 +724,23 @@ Board.prototype.drawTiles = function drawTiles(area, tile) {
  * @param location
  * @param tile
  * @param replace
+ * @param overwriting
+ * @param erase
+ * @param socketId
  * @return {*}
  */
-Board.prototype.drawTile = function drawTile(location, tile, replace) {
+Board.prototype.drawTile = function drawTile(location, tile, replace, overwriting, erase, socketId) {
+    if (!socketId) {
+        this.socket.emit('draw_tile', {
+            x: location.x,
+            y: location.y,
+            tile: tile,
+            replace: replace,
+            overwriting: overwriting,
+            erase: erase
+        });
+    }
+
     var hardX = location.x / this.tileSize;
     var hardY = location.y / this.tileSize;
 
@@ -687,13 +755,14 @@ Board.prototype.drawTile = function drawTile(location, tile, replace) {
     if (this.tiles[hardY][hardX]) {
         // there seems to be a tile in place here already, remove it
 
-        if (!this.brush.overwriting && !this.brush.erase && !replace) {
+        if (!overwriting && !erase && !replace) {
             return;
         } else {
             this.tiles[hardY][hardX].remove();
             this.tiles[hardY][hardX] = null;
 
-            if (this.brush.erase) {
+            if (erase) {
+                console.log('ERASE ENABLED', erase);
                 return;
             }
         }
@@ -894,8 +963,8 @@ Board.prototype.showStuff = function showStuff() {
 };
 
 Board.prototype.modifiyStuff = function modifyStuff(attr) {
-    this.helperY.attr(attr);
-    this.helperX.attr(attr);
+    this.helperY[this.selfSocketId].attr(attr);
+    this.helperX[this.selfSocketId].attr(attr);
     this.grid.attr(attr);
     this.restrictedBuildingArea.attr(attr);
     this.restrictedTillingArea.attr(attr);
