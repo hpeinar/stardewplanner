@@ -42,27 +42,32 @@ app.get('/heartbeat', (req, res) => {
 app.use(express.static('./public'));
 app.use('/planner/:id', express.static('./public/planner'));
 
-// socket stuff
 io.on('connection', function(socket) {
-  console.log('a user connected');
-
-  socket.broadcast.emit('join', socket.id);
+  socket.broadcast.emit('join', {
+    socketId: socket.id
+  });
 
   // make other sockets join this new socket
   io.of('/').clients((err, sockets) => {
     sockets.forEach((sId) => {
       if (sId !== socket.id) {
-        socket.emit('join', sId);
+        socket.emit('join', {
+          socketId: sId
+        });
       }
     });
+
+    // if new socket is in index 0 of the socket list, it is the only socket and thus the "master"
+    if (sockets[0] !== socket.id) {
+      io.of('/').connected[sockets[0]].emit('synchronization_request');
+    }
   });
 
-  socket.on('move_helpers', function (data) {
-    socket.broadcast.emit('move_helpers', Object.assign(data, { socketId: socket.id }));
-  });
-
-  socket.on('draw_tile', function (data) {
-    socket.broadcast.emit('draw_tile', Object.assign(data, { socketId: socket.id }));
+  ['synchronize','move_helpers','draw_tile','place_building','remove_building'].forEach(event => {
+    socket.on(event, data => {
+      console.log('EMITTING', event);
+      socket.broadcast.emit(event, Object.assign(data, { socketId: socket.id }));
+    });
   });
 
   socket.on('disconnect', function () {

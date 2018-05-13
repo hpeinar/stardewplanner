@@ -4,7 +4,7 @@
 
 'use strict';
 
-function Building(board, id, x, y, dontPlace, disabled) {
+function Building(board, id, x, y, dontPlace, disabled, uuid) {
     this.board = board;
     this.R = board.R;
     this.type = id;
@@ -28,7 +28,7 @@ function Building(board, id, x, y, dontPlace, disabled) {
     });
 
     this.deleted = false;
-    this.uuid = Board.generateGUID();
+    this.uuid = uuid || Board.generateGUID();
 
     if (x && y) {
         this.sprite.attr('x', x);
@@ -164,4 +164,13 @@ Building.prototype.convertToData = function convertToData() {
         x: this.sprite.attr('x'),
         y: this.sprite.attr('y')
     }
+};
+
+Building.prototype.convertToSocketData = function convertToSocketData() {
+  return {
+    type: this.type,
+    uuid: this.uuid,
+    x: this.sprite.attr('x'),
+    y: this.sprite.attr('y')
+  }
 };

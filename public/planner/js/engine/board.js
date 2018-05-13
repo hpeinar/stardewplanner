@@ -36,6 +36,7 @@ function Board (containerId, width, height) {
 
     this.helperX = {};
     this.helperY = {};
+    this.helperName = {};
 
     this.restrictedBuildingArea = null;
     this.restrictedTillingArea = null;
@@ -79,9 +80,9 @@ Board.prototype.listenSocket = function listenSocket (onConnectCb) {
         onConnectCb();
     });
 
-    this.socket.on('join', function (clientSocketId) {
-        console.log('user joined', clientSocketId);
-        that.drawHelpers(clientSocketId);
+    this.socket.on('join', function (data) {
+        console.log('user joined', data);
+        that.drawHelpers(data.socketId, data.color, data.name);
     });
 
     this.socket.on('move_helpers', function (data) {
@@ -100,6 +101,47 @@ Board.prototype.listenSocket = function listenSocket (onConnectCb) {
         }, data.tile, data['replace'], data.overwriting, data.erase, data.socketId);
         that.buildingsToTop.call(that);
     });
+
+    this.socket.on('place_building', function (data) {
+        var existingBuilding = that.buildings.find(function (b) {
+            return b.uuid === data.uuid;
+        });
+
+        if (existingBuilding) {
+            existingBuilding.move({
+                x: data.x,
+                y: data.y
+            });
+        } else {
+            let newBuilding = new Building(that, data.type, data.x, data.y, false, false, data.uuid);
+            that.buildings.push(newBuilding);
+        }
+
+    });
+
+    this.socket.on('remove_building', function (data) {
+      var existingBuilding = that.buildings.find(function (b) {
+        return b.uuid === data.uuid;
+      });
+
+      if (existingBuilding) {
+          existingBuilding.remove();
+      }
+    });
+
+    this.socket.on('synchronize', function (data) {
+       if (data.socketId !== that.selfSocketId) {
+           that.importData(data);
+       }
+    });
+
+    this.socket.on('synchronization_request', function () {
+       that.socket.emit('synchronize', that.exportData());
+    });
+
+    //TODO: Layout syncing on join
+    //TODO: Building remove
+    //TODO: fix server down / join issue
 };
 
 Board.prototype.cleanUpClient = function cleanUpClient (clientSocketId) {
@@ -109,6 +151,10 @@ Board.prototype.cleanUpClient = function cleanUpClient (clientSocketId) {
 
   if (this.helperY[clientSocketId]) {
     this.helperY[clientSocketId].remove();
+  }
+
+  if (this.helperName[clientSocketId]) {
+    this.helperName[clientSocketId].remove();
   }
 };
 
@@ -222,17 +268,18 @@ Board.prototype.hideHighlights = function hideHighlights(type) {
     }
 };
 
-Board.prototype.drawHelpers = function drawHelpers(socketId) {
+Board.prototype.drawHelpers = function drawHelpers(socketId, color, name) {
     var helperAttr = {
         fill: 'none',
         pointerEvents: 'none',
-        stroke: '#000',
+        stroke: color || '#000',
         strokeWidth: 0.5,
         opacity: 1
     };
 
     this.helperX[socketId] = this.R.rect(0, 0, this.width, this.tileSize);
     this.helperY[socketId] = this.R.rect(0, 0, this.tileSize, this.height);
+    this.helperName[socketId] = this.R.text(this.tileSize, this.tileSize, name || socketId);
 
     this.helperX[socketId].attr(helperAttr);
     this.helperY[socketId].attr(helperAttr);
@@ -244,6 +291,11 @@ Board.prototype.moveHelpers = function moveHelpers(pos, socketId) {
     });
     this.helperY[socketId].attr({
         x: pos.x
+    });
+
+    this.helperName[socketId].attr({
+      x: pos.x + this.tileSize,
+      y: pos.y + (this.tileSize * 2)
     });
 
     if (socketId === this.selfSocketId) {
@@ -294,6 +346,7 @@ Board.prototype.placeBuilding = function placeBuilding(id, building, x, y) {
     var board = this;
 
     if (building && board.brush.erase) {
+        this.socket.emit('remove_building', building.convertToSocketData());
         board.removeBuilding(building);
         return;
     }
@@ -429,6 +482,9 @@ Board.prototype.mousedown = function mousedown(e) {
             board.placingBuilding.remove();
         } else if (bIndex === -1) {
             board.buildings.push(board.placingBuilding);
+            this.socket.emit('place_building', board.placingBuilding.convertToSocketData());
+        } else {
+            this.socket.emit('place_building', board.placingBuilding.convertToSocketData());
         }
 
         board.placingBuilding = null;
