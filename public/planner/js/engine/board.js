@@ -376,8 +376,10 @@ Board.prototype.buildingsToTop = function buildingsToTop(e) {
         }
     });
 
-    this.helperX[this.selfSocketId].toBack();
-    this.helperY[this.selfSocketId].toBack();
+    if (this.selfSocketId && this.helperX[this.selfSocketId]) {
+        this.helperX[this.selfSocketId].toBack();
+        this.helperY[this.selfSocketId].toBack();
+    }
     this.brush.rect.toBack();
 };
 
