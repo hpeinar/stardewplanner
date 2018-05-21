@@ -78,8 +78,26 @@ $().ready(function () {
     });
 
     function loadLayout (layout) {
+        var oldData = board.exportData();
         showLayoutAlert(layout);
+
+        board.R.clear();
+        board.R.undrag();
+        board.R.unmousemove();
+        board.R.unmouseup();
+
+        $('#editor').html('');
+        board = new Board('#editor', layout.width, layout.height);
+        $('#editor,.editor').css({
+            width: layout.width < 1280 ? 1280 : layout.width,
+            height: layout.height < 1040 ? 1040 : layout.height
+        });
+
         board.loadLayout(layout);
+
+        if (oldData) {
+            board.importData(oldData);
+        }
     }
 
     function showLayoutAlert(layout) {
