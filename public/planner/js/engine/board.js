@@ -273,12 +273,12 @@ Board.prototype.drawHelpers = function drawHelpers(socketId, color, name) {
         pointerEvents: 'none',
         stroke: color || '#000',
         strokeWidth: 0.5,
-        opacity: 1
+        opacity: (socketId === this.selfSocketId) ? 1 : 0.75
     };
 
     this.helperX[socketId] = this.R.rect(0, 0, this.width, this.tileSize);
     this.helperY[socketId] = this.R.rect(0, 0, this.tileSize, this.height);
-    this.helperName[socketId] = this.R.text(this.tileSize, this.tileSize, name || socketId);
+    this.helperName[socketId] = this.R.text(this.tileSize, this.tileSize, (socketId != this.selfSocketId) ? name || socketId : '');
 
     this.helperX[socketId].attr(helperAttr);
     this.helperY[socketId].attr(helperAttr);

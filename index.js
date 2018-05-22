@@ -44,6 +44,8 @@ app.use('/planner/:id', express.static('./public/planner'));
 
 
 let availableRooms = ['trusty'];
+let socketNameMap = {};
+
 io.on('connection', function(socket) {
   socket.on('join_room', function (data, fn) {
     console.log('socket trying room join', data);
@@ -58,9 +60,11 @@ io.on('connection', function(socket) {
         }
 
         socket.join(data.room_name.toLowerCase(), () => {
+          socketNameMap[socket.id] = data.name;
           fn('success');
 
           socket.broadcast.emit('join', {
+            name: socketNameMap[socket.id],
             socketId: socket.id
           });
 
@@ -69,6 +73,7 @@ io.on('connection', function(socket) {
             sockets.forEach((sId) => {
               if (sId !== socket.id) {
                 socket.emit('join', {
+                  name: socketNameMap[sId],
                   socketId: sId
                 });
               }
@@ -82,12 +87,12 @@ io.on('connection', function(socket) {
 
           ['synchronize', 'move_helpers', 'draw_tile', 'place_building', 'remove_building'].forEach(event => {
             socket.on(event, data => {
-              console.log('EMITTING', event);
               socket.to(roomName).broadcast.emit(event, Object.assign(data, {socketId: socket.id}));
             });
           });
 
           socket.on('disconnect', function () {
+            delete socketNameMap[socket.id];
             socket.to(roomName).broadcast.emit('leave', socket.id);
           });
         });

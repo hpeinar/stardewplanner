@@ -182,7 +182,7 @@ $().ready(function () {
         $('.multiplayer-layover .loader').show();
         $('.multiplayer-layover .multiplayer-error').hide();
         window.board.socket.emit('join_room', {
-            name: '',
+            name: $('#playerName').val(),
             room_name: $('#roomID').val()
         }, (ack) => {
             if (ack === 'success') {
