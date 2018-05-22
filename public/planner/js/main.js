@@ -131,7 +131,7 @@ $().ready(function () {
 
 
         $.ajax({
-            url: 'https://stardew.info/api/'+ (season ? 'render' : 'save'),
+            url: '/api/'+ (season ? 'render' : 'save'),
             data: JSON.stringify(exportData),
             method: 'POST',
             contentType: 'application/json'
