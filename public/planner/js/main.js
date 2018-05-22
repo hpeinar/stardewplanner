@@ -34,40 +34,6 @@ $().ready(function () {
 
     $('.editor-loader').hide();
 
-    // notification
-    if (checkLocal() && !localStorage.getItem('stardew:facebookNotification')) {
-        $('.facebook-notification').show();
-        $('.count-report-notification').css('top', $('.facebook-notification').height() + 20);
-    }
-
-    if (checkLocal() && !localStorage.getItem('stardew:frontpageNotification')) {
-      $('.front-page-notification').show();
-      $('.count-report-notification').css('top', $('.front-page-notification').height() + 20);
-    }
-
-    if (checkLocal() && !localStorage.getItem('stardew:patreonNotification')) {
-      $('.patreon-notification').show();
-      $('.count-report-notification').css('top', $('.patreon-notification').height() + 20);
-    }
-
-    $('.hide-front-page-notification').click(function (e) {
-      localStorage.setItem('stardew:frontpageNotification', true);
-      $('.front-page-notification').hide();
-      $('.count-report-notification').css('top', 10);
-    });
-
-    $('.hide-facebook-notification').click(function (e) {
-        localStorage.setItem('stardew:facebookNotification', true);
-        $('.facebook-notification').hide();
-        $('.count-report-notification').css('top', 10);
-    });
-
-    $('.hide-patreon-notification').click(function (e) {
-        localStorage.setItem('stardew:patreonNotification', true);
-        $('.patreon-notification').hide();
-        $('.count-report-notification').css('top', 10);
-    });
-
     $('.hide-render-notification').click(function (e) {
         $('.render-notification').hide();
     });
