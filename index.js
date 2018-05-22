@@ -25,6 +25,10 @@ app.use((req, res, next) => {
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
+app.get('/', (req, res) => {
+    res.redirect('/planner');
+});
+
 // mount api endpoints
 app.use('/api', require('./routes')());
 
