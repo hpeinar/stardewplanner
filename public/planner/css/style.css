@@ -9,6 +9,7 @@ body.dz-drag-hover {
     opacity: .4;
 }
 
+.multiplayer-layover,
 .editor-loader,
 .upload-loader,
 .save-loader {
@@ -33,6 +34,24 @@ body.dz-drag-hover {
     width: 400px;
     height: 196px;
     top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.multiplayer-layover .content {
+    position: absolute;
+    text-align: center;
+    margin: 0 auto 0 auto;
+    width: 600px;
+    height: 196px;
+    font-size: 16px;
+    top: 35%;
     left: 50%;
     margin-right: -50%;
     -webkit-transform: translate(-50%, -50%);

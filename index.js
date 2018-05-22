@@ -42,36 +42,59 @@ app.get('/heartbeat', (req, res) => {
 app.use(express.static('./public'));
 app.use('/planner/:id', express.static('./public/planner'));
 
+
+let availableRooms = ['trusty'];
 io.on('connection', function(socket) {
-  socket.broadcast.emit('join', {
-    socketId: socket.id
-  });
+  socket.on('join_room', function (data, fn) {
+    console.log('socket trying room join', data);
 
-  // make other sockets join this new socket
-  io.of('/').clients((err, sockets) => {
-    sockets.forEach((sId) => {
-      if (sId !== socket.id) {
-        socket.emit('join', {
-          socketId: sId
+    if (availableRooms.includes(data.room_name.toLowerCase())) {
+      const roomName = data.room_name;
+
+      io.of('/').in(roomName).clients((error, clients) => {
+        if (clients.length > 3) {
+          fn('full');
+          return;
+        }
+
+        socket.join(data.room_name.toLowerCase(), () => {
+          fn('success');
+
+          socket.broadcast.emit('join', {
+            socketId: socket.id
+          });
+
+          // make other sockets join this new socket
+          io.of('/').in(roomName).clients((err, sockets) => {
+            sockets.forEach((sId) => {
+              if (sId !== socket.id) {
+                socket.emit('join', {
+                  socketId: sId
+                });
+              }
+            });
+
+            // if new socket is in index 0 of the socket list, it is the only socket and thus the "master"
+            if (sockets[0] !== socket.id) {
+              io.of('/').in(roomName).connected[sockets[0]].emit('synchronization_request');
+            }
+          });
+
+          ['synchronize', 'move_helpers', 'draw_tile', 'place_building', 'remove_building'].forEach(event => {
+            socket.on(event, data => {
+              console.log('EMITTING', event);
+              socket.to(roomName).broadcast.emit(event, Object.assign(data, {socketId: socket.id}));
+            });
+          });
+
+          socket.on('disconnect', function () {
+            socket.to(roomName).broadcast.emit('leave', socket.id);
+          });
         });
-      }
-    });
-
-    // if new socket is in index 0 of the socket list, it is the only socket and thus the "master"
-    if (sockets[0] !== socket.id) {
-      io.of('/').connected[sockets[0]].emit('synchronization_request');
+      });
+    } else {
+      fn('failed');
     }
-  });
-
-  ['synchronize','move_helpers','draw_tile','place_building','remove_building'].forEach(event => {
-    socket.on(event, data => {
-      console.log('EMITTING', event);
-      socket.broadcast.emit(event, Object.assign(data, { socketId: socket.id }));
-    });
-  });
-
-  socket.on('disconnect', function () {
-    socket.broadcast.emit('leave', socket.id);
   });
 });
 

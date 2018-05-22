@@ -175,6 +175,33 @@ $().ready(function () {
         });
     });
 
+    $('#join').submit(function (e) {
+        e.preventDefault();
+
+        $('.multiplayer-layover .content').hide();
+        $('.multiplayer-layover .loader').show();
+        $('.multiplayer-layover .multiplayer-error').hide();
+        window.board.socket.emit('join_room', {
+            name: '',
+            room_name: $('#roomID').val()
+        }, (ack) => {
+            if (ack === 'success') {
+                $('.multiplayer-layover').hide();
+            } else {
+                if (ack === 'full') {
+                  $('.multiplayer-error.full').fadeIn(200);
+                } else if (ack === 'error') {
+                  $('.multiplayer-error.general').fadeIn(200);
+                } else {
+                  $('.multiplayer-error.general').fadeIn(200);
+                }
+            }
+
+          $('.multiplayer-layover .content').show();
+          $('.multiplayer-layover .loader').hide();
+        });
+    });
+
     /* Exports to an image file */
     $('#export-image').click(function () {
         replaceImages($('#editor'), function (svg) {
@@ -236,7 +263,7 @@ $().ready(function () {
     /* Clears board */
     $('#reset').click(function () {
         if(window.confirm('Are you sure? You will lose all un-saved progress')) {
-            window.location.href = '/';
+            window.location.href = '/planner/';
         }
     });
 

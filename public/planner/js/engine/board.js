@@ -94,7 +94,6 @@ Board.prototype.listenSocket = function listenSocket (onConnectCb) {
     });
 
     this.socket.on('draw_tile', function (data) {
-        console.log('DRAWING TILE', data);
         that.drawTile.call(that, {
             x: data.x,
             y: data.y,
