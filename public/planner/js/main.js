@@ -12,18 +12,27 @@ $().ready(function () {
     /* Collection for human-readable sprite names */
     var spriteNames = getSpriteNames();
 
-    var planId = window.location.pathname.match(/\/planner\/(.*)\//);
-    if (planId && planId.length && planId.length === 2) {
-        $.get('/api/'+ planId[1], function (data) {
+    $('#loadFarm').submit(function (e) {
+      e.preventDefault();
+
+      if(window.confirm('Are you sure? Everyone in session will lose all un-saved progress')) {
+        $('.editor-loader').show();
+        $.get('/api/'+ $('#farmID').val(), function (data) {
+
+          if (data && data.tiles) {
+            board.clear();
             board.importData(data, function () {
-                loadData(data);
+              board.socket.emit('synchronize', board.exportData(true));
             });
+          }
+          $('.editor-loader').hide();
         }).fail(function () {
-            $('.editor-loader').hide();
+          $('.editor-loader').hide();
         });
-    } else {
-       $('.editor-loader').hide();
-    }
+      }
+    });
+
+    $('.editor-loader').hide();
 
     // notification
     if (checkLocal() && !localStorage.getItem('stardew:facebookNotification')) {
@@ -78,27 +87,8 @@ $().ready(function () {
     });
 
     function loadLayout (layout) {
-        var oldData = board.exportData();
-        showLayoutAlert(layout);
-
-        // clear snapSVG
-        board.R.clear();
-
-        // delete canvas
-        $('#editor').html('');
-
         // init new board with right sizes
-        board = new Board('#editor', layout.width, layout.height);
-        $('#editor,.editor').css({
-            width: layout.width < 1280 ? 1280 : layout.width,
-            height: layout.height < 1040 ? 1040 : layout.height
-        });
-
         board.loadLayout(layout);
-
-        if (oldData) {
-            board.importData(oldData);
-        }
     }
 
     function showLayoutAlert(layout) {
@@ -141,7 +131,7 @@ $().ready(function () {
 
 
         $.ajax({
-            url: '/api/'+ (season ? 'render' : 'save'),
+            url: 'https://stardew.info/api/'+ (season ? 'render' : 'save'),
             data: JSON.stringify(exportData),
             method: 'POST',
             contentType: 'application/json'
@@ -169,7 +159,7 @@ $().ready(function () {
 
             } else {
                 if (data.id) {
-                    window.location.href = '/planner/' + data.id;
+                  window.open('https://stardew.info/planner/'+ data.id);
                 }
             }
         });

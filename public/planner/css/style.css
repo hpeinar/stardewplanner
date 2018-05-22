@@ -48,10 +48,10 @@ body.dz-drag-hover {
     position: absolute;
     text-align: center;
     margin: 0 auto 0 auto;
-    width: 600px;
+    width: 640px;
     height: 196px;
     font-size: 16px;
-    top: 35%;
+    top: 15%;
     left: 50%;
     margin-right: -50%;
     -webkit-transform: translate(-50%, -50%);

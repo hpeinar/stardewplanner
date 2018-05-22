@@ -81,7 +81,6 @@ Board.prototype.listenSocket = function listenSocket (onConnectCb) {
     });
 
     this.socket.on('join', function (data) {
-        console.log('user joined', data);
         that.drawHelpers(data.socketId, data.color, data.name);
     });
 
@@ -118,6 +117,12 @@ Board.prototype.listenSocket = function listenSocket (onConnectCb) {
 
     });
 
+    this.socket.on('change_layout', function (layoutData) {
+      if (layoutData.socketId !== that.selfSocketId) {
+        that.loadLayout(layoutData, layoutData.socketId);
+      }
+    });
+
     this.socket.on('remove_building', function (data) {
       var existingBuilding = that.buildings.find(function (b) {
         return b.uuid === data.uuid;
@@ -129,13 +134,15 @@ Board.prototype.listenSocket = function listenSocket (onConnectCb) {
     });
 
     this.socket.on('synchronize', function (data) {
+    console.log(data);
        if (data.socketId !== that.selfSocketId) {
+           that.clear();
            that.importData(data);
        }
     });
 
     this.socket.on('synchronization_request', function () {
-       that.socket.emit('synchronize', that.exportData());
+       that.socket.emit('synchronize', that.exportData(true));
     });
 
     //TODO: Layout syncing on join
@@ -157,7 +164,7 @@ Board.prototype.cleanUpClient = function cleanUpClient (clientSocketId) {
   }
 };
 
-Board.prototype.loadLayout = function loadLayout (layout) {
+Board.prototype.loadLayout = function loadLayout (layout, socketId) {
     if (this.background) {
         this.background.remove();
     }
@@ -219,6 +226,10 @@ Board.prototype.loadLayout = function loadLayout (layout) {
     }
 
     this.layout = layout;
+
+    if (!socketId) {
+        this.socket.emit('change_layout', layout);
+    }
 };
 
 Board.prototype.toggleGreenhouse = function toggleGreenhouse(forcedState) {
@@ -819,7 +830,6 @@ Board.prototype.drawTile = function drawTile(location, tile, replace, overwritin
             this.tiles[hardY][hardX] = null;
 
             if (erase) {
-                console.log('ERASE ENABLED', erase);
                 return;
             }
         }
@@ -893,7 +903,7 @@ Board.prototype.preDrawSprites = function preDrawSprites() {
 /**
  * Exports data to JSON string
  */
-Board.prototype.exportData = function exportData() {
+Board.prototype.exportData = function exportData(forSocket) {
     var farmData = {
         tiles: [],
         buildings: []
@@ -920,7 +930,13 @@ Board.prototype.exportData = function exportData() {
             return;
         }
 
-        var buildingData = building.convertToData();
+        var buildingData;
+        if (forSocket) {
+          buildingData = building.convertToSocketData();
+        } else {
+          buildingData = building.convertToData();
+        }
+
 
         if (buildingData && buildingData.x && buildingData.y) {
             farmData.buildings.push(buildingData);
@@ -947,7 +963,7 @@ Board.prototype.importData = function importData(data, cb) {
     farmData.buildings.forEach(function (building) {
         // don't import buildings on 0,0
         if (building.x > 0 || building.y > 0) {
-            board.buildings.push(new Building(board, building.type, building.x, building.y))
+            board.buildings.push(new Building(board, building.type, building.x, building.y, false, false, building.uuid))
         }
     });
 

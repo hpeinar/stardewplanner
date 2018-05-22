@@ -229,22 +229,6 @@
                                     <li class="tools"><div class="link switch-layout" data-layout="fishing">Fishing layout</div></li>
                                     <li class="tools"><div class="link switch-layout" data-layout="foraging">Foraging layout</div></li>
                                     <li class="tools"><div class="link switch-layout" data-layout="mining">Mining layout</div></li>
-                                    <li class="tools"><div class="link"><b><u>Interiors:</u></b></div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="greenhouse">Greenhouse</div></li>
-                                    <li class="tools"><div class="link"><b><u>Un-official layouts:</u></b></div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="wonderful-farm-life" title="by taintedwheat & JinxieWinxie">WonderfulFarmLife</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="hill-top-forest" title="by Minnue">Hill-top forest</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="fancy-farm" title="by Williambeepbeep">Fancy farm</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="sv-expansion" title="by tegobash">Stardew Valley Expansion</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="white-farm" title="by Meevers">White Water Farm Map</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="immersive-farm-2" title="by Zander">Immersive Farm 2</div></li>
-                                    <li class="tools"><div class="link"><b><u>Ali's maps:</u></b></div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="alis-farm-map-edit" title="by Mushfae"><img src="/planner/img/alis_avatar.jpg" width="20px" height="20px"> Ali's Farm map edit</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="alis-flower-farm" title="by Mushfae"><img src="/planner/img/alis_avatar.jpg" width="20px" height="20px"> Ali's Flower Farm</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="alis-foraging-map" title="by Mushfae"><img src="/planner/img/alis_avatar.jpg" width="20px" height="20px"> Ali's Foraging Map</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="alis-mountain-map" title="by Mushfae"><img src="/planner/img/alis_avatar.jpg" width="20px" height="20px"> Ali's Mountain Farm</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="secret-forest" title="by Mushfae"><img src="/planner/img/alis_avatar.jpg" width="20px" height="20px"> Ali's Secret Forest Farm</div></li>
-                                    <li class="tools"><a href="#custom-layout"><div class="link"><u>Missing a layout?</u></div></a></li>
                                 </ul>
                             </li>
                             <li class="divider"></li>
@@ -301,11 +285,13 @@
                 <div class="multiplayer-layover">
                     <div class="content">
                         Welcome to multiplayer planner!<br>
-                        To get your own room ID, you need to be a Patron. <a href="https://www.patreon.com/bePatron?c=1239286" target="_blank">You can become one here.</a><br>
+                        To get your own room ID, you need to be a donator and contact me via <a href="mailto:henrikpeinar@gmail.com">email</a> or <a href="https://discord.gg/RRPKc4Z">discord</a><br>
                         If a friend of yours has a room, just ask for the room ID and enter it below<br>
                         <br>
                         If you run into any issues / problems or have suggestions<br>
                         come join us on <a href="https://discord.gg/RRPKc4Z">Stardew Valley discord @hpeinar</a><br>
+                        <br>
+                        There is a info panel below the planner so make sure to read it once connected
                         <br><br>
                         <form id="join">
                             <div class="row" style="margin: 0">
@@ -412,6 +398,29 @@
                 <div class="panel info" id="google" style="text-align: center;">
                     <h3>Stardew Valley merchandise shop!:</h3>
                     <a href="http://blog.chucklefish.org/shop/#Stardew" target="_blank"><img style="margin: auto" src="/planner/img/SDV_merchshopad.png" width="760" height="80" alt="Stardew Valley merchandise shop"></a>
+                </div>
+                <div class="panel info">
+                    <h3>Multiplayer info panel:</h3>
+                    <ul>
+                        <li>Everyone in your room has full control over everything, so plan with people you know</li>
+                        <li>Only official layouts are supported. Changing layout will change layout for everyone in the room</li>
+                        <li>To reset the room, just have everyone disconnect and then join again, it'll start off clean again</li>
+                        <li>To load a saved farm, enter the ID (from URL) of it below. You need to select correct layout yourself after</li>
+                        <li>Room maximum is 4 people. If you want to make "TWITCH PLANNING" happen with 200 people, contact me</li>
+                        <li>Everyone gets one room. If for some reason you need to get a new room, just contact me and I'll assign you one</li>
+                        <li>You can save anytime, it'll open new tab with the saves version in the regular planner</li>
+                    </ul>
+
+                    <form id="loadFarm">
+                        <div class="row" style="margin: 0">
+                            <div class="large-4 columns" style="padding-left: 0;">
+                                <label>Farm ID to load:
+                                    <input type="text" id="farmID" placeholder="ex: wild-cat-55" required maxlength="15" />
+                                </label>
+                                <button type="submit" class="button tiny success" style="margin-top: 15px;">Load farm</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

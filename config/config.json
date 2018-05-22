@@ -16,5 +16,7 @@
     "projectId": "",
     "renderBucket": "",
     "keyFileName": ""
-  }
+  },
+  "validRooms": [],
+  "validSecret": ""
 }

@@ -25,11 +25,6 @@ app.use((req, res, next) => {
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
-// currently nothing is at root, redirect use directly to planner
-// app.get('/', (req, res) => {
-//     res.redirect('/planner');
-// });
-
 // mount api endpoints
 app.use('/api', require('./routes')());
 
@@ -38,23 +33,32 @@ app.get('/heartbeat', (req, res) => {
     res.sendStatus(200);
 });
 
+let socketNameMap = {};
+
+app.get('/online', (req, res) => {
+  io.of('/').clients((error, clients) => {
+    res.json({
+      connected_sockets: clients.length,
+      named_sockets: Object.keys(socketNameMap).length
+    });
+  });
+
+});
+
 // static mounts
 app.use(express.static('./public'));
 app.use('/planner/:id', express.static('./public/planner'));
 
 
-let availableRooms = ['trusty'];
-let socketNameMap = {};
-
 io.on('connection', function(socket) {
   socket.on('join_room', function (data, fn) {
-    console.log('socket trying room join', data);
+    log.info('Socket joining room', data);
 
-    if (availableRooms.includes(data.room_name.toLowerCase())) {
+    if (config.validRooms.includes(data.room_name.toLowerCase())) {
       const roomName = data.room_name;
 
       io.of('/').in(roomName).clients((error, clients) => {
-        if (clients.length > 3) {
+        if (clients.length > 3 || (config.validSecret && config.validSecret === data.secret)) {
           fn('full');
           return;
         }
@@ -81,11 +85,12 @@ io.on('connection', function(socket) {
 
             // if new socket is in index 0 of the socket list, it is the only socket and thus the "master"
             if (sockets[0] !== socket.id) {
+              console.log('emitting sync req');
               io.of('/').in(roomName).connected[sockets[0]].emit('synchronization_request');
             }
           });
 
-          ['synchronize', 'move_helpers', 'draw_tile', 'place_building', 'remove_building'].forEach(event => {
+          ['synchronize', 'move_helpers', 'draw_tile', 'place_building', 'remove_building', 'change_layout'].forEach(event => {
             socket.on(event, data => {
               socket.to(roomName).broadcast.emit(event, Object.assign(data, {socketId: socket.id}));
             });
