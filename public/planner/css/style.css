@@ -939,3 +939,12 @@ ul.submenu li {
 .sprite-icon.yam{
 	background-image: url('/planner/img/tiles/yam.png');
 }
+.sprite-icon.stone-cabin{
+    background-image: url('/planner/img/tiles/stone-cabin.png');
+}
+.sprite-icon.log-cabin{
+    background-image: url('/planner/img/tiles/log-cabin.png');
+}
+.sprite-icon.plank-cabin{
+    background-image: url('/planner/img/tiles/plank-cabin.png');
+}
