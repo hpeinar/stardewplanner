@@ -143,6 +143,12 @@ module.exports = () => {
                     return next();
                 }
 
+                if (!body.url) {
+                    req.log.error(error, body, 'No URL in render body');
+                    res.sendStatus(500);
+                    return next();
+                }
+
                 return db('render')
                   .insert({
                     farm_id: result.insertId,

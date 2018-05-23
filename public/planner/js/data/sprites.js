@@ -471,6 +471,21 @@ var data = {
             "width": 16,
             "height": 16,
             "sprite": "./img/tiles/building-restriction.png"
+        },
+        "stone-cabin": {
+            "width": 5*16,
+            "height": 3*16,
+            "sprite": "./img/tiles/stone-cabin.png"
+        },
+        "plank-cabin": {
+            "width": 5*16,
+            "height": 3*16,
+            "sprite": "./img/tiles/plank-cabin.png"
+        },
+        "log-cabin": {
+            "width": 5*16,
+            "height": 3*16,
+            "sprite": "./img/tiles/log-cabin.png"
         }
     }
 };

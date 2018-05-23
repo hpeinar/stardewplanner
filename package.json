@@ -7,7 +7,7 @@
     "node": ">=4.1.1"
   },
   "dependencies": {
-    "@google-cloud/storage": "^1.4.0",
+    "@google-cloud/storage": "^1.7.0",
     "adm-zip": "^0.4.7",
     "body-parser": "^1.15.0",
     "bunyan": "^1.7.1",
@@ -19,6 +19,7 @@
     "human-readable-ids": "^1.0.1",
     "knex": "^0.12.9",
     "libxmljs": "^0.18.0",
+    "moment": "^2.22.1",
     "mysql": "^2.15.0",
     "request": "^2.75.0",
     "serve-favicon": "^2.3.0",
