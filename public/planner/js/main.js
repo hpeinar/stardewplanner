@@ -76,8 +76,8 @@ $().ready(function () {
         var $dropdown = $('<ul/>', { 'class': 'dropdown' });
         $('.top-bar-section .left').append($('<li/>', { 'class': 'divider'}));
         $('.top-bar-section .left').append($('<li/>', { 'class': 'has-dropdown'}).append(
-          $('<a/>', { href: '#', 'class': 'show-for-xlarge-up', title: tileCategory.name, text: tileCategory.name }),
-          $('<a/>', { href: '#', 'class': 'hide-for-xlarge-up', title: tileCategory.shortName, text: tileCategory.shortName }),
+          $('<a/>', { href: '#', 'class': 'show-for-large-up', title: tileCategory.name, text: tileCategory.name }),
+          $('<a/>', { href: '#', 'class': 'hide-for-large-up', title: tileCategory.shortName, text: tileCategory.shortName }),
           $dropdown
         ));
 
@@ -95,8 +95,8 @@ $().ready(function () {
         var $dropdown = $('<ul/>', { 'class': 'dropdown' });
         $('.top-bar-section .left').append($('<li/>', { 'class': 'divider'}));
         $('.top-bar-section .left').append($('<li/>', { 'class': 'has-dropdown'}).append(
-          $('<a/>', { href: '#', 'class': 'show-for-xlarge-up', title: buildingCategory.name, text: buildingCategory.name }),
-          $('<a/>', { href: '#', 'class': 'hide-for-xlarge-up', title: buildingCategory.shortName, text: buildingCategory.shortName }),
+          $('<a/>', { href: '#', 'class': 'show-for-large-up', title: buildingCategory.name, text: buildingCategory.name }),
+          $('<a/>', { href: '#', 'class': 'hide-for-large-up', title: buildingCategory.shortName, text: buildingCategory.shortName }),
           $dropdown
         ));
 

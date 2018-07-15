@@ -601,3 +601,97 @@ ul.submenu li {
 .sprite-icon.test {
     background-image: url('/planner/img/tiles/test.png');
 }
+
+.sprite-icon.square {
+    background-image: url('/planner/img/tiles/square.png');
+ }
+.sprite-icon.u_1x2 {
+    background-image: url('/planner/img/tiles/1x2.png');
+}
+.sprite-icon.u_2x2 {
+    background-image: url('/planner/img/tiles/2x2.png');
+}
+.sprite-icon.a_castlewall {
+    background-image: url('/planner/img/tiles/a_castlewall.png');
+}
+.sprite-icon.a_castlewalldiag {
+    background-image: url('/planner/img/tiles/a_castlewalldiag.png');
+}
+.sprite-icon.a_castlewallwhorading {
+    background-image: url('/planner/img/tiles/a_castlewallwhorading.png');
+}
+.sprite-icon.c_beehive {
+    background-image: url('/planner/img/tiles/c_beehive.png');
+}
+.sprite-icon.c_brewtank {
+    background-image: url('/planner/img/tiles/c_brewtank.png');
+}
+.sprite-icon.c_cauldron {
+    background-image: url('/planner/img/tiles/c_cauldron.png');
+}
+.sprite-icon.c_coop {
+    background-image: url('/planner/img/tiles/c_coop.png');
+}
+.sprite-icon.c_forgeandanvil {
+    background-image: url('/planner/img/tiles/c_forgeandanvil.png');
+}
+.sprite-icon.c_furnace {
+    background-image: url('/planner/img/tiles/c_furnace.png');
+}
+.sprite-icon.c_herbgarden {
+    background-image: url('/planner/img/tiles/c_herbgarden.png');
+}
+.sprite-icon.c_kiln {
+    background-image: url('/planner/img/tiles/c_kiln.png');
+}
+.sprite-icon.c_lamppost {
+    background-image: url('/planner/img/tiles/c_lamppost.png');
+}
+.sprite-icon.c_oven {
+    background-image: url('/planner/img/tiles/c_oven.png');
+}
+.sprite-icon.c_palisadewall {
+    background-image: url('/planner/img/tiles/c_palisadewall.png');
+}
+.sprite-icon.c_stairs {
+    background-image: url('/planner/img/tiles/c_stairs.png');
+}
+.sprite-icon.c_woodenfence {
+    background-image: url('/planner/img/tiles/c_woodenfence.png');
+}
+.sprite-icon.c_woodengate {
+    background-image: url('/planner/img/tiles/c_woodengate.png');
+}
+.sprite-icon.c_woodenwall {
+    background-image: url('/planner/img/tiles/c_woodenwall.png');
+}
+.sprite-icon.c_woodenwallswstairs {
+    background-image: url('/planner/img/tiles/c_woodenwallswstairs.png');
+}
+.sprite-icon.house {
+    background-image: url('/planner/img/tiles/house.png');
+}
+.sprite-icon.m_angularstonetower {
+    background-image: url('/planner/img/tiles/m_angularstonetower.png');
+}
+.sprite-icon.m_bloomery {
+    background-image: url('/planner/img/tiles/m_bloomery.png');
+}
+.sprite-icon.m_flag {
+    background-image: url('/planner/img/tiles/m_flag.png');
+}
+.sprite-icon.m_stonefence {
+    background-image: url('/planner/img/tiles/m_stonefence.png');
+}
+.sprite-icon.m_stonetower {
+    background-image: url('/planner/img/tiles/m_stonetower.png');
+}
+.sprite-icon.m_stonewall {
+    background-image: url('/planner/img/tiles/m_stonewall.png');
+}
+.sprite-icon.m_stonewallwstairs {
+    background-image: url('/planner/img/tiles/m_stonewallwstairs.png');
+}
+.sprite-icon.m_well {
+    background-image: url('/planner/img/tiles/m_well.png');
+}
