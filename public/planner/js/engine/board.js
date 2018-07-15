@@ -31,6 +31,7 @@ function Board (containerId, width, height) {
     this.restrictionCheck = true;
     this.house = null;
     this.greenhouse = null;
+    this.areas = [];
 
     this.restrictedBuildingArea = null;
     this.restrictedTillingArea = null;
@@ -103,6 +104,20 @@ Board.prototype.loadLayout = function loadLayout (layout) {
         });
     }
 
+    if (layout.areas) {
+        this.areas.forEach(function (area) {
+            area.remove();
+        });
+
+        layout.areas.forEach(function (newArea) {
+            var newAreaPath = this.R.path(newArea.path);
+            newAreaPath.attr({
+              fill: 'none',
+              stroke: newArea.color || 'blue'
+            })
+        }.bind(this));
+    }
+
     if (layout.restrictionPath && !layout.buildingRestrictionPath) {
         layout.buildingRestrictionPath = layout.restrictionPath;
     }
@@ -113,6 +128,10 @@ Board.prototype.loadLayout = function loadLayout (layout) {
         fill: 'none',
         stroke: 'red'
       });
+    }
+
+    if (layout.house) {
+        this.house = new Building(this, 'house', layout.house.x*this.tileSize, layout.house.y*this.tileSize, false, true);
     }
 
     this.layout = layout;

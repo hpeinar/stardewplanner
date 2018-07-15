@@ -40,7 +40,14 @@ var data = {
     }
   ],
   tilesMap: [], // do not edit
-  buildingsMap: {} // do not edit
+  buildingsMap: {
+    "house": {
+      "id": "house",
+      "name": "House",
+      "sprite": "./img/tiles/house.png",
+      "width": 10,
+      "height": 10,
+    }  } // do not edit
 };
 
 // DO NOT EDIT BELOW THIS LINE
