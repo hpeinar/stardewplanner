@@ -869,8 +869,14 @@ Board.prototype.modifiyStuff = function modifyStuff(attr) {
     this.helperY.attr(attr);
     this.helperX.attr(attr);
     this.grid.attr(attr);
-    this.restrictedBuildingArea.attr(attr);
-    this.restrictedTillingArea.attr(attr);
+
+    if (this.restrictedBuildingArea) {
+        this.restrictedBuildingArea.attr(attr);
+    }
+
+    if (this.restrictedTillingArea) {
+        this.restrictedTillingArea.attr(attr);
+    }
 };
 
 /**
