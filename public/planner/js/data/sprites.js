@@ -40,21 +40,21 @@ var data = {
       shortName: "A", // short name for menu, will appear for small screens
       buildings: [
         {
-          "id": "castlewall",
+          "id": "a_castlewall",
           "name": "Castle wall",
           "sprite": "./img/tiles/a_castlewall.png",
           "width": 0,
           "height": 0
         },
         {
-          "id": "castlewalldiag",
+          "id": "a_castlewalldiag",
           "name": "Castle wall diagonal",
           "sprite": "./img/tiles/a_castlewalldiag.png",
           "width": 0,
           "height": 0
         },
         {
-          "id": "castlewallwhorading",
+          "id": "a_castlewallwhorading",
           "name": "Castle wall whorading",
           "sprite": "./img/tiles/a_castlewallwhorading.png",
           "width": 0,

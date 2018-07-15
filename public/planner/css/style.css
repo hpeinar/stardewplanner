@@ -606,10 +606,10 @@ ul.submenu li {
     background-image: url('/planner/img/tiles/square.png');
  }
 .sprite-icon.u_1x2 {
-    background-image: url('/planner/img/tiles/1x2.png');
+    background-image: url('/planner/img/tiles/u_1x2.png');
 }
 .sprite-icon.u_2x2 {
-    background-image: url('/planner/img/tiles/2x2.png');
+    background-image: url('/planner/img/tiles/u_2x2.png');
 }
 .sprite-icon.a_castlewall {
     background-image: url('/planner/img/tiles/a_castlewall.png');
