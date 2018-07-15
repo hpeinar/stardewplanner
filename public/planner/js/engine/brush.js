@@ -29,7 +29,7 @@ function Brush(board) {
     });
 
     // default to road brush
-    this.changeBrush('road');
+    this.changeBrush('test');
 
     return this;
 }

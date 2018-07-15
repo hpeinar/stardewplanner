@@ -9,14 +9,14 @@ function Building(board, id, x, y, dontPlace, disabled) {
     this.R = board.R;
     this.type = id;
     this.typeGroup = id.split('-').pop();
-    this.data = data.buildings[id];
+    this.data = data.buildingsMap[id];
     this.placed = false;
     this.disabled = disabled;
 
     if (!this.data) {
         console.log('Unable to add building, using placeholder ', id);
         id = 'placeholder';
-        this.data = data.buildings[id];
+        this.data = data.buildingsMap[id];
     }
 
     this.sprite = this.R.use(id);

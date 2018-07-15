@@ -12,6 +12,12 @@ $().ready(function () {
     /* Collection for human-readable sprite names */
     var spriteNames = getSpriteNames();
 
+    /* Build menu items */
+    buildMenus(data);
+
+    // call foundation again for the custom menus
+    $(document).foundation();
+
     var planId = window.location.pathname.match(/\/planner\/(.*)\//);
     if (planId && planId.length && planId.length === 2) {
         $.get('/api/'+ planId[1], function (data) {
@@ -63,6 +69,48 @@ $().ready(function () {
             board.importData(oldData);
         }
     }
+
+    // Creates menus for all the sprites in the sprite.js file
+    function buildMenus (spriteDataMap) {
+      spriteDataMap.tiles.forEach(function (tileCategory) {
+        var $dropdown = $('<ul/>', { 'class': 'dropdown' });
+        $('.top-bar-section .left').append($('<li/>', { 'class': 'divider'}));
+        $('.top-bar-section .left').append($('<li/>', { 'class': 'has-dropdown'}).append(
+          $('<a/>', { href: '#', 'class': 'show-for-xlarge-up', title: tileCategory.name, text: tileCategory.name }),
+          $('<a/>', { href: '#', 'class': 'hide-for-xlarge-up', title: tileCategory.shortName, text: tileCategory.shortName }),
+          $dropdown
+        ));
+
+        // <li class="tools brush" data-type="road"><div class="link"><i class="sprite-icon cobblestone"></i>Cobblestone</div></li>
+        tileCategory.tiles.forEach(function(tile) {
+          $dropdown.append($('<li/>', { 'class': 'tools brush', 'data-type': tile}).append(
+            $('<div/>', { 'class': 'link', text: tile}).prepend(
+              $('<i/>', { class: 'sprite-icon '+ tile })
+            )
+          ))
+        });
+      });
+
+      spriteDataMap.buildings.forEach(function (buildingCategory) {
+        var $dropdown = $('<ul/>', { 'class': 'dropdown' });
+        $('.top-bar-section .left').append($('<li/>', { 'class': 'divider'}));
+        $('.top-bar-section .left').append($('<li/>', { 'class': 'has-dropdown'}).append(
+          $('<a/>', { href: '#', 'class': 'show-for-xlarge-up', title: buildingCategory.name, text: buildingCategory.name }),
+          $('<a/>', { href: '#', 'class': 'hide-for-xlarge-up', title: buildingCategory.shortName, text: buildingCategory.shortName }),
+          $dropdown
+        ));
+
+        // <li class="tools building" data-id="apricot"><div class="link"><i class="sprite-icon apricot-tree"></i>Apricot tree</div></li>
+        buildingCategory.buildings.forEach(function (building) {
+          $dropdown.append($('<li/>', { 'class': 'tools building', 'data-id': building.id}).append(
+            $('<div/>', { 'class': 'link', text: building.name}).prepend(
+              $('<i/>', { class: 'sprite-icon '+ building.id })
+            )
+          ))
+        });
+      });
+    }
+
 
 
     /* Saves your epic work */
@@ -270,22 +318,27 @@ $().ready(function () {
     function getSpriteNames() {
         var spriteNames = {};
 
-        data.tiles.forEach(function(tile) {
+        data.tiles.forEach(function (tileCategory) {
+          tileCategory.tiles.forEach(function(tile) {
             var name = $("li[data-type=" + tile + "]").text();
             if (name === '') {
-                name = createSpriteName(tile);
+              name = createSpriteName(tile);
             }
 
             spriteNames[tile] = name;
+          });
         });
-        for (var building in data.buildings) {
-            var name = $("li[data-id=" + building + "]").text();
+
+        data.buildings.forEach(function (buildingCategory) {
+          buildingCategory.buildings.forEach(function (building) {
+            var name = $("li[data-id=" + building.id + "]").text();
             if (name === '') {
-                name = createSpriteName(building);
+              name = createSpriteName(building.id);
             }
 
-            spriteNames[building] = name;
-        }
+            spriteNames[building.id] = name;
+          });
+        });
 
         return spriteNames;
     }

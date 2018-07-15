@@ -715,7 +715,7 @@ Board.prototype.drawGrid = function drawGrid() {
  * Inserts all our sprites to defs
  */
 Board.prototype.preDrawSprites = function preDrawSprites() {
-    data.tiles.forEach(function (tile) {
+    data.tilesMap.forEach(function (tile) {
         var tileImage = this.R.image(Board.toFullPath('img/tiles/'+ tile +'.png'), 0, 0, this.tileSize, this.tileSize);
         tileImage.attr({
             id: tile
@@ -724,8 +724,8 @@ Board.prototype.preDrawSprites = function preDrawSprites() {
         tileImage.toDefs();
     }.bind(this));
 
-    Object.keys(data.buildings).forEach(function (b) {
-        var building = data.buildings[b];
+    Object.keys(data.buildingsMap).forEach(function (b) {
+        var building = data.buildingsMap[b];
         var buildingImage = this.R.image(Board.toFullPath(building.sprite), 0, 0, building.width, building.height);
         buildingImage.attr({
             id: b
