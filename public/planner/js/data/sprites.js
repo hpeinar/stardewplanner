@@ -43,22 +43,22 @@ var data = {
           "id": "a_castlewall",
           "name": "Castle wall",
           "sprite": "./img/tiles/a_castlewall.png",
-          "width": 0,
-          "height": 0
+          "width": 21,
+          "height": 21
         },
         {
           "id": "a_castlewalldiag",
           "name": "Castle wall diagonal",
           "sprite": "./img/tiles/a_castlewalldiag.png",
-          "width": 0,
-          "height": 0
+          "width": 21,
+          "height": 21
         },
         {
           "id": "a_castlewallwhorading",
           "name": "Castle wall whorading",
           "sprite": "./img/tiles/a_castlewallwhorading.png",
-          "width": 0,
-          "height": 0
+          "width": 21,
+          "height": 21
         }
       ]
     },
