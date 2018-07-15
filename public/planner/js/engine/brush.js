@@ -7,7 +7,7 @@
 function Brush(board) {
     this.board = board;
     this.R = board.R;
-    this.rect = this.R.rect(0, 0, 16, 16);
+    this.rect = this.R.rect(0, 0, this.board.tileSize, this.board.tileSize);
 
     this.locked = false;
     this.rect.attr({
@@ -22,8 +22,8 @@ function Brush(board) {
     this.overwriting = false;
     this.type = null;
     // create fill pattern for the bursh we can use to "ghost" the brush
-    this.fillImage = this.R.image(Board.toFullPath('img/tiles/'+ this.type +'.png'), 0 , 0, 16, 16);
-    this.fillGrid = this.fillImage.toPattern(0, 0, 16, 16);
+    this.fillImage = this.R.image(Board.toFullPath('img/tiles/'+ this.type +'.png'), 0 , 0, this.board.tileSize, this.board.tileSize);
+    this.fillGrid = this.fillImage.toPattern(0, 0, this.board.tileSize, this.board.tileSize);
     this.fillGrid.attr({
         id: 'brushFill'
     });
@@ -189,8 +189,8 @@ Brush.prototype.drag = function drag(pos) {
  */
 Brush.prototype.reset = function reset() {
     this.rect.attr({
-        width: 16,
-        height: 16
+        width: this.board.tileSize,
+        height: this.board.tileSize
     });
 };
 

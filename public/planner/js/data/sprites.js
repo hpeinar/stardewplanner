@@ -6,7 +6,7 @@
 
 var data = {
     tiles: [
-        'grass'
+        'test'
     ],
     buildings: {
         // "scarecrow": {

@@ -21,7 +21,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/planner/favicon.ico'));
 
 // currently nothing is at root, redirect use directly to planner
 app.get('/', (req, res) => {

@@ -18,7 +18,7 @@ function Board (containerId, width, height) {
 
     this.width = width;
     this.height = height;
-    this.tileSize = 16;
+    this.tileSize = 8;
     this.tiles = [];
     this.buildings = [];
     this.grid = null;
@@ -115,34 +115,8 @@ Board.prototype.loadLayout = function loadLayout (layout) {
       });
     }
 
-    if (layout.house) {
-        this.house = new Building(this, 'house', layout.house.x*this.tileSize, layout.house.y*this.tileSize, false, true);
-    }
-
-    if (layout.greenhouse) {
-        this.greenhouse = new Building(this, 'greenhouse', layout.greenhouse.x*this.tileSize, layout.greenhouse.y*this.tileSize, false, true);
-    }
-
     this.layout = layout;
 };
-
-Board.prototype.toggleGreenhouse = function toggleGreenhouse(forcedState) {
-    if (!this.layout.greenhouse) {
-        return;
-    }
-
-    var currentGreenhouse = this.greenhouse.type;
-    var newState = (currentGreenhouse == 'greenhouse') ? 'greenhouse-fixed' : 'greenhouse';
-
-    this.greenhouse.remove();
-
-    if (forcedState) {
-        newState = forcedState;
-    }
-
-    this.greenhouse = new Building(this, newState, this.layout.greenhouse.x*this.tileSize, this.layout.greenhouse.y*this.tileSize, false, true);
-};
-
 
 Board.prototype.showHighlights = function showHighlights(type) {
     var board = this;
@@ -486,13 +460,13 @@ Board.prototype.mousemove = function mousemove(e) {
     var snappedPos = Board.normalizePos(e, null, this.tileSize);
     this.positionHelpers[0].attr({
         'text': 'Y: '+ (+snappedPos.y / this.tileSize) +' ('+ (+snappedPos.y) +')',
-        'y': snappedPos.y - 16,
-        'x': snappedPos.x - 3*16
+        'y': snappedPos.y - 16, // not tileSize
+        'x': snappedPos.x - 3*16 // not tileSize
     }).toBack();
     this.positionHelpers[1].attr({
         'text': 'X: '+ (+snappedPos.x / this.tileSize) +' ('+ (+snappedPos.x) +')',
         'y': snappedPos.y,
-        'x': snappedPos.x - 3*16
+        'x': snappedPos.x - 3*16 // not tileSize
     }).toBack();
 
 
@@ -717,7 +691,7 @@ Board.prototype.drawTile = function drawTile(location, tile, replace) {
  * Uses path tag in pattern tag and full width/height rect to fill the grid. Disables mouseEvents on the fill rect
  */
 Board.prototype.drawGrid = function drawGrid() {
-    var oneGridBlock = this.R.path('M 16 0 L 0 0 0 16');
+    var oneGridBlock = this.R.path('M '+ this.tileSize +' 0 L 0 0 0 '+ this.tileSize);
 
     oneGridBlock.attr({
         fill: 'none',
@@ -725,7 +699,7 @@ Board.prototype.drawGrid = function drawGrid() {
         strokeWidth: .5
     });
 
-    var pattern = oneGridBlock.toPattern(0, 0, 16, 16);
+    var pattern = oneGridBlock.toPattern(0, 0, this.tileSize, this.tileSize);
     pattern.attr({
         id: 'grid'
     });

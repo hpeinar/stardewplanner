@@ -598,6 +598,6 @@ ul.submenu li {
 
 
 /** Sprites **/
-/*.sprite-icon.silo {*/
-    /*background-image: url('/planner/img/tiles/silo.png');*/
-/*}*/
+.sprite-icon.test {
+    background-image: url('/planner/img/tiles/test.png');
+}
