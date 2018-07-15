@@ -12,8 +12,8 @@ body.dz-drag-hover {
 .editor-loader,
 .upload-loader,
 .save-loader {
-    width: 1280px;
-    height: 1040px;
+    width: 1010px;
+    height: 1010px;
     position: fixed;
     background-color: #000;
     opacity: 0.9;
@@ -103,7 +103,7 @@ body.dz-drag-hover {
 }
 
 .faq {
-    width: 1280px;
+    width: 1010px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5px;
@@ -401,8 +401,8 @@ ul.submenu li {
     position: relative;
     cursor: pointer;
     margin: 5px auto 0 auto;
-    width: 1280px;
-    height: 1040px;
+    width: 1010px;
+    height: 1010px;
 }
 
 .paypal-blue {

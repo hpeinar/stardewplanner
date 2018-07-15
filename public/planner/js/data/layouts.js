@@ -19,7 +19,7 @@ var layouts = {
             x: 25,
             y: 6
         },
-        width: 1280,
-        height: 1040
+        width: 1010,
+        height: 1010
     }
 };

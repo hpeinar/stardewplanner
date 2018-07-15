@@ -18,7 +18,7 @@ function Board (containerId, width, height) {
 
     this.width = width;
     this.height = height;
-    this.tileSize = 8;
+    this.tileSize = 10;
     this.tiles = [];
     this.buildings = [];
     this.grid = null;
