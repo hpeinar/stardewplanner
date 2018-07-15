@@ -26,52 +26,17 @@ $().ready(function () {
     }
 
     // notification
-    if (checkLocal() && !localStorage.getItem('stardew:facebookNotification')) {
-        $('.facebook-notification').show();
-        $('.count-report-notification').css('top', $('.facebook-notification').height() + 20);
-    }
-
-    if (checkLocal() && !localStorage.getItem('stardew:frontpageNotification')) {
-      $('.front-page-notification').show();
-      $('.count-report-notification').css('top', $('.front-page-notification').height() + 20);
-    }
-
-    if (checkLocal() && !localStorage.getItem('stardew:mpNotification')) {
-      $('.mp-notification').show();
-      $('.count-report-notification').css('top', $('.mp-notification').height() + 20);
-    }
-
-    $('.hide-front-page-notification').click(function (e) {
-      localStorage.setItem('stardew:frontpageNotification', true);
-      $('.front-page-notification').hide();
-      $('.count-report-notification').css('top', 10);
-    });
-
-    $('.hide-facebook-notification').click(function (e) {
-        localStorage.setItem('stardew:facebookNotification', true);
-        $('.facebook-notification').hide();
-        $('.count-report-notification').css('top', 10);
-    });
-
-    $('.hide-mp-notification').click(function (e) {
-        localStorage.setItem('stardew:mpNotification', true);
-        $('.mp-notification').hide();
-        $('.count-report-notification').css('top', 10);
-    });
-
-    $('.hide-render-notification').click(function (e) {
-        $('.render-notification').hide();
-    });
-
     $('.hide-google-notification').click(function (e) {
         $('.google-notification').hide();
     });
 
+    // enable ads notification hiding without any shenanigans
     $('.switch-layout').click(function () {
         var layout = layouts[$(this).data('layout')];
         loadLayout(layout);
     });
 
+    // show more changelog
     $('.show-more-changelog').click(function () {
         $('.show-more-changelog').hide();
         $('.more-changelog').show();
@@ -79,7 +44,6 @@ $().ready(function () {
 
     function loadLayout (layout) {
         var oldData = board.exportData();
-        showLayoutAlert(layout);
 
         board.R.clear();
         board.R.undrag();
@@ -100,21 +64,9 @@ $().ready(function () {
         }
     }
 
-    function showLayoutAlert(layout) {
-        $('.custom-layout-notification').hide();
-        if (!layout.official) {
-            $('.custom-layout-notification').show();
-            $('.layout-author').html(layout.author);
-            $('.layout-name').html((layout.prettyName || layout.name));
-            $('.layout-url').attr('href', layout.url);
-        }
-    }
-
 
     /* Saves your epic work */
     $('#save,.render-farm').click(function (e) {
-
-        var season = $(this).data('season');
 
         e.preventDefault();
 
@@ -123,15 +75,8 @@ $().ready(function () {
         $('.save-loader').show();
         // also add options and highlight states to the save
         exportData.options = {
-            season: season,
             layout: (board.layout.name || 'regular'),
-            highlights: {
-                scarecrow: $('.highlight-scarecrow').hasClass('active'),
-                sprinkler: $('.highlight-sprinkler').hasClass('active'),
-                bee: $('.highlight-bee').hasClass('active'),
-                junimo: $('.highlight-junimo-hut').hasClass('actives')
-            },
-            greenhouse: $('.greenhouse-switch').hasClass('active'),
+            highlights: {},
             coordinates: $('.coordinates').hasClass('active'),
             hidestuff: $('.hide-stuff').hasClass('active'),
             overwriting: $('.brush-overwrite').hasClass('active'),
@@ -140,36 +85,15 @@ $().ready(function () {
 
 
         $.ajax({
-            url: '/api/'+ (season ? 'render' : 'save'),
+            url: '/api/save',
             data: JSON.stringify(exportData),
             method: 'POST',
             contentType: 'application/json'
         }).always(function (data) {
             $('.save-loader').hide();
-
-            if (season) {
-                if (data.status === 'success') {
-                    // in case popup is blocked, open notification
-                    $('.render-notification').show();
-                    $('.render-url').attr('href', data.url);
-                    $('.render-display-url').html(data.url);
-
-                    // this was render
-                    window.open(data.url);
-
-                } else {
-                    if (data.status == 429) {
-                        return alert('Upload.farm is currently rate limited. Please try again in few minutes')
-                    }
-
-                    alert('Upload.farm rendering failed. Please try again in few minutes. If the problem persists, please contact us.');
-
-                }
-
-            } else {
-                if (data.id) {
-                    window.location.href = '/planner/' + data.id;
-                }
+            // TODO: better error handling
+            if (data.id) {
+                window.location.href = '/planner/' + data.id;
             }
         });
     });
@@ -284,10 +208,6 @@ $().ready(function () {
         toggleMenuItem(e, '.hide-stuff', board.showStuff.bind(board), board.hideStuff.bind(board));
     });
 
-    $('.greenhouse-switch').click(function (e) {
-        toggleMenuItem(e, '.greenhouse-switch', board.toggleGreenhouse.bind(board), board.toggleGreenhouse.bind(board));
-    });
-
     $('.coordinates').click(function (e) {
         toggleMenuItem(e, '.coordinates', board.showCoords.bind(board), board.hideCoords.bind(board));
     });
@@ -334,64 +254,7 @@ $().ready(function () {
         board.brush.changeBrush('eraser');
     });
 
-    /* Listens for fileinput change */
-    fileInput.on('change', function (e) {
-        var formData = new FormData();
-        formData.append('file', $(this)[0].files[0]);
-
-        $('.upload-loader').show();
-        $('.upload-progress').html(0);
-
-        $.ajax({
-            url: '/api/import',
-            type: 'POST',
-            data: formData,
-            // http://stackoverflow.com/questions/20095002/how-to-show-progress-bar-while-loading-using-ajax
-            xhr: function() {
-                var xhr = new window.XMLHttpRequest();
-
-                // Upload progress
-                xhr.upload.addEventListener("progress", function(evt){
-                    if (evt.lengthComputable) {
-                        var percentComplete = evt.loaded / evt.total * 100;
-
-                        $('.upload-progress').html(Math.round(percentComplete));
-                    }
-                }, false);
-
-                return xhr;
-            },
-            success: function (data) {
-                if (data.id) {
-                    window.location.href = '/planner/' + data.id;
-                }
-            },
-            cache: false,
-            contentType: false,
-            processData: false
-        }).always(function () {
-            $('.upload-loader').hide();
-        });
-    });
-
-    /* The form for file upload is hidden, if user click on the menu link, "forward" the click to the form */
-    $('#import').click( function(e){
-        e.preventDefault();
-
-        if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
-            alert('The File APIs are not fully supported in this browser.');
-            return;
-        }
-
-        if (!fileInput) {
-            alert("Um, couldn't find the fileinput element.");
-        } else if (!fileInput.files) {
-            $('#fileinput').click();
-        } else if (!fileInput.files[0]) {
-            alert("Please select a file before clicking 'Load'");
-        }
-    });
-
+    // check localstorage items
     function checkLocal() {
         var mod = 'sdv:test';
         try {
@@ -445,14 +308,6 @@ $().ready(function () {
     function loadData(data) {
         // handle switches if new save
         if (data.options) {
-            // highglihts
-            if (data.options.highlights) {
-                toggleMenuItem(null, '.highlight-scarecrow', board.showHighlights.bind(board, 'scarecrow'), board.hideHighlights.bind(board, 'scarecrow'), data.options.highlights.scarecrow);
-                toggleMenuItem(null, '.highlight-sprinkler', board.showHighlights.bind(board, 'sprinkler'), board.hideHighlights.bind(board, 'sprinkler'), data.options.highlights.sprinkler);
-                toggleMenuItem(null, '.highlight-bee', board.showHighlights.bind(board, 'hive'), board.hideHighlights.bind(board, 'hive'), data.options.highlights.bee);
-                toggleMenuItem(null, '.highlight-junimo-hut', board.showHighlights.bind(board, 'hut'), board.hideHighlights.bind(board, 'hut'), data.options.highlights.junimo);
-            }
-
             // other options
             toggleMenuItem(null, '.hide-stuff', board.showStuff.bind(board), board.hideStuff.bind(board), data.options.hidestuff);
             toggleMenuItem(null, '.count-switch', function () { $('.count-report-notification').show(); }, function () { $('.count-report-notification').hide(); }, data.options.objectCount);
@@ -464,11 +319,7 @@ $().ready(function () {
             }, data.options.overwriting);
 
             var layout = layouts[data.options.layout || 'regular'];
-            showLayoutAlert(layout);
             loadLayout(layout);
-
-            // greenhouse is loaded with the layout
-            toggleMenuItem(null, '.greenhouse-switch', board.toggleGreenhouse.bind(board, 'greenhouse-fixed'), board.toggleGreenhouse.bind(board, 'greenhouse'), data.options.greenhouse);
         }
 
 
