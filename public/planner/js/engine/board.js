@@ -113,7 +113,8 @@ Board.prototype.loadLayout = function loadLayout (layout) {
             var newAreaPath = this.R.path(newArea.path);
             newAreaPath.attr({
               fill: 'none',
-              stroke: newArea.color || 'blue'
+              stroke: newArea.color || 'blue',
+              opacity: 0.5
             })
         }.bind(this));
     }
