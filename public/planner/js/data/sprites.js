@@ -7,34 +7,24 @@
 var data = {
   tiles: [
     {
-      name: 'Tiles',
-      shortName: 'T',
+      name: 'Tiles', // category name, will appear in the menu
+      shortName: 'T', // short menu, will appear in the menu for small screens
       tiles: [
-        'test'
+        'test' // tile name, must be same as image file name
       ]
     }
   ],
   buildings: [
     {
-      name: "Buildings",
-      shortName: "V",
+      name: "Buildings", // building category name, will appear in the menu
+      shortName: "V", // short name for menu, will appear for small screens
       buildings: [
         {
-            "id": "test-building",
-            "name": "Test building",
-            "sprite": "./img/tiles/test-building.png",
-            "width": 120,
-            "height": 120,
-            // "highlight": {
-            //     "path": ["M0,64", "L16,64", "L16,48", "L32,48", "L32,32", "L48,32", "L48,16", "L64,16", "L64,0", "L208,0",
-            //         "L208,16", "L224,16", "L224,32", "L240,32", "L240,48", "L256,48", "L256,64", "L272,64", "L272,208",
-            //         "L256,208", "L256,224", "L240,224", "L240,240", "L224,240", "L224,256", "L208,256", "L208,272", "L64,272",
-            //         "L64,256", "L48,256", "L48,240", "L32,240", "L32,224", "L16,224", "L16,208", "L0,208",
-            //         "z"],
-            //     "width": 272,
-            //     "height": 272,
-            //     "color": "#000066"
-            // }
+            "id": "test-building", // building ID, must not contain spaces or other special characters
+            "name": "Test building", // building name in the menu
+            "sprite": "./img/tiles/test-building.png", // image name
+            "width": 120, // width in pixels
+            "height": 120, // height in pixels
         }
       ]
     }
