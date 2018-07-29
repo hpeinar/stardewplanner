@@ -330,6 +330,24 @@ var layouts = {
         width: 2880,
         height: 1792
     },
+    "community-farm": {
+        author: 'SgtPickles',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/2493?pk=&tab=images',
+        name: 'community-farm',
+        prettyName: 'Community Farm',
+        backgroundImage: 'community_farm.jpg',
+        restrictionPath: null,
+      house: {
+        x: 108,
+        y: 20
+      },
+      greenhouse: {
+        x: 60,
+        y: 109
+      },
+      width: 2496,
+      height: 2496
+    },
 
     // inside layouts
     greenhouse: {
