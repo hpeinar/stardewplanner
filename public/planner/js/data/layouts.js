@@ -348,7 +348,76 @@ var layouts = {
       width: 2496,
       height: 2496
     },
-
+	"memory-farm-standard": {
+        author: 'Attitude Rains',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1703?tab=images',
+        name: 'memory-farm-standard',
+        prettyName: 'Memory Farm - Standard',
+        backgroundImage: 'memory_farm_standard.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+      width: 1280,
+      height: 1040
+    },
+	"memory-farm-fishing": {
+        author: 'Attitude Rains',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1703?tab=images',
+        name: 'memory-farm-standard',
+        prettyName: 'Memory Farm - Fishing',
+        backgroundImage: 'memory_farm_fishing.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+      width: 1280,
+      height: 1040
+    },"memory-farm-foraging": {
+        author: 'Attitude Rains',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1703?tab=images',
+        name: 'memory-farm-standard',
+        prettyName: 'Memory Farm - Foraging',
+        backgroundImage: 'memory_farm_foraging.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+      width: 1280,
+      height: 1040
+    },"memory-farm-mining": {
+        author: 'Attitude Rains',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1703?tab=images',
+        name: 'memory-farm-mining',
+        prettyName: 'Memory Farm - Mining',
+        backgroundImage: 'memory_farm_mining.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+      width: 1280,
+      height: 1040
+    },
     // inside layouts
     greenhouse: {
         name: 'greenhouse',
