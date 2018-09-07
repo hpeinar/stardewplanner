@@ -728,6 +728,9 @@ ul.submenu li {
 .sprite-icon.preserves-jar {
     background-image: url('/planner/img/tiles/preserves.png');
 }
+.sprite-icon.tapper {
+    background-image: url('/planner/img/tiles/tapper.png');
+}
 
 /** Terrain **/
 .sprite-icon.grass {

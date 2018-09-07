@@ -267,6 +267,11 @@ var data = {
             "width": 16,
             "height": 16
         },
+        "tapper": {
+            "sprite": "./img/tiles/tapper.png",
+            "width": 16,
+            "height": 16
+        },
         "cherry-tree": {
             "sprite": "./img/tiles/cherry-tree.png",
             "width": 48,
