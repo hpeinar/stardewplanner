@@ -332,7 +332,7 @@ var layouts = {
     },
     "community-farm": {
         author: 'SgtPickles',
-        url: 'https://www.nexusmods.com/stardewvalley/mods/2493?pk=&tab=images',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/2493',
         name: 'community-farm',
         prettyName: 'Community Farm',
         backgroundImage: 'community_farm.jpg',
@@ -348,7 +348,94 @@ var layouts = {
       width: 2496,
       height: 2496
     },
-
+    "farm-extended": {
+        author: 'Forkmaster',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3496',
+        name: 'farm-extended',
+        prettyName: 'Farm Extended',
+        backgroundImage: 'farm_extended.png',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+        width: 1712,
+        height: 1375
+    },
+    "memory-farm-standard": {
+        author: 'Attitude Rains',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1703?tab=images',
+        name: 'memory-farm-standard',
+        prettyName: 'Memory Farm - Standard',
+        backgroundImage: 'memory_farm_standard.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+      width: 1280,
+      height: 1040
+    },
+	  "memory-farm-fishing": {
+        author: 'Attitude Rains',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1703?tab=images',
+        name: 'memory-farm-standard',
+        prettyName: 'Memory Farm - Fishing',
+        backgroundImage: 'memory_farm_fishing.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+      width: 1280,
+      height: 1040
+    },"memory-farm-foraging": {
+        author: 'Attitude Rains',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1703?tab=images',
+        name: 'memory-farm-standard',
+        prettyName: 'Memory Farm - Foraging',
+        backgroundImage: 'memory_farm_foraging.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+      width: 1280,
+      height: 1040
+    },"memory-farm-mining": {
+        author: 'Attitude Rains',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1703?tab=images',
+        name: 'memory-farm-mining',
+        prettyName: 'Memory Farm - Mining',
+        backgroundImage: 'memory_farm_mining.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+      width: 1280,
+      height: 1040
+    },
     // inside layouts
     greenhouse: {
         name: 'greenhouse',

@@ -486,6 +486,11 @@ var data = {
             "width": 5*16,
             "height": 3*16,
             "sprite": "./img/tiles/log-cabin.png"
+        },
+        "shipping-bin": {
+            "width": 2*16,
+            "height": 16,
+            "sprite": "./img/tiles/shipping-bin.png"
         }
     }
 };
