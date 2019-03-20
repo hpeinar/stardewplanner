@@ -332,7 +332,7 @@ var layouts = {
     },
     "community-farm": {
         author: 'SgtPickles',
-        url: 'https://www.nexusmods.com/stardewvalley/mods/2493?pk=&tab=images',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/2493',
         name: 'community-farm',
         prettyName: 'Community Farm',
         backgroundImage: 'community_farm.jpg',
@@ -347,6 +347,24 @@ var layouts = {
       },
       width: 2496,
       height: 2496
+    },
+    "farm-extended": {
+        author: 'Forkmaster',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3496',
+        name: 'farm-extended',
+        prettyName: 'Farm Extended',
+        backgroundImage: 'farm_extended.png',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+        width: 1712,
+        height: 1375
     },
 
     // inside layouts

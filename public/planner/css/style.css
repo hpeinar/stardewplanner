@@ -577,6 +577,7 @@ ul.submenu li {
     -moz-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
 }
+
 @keyframes shimmer2 {
     0% {
         opacity: 0.4;
@@ -633,6 +634,9 @@ ul.submenu li {
 }
 .sprite-icon.shed {
     background-image: url('/planner/img/tiles/shed.png');
+}
+.sprite-icon.shipping-bin {
+    background-image: url('/planner/img/tiles/shipping-bin.png');
 }
 
 /** equipment **/
