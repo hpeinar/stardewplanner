@@ -368,7 +368,7 @@ var layouts = {
     },
     "memory-farm-standard": {
         author: 'Attitude Rains',
-        url: 'https://www.nexusmods.com/stardewvalley/mods/1703?tab=images',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1703',
         name: 'memory-farm-standard',
         prettyName: 'Memory Farm - Standard',
         backgroundImage: 'memory_farm_standard.jpg',
@@ -386,7 +386,7 @@ var layouts = {
     },
 	  "memory-farm-fishing": {
         author: 'Attitude Rains',
-        url: 'https://www.nexusmods.com/stardewvalley/mods/1703?tab=images',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1703',
         name: 'memory-farm-standard',
         prettyName: 'Memory Farm - Fishing',
         backgroundImage: 'memory_farm_fishing.jpg',
@@ -401,9 +401,10 @@ var layouts = {
         },
       width: 1280,
       height: 1040
-    },"memory-farm-foraging": {
+    },
+    "memory-farm-foraging": {
         author: 'Attitude Rains',
-        url: 'https://www.nexusmods.com/stardewvalley/mods/1703?tab=images',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1703',
         name: 'memory-farm-standard',
         prettyName: 'Memory Farm - Foraging',
         backgroundImage: 'memory_farm_foraging.jpg',
@@ -418,9 +419,10 @@ var layouts = {
         },
       width: 1280,
       height: 1040
-    },"memory-farm-mining": {
+    },
+    "memory-farm-mining": {
         author: 'Attitude Rains',
-        url: 'https://www.nexusmods.com/stardewvalley/mods/1703?tab=images',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/1703',
         name: 'memory-farm-mining',
         prettyName: 'Memory Farm - Mining',
         backgroundImage: 'memory_farm_mining.jpg',
@@ -435,6 +437,24 @@ var layouts = {
         },
       width: 1280,
       height: 1040
+    },
+    "capitalist-dream": {
+        author: 'DaisyNiko',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3679',
+        name: 'capitalist-dream',
+        prettyName: 'Capitalist Dream',
+        backgroundImage: 'capitalist-dream.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+      width: 1856,
+      height: 1920
     },
     // inside layouts
     greenhouse: {
