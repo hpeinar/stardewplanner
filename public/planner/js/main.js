@@ -53,7 +53,7 @@ $().ready(function () {
         $('.count-report-notification').css('top', 10);
     });
 
-    $('.hide-mp-notification').click(function (e) {
+    $('.hide-nexus-notification').click(function (e) {
         localStorage.setItem('stardew:nexusNotification', true);
         $('.nexus-notification').hide();
         $('.count-report-notification').css('top', 10);
