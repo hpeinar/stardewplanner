@@ -36,9 +36,9 @@ $().ready(function () {
       $('.count-report-notification').css('top', $('.front-page-notification').height() + 20);
     }
 
-    if (checkLocal() && !localStorage.getItem('stardew:mpNotification')) {
-      $('.mp-notification').show();
-      $('.count-report-notification').css('top', $('.mp-notification').height() + 20);
+    if (checkLocal() && !localStorage.getItem('stardew:nexusNotification')) {
+      $('.nexus-notification').show();
+      $('.count-report-notification').css('top', $('.nexus-notification').height() + 20);
     }
 
     $('.hide-front-page-notification').click(function (e) {
@@ -54,8 +54,8 @@ $().ready(function () {
     });
 
     $('.hide-mp-notification').click(function (e) {
-        localStorage.setItem('stardew:mpNotification', true);
-        $('.mp-notification').hide();
+        localStorage.setItem('stardew:nexusNotification', true);
+        $('.nexus-notification').hide();
         $('.count-report-notification').css('top', 10);
     });
 
