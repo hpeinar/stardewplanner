@@ -456,6 +456,60 @@ var layouts = {
       width: 1856,
       height: 1920
     },
+    "immersive-farm-2-remastered": {
+        author: 'FlashShifter',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3753',
+        name: 'immersive-farm-2-remastered',
+        prettyName: 'Immersive Farm 2 remastered',
+        backgroundImage: 'immersive_farm_2_remastered.jpg',
+        restrictionPath: null,
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 41,
+            y: 41
+        },
+        width: 2608,
+        height: 2495
+    },
+    "bigger-better-hilltop": {
+        author: 'XCube591',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3624',
+        name: 'bigger-better-hilltop',
+        prettyName: 'A Bigger Better Hilltop',
+        backgroundImage: 'better_hilltop.jpg',
+        restrictionPath: null,
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1680,
+        height: 1040
+    },
+    "neat-farm": {
+        author: 'Opalie',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3325',
+        name: 'neat-farm',
+        prettyName: 'Opalie\'s Neat Farm',
+        backgroundImage: 'opalies_neat_farm.jpg',
+        restrictionPath: null,
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1280,
+        height: 1040
+    },
     // inside layouts
     greenhouse: {
         name: 'greenhouse',
