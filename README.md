@@ -5,8 +5,8 @@ Source code of https://stardew.info/planner/
 Henrik Peinar @hpeinar
 
 # Special note
-This project is built with tools offered by [JetBrains](https://www.jetbrains.com)
-<img src="https://stardew.info/planner/img/jetbrains-logo.png" width="250">
+This project is built with tools offered by [JetBrains](https://www.jetbrains.com)     
+![JetBrains](https://stardew.info/planner/img/jetbrains-logo.png)
 
 # How to contribute
 - Make PR
