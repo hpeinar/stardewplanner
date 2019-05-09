@@ -4,6 +4,10 @@ Source code of https://stardew.info/planner/
 # Author
 Henrik Peinar @hpeinar
 
+# Special note
+This project is built with tools offered by [JetBrains](https://www.jetbrains.com)
+<img src="https://stardew.info/planner/img/jetbrains-logo.png" width="250">
+
 # How to contribute
 - Make PR
 - I'll review it and merge if it checks out

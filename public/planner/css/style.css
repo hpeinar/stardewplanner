@@ -655,6 +655,9 @@ ul.submenu li {
 .sprite-icon.chest {
     background-image: url('/planner/img/tiles/chest.png');
 }
+.sprite-icon.wood-sign {
+    background-image: url('/planner/img/tiles/wood-sign.png');
+}
 .sprite-icon.furnace {
     background-image: url('/planner/img/tiles/furnace.png');
 }

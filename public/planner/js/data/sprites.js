@@ -157,6 +157,11 @@ var data = {
             "width": 16,
             "height": 16
         },
+        "wood-sign": {
+            "sprite": "./img/tiles/wood-sign.png",
+            "width": 16,
+            "height": 16
+        },
         "furnace": {
             "sprite": "./img/tiles/furnace.png",
             "width": 16,
