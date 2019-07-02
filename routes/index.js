@@ -16,7 +16,7 @@ const crypto = require('crypto');
 const request = require('request');
 const cors = require('cors');
 const RateLimit = require('express-rate-limit');
-const hri = require('human-readable-ids').hri;
+const greg = require('greg');
 const uploader = require('../lib/uploader');
 
 const limiter = new RateLimit({
@@ -242,7 +242,7 @@ module.exports = () => {
 
     /** Generated unique readable slug for the farm **/
     function uniqueId () {
-        let readableId = hri.random();
+        let readableId = greg.sentence().split(' ').join('-');
         return db.select('id').from('farm').where({slug: readableId}).then((results) => {
             if (results.length) {
                 return uniqueId();
