@@ -149,7 +149,7 @@ var layouts = {
             y: 19
         },
         width: 1280,
-        height: 1040
+        height: 1280
     },
     "wonderful-farm-life": {
         author: 'taintedwheat & JinxieWinxie',
