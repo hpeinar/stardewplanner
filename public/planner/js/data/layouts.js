@@ -142,11 +142,11 @@ var layouts = {
         restrictionPath: [].join(''),
         house: {
             x: 59,
-            y: 5
+            y: 8
         },
         greenhouse: {
             x: 36,
-            y: 19
+            y: 25
         },
         width: 1280,
         height: 1280
