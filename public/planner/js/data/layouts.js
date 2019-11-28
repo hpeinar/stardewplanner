@@ -135,6 +135,22 @@ var layouts = {
         width: 1280,
         height: 1040
     },
+    fourcorners: {
+        name: 'fourcorners',
+        backgroundImage: 'farm_fourcorners.jpg',
+        official: true,
+        restrictionPath: [].join(''),
+        house: {
+            x: 59,
+            y: 5
+        },
+        greenhouse: {
+            x: 36,
+            y: 19
+        },
+        width: 1280,
+        height: 1040
+    },
     "wonderful-farm-life": {
         author: 'taintedwheat & JinxieWinxie',
         url: 'http://community.playstarbound.com/threads/wonderful-farm-life-smapi-version-updated-7-2-now-with-grandpas-memorial-make-your-farm-sick.115384/',
