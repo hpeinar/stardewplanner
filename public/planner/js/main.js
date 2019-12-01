@@ -44,6 +44,7 @@ $().ready(function () {
 
     $('.switch-layout').click(function () {
         var layout = layouts[$(this).data('layout')];
+
         loadLayout(layout);
     });
 
