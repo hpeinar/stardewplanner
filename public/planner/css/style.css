@@ -641,6 +641,9 @@ ul.submenu li {
 .sprite-icon.earth-obelisk {
     background-image: url('/planner/img/tiles/earth-obelisk.png');
 }
+.sprite-icon.desert-obelisk {
+    background-image: url('/planner/img/tiles/desert-obelisk.png');
+}
 .sprite-icon.gold-clock {
     background-image: url('/planner/img/tiles/gold-clock.png');
 }
@@ -652,6 +655,12 @@ ul.submenu li {
 }
 .sprite-icon.shed {
     background-image: url('/planner/img/tiles/shed.png');
+}
+.sprite-icon.shipping-bin {
+    background-image: url('/planner/img/tiles/shipping-bin.png');
+}
+.sprite-icon.fish-pond {
+    background-image: url('/planner/img/tiles/fish-pond .png');
 }
 
 /** equipment **/
@@ -666,6 +675,9 @@ ul.submenu li {
 }
 .sprite-icon.scarecrow {
     background-image: url('/planner/img/tiles/scarecrow.png');
+}
+.sprite-icon.deluxe-scarecrow {
+    background-image: url('/planner/img/tiles/deluxe-scarecrow.png');
 }
 .sprite-icon.chest {
     background-image: url('/planner/img/tiles/chest.png');
@@ -697,6 +709,18 @@ ul.submenu li {
 .sprite-icon.worm-bin {
     background-image: url('/planner/img/tiles/worm-bin.png');
 }
+.sprite-icon.wood-chipper {
+    background-image: url('/planner/img/tiles/wood-chipper.png');
+}
+.sprite-icon.workbench {
+    background-image: url('/planner/img/tiles/workbench.png');
+}
+.sprite-icon.mini-jukebox {
+    background-image: url('/planner/img/tiles/mini-jukebox.png');
+}
+.sprite-icon.meteorite {
+    background-image: url('/planner/img/tiles/meteorite.png');
+}
 
 /** artisan **/
 .sprite-icon.apricot-tree {
@@ -722,6 +746,9 @@ ul.submenu li {
 }
 .sprite-icon.apple-tree {
     background-image: url('/planner/img/tiles/apple.png');
+}
+.sprite-icon.mushroom-tree {
+    background-image: url('/planner/img/tiles/mushroom-tree.png');
 }
 .sprite-icon.pomegranate {
     background-image: url('/planner/img/tiles/pomegranate.png');
@@ -853,6 +880,15 @@ ul.submenu li {
 }
 
 /** Crops **/
+.sprite-icon.giant-cauliflower{
+    background-image: url('/planner/img/tiles/giant-cauliflower.png');
+}
+.sprite-icon.giant-melon{
+    background-image: url('/planner/img/tiles/giant-melon.png');
+}
+.sprite-icon.giant-pumpkin{
+    background-image: url('/planner/img/tiles/giant-pumpkin.png');
+}
 .sprite-icon.blue-jazz{
 	background-image: url('/planner/img/tiles/blue-jazz.png');
 }
@@ -861,6 +897,18 @@ ul.submenu li {
 }
 .sprite-icon.garlic{
 	background-image: url('/planner/img/tiles/garlic.png');
+}
+.sprite-icon.tea{
+    background-image: url('/planner/img/tiles/tea.png');
+}
+.sprite-icon.coffee-bean{
+    background-image: url('/planner/img/tiles/coffee-bean.png');
+}
+.sprite-icon.sweet-gem-berry{
+    background-image: url('/planner/img/tiles/sweet-gem-berry.png');
+}
+.sprite-icon.rice{
+    background-image: url('/planner/img/tiles/rice.png');
 }
 .sprite-icon.green-bean{
 	background-image: url('/planner/img/tiles/green-bean.png');

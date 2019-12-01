@@ -52,6 +52,8 @@ $().ready(function () {
         $('.more-changelog').show();
     });
 
+    $('#importBuildingRestrictions').change(importBuildingRestrictionDataLayer);
+
     function loadLayout (layout) {
         // init new board with right sizes
         board.loadLayout(layout);
@@ -492,5 +494,16 @@ $().ready(function () {
         });
 
         $('.count-report-notification .content').html(str);
+    }
+
+    function importBuildingRestrictionDataLayer (event) {
+        var reader = new FileReader();
+        reader.onload = onReaderLoad;
+        reader.readAsText(event.target.files[0]);
+
+        function onReaderLoad(event){
+            var obj = JSON.parse(event.target.result);
+            window.board.restrictionLayerImport(obj, 'buildable.buildable');
+        }
     }
 });

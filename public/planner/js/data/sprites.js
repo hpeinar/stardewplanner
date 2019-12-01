@@ -69,7 +69,11 @@ var data = {
 		'grape',
 		'pumpkin',
 		'sunflower',
-		'yam'
+		'yam',
+    'rice',
+    'coffee-bean',
+    'tea',
+    'sweet-gem-berry',
     ],
     buildings: {
         "well": {
@@ -97,6 +101,11 @@ var data = {
             "width": 16,
             "height": 16
         },
+        "meteorite": {
+            "sprite": "./img/tiles/meteorite.png",
+            "width": 32,
+            "height": 32
+        },
         "coop": {
             "sprite": "./img/tiles/coop.png",
             "width": 6*16,
@@ -106,6 +115,11 @@ var data = {
             "sprite": "./img/tiles/stable.png",
             "width": 4*16,
             "height": 2*16
+        },
+        "fish-pond": {
+            "sprite": "./img/tiles/fish-pond.png",
+            "width": 3*16,
+            "height": 3*16
         },
         "sprinkler": {
             "sprite": "./img/tiles/sprinkler.png",
@@ -149,7 +163,18 @@ var data = {
                     "z"],
                 "width": 272,
                 "height": 272,
-                "color": "#000066"
+                "color": "rgba(9,205,54,0.51)"
+            }
+        },
+        "deluxe-scarecrow": {
+            "sprite": "./img/tiles/deluxe-scarecrow.png",
+            "width": 16,
+            "height": 16,
+            "highlight": {
+                "path": ["M0,400", "L0,128", "L16,128", "L16,112", "L32,112", "L32,96", "L48,96", "L48,80", "L64,80", "L64,64", "L80,64", "L80,48", "L96,48", "L96,32", "L112,32", "L112,16", "L128,16", "L128,0", "L400,0", "L400,16", "L416,16", "L416,32", "L432,32", "L432,48", "L448,48", "L448,64", "L464,64", "L464,80", "L480,80", "L480,96", "L496,96", "L496,112", "L512,112", "L512,128", "L528,128", "L528,400", "L512,400", "L512,416", "L496,416", "L496,432", "L480,432", "L480,448", "L464,448", "L464,464", "L448,464", "L448,480", "L432,480", "L432,496", "L416,496", "L416,512", "L400,512", "L400,528", "L128,528", "L128,512", "L112,512", "L112,496", "L96,496", "L96,480", "L80,480", "L80,464", "L64,464", "L64,448", "L48,448", "L48,432", "L32,432", "L32,416", "L16,416", "L16,400", "L0,400", "z"],
+                "width": 528,
+                "height": 528,
+                "color": "rgba(9,205,54,0.51)"
             }
         },
         "chest": {
@@ -267,6 +292,21 @@ var data = {
             "width": 16,
             "height": 16
         },
+        "wood-chipper": {
+            "sprite": "./img/tiles/wood-chipper.png",
+            "width": 16,
+            "height": 16
+        },
+        "workbench": {
+            "sprite": "./img/tiles/workbench.png",
+            "width": 16,
+            "height": 16
+        },
+        "mini-jukebox": {
+            "sprite": "./img/tiles/mini-jukebox.png",
+            "width": 16,
+            "height": 16
+        },
         "cherry-tree": {
             "sprite": "./img/tiles/cherry-tree.png",
             "width": 48,
@@ -292,6 +332,11 @@ var data = {
             "width": 48,
             "height": 48
         },
+        "mushroom-tree": {
+            "sprite": "img/tiles/mushroom-tree.png",
+            "width": 48,
+            "height": 48
+        },
         "apple": {
             "sprite": "img/tiles/apple.png",
             "width": 48,
@@ -309,6 +354,21 @@ var data = {
         },
         "pomegranate": {
             "sprite": "img/tiles/pomegranate.png",
+            "width": 48,
+            "height": 48
+        },
+        "giant-cauliflower": {
+            "sprite": "img/tiles/giant-cauliflower.png",
+            "width": 48,
+            "height": 48
+        },
+        "giant-melon": {
+            "sprite": "img/tiles/giant-melon.png",
+            "width": 48,
+            "height": 48
+        },
+        "giant-pumpkin": {
+            "sprite": "img/tiles/giant-pumpkin.png",
             "width": 48,
             "height": 48
         },
@@ -333,7 +393,7 @@ var data = {
                     "L64,128", "L48,128", "L48,112", "L32,112", "L32,96", "L16,96", "L16,80", "L0,80", "z"],
                 "width": 176,
                 "height": 144,
-                "color": "#fff444"
+                "color": "rgba(255,244,68,0.8)"
             }
         },
         "torch": {
@@ -435,6 +495,11 @@ var data = {
             "width": 3*16,
             "height": 3*16,
             "sprite": "./img/tiles/water-obelisk.png"
+        },
+        'desert-obelisk': {
+            "width": 3*16,
+            "height": 3*16,
+            "sprite": "./img/tiles/desert-obelisk.png"
         },
         'gold-clock': {
             "width": 3*16,

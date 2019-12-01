@@ -984,6 +984,26 @@ Board.prototype.importData = function importData(data, cb) {
 };
 
 /**
+ * Used to import restriction layers from SMAPI 3.0
+ *
+ *
+ * @param restrictionLayerData
+ * @param importLayerName
+ */
+Board.prototype.restrictionLayerImport = function restrictionLayerImport(restrictionLayerData, importLayerName) {
+    var board = this;
+    console.log('importing restriction layer', restrictionLayerData, importLayerName);
+    var dataLayerTiles = restrictionLayerData[importLayerName].Tiles;
+
+    dataLayerTiles.forEach(function (restrictionTile) {
+        var location = restrictionTile.split(',');
+        var x = location[0] * board.tileSize;
+        var y = location[1] * board.tileSize;
+        board.placeBuilding('placeholder', new Building(board, 'placeholder', x, y), x, y);
+    });
+};
+
+/**
  * Clears the board
  */
 Board.prototype.clear = function clear() {
