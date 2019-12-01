@@ -57,6 +57,7 @@
                                     <li class="tools building" data-id="stone-cabin"><div class="link"><i class="sprite-icon stone-cabin"></i>Stone cabin</div></li>
                                     <li class="tools building" data-id="plank-cabin"><div class="link"><i class="sprite-icon plank-cabin"></i>Plank cabin</div></li>
                                     <li class="tools building" data-id="log-cabin"><div class="link"><i class="sprite-icon log-cabin"></i>Log cabin</div></li>
+                                    <li class="tools building" data-id="shipping-bin"><div class="link"><i class="sprite-icon shipping-bin"></i>Shipping bin</div></li>
                                 </ul>
                             </li>
                             <li class="divider"></li>
@@ -248,6 +249,7 @@
                                     <li class="tools"><div class="link switch-layout" data-layout="fishing">Fishing layout</div></li>
                                     <li class="tools"><div class="link switch-layout" data-layout="foraging">Foraging layout</div></li>
                                     <li class="tools"><div class="link switch-layout" data-layout="mining">Mining layout</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-layout="fourcorners">Four Corners layout</div></li>
                                 </ul>
                             </li>
                             <li class="divider"></li>
@@ -301,8 +303,8 @@
                 <!-- MP layover -->
                 <div class="multiplayer-layover">
                     <div class="content">
-                        Welcome to multiplayer planner!<br>
-                        To get your own room ID, you need to be a donator and contact me via <a href="mailto:henrikpeinar@gmail.com">email</a> or <a href="https://discord.gg/RRPKc4Z">discord</a><br>
+                        Welcome to Multiplanner!<br>
+                        To get your own room ID, you need to be a donator, then contact me via <a href="mailto:henrikpeinar@gmail.com">email</a> or <a href="https://discord.gg/RRPKc4Z">discord</a><br>
                         If a friend of yours has a room, just ask for the room ID and enter it below<br>
                         <br>
                         If you run into any issues / problems or have suggestions<br>
@@ -395,7 +397,7 @@
                 </div>
                 <div class="panel info" id="google" style="text-align: center;">
                     <h3>Stardew Valley merchandise shop!:</h3>
-                    <a href="http://blog.chucklefish.org/shop/#Stardew" target="_blank"><img style="margin: auto" src="/planner/img/SDV_merchshopad.png" width="760" height="80" alt="Stardew Valley merchandise shop"></a>
+                    <a href="https://www.stardewvalley.net/shop/" target="_blank"><img style="margin: auto" src="https://www.stardewvalley.net/wp-content/uploads/2018/12/Item_Shop_logo.png" width="387" height="72" alt="Stardew Valley merchandise shop"></a>
                 </div>
                 <div class="panel info">
                     <h3>Multiplayer info panel:</h3>
@@ -415,7 +417,7 @@
                         <div class="row" style="margin: 0">
                             <div class="large-4 columns" style="padding-left: 0;">
                                 <label>Farm ID to load:
-                                    <input type="text" id="farmID" placeholder="ex: wild-cat-55" required maxlength="15" />
+                                    <input type="text" id="farmID" placeholder="ex: wild-cat-55" required maxlength="30" />
                                 </label>
                                 <button type="submit" class="button tiny success" style="margin-top: 15px;">Load farm</button>
                             </div>
@@ -427,7 +429,7 @@
     </div>
 
     <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="/planner/vendor/jquery.min.js"></script>
     <!-- raphael -->
     <script type="text/javascript" src="/planner/vendor/snap.svg-min.js"></script>
 
