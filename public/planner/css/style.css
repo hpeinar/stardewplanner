@@ -695,7 +695,7 @@ ul.submenu li {
     background-image: url('/planner/img/tiles/crystal.png');
 }
 .sprite-icon.slime-egg {
-    background-image: url('/planner/img/tiles/slime-hutch.png');
+    background-image: url('/planner/img/tiles/egg-press.png');
 }
 .sprite-icon.lighting-rod {
     background-image: url('/planner/img/tiles/lighting-rod.png');
@@ -840,6 +840,9 @@ ul.submenu li {
 }
 .sprite-icon.wood-floor {
     background-image: url('/planner/img/tiles/wood-floor.png');
+}
+.sprite-icon.brick-floor {
+    background-image: url('/planner/img/tiles/brick-floor.png');
 }
 .sprite-icon.straw-floor {
     background-image: url('/planner/img/tiles/straw-floor.png');

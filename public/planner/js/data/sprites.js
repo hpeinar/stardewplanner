@@ -27,6 +27,7 @@ var data = {
         'crystal-path',
         'gravel-path',
         'wood-floor',
+        'brick-floor',
         'straw-floor',
         'weathered-floor',
         'stone-floor',
@@ -488,17 +489,17 @@ var data = {
         },
         'earth-obelisk': {
             "width": 3*16,
-            "height": 3*16,
+            "height": 2*16,
             "sprite": "./img/tiles/earth-obelisk.png"
         },
         'water-obelisk': {
             "width": 3*16,
-            "height": 3*16,
+            "height": 2*16,
             "sprite": "./img/tiles/water-obelisk.png"
         },
         'desert-obelisk': {
             "width": 3*16,
-            "height": 3*16,
+            "height": 2*16,
             "sprite": "./img/tiles/desert-obelisk.png"
         },
         'gold-clock': {
