@@ -190,7 +190,7 @@
                                     <li class="tools building" data-id="large-stump"><div class="link"><i class="sprite-icon large-stump"></i>Large stump</div></li>
                                     <li class="tools brush" data-type="stone"><div class="link"><i class="sprite-icon stone"></i>Stone</div></li>
                                     <li class="tools brush" data-type="twig"><div class="link"><i class="sprite-icon twig"></i>Twig</div></li>
-                                    <li class="tools brush" data-type="meteorite"><div class="link"><i class="sprite-icon meteorite"></i>Meteorite</div></li>
+                                    <li class="tools building" data-type="meteorite"><div class="link"><i class="sprite-icon meteorite"></i>Meteorite</div></li>
 
                                     <!-- Restriction painting -->
                                     <li class="tools brush" data-type="object-restriction"><div class="link"><i class="sprite-icon object-restriction"></i>Object restriction</div></li>
@@ -244,12 +244,12 @@
                                 <a href="#">Layouts</a>
                                 <ul class="dropdown">
                                     <li class="tools"><div class="link"><b><u>Official layouts:</u></b></div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="regular">Regular layout</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="combat">Combat layout</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="fishing">Fishing layout</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="foraging">Foraging layout</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="mining">Mining layout</div></li>
-                                    <li class="tools"><div class="link switch-layout" data-layout="fourcorners">Four Corners layout</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-official="true" data-layout="regular">Regular layout</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-official="true" data-layout="combat">Combat layout</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-official="true" data-layout="fishing">Fishing layout</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-official="true" data-layout="foraging">Foraging layout</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-official="true" data-layout="mining">Mining layout</div></li>
+                                    <li class="tools"><div class="link switch-layout" data-official="true" data-layout="fourcorners">Four Corners layout</div></li>
                                     <li class="tools"><div class="link"><b><u>Interiors:</u></b></div></li>
                                     <li class="tools"><div class="link switch-layout" data-layout="greenhouse">Greenhouse</div></li>
                                     <li class="tools parent"><div class="link"><b><u>Un-official layouts:</u></b></div></li>
@@ -305,11 +305,11 @@
                             <li class="has-dropdown">
                                 <a class="export-image-icon" href="#"><i class="fa fa-image fa-2x side-nav-icon" title="Export to image file"></i></a>
                                 <ul class="dropdown">
-                                    <li class="tools"><div class="link render-farm" data-season="spring">Render in spring</div></li>
-                                    <li class="tools"><div class="link render-farm" data-season="winter">Render in winter</div></li>
-                                    <li class="tools"><div class="link render-farm" data-season="summer">Render in summer</div></li>
-                                    <li class="tools"><div class="link render-farm" data-season="fall">Render in fall</div></li>
-                                    <li><a id="uploadFarm" href="https://upload.farm/" target="_blank" class="powered-by">powered by upload.farm</a></li>
+                                    <li class="tools"><div class="link render-farm hide-with-modded" data-season="spring">Render in spring</div></li>
+                                    <li class="tools"><div class="link render-farm hide-with-modded" data-season="winter">Render in winter</div></li>
+                                    <li class="tools"><div class="link render-farm hide-with-modded" data-season="summer">Render in summer</div></li>
+                                    <li class="tools"><div class="link render-farm hide-with-modded" data-season="fall">Render in fall</div></li>
+                                    <li><a id="uploadFarm" href="https://upload.farm/" target="_blank" class="powered-by hide-with-modded">powered by upload.farm</a></li>
                                     <li class="divider"></li>
                                     <li class="tools"><div id="export-image" class="link ">Save plan as picture</div></li>
                                 </ul>
@@ -410,6 +410,7 @@
                     <h3>Changelog:</h3>
                     <b>01st Dec 2019</b>
                     <ul>
+                        <li>When selecting modded map, render options are now hidden to cause less confusion</li>
                         <li>Added: Fish pond, All four giant crops, Meteorite, Coffee, Tea, Rice, Deluxe Scarecrow, Mushroom tree, Wood chipper, workbench, mini-jukebox, desert obelisk</li>
                     </ul>
                     <b>28th Nov 2019</b>
@@ -751,13 +752,13 @@
 
     <!-- local js -->
     <script type="text/javascript" src="/planner/js/data/sprites.js?v=09052019"></script>
-    <script type="text/javascript" src="/planner/js/data/layouts.js?v=01122019"></script>
+    <script type="text/javascript" src="/planner/js/data/layouts.js?v=01122019-2"></script>
 
     <script type="text/javascript" src="/planner/js/engine/building.js?v=09052019"></script>
     <script type="text/javascript" src="/planner/js/engine/brush.js?v=09052019"></script>
     <script type="text/javascript" src="/planner/js/engine/board.js?v=09052019"></script>
 
-    <script type="text/javascript" src="/planner/js/main.js?v=22032019"></script>
+    <script type="text/javascript" src="/planner/js/main.js?v=01122019"></script>
 
     <script>
         $(document).foundation();

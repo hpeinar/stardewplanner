@@ -69,6 +69,7 @@ $().ready(function () {
 
     $('.switch-layout').click(function () {
         var layout = layouts[$(this).data('layout')];
+
         loadLayout(layout);
     });
 
@@ -80,6 +81,14 @@ $().ready(function () {
     $('#importBuildingRestrictions').change(importBuildingRestrictionDataLayer);
 
     function loadLayout (layout) {
+        var layoutItem = $('[data-layout="'+ layout.name +'"]');
+
+        if (layoutItem.data('official')) {
+          $('.hide-with-modded').show();
+        } else {
+          $('.hide-with-modded').hide();
+        }
+
         var oldData = board.exportData();
         showLayoutAlert(layout);
 
