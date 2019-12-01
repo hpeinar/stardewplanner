@@ -188,6 +188,11 @@ var data = {
             "width": 16,
             "height": 16
         },
+        "stone-sign": {
+            "sprite": "./img/tiles/stone-sign.png",
+            "width": 16,
+            "height": 16
+        },
         "furnace": {
             "sprite": "./img/tiles/furnace.png",
             "width": 16,
