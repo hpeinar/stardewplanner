@@ -118,8 +118,8 @@ var data = {
         },
         "fish-pond": {
             "sprite": "./img/tiles/fish-pond.png",
-            "width": 3*16,
-            "height": 3*16
+            "width": 5*16,
+            "height": 5*16
         },
         "sprinkler": {
             "sprite": "./img/tiles/sprinkler.png",
