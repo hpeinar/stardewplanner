@@ -57,6 +57,18 @@ $().ready(function () {
 
     function loadLayout (layout) {
         // init new board with right sizes
+        //board = new Board('#editor', layout.width, layout.height);
+        var width = layout.width < 1280 ? 1280 : layout.width;
+        var height = layout.height < 1040 ? 1040 : layout.height;
+
+        board.width = width;
+        board.height = height;
+
+        $('#editor,.editor').css({
+            width: width,
+            height: height
+        });
+
         board.loadLayout(layout);
     }
 

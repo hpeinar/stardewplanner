@@ -118,9 +118,23 @@ Board.prototype.listenSocket = function listenSocket (onConnectCb) {
     });
 
     this.socket.on('change_layout', function (layoutData) {
-      if (layoutData.socketId !== that.selfSocketId) {
-        that.loadLayout(layoutData, layoutData.socketId);
-      }
+        console.log('CHAGING LAYOUT', layoutData);
+        // init new board with right sizes
+        //board = new Board('#editor', layout.width, layout.height);
+        var width = layoutData.width < 1280 ? 1280 : layoutData.width;
+        var height = layoutData.height < 1040 ? 1040 : layoutData.height;
+
+        that.width = width;
+        that.height = height;
+
+        $('#editor,.editor').css({
+            width: width,
+            height: height
+        });
+
+        if (layoutData.socketId !== that.selfSocketId) {
+            that.loadLayout(layoutData, layoutData.socketId, true);
+        }
     });
 
     this.socket.on('remove_building', function (data) {
@@ -134,7 +148,6 @@ Board.prototype.listenSocket = function listenSocket (onConnectCb) {
     });
 
     this.socket.on('synchronize', function (data) {
-    console.log(data);
        if (data.socketId !== that.selfSocketId) {
            that.clear();
            that.importData(data);
@@ -143,6 +156,10 @@ Board.prototype.listenSocket = function listenSocket (onConnectCb) {
 
     this.socket.on('synchronization_request', function () {
        that.socket.emit('synchronize', that.exportData(true));
+
+        setTimeout(function () {
+            that.socket.emit('change_layout', that.layout);
+        }, 10);
     });
 
     //TODO: Layout syncing on join
@@ -164,7 +181,7 @@ Board.prototype.cleanUpClient = function cleanUpClient (clientSocketId) {
   }
 };
 
-Board.prototype.loadLayout = function loadLayout (layout, socketId) {
+Board.prototype.loadLayout = function loadLayout (layout, socketId, resetGrid) {
     if (this.background) {
         this.background.remove();
     }
@@ -227,6 +244,16 @@ Board.prototype.loadLayout = function loadLayout (layout, socketId) {
 
     this.layout = layout;
 
+
+    if (resetGrid) {
+        this.grid.remove();
+        this.drawGrid();
+
+        this.helperX[this.selfSocketId].remove();
+        this.helperY[this.selfSocketId].remove();
+        this.drawHelpers(this.selfSocketId);
+    }
+
     if (!socketId) {
         this.socket.emit('change_layout', layout);
     }
@@ -287,8 +314,8 @@ Board.prototype.drawHelpers = function drawHelpers(socketId, color, name) {
         opacity: (socketId === this.selfSocketId) ? 1 : 0.75
     };
 
-    this.helperX[socketId] = this.R.rect(0, 0, this.width, this.tileSize);
-    this.helperY[socketId] = this.R.rect(0, 0, this.tileSize, this.height);
+    this.helperX[socketId] = this.R.rect(0, 0, this.width * 2, this.tileSize);
+    this.helperY[socketId] = this.R.rect(0, 0, this.tileSize, this.height * 2);
     this.helperName[socketId] = this.R.text(this.tileSize, this.tileSize, (socketId != this.selfSocketId) ? name || socketId : '');
 
     this.helperX[socketId].attr(helperAttr);
