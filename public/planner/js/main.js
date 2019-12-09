@@ -79,6 +79,8 @@ $().ready(function () {
     });
 
     $('#importBuildingRestrictions').change(importBuildingRestrictionDataLayer);
+    $('#importTillableRestrictions').change(importBuildingRestrictionDataLayer);
+    $('#importAccessibilityRestrictions').change(importBuildingRestrictionDataLayer);
 
     function loadLayout (layout) {
         var layoutItem = $('[data-layout="'+ layout.name +'"]');
@@ -526,9 +528,11 @@ $().ready(function () {
         reader.onload = onReaderLoad;
         reader.readAsText(event.target.files[0]);
 
+        var input = document.getElementById(event.target.id);
+
         function onReaderLoad(event){
             var obj = JSON.parse(event.target.result);
-            window.board.restrictionLayerImport(obj, 'buildable.buildable');
+            window.board.restrictionLayerImport(obj, input.dataset.layer);
         }
     }
 });

@@ -43,6 +43,7 @@ function Board (containerId, width, height) {
     this.ghostPath = null; // used for debugging...
     this.ghostPathPoints = []; // used for debugging...
     this.ghosting = false;
+    this.ghostBuildings = [];
 
     this.drawGrid();
     this.drawHelpers();
@@ -336,20 +337,7 @@ Board.prototype.mousedown = function mousedown(e) {
         }
 
         board.ghostPathPoints.push('L'+ pos.x +','+ pos.y);
-
-        if (board.ghostPath) {
-            board.ghostPath.remove();
-        }
-
-        var tempPath = 'M'+ board.ghostPathPoints.join('').substring(1);
-
-        board.ghostPath = board.R.path(tempPath);
-
-        board.ghostPath.attr({
-            fill: 'none',
-            stroke: 'blue',
-            strokeWidth: 3
-        });
+        board.drawGhostPath();
     }
 
     if (board.placingBuilding) {
@@ -388,6 +376,25 @@ Board.prototype.mousedown = function mousedown(e) {
         window.dispatchEvent(new Event('updateCount'));
     }
 };
+
+Board.prototype.drawGhostPath = function drawGhostPath () {
+    var board = this;
+
+    if (board.ghostPath) {
+        board.ghostPath.remove();
+    }
+
+    var tempPath = 'M'+ board.ghostPathPoints.join('').substring(1);
+
+    board.ghostPath = board.R.path(tempPath);
+
+    board.ghostPath.attr({
+        fill: 'none',
+        stroke: 'blue',
+        strokeWidth: 3
+    });
+};
+
 
 /**
  * Checks if element bbox intersects with path
@@ -855,9 +862,14 @@ Board.prototype.restrictionLayerImport = function restrictionLayerImport(restric
 
     dataLayerTiles.forEach(function (restrictionTile) {
         var location = restrictionTile.split(',');
-        var x = location[0] * board.tileSize;
-        var y = location[1] * board.tileSize;
-        board.placeBuilding('placeholder', new Building(board, 'placeholder', x, y), x, y);
+        var x = +location[0] * board.tileSize;
+        var y = +location[1] * board.tileSize;
+
+        if (!board.ghostBuildings[x]) {
+            board.ghostBuildings[x] = [];
+        }
+        var newBuilding = new Building(board, 'placeholder', x, y);
+        board.ghostBuildings[x][y] = newBuilding;
     });
 };
 

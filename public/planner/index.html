@@ -672,9 +672,11 @@
                     </dl>
                 </div>
                 <div class="panel callout radius" id="developer-panel" style="display: none;">
-                    <h3>In case you happen to see this panel, this is used to add new maps to the planner:</h3>
+                    <h3>In case you happen to see this panel, this is used to import data-layers to the planner:</h3>
                     <div>
-                        <input type="file" id="importBuildingRestrictions"/>
+                        Building layer: <input type="file" data-layer="buildable.buildable" id="importBuildingRestrictions"/>
+                        Tillable layer: <input type="file" data-layer="tillable.tillable" id="importTillableRestrictions"/>
+                        Accessibility layer: <input type="file" data-layer="accessible.impassable" id="importAccessibilityRestrictions"/>
                     </div>
                 </div>
                 <div class="panel callout radius" id="custom-layout">
