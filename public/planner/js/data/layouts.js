@@ -396,6 +396,149 @@ var layouts = {
       width: 1280,
       height: 1040
     },
+<<<<<<< HEAD
+=======
+    "capitalist-dream": {
+        author: 'DaisyNiko',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3679',
+        name: 'capitalist-dream',
+        prettyName: 'Capitalist Dream',
+        backgroundImage: 'capitalist-dream.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+      width: 1856,
+      height: 1920
+    },
+    "immersive-farm-2-remastered": {
+        author: 'FlashShifter',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3753',
+        name: 'immersive-farm-2-remastered',
+        prettyName: 'Immersive Farm 2 remastered',
+        backgroundImage: 'immersive_farm_2_remastered.jpg',
+        restrictionPath: null,
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 41,
+            y: 41
+        },
+        width: 2608,
+        height: 2495
+    },
+    "bigger-better-hilltop": {
+        author: 'XCube591',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3624',
+        name: 'bigger-better-hilltop',
+        prettyName: 'A Bigger Better Hilltop',
+        backgroundImage: 'better_hilltop.jpg',
+        restrictionPath: null,
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1680,
+        height: 1040
+    },
+    "neat-farm": {
+        author: 'Opalie',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3325',
+        name: 'neat-farm',
+        prettyName: 'Opalie\'s Neat Farm',
+        backgroundImage: 'opalies_neat_farm.jpg',
+        restrictionPath: null,
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1280,
+        height: 1040
+    },
+    "bigger-standard-farm": {
+        author: 'lillvik',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/2443',
+        name: 'bigger-standard-farm',
+        prettyName: 'lillvik\'s Bigger Standard Farm',
+        backgroundImage: 'bigger_standard_farm.jpg',
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1280,
+        height: 2080
+    },
+    "capitalist-dream-2": {
+        author: 'DaisyNiko',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/4572',
+        name: 'capitalist-dream-2',
+        prettyName: 'DaisyNiko\'s Capitalist Dream 2',
+        backgroundImage: 'capitalist_dream_2.jpg',
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 2000,
+        height: 2496
+    },
+    "more-space-forest": {
+        author: 'SailorDrew',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/2629',
+        name: 'more-space-forest',
+        prettyName: 'SailorDrew\'s More Space Forest',
+        backgroundImage: 'more_space_forest.jpg',
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1280,
+        height: 1040
+    },
+    "omni-farm": {
+        author: 'lambui',
+        url: 'https://github.com/lambui/StardewValleyMod_OmniFarm',
+        name: 'omni-farm',
+        prettyName: 'Lambui\'s OmniFarm',
+        backgroundImage: 'omni_farm.jpg',
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1920,
+        height: 1920
+    },
+>>>>>>> fb3d659... Added 4 new maps
     // inside layouts
     greenhouse: {
         name: 'greenhouse',
