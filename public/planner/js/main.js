@@ -334,14 +334,14 @@ $().ready(function () {
         e.preventDefault();
 
         board.deselectBuilding();
-        board.brush.changeBrush($(this).data('type'));
+        board.brush.changeBrush($(this).data('type'), $(this).data('restriction'));
     });
 
     /* Adds building to the board */
     $('.building').click(function (e) {
         e.preventDefault();
 
-        board.placeBuilding($(this).data('id'));
+        board.placeBuilding($(this).data('id'), $(this).data('restriction'));
     });
 
     /* Switches brush to erase mode */

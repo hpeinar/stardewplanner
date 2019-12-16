@@ -111,7 +111,7 @@ Board.prototype.listenSocket = function listenSocket (onConnectCb) {
                 y: data.y
             });
         } else {
-            let newBuilding = new Building(that, data.type, data.x, data.y, false, false, data.uuid);
+            let newBuilding = new Building(that, data.type, data.x, data.y, false, false, data.uuid, data.restriction);
             that.buildings.push(newBuilding);
         }
 
@@ -375,11 +375,12 @@ Board.prototype.removeBuilding = function removeBuilding(building) {
 /**
  * Starts placing building ("picks" it up)
  * @param id
+ * @param restriction
  * @param building
  * @param x
  * @param y
  */
-Board.prototype.placeBuilding = function placeBuilding(id, building, x, y) {
+Board.prototype.placeBuilding = function placeBuilding(id, restriction, building, x, y) {
     var board = this;
 
     if (building && board.brush.erase) {
@@ -390,7 +391,7 @@ Board.prototype.placeBuilding = function placeBuilding(id, building, x, y) {
 
     if (!building) {
         this.deselectBuilding();
-        building = new Building(this, id, (x || 0), (y || 250), true);
+        building = new Building(this, id, (x || 0), (y || 250), true, undefined, undefined, restriction);
     }
 
     board.brush.changeBrush('select');
@@ -457,7 +458,7 @@ Board.prototype.dragEnd = function dragEnd(e) {
     this.brush.unlock();
 
     // check if rect happens to be inside of restricted area
-    if (!this.restrictionCheck || ($(e.target).data('custom-type') !== 'building' && (!this.brush.type || !this.checkRestriction(this.restrictionMap.tillable, this.brush.rect)))) {
+    if (!this.restrictionCheck || ($(e.target).data('custom-type') !== 'building' && (!this.brush.type || !this.checkRestriction(this.restrictionMap[this.brush.restriction], this.brush.rect)))) {
         this.drawTiles(this.brush.rect, this.brush.type);
     }
 
@@ -502,7 +503,7 @@ Board.prototype.mousedown = function mousedown(e) {
 
     if (board.placingBuilding) {
 
-        if(this.checkRestriction(this.restrictionMap.buildable, this.placingBuilding.sprite)) {
+        if(this.checkRestriction(this.restrictionMap[board.placingBuilding.restriction], this.placingBuilding.sprite)) {
             this.removeBuilding(this.placingBuilding);
             return;
         }
@@ -510,6 +511,7 @@ Board.prototype.mousedown = function mousedown(e) {
         var tileX = pos.x/board.tileSize;
         var tileY = pos.y/board.tileSize;
         var buildingId = board.placingBuilding.type;
+        var buildingRestriction = board.placingBuilding.restriction;
 
         board.placingBuilding.move(pos);
         board.placingBuilding.putDown();
@@ -530,7 +532,7 @@ Board.prototype.mousedown = function mousedown(e) {
 
         if (e.ctrlKey || e.metaKey || e.shiftKey) {
             setTimeout(function () {
-                board.placeBuilding(buildingId, null, pos.x, pos.y);
+                board.placeBuilding(buildingId, buildingRestriction, null, pos.x, pos.y);
             }, 1);
             e.preventDefault();
         } else {
@@ -691,8 +693,7 @@ Board.prototype._checkResitrction = function _checkRestriction (restrictionMap, 
  */
 Board.prototype.mousemove = function mousemove(e) {
     if (this.placingBuilding) {
-        console.log('Checking building restriction');
-        if(this.checkPathRestriction(this.restrictionMap.buildable, this.placingBuilding)) {
+        if(this.checkPathRestriction(this.restrictionMap[this.placingBuilding.restriction], this.placingBuilding)) {
             // sorry, can't build here
             // TODO: I like red. Try to figure out how to use red here
             this.placingBuilding.sprite.attr({
@@ -852,7 +853,7 @@ Board.normalizePos = function normalizePos(e, newTarget, snap) {
  */
 Board.prototype.drawTiles = function drawTiles(area, tile) {
     // first we check path restriction
-    if (this.restrictionCheck && this.brush.type && this.checkPathRestriction(this.restrictionMap.tillable, area)) {
+    if (this.restrictionCheck && this.brush.type && this.checkPathRestriction(this.restrictionMap[this.brush.restriction], area)) {
         return;
     }
 
@@ -1064,7 +1065,7 @@ Board.prototype.importData = function importData(data, cb) {
     farmData.buildings.forEach(function (building) {
         // don't import buildings on 0,0
         if (building.x > 0 || building.y > 0) {
-            board.buildings.push(new Building(board, building.type, building.x, building.y, false, false, building.uuid))
+            board.buildings.push(new Building(board, building.type, building.x, building.y, false, false, building.uuid, building.restriction))
         }
     });
 
