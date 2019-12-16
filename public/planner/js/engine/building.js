@@ -52,10 +52,10 @@ function Building(board, id, x, y, dontPlace, disabled, uuid) {
  */
 Building.prototype.getBBox = function getBBox() {
     return {
-        x: this.sprite.attr('x'),
-        y: this.sprite.attr('y'),
-        width: this.sprite.attr('width'),
-        height: this.sprite.attr('height')
+        x: +this.sprite.attr('x'),
+        y: +this.sprite.attr('y'),
+        width: +this.sprite.attr('width'),
+        height: +this.sprite.attr('height')
     }
 };
 

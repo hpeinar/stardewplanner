@@ -25,10 +25,13 @@ function Board (containerId, width, height) {
     this.layout = null;
     this.background = null;
     this.brush = new Brush(this);
+    this.highlightsState = [];
     this.keepHighlights = [];
     this.placingBuilding = null;
-    this.restrictedPath = null;
     this.restrictionCheck = true;
+    this.restrictionMap = {};
+    this.restrictionHelpers = [];
+    this.dataLayerElements = [];
     this.house = null;
     this.greenhouse = null;
     this.socket = window.socket;
@@ -37,9 +40,6 @@ function Board (containerId, width, height) {
     this.helperX = {};
     this.helperY = {};
     this.helperName = {};
-
-    this.restrictedBuildingArea = null;
-    this.restrictedTillingArea = null;
 
     // load regular layout by default
     this.loadLayout(layouts.regular);
@@ -181,6 +181,41 @@ Board.prototype.cleanUpClient = function cleanUpClient (clientSocketId) {
   }
 };
 
+Board.prototype.loadRestrictionLayers = function loadRestrictionLayers (layoutName) {
+    var board = this;
+
+    return Promise.all([
+        $.getJSON(Board.toFullPath('js/data/layer-information/'+ layoutName +'_accessible.json')),
+        $.getJSON(Board.toFullPath('js/data/layer-information/'+ layoutName +'_buildable.json')),
+        $.getJSON(Board.toFullPath('js/data/layer-information/'+ layoutName +'_tillable.json')),
+    ]).then(function (restrictionLayers) {
+        try {
+            board.restrictionMap.accessible = restrictionLayers[0]['accessible.impassable'].Tiles;
+            board.restrictionMap.buildable = board.mergeRestrictionArrays(restrictionLayers[1]['buildable.not-buildable'].Tiles, board.restrictionMap.accessible);
+            board.restrictionMap.tillable = board.mergeRestrictionArrays(restrictionLayers[2]['tillable.not-tillable'].Tiles.concat(restrictionLayers[2]['tillable.occupied'].Tiles), board.restrictionMap.accessible);
+        } catch (error) {
+            console.error(error, 'While initializing restriction layers');
+            throw 'Problem while loading restriction layers';
+        }
+    }).catch(function (error) {
+        // there was a problem including restriction layers
+        // we'll just ignore the errors and not do restriction checking
+        console.error(error, 'While loading restriction layers');
+        board.restrictionMap = {};
+        this.restrictionCheck = false;
+    });
+};
+
+Board.prototype.mergeRestrictionArrays = function mergeRestrictionArrays (arrayOne, arrayTwo) {
+  arrayTwo.forEach(function (arrayTwoElement) {
+     if (arrayOne.indexOf(arrayTwoElement) === -1) {
+         arrayOne.push(arrayTwoElement);
+     }
+  });
+
+  return arrayOne;
+};
+
 Board.prototype.loadLayout = function loadLayout (layout, socketId, resetGrid) {
     if (this.background) {
         this.background.remove();
@@ -199,40 +234,7 @@ Board.prototype.loadLayout = function loadLayout (layout, socketId, resetGrid) {
         this.greenhouse = null;
     }
 
-    if (this.restrictedBuildingArea) {
-        this.restrictedBuildingArea.remove();
-    }
-
-    if (this.restrictedTillingArea) {
-      this.restrictedTillingArea.remove();
-    }
-
-    this.restrictedPath = null;
-    this.restrictionCheck = false;
-
-    // start adding stuff
-    if (layout.restrictionPath) {
-        this.restrictedPath = layout.restrictionPath;
-        this.restrictionCheck = true;
-        // TODO: actually use correct path
-        this.restrictedTillingArea = this.R.path(this.restrictedPath);
-        this.restrictedTillingArea.attr({
-            fill: 'none',
-            stroke: 'brown'
-        });
-    }
-
-    if (layout.restrictionPath && !layout.buildingRestrictionPath) {
-        layout.buildingRestrictionPath = layout.restrictionPath;
-    }
-
-    if (layout.buildingRestrictionPath) {
-      this.restrictedBuildingArea = this.R.path(layout.buildingRestrictionPath);
-      this.restrictedBuildingArea.attr({
-        fill: 'none',
-        stroke: 'red'
-      });
-    }
+    this.loadRestrictionLayers(layout.name);
 
     if (layout.house) {
         this.house = new Building(this, 'house', layout.house.x*this.tileSize, layout.house.y*this.tileSize, false, true);
@@ -455,7 +457,7 @@ Board.prototype.dragEnd = function dragEnd(e) {
     this.brush.unlock();
 
     // check if rect happens to be inside of restricted area
-    if (!this.restrictionCheck || ($(e.target).data('custom-type') !== 'building' && (!this.brush.type || !this.checkRestriction(this.restrictedTillingArea, this.brush.rect)))) {
+    if (!this.restrictionCheck || ($(e.target).data('custom-type') !== 'building' && (!this.brush.type || !this.checkRestriction(this.restrictionMap.tillable, this.brush.rect)))) {
         this.drawTiles(this.brush.rect, this.brush.type);
     }
 
@@ -500,7 +502,7 @@ Board.prototype.mousedown = function mousedown(e) {
 
     if (board.placingBuilding) {
 
-        if(this.checkRestriction(this.restrictedBuildingArea, this.placingBuilding.sprite)) {
+        if(this.checkRestriction(this.restrictionMap.buildable, this.placingBuilding.sprite)) {
             this.removeBuilding(this.placingBuilding);
             return;
         }
@@ -538,44 +540,86 @@ Board.prototype.mousedown = function mousedown(e) {
     }
 };
 
+Board.prototype.drawGhostPath = function drawGhostPath () {
+    var board = this;
+
+    if (board.ghostPath) {
+        board.ghostPath.remove();
+    }
+
+    var tempPath = 'M'+ board.ghostPathPoints.join('').substring(1);
+
+    board.ghostPath = board.R.path(tempPath);
+
+    board.ghostPath.attr({
+        fill: 'none',
+        stroke: 'blue',
+        strokeWidth: 3
+    });
+};
+
+Board.prototype.drawDataLayer = function drawDataLayer (dataLayer) {
+    var board = this;
+
+    // clear old layers before drawing new
+    board.removeDataLayers();
+
+    if (!dataLayer || !dataLayer.length) {
+        return;
+    }
+
+    dataLayer.forEach(function (dataLayerTile) {
+        var elementPosition = dataLayerTile.split(',').map(function (v) { return +v.trim() });
+        var elementPoint = { x: elementPosition[0] * board.tileSize, y: elementPosition[1] * board.tileSize };
+        var newElement = board.R.paper.rect(elementPoint.x, elementPoint.y, board.tileSize, board.tileSize);
+        newElement.attr({
+            fill: "#ff0000",
+            "fill-opacity": 0.5
+        });
+        board.dataLayerElements.push(newElement);
+    });
+};
+
+Board.prototype.removeDataLayers = function removeDataLayers () {
+    board.dataLayerElements.forEach(function (dataLayerElement) {
+        dataLayerElement.remove();
+    });
+
+    board.dataLayerElements = [];
+};
+
 /**
  * Checks if element bbox intersects with path
  * @param restrictedArea
  * @param element
  * @returns {*}
  */
-Board.prototype.checkPathRestriction = function checkPathRestriction (restrictedArea, element) {
+Board.prototype.checkPathRestriction = function checkPathRestriction (restrictionMap, element) {
     var bb = element.getBBox();
-    // you might ask WHY?! but there is a good reason we down-scale the path here:
-    // we don't want edge-to-edge collisions to be detected, so we make the actual testing path smaller
-    var matrix = (Snap.matrix()).scale(0.98, 0.98, bb.x + bb.width / 2, bb.y + bb.height / 2);
+    var board = this;
+    var points = [];
 
-    // also we're going to draw extra paths for even better collision detection
-    var s = {
-        x: bb.x + 4,
-        y: bb.y + 4,
-        x2: bb.x + bb.width - 4,
-        y2: bb.y + bb.height - 4
-    };
+    if (!this.restrictionCheck || !restrictionMap) {
+        return false;
+    }
 
-    var extraPaths = [
-        ['M'+ s.x, s.y +'L'+ (s.x2), (s.y2) +'z'],
-        ['M'+ (s.x2), (s.y) +'L'+ (s.x), (s.y2) +'z'],
-        ['M'+ (s.x + bb.width / 2) , (s.y) +'L'+ (s.x + bb.width / 2), (s.y2) +'z']
-    ];
-    var transformPath = Snap.path.map(bb.path.toString(), matrix);
-    transformPath += extraPaths.join('');
+    for (var x = bb.x; x < bb.x + bb.width; x += board.tileSize) {
+        for (var y = bb.y; y < bb.y + bb.height; y += board.tileSize) {
+            points.push({ x: x, y: y });
+        }
+    }
 
-    return Snap.path.intersection(restrictedArea, transformPath.toString()).length > 0;
+    return board._checkResitrction(restrictionMap, points);
 };
 
 /**
  * Checks if rect is in restrictionPath or not
- * @param restrictionPath
+ * @param restrictionMap
  * @param rect
  */
-Board.prototype.checkRestriction = function checkRestriction (restrictionPath, rect) {
-    if (!this.restrictionCheck) {
+Board.prototype.checkRestriction = function checkRestriction (restrictionMap, rect) {
+    var board = this;
+    if (!this.restrictionCheck || !restrictionMap) {
         return false;
     }
 
@@ -603,9 +647,42 @@ Board.prototype.checkRestriction = function checkRestriction (restrictionPath, r
         { x: data.x + data.width, y: data.y + data.height}
     ];
 
-    return points.some(function (p) {
-        return Snap.path.isPointInside(restrictionPath, p.x, p.y);
+    return board._checkResitrction(restrictionMap, points);
+};
+
+Board.prototype._checkResitrction = function _checkRestriction (restrictionMap, points) {
+    var board = this;
+    if (board.restrictionHelpers.length) {
+        board.restrictionHelpers.forEach(function (restrictionHelper) {
+            restrictionHelper.remove();
+        });
+
+        board.restrictionHelpers = [];
+    }
+    var restrictPlacement = false;
+
+    points.forEach(function (p) {
+        var normalizedPoint = board.snap(p);
+        var restrictionCheckPoint = normalizedPoint.x / board.tileSize +', '+ normalizedPoint.y / board.tileSize;
+
+        var isPlacementRestricted = restrictionMap.indexOf(restrictionCheckPoint) !== -1;
+
+        // true means that there is a restriction check
+        if (isPlacementRestricted) {
+            var el = board.R.paper.rect(normalizedPoint.x, normalizedPoint.y, board.tileSize, board.tileSize);
+            el.attr({
+                fill: "#ff0000",
+                "fill-opacity": 0.5
+            });
+            board.restrictionHelpers.push(el);
+        }
+
+        if (!restrictPlacement && isPlacementRestricted) {
+            restrictPlacement = isPlacementRestricted;
+        }
     });
+
+    return restrictPlacement;
 };
 
 /**
@@ -614,8 +691,8 @@ Board.prototype.checkRestriction = function checkRestriction (restrictionPath, r
  */
 Board.prototype.mousemove = function mousemove(e) {
     if (this.placingBuilding) {
-
-        if(this.checkRestriction(this.restrictedBuildingArea, this.placingBuilding.getBBox())) {
+        console.log('Checking building restriction');
+        if(this.checkPathRestriction(this.restrictionMap.buildable, this.placingBuilding)) {
             // sorry, can't build here
             // TODO: I like red. Try to figure out how to use red here
             this.placingBuilding.sprite.attr({
@@ -715,7 +792,6 @@ Board.prototype.keydown = function keydown(e) {
 Board.prototype.keyup = function keyup(e) {
     // 'w' for highlights
     if (e.which === 87) {
-
         if (this.highlightsState.indexOf('sprinkler') === -1) {
             this.hideHighlights('sprinkler');
         }
@@ -776,7 +852,7 @@ Board.normalizePos = function normalizePos(e, newTarget, snap) {
  */
 Board.prototype.drawTiles = function drawTiles(area, tile) {
     // first we check path restriction
-    if (this.restrictionCheck && this.brush.type && this.checkPathRestriction(this.restrictedTillingArea, area)) {
+    if (this.restrictionCheck && this.brush.type && this.checkPathRestriction(this.restrictionMap.tillable, area)) {
         return;
     }
 
@@ -1056,6 +1132,8 @@ Board.prototype.clear = function clear() {
     });
 
     this.buildings = [];
+
+    this.removeDataLayers();
 };
 
 /**
@@ -1084,8 +1162,6 @@ Board.prototype.modifiyStuff = function modifyStuff(attr) {
     this.helperY[this.selfSocketId].attr(attr);
     this.helperX[this.selfSocketId].attr(attr);
     this.grid.attr(attr);
-    this.restrictedBuildingArea.attr(attr);
-    this.restrictedTillingArea.attr(attr);
 };
 
 /**
