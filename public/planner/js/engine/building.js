@@ -4,13 +4,14 @@
 
 'use strict';
 
-function Building(board, id, x, y, dontPlace, disabled) {
+function Building(board, id, x, y, dontPlace, disabled, restriction) {
     this.board = board;
     this.R = board.R;
     this.type = id;
     this.typeGroup = id.split('-').pop();
     this.data = data.buildings[id];
     this.placed = false;
+    this.restriction = restriction || 'buildable';
     this.disabled = disabled;
 
     if (!this.data) {
@@ -144,7 +145,7 @@ Building.prototype.mousedown = function mouseodwn(e) {
         setTimeout(function () {
             if (!building.deleted) {
                 building.pickUp();
-                building.board.placeBuilding.call(building.board, null, building);
+                building.board.placeBuilding.call(building.board, null, building, building.restriction);
             }
         }, 100)
     }

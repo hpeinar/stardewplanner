@@ -17,10 +17,12 @@ function Brush(board) {
     });
 
     this.oldType = null;
+    this.oldRestriction = null;
     this.erase = false;
     this.freemode = false;
     this.overwriting = false;
     this.type = null;
+    this.restriction = 'tillable';
     // create fill pattern for the bursh we can use to "ghost" the brush
     this.fillImage = this.R.image(Board.toFullPath('img/tiles/'+ this.type +'.png'), 0 , 0, 16, 16);
     this.fillGrid = this.fillImage.toPattern(0, 0, 16, 16);
@@ -29,7 +31,7 @@ function Brush(board) {
     });
 
     // default to road brush
-    this.changeBrush('road');
+    this.changeBrush('road','accessible');
 
     return this;
 }
@@ -37,9 +39,18 @@ function Brush(board) {
 /**
  * Changes brush type to new
  * @param newType
+ * @param restriction
  */
-Brush.prototype.changeBrush = function changeBrush(newType) {
+Brush.prototype.changeBrush = function changeBrush(newType, restriction) {
     this.oldType = this.type;
+
+    if (restriction) {
+        this.restriction = restriction;
+    } else {
+        this.restriction = 'tillable';
+    }
+
+    this.oldRestriction = this.restriction;
 
     if (newType === 'eraser') {
         this.rect.attr({
@@ -76,7 +87,7 @@ Brush.prototype.changeBrush = function changeBrush(newType) {
  * Restores brush to stored, oldType
  */
 Brush.prototype.restoreBrush = function restoreBrush() {
-    this.changeBrush(this.oldType);
+    this.changeBrush(this.oldType, this.oldRestriction);
 };
 
 /**
@@ -107,7 +118,7 @@ Brush.prototype.move = function move(pos) {
         return;
     }
 
-    if (this.board.restrictionCheck && !this.board.placingBuilding) {
+    if (this.board.restrictionCheck && !this.board.placingBuilding && this.type !== 'select' && this.type !== 'eraser' && this.type) {
         this.checkRestriction();
     }
 
