@@ -141,11 +141,11 @@ Building.prototype.hidehighlight = function () {
 Building.prototype.mousedown = function mouseodwn(e) {
     var building = this;
     if (this.placed) {
-        // nasty timeout but is needed to stop clicking issue
+#        // nasty timeout but is needed to stop clicking issue
         setTimeout(function () {
             if (!building.deleted) {
                 building.pickUp();
-                building.board.placeBuilding.call(building.board, null, building, building.restriction);
+                building.board.placeBuilding.call(building.board, null, building.restriction, building);
             }
         }, 100)
     }
