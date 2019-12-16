@@ -111,6 +111,8 @@ $().ready(function () {
         if (oldData) {
             board.importData(oldData);
         }
+
+        window.board = board;
     }
 
     function showLayoutAlert(layout) {
@@ -323,6 +325,23 @@ $().ready(function () {
         }, function () {
             board.brush.freemode = false;
         });
+    });
+
+    /* Data layer options */
+    $('.building-layer').click(function (e) {
+        board.drawDataLayer(board.restrictionMap.buildable);
+    });
+
+    $('.tillable-layer').click(function (e) {
+        board.drawDataLayer(board.restrictionMap.tillable);
+    });
+
+    $('.accessibility-layer').click(function (e) {
+        board.drawDataLayer(board.restrictionMap.accessible);
+    });
+
+    $('.clear-layer').click(function (e) {
+        board.removeDataLayers();
     });
 
     /* Selects new brush */

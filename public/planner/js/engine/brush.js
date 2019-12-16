@@ -107,7 +107,7 @@ Brush.prototype.move = function move(pos) {
         return;
     }
 
-    if (this.board.restrictionCheck) {
+    if (this.board.restrictionCheck && !this.board.placingBuilding) {
         this.checkRestriction();
     }
 
@@ -119,7 +119,7 @@ Brush.prototype.move = function move(pos) {
 };
 
 Brush.prototype.checkRestriction = function checkRestriction() {
-    if (this.board.checkPathRestriction(this.board.restrictedBuildingArea, this.rect)) {
+    if (this.board.checkPathRestriction(this.board.restrictionMap.tillable, this.rect)) {
         this.rect.attr({
             stroke: 'red',
             strokeDasharray: '5,5'
