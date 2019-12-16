@@ -141,7 +141,7 @@ Building.prototype.hidehighlight = function () {
 Building.prototype.mousedown = function mouseodwn(e) {
     var building = this;
     if (this.placed) {
-#        // nasty timeout but is needed to stop clicking issue
+        // nasty timeout but is needed to stop clicking issue
         setTimeout(function () {
             if (!building.deleted) {
                 building.pickUp();
