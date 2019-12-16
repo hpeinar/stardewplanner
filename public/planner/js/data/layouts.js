@@ -470,6 +470,74 @@ var layouts = {
         width: 1280,
         height: 1040
     },
+    "bigger-standard-farm": {
+        author: 'lillvik',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/2443',
+        name: 'bigger-standard-farm',
+        prettyName: 'lillvik\'s Bigger Standard Farm',
+        backgroundImage: 'bigger_standard_farm.jpg',
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1280,
+        height: 2080
+    },
+    "capitalist-dream-2": {
+        author: 'DaisyNiko',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/4572',
+        name: 'capitalist-dream-2',
+        prettyName: 'DaisyNiko\'s Capitalist Dream 2',
+        backgroundImage: 'capitalist_dream_2.jpg',
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 2000,
+        height: 2496
+    },
+    "more-space-forest": {
+        author: 'SailorDrew',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/2629',
+        name: 'more-space-forest',
+        prettyName: 'SailorDrew\'s More Space Forest',
+        backgroundImage: 'more_space_forest.jpg',
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1280,
+        height: 1040
+    },
+    "omni-farm": {
+        author: 'lambui',
+        url: 'https://github.com/lambui/StardewValleyMod_OmniFarm',
+        name: 'omni-farm',
+        prettyName: 'Lambui\'s OmniFarm',
+        backgroundImage: 'omni_farm.jpg',
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1920,
+        height: 1920
+    },
     // inside layouts
     greenhouse: {
         name: 'greenhouse',
