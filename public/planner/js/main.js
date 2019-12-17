@@ -68,6 +68,8 @@ $().ready(function () {
             width: width,
             height: height
         });
+        $('#editor').attr('width', layout.width < 1280 ? 1280 : layout.width);
+        $('#editor').attr('height', layout.height < 1040 ? 1040 : layout.height);
 
         board.loadLayout(layout);
         window.board = board;
@@ -224,7 +226,7 @@ $().ready(function () {
             canvas.toBlob(function (blob) {
                 var a = $('<a/>')
                     .attr('href', URL.createObjectURL(blob))
-                    .attr('download', 'stardewplanner.png')
+                    .attr('download', 'stardewplanner-' + (new Date()).getTime() +'.png')
                     .appendTo('body');
                 a[0].click();
                 a.remove();
