@@ -109,7 +109,6 @@ module.exports = () => {
                 let farmOptions = {};
                 try {
                   farmOptions = JSON.parse(farm.options);
-                  console.log('FARM OPTIONS', farmOptions);
                 } catch (err) {
                     return farm;
                 }
@@ -265,7 +264,7 @@ module.exports = () => {
 
                     return farm;
                 }).then(farm => {
-                    return storage.bucket(config.google.planBucket).file(uniqueFarmId + '.json').save(jsonFarmData)
+                    return storage.bucket(config.google.planBucket).file(uniqueFarmId + '.json').save(jsonFarmData, { resumable: false })
                       .then(() => {
                           (farmData.options || {}).farmDataStorageFile = uniqueFarmId + '.json';
                           farm.options = JSON.stringify(farmData.options);
