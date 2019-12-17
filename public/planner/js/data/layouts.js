@@ -396,8 +396,6 @@ var layouts = {
       width: 1280,
       height: 1040
     },
-<<<<<<< HEAD
-=======
     "capitalist-dream": {
         author: 'DaisyNiko',
         url: 'https://www.nexusmods.com/stardewvalley/mods/3679',
@@ -538,7 +536,6 @@ var layouts = {
         width: 1920,
         height: 1920
     },
->>>>>>> fb3d659... Added 4 new maps
     // inside layouts
     greenhouse: {
         name: 'greenhouse',
