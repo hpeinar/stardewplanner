@@ -15,6 +15,7 @@
   "google": {
     "projectId": "",
     "renderBucket": "",
+    "planBucket": "",
     "keyFileName": ""
   }
 }
