@@ -12,12 +12,18 @@ const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart({
     maxFieldsSize: '25MB'
 });
+const path = require('path');
 const crypto = require('crypto');
 const request = require('request');
 const cors = require('cors');
 const RateLimit = require('express-rate-limit');
 const greg = require('greg');
 const uploader = require('../lib/uploader');
+
+const storage = require('@google-cloud/storage')({
+    projectId: config.google.projectId,
+    keyFilename: path.join('./config/'+ config.google.keyFileName)
+});
 
 const limiter = new RateLimit({
     windowMs: 15*60*1000, // 15 minutes
@@ -68,7 +74,7 @@ module.exports = () => {
           res.status(500).json({message: 'Failed to list renders'});
         });
     });
-    
+
     app.post('/import', [limiter, cors(), multipartMiddleware],(req, res, next) => {
         if (!req.files || !req.files.file) {
             res.status(500).json({message: 'Missing file'});
@@ -89,12 +95,34 @@ module.exports = () => {
     });
 
     app.get('/:id', (req, res, next) => {
-        db.select('farmData', 'parentId').from('farm').where({slug: req.params.id}).orWhere({oldId: req.params.id})
+        db.select('farmData', 'parentId', 'options').from('farm').where({slug: req.params.id}).orWhere({oldId: req.params.id})
             .then(farm => farm[0])
             .then(farm => {
                 // if farm has parent, show parent
                 if (farm && farm.parentId && farm.parentId > 0) {
-                    return db.select('farmData').from('farm').where({id: farm.parentId});
+                    return db.select('farmData', 'options').from('farm').where({id: farm.parentId});
+                }
+
+                return farm;
+            })
+            .then((farm) => {
+                let farmOptions = {};
+                try {
+                  farmOptions = JSON.parse(farm.options);
+                  console.log('FARM OPTIONS', farmOptions);
+                } catch (err) {
+                    return farm;
+                }
+
+                if (farmOptions && farmOptions.farmDataStorageFile) {
+                    return storage
+                      .bucket(config.google.planBucket)
+                      .file(farmOptions.farmDataStorageFile)
+                      .download()
+                      .then(fileData => {
+                          farm.farmData = fileData;
+                          return farm;
+                      });
                 }
 
                 return farm;
@@ -118,7 +146,8 @@ module.exports = () => {
         return save(req.body).then((result) => {
             res.json({id: result.id});
         }).catch((err) => {
-            req.log.error({err}, 'Failed to save farm, in catch');
+            console.error(err);
+            req.log.error(err, 'Failed to save farm, in catch');
             res.sendStatus(500);
         });
     });
@@ -217,12 +246,14 @@ module.exports = () => {
 
         let jsonFarmData = JSON.stringify(farmData);
         let jsonOptions = JSON.stringify(farmData.options);
+        let uniqueFarmId;
 
         return db.select('id', 'slug').from('farm').where({md5: uniqueHash}).then((results) => {
             if (results.length) {
                 return Promise.resolve({id: results[0].slug, insertId: results[0].id});
             } else {
                 return uniqueId().then((uniqueId) => {
+                    uniqueFarmId = uniqueId;
                     let farm = {
                         slug: uniqueId,
                         md5: uniqueHash,
@@ -232,8 +263,25 @@ module.exports = () => {
                         layout: hashedData.layout
                     };
 
+                    return farm;
+                }).then(farm => {
+                    return storage.bucket(config.google.planBucket).file(uniqueFarmId + '.json').save(jsonFarmData)
+                      .then(() => {
+                          (farmData.options || {}).farmDataStorageFile = uniqueFarmId + '.json';
+                          farm.options = JSON.stringify(farmData.options);
+                          farm.farmData = null;
+
+                          return farm;
+                      })
+                      .catch((err) => {
+                          console.error(err, 'Failed to upload render to google cloud storage');
+                          return farm;
+                      });
+                }).then(farm => {
                     return db('farm').insert(farm).then((insertId) => {
-                        return Promise.resolve({id: uniqueId, insertId: insertId[0]});
+                        return Promise.resolve({id: uniqueFarmId, insertId: insertId[0]});
+                    }).catch(err => {
+                        console.error(err);
                     });
                 });
             }
