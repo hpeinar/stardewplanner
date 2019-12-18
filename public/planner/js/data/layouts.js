@@ -83,7 +83,6 @@ var layouts = {
         name: 'fourcorners',
         backgroundImage: 'farm_fourcorners.jpg',
         official: true,
-        restrictionPath: [].join(''),
         house: {
             x: 59,
             y: 8
@@ -94,6 +93,13 @@ var layouts = {
         },
         width: 1280,
         height: 1280
+    },
+    quarry: {
+        name: 'quarry',
+        backgroundImage: 'quarry.png',
+        official: true,
+        width: 2160,
+        height: 656
     },
     "wonderful-farm-life": {
         author: 'taintedwheat & JinxieWinxie',
@@ -544,11 +550,71 @@ var layouts = {
         prettyName: 'Greenhouse',
         official: true,
         backgroundImage: 'greenhouse.jpg',
-        restrictionPath: [
-            'M0,0L1280,0L1280,1040L0,1040',
-            'M64,160L256,160L256,320L64,320L64,160z'
-        ],
         width: 320,
         height: 384
+    },
+    "barn": {
+        name: 'barn',
+        prettyName: 'barn',
+        official: true,
+        backgroundImage: 'barn.png',
+        width: 288,
+        height: 240
+    },
+    "barn-big": {
+        name: 'barn-big',
+        prettyName: 'Big Barn',
+        backgroundImage: 'barn-big.png',
+        official: true,
+        width: 352,
+        height: 240
+    },
+    "barn-deluxe": {
+        name: 'barn-deluxe',
+        prettyName: 'Deluxe Barn',
+        official: true,
+        backgroundImage: 'barn-deluxe.png',
+        width: 400,
+        height: 240
+    },
+    "coop": {
+        name: 'coop',
+        prettyName: 'Coop',
+        official: true,
+        backgroundImage: 'coop.png',
+        width: 192,
+        height: 160
+    },
+    "coop-big": {
+        name: 'coop-big',
+        prettyName: 'Big Coop',
+        official: true,
+        backgroundImage: 'coop-big.png',
+        width: 256,
+        height: 160
+    },
+    "coop-deluxe": {
+        name: 'coop-deluxe',
+        prettyName: 'Deluxe Coop',
+        official: true,
+        backgroundImage: 'coop-deluxe.png',
+        width: 368,
+        height: 160
+    },
+    "shed": {
+        name: 'shed',
+        prettyName: 'Shed',
+        official: true,
+        backgroundImage: 'shed.png',
+        width: 208,
+        height: 224
+    },
+    "shed-big": {
+        name: 'shed-big',
+        prettyName: 'Big Shed',
+        official: true,
+        backgroundImage: 'shed-big.png',
+        width: 304,
+        height: 272
     }
 };
