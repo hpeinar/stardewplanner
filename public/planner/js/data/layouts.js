@@ -425,7 +425,25 @@ var layouts = {
         url: 'https://www.nexusmods.com/stardewvalley/mods/3753',
         name: 'immersive-farm-2-remastered',
         prettyName: 'Immersive Farm 2 remastered',
-        backgroundImage: 'immersive_farm_2_remastered.jpg',
+        backgroundImage: 'immersive-farm-2-remastered.jpg',
+        restrictionPath: null,
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 41,
+            y: 41
+        },
+        width: 2608,
+        height: 2495
+    },
+    "immersive-farm-2-remastered-no-static": {
+        author: 'FlashShifter',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3753',
+        name: 'immersive-farm-2-remastered-no-static',
+        prettyName: 'Immersive Farm 2 remastered without static elements',
+        backgroundImage: 'immersive-farm-2-remastered-no-static.jpg',
         restrictionPath: null,
         house: {
             x: 59,
