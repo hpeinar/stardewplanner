@@ -95,7 +95,7 @@ module.exports = () => {
     });
 
     app.get('/:id', (req, res, next) => {
-        db.select('farmData', 'parentId', 'options').from('farm').where({slug: req.params.id}).orWhere({oldId: req.params.id})
+        db.select('farmData', 'parentId', 'options', 'slug').from('farm').where({slug: req.params.id}).orWhere({oldId: req.params.id})
             .then(farm => farm[0])
             .then(farm => {
                 // if farm has parent, show parent
@@ -106,25 +106,14 @@ module.exports = () => {
                 return farm;
             })
             .then((farm) => {
-                let farmOptions = {};
-                try {
-                  farmOptions = JSON.parse(farm.options);
-                } catch (err) {
-                    return farm;
-                }
-
-                if (farmOptions && farmOptions.farmDataStorageFile) {
-                    return storage
-                      .bucket(config.google.planBucket)
-                      .file(farmOptions.farmDataStorageFile)
-                      .download()
-                      .then(fileData => {
-                          farm.farmData = fileData;
-                          return farm;
-                      });
-                }
-
-                return farm;
+                return storage
+                  .bucket(config.google.planBucket)
+                  .file(farm.slug +'.json')
+                  .download()
+                  .then(fileData => {
+                      farm.farmData = fileData;
+                      return farm;
+                  });
             })
             .then((farm) => {
                 if (!farm || !farm.farmData) {
@@ -244,7 +233,7 @@ module.exports = () => {
         }
 
         let jsonFarmData = JSON.stringify(farmData);
-        let jsonOptions = JSON.stringify(farmData.options);
+        let jsonOptions = JSON.stringify(cleanObject(farmData.options));
         let uniqueFarmId;
 
         return db.select('id', 'slug').from('farm').where({md5: uniqueHash}).then((results) => {
@@ -266,7 +255,6 @@ module.exports = () => {
                 }).then(farm => {
                     return storage.bucket(config.google.planBucket).file(uniqueFarmId + '.json').save(jsonFarmData, { resumable: false })
                       .then(() => {
-                          (farmData.options || {}).farmDataStorageFile = uniqueFarmId + '.json';
                           farm.options = JSON.stringify(farmData.options);
                           farm.farmData = null;
 
@@ -285,6 +273,29 @@ module.exports = () => {
                 });
             }
         });
+    }
+
+    /**
+     * We're going to exploit JS a bit and just
+     * remove all false values from the objects that are being saved to the DB
+     * This is mainly done to save DB disk space
+     */
+    function cleanObject (incomingObj) {
+        Object.keys(incomingObj).forEach(objectKey => {
+            if (Array.isArray(incomingObj[objectKey])) {
+                return incomingObj;
+            }
+
+            if (incomingObj[objectKey] === false) {
+                delete incomingObj[objectKey];
+            }
+
+            if (typeof incomingObj[objectKey] === 'object' && incomingObj[objectKey] !== null) {
+                incomingObj[objectKey] = cleanObject(incomingObj[objectKey]);
+            }
+        });
+
+        return incomingObj;
     }
 
     /** Generated unique readable slug for the farm **/

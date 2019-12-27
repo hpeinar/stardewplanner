@@ -479,6 +479,10 @@ $().ready(function () {
     function loadData(data) {
         // handle switches if new save
         if (data.options) {
+            var layout = layouts[data.options.layout || 'regular'];
+            showLayoutAlert(layout);
+            loadLayout(layout);
+
             // highglihts
             if (data.options.highlights) {
                 toggleMenuItem(null, '.highlight-scarecrow', board.showHighlights.bind(board, 'scarecrow'), board.hideHighlights.bind(board, 'scarecrow'), data.options.highlights.scarecrow);
@@ -496,10 +500,6 @@ $().ready(function () {
             }, function () {
                 board.brush.overwriting = false;
             }, data.options.overwriting);
-
-            var layout = layouts[data.options.layout || 'regular'];
-            showLayoutAlert(layout);
-            loadLayout(layout);
 
             // greenhouse is loaded with the layout
             toggleMenuItem(null, '.greenhouse-switch', board.toggleGreenhouse.bind(board, 'greenhouse-fixed'), board.toggleGreenhouse.bind(board, 'greenhouse'), data.options.greenhouse);
