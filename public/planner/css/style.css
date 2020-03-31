@@ -95,7 +95,12 @@ body.dz-drag-hover {
 }
 
 .inner-wrap {
+    max-height: calc(100vh - 45px);
     overflow-x: scroll;
+}
+
+.inner-wrap #waldo-sticky-footer-wrapper {
+    bottom: 15px;
 }
 
 .changelog li {
