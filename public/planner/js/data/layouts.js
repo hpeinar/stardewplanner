@@ -528,6 +528,23 @@ var layouts = {
         width: 2000,
         height: 2496
     },
+    "ultimate-farm": {
+        author: 'DaisyNiko',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/6348',
+        name: 'ultimate-farm',
+        prettyName: 'DaisyNiko\'s Ultimate Farm',
+        backgroundImage: 'ultimate_farm.jpg',
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1888,
+        height: 1792
+    },
     "more-space-forest": {
         author: 'SailorDrew',
         url: 'https://www.nexusmods.com/stardewvalley/mods/2629',
