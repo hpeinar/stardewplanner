@@ -562,6 +562,23 @@ var layouts = {
         width: 1280,
         height: 1040
     },
+    "cherryblossonhh": {
+        author: 'Acerbicon',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/2711',
+        name: 'cherryblossonhh',
+        prettyName: 'Ace\'s Cherryblossonhh Farm',
+        backgroundImage: 'Cherryblossonhh.png',
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+        width: 2368,
+        height: 2368
+    },
     "omni-farm": {
         author: 'lambui',
         url: 'https://github.com/lambui/StardewValleyMod_OmniFarm',
