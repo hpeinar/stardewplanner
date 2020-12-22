@@ -79,6 +79,21 @@ var layouts = {
         width: 1280,
         height: 1040
     },
+    beach: {
+        name: 'beach',
+        backgroundImage: 'farm_beach.jpg',
+        official: true,
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 14,
+            y: 10
+        },
+        width: 1760,
+        height: 1760
+    },
     fourcorners: {
         name: 'fourcorners',
         backgroundImage: 'farm_fourcorners.jpg',
