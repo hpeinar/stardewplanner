@@ -611,6 +611,40 @@ var layouts = {
         width: 1920,
         height: 1920
     },
+    "grandpas-farm-sandbox": {
+        author: 'FlashShifter',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3753?tab=files',
+        name: 'grandpas-farm-sandbox',
+        prettyName: 'Grandpa\'s Farm (Sandbox)',
+        backgroundImage: 'grandpas_farm_sandbox.jpg',
+        house: {
+            x: 90,
+            y: 42
+        },
+        greenhouse: {
+            x: 18,
+            y: 48
+        },
+        width: 1920,
+        height: 1552
+    },
+    "grandpas-farm": {
+        author: 'FlashShifter',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3753?tab=files',
+        name: 'grandpas-farm',
+        prettyName: 'Grandpa\'s Farm (Standard)',
+        backgroundImage: 'grandpas_farm.jpg',
+        house: {
+            x: 90,
+            y: 42
+        },
+        greenhouse: {
+            x: 18,
+            y: 48
+        },
+        width: 1920,
+        height: 1552
+    },
     // inside layouts
     greenhouse: {
         name: 'greenhouse',
