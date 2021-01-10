@@ -30,6 +30,8 @@ var data = {
         'brick-floor',
         'straw-floor',
         'weathered-floor',
+        'rustic-plank-floor',
+        'stone-walkway',
         'stone-floor',
         'crystal-floor',
         'tree',
@@ -348,6 +350,21 @@ var data = {
             "width": 48,
             "height": 48
         },
+        "banana-tree": {
+            "sprite": "img/tiles/banana-tree.png",
+            "width": 48,
+            "height": 48
+        },
+        "mahogany-tree": {
+            "sprite": "img/tiles/mahogany-tree.png",
+            "width": 48,
+            "height": 48
+        },
+        "mango-tree": {
+            "sprite": "img/tiles/mango-tree.png",
+            "width": 48,
+            "height": 48
+        },
         "apple": {
             "sprite": "img/tiles/apple.png",
             "width": 48,
@@ -390,6 +407,56 @@ var data = {
         },
         "gate": {
             "sprite": "./img/tiles/gate.png",
+            "width": 16,
+            "height": 16
+        },
+        "auto-petter": {
+            "sprite": "./img/tiles/auto-petter.png",
+            "width": 16,
+            "height": 16
+        },
+        "bone-mill": {
+            "sprite": "./img/tiles/bone-mill.png",
+            "width": 16,
+            "height": 16
+        },
+        "dark-sign": {
+            "sprite": "./img/tiles/dark-sign.png",
+            "width": 16,
+            "height": 16
+        },
+        "farm-computer": {
+            "sprite": "./img/tiles/farm-computer.png",
+            "width": 16,
+            "height": 16
+        },
+        "geode-crusher": {
+            "sprite": "./img/tiles/geode-crusher.png",
+            "width": 16,
+            "height": 16
+        },
+        "heavy-tapper": {
+            "sprite": "./img/tiles/heavy-tapper.png",
+            "width": 16,
+            "height": 16
+        },
+        "mini-shopping-bin": {
+            "sprite": "./img/tiles/mini-shopping-bin.png",
+            "width": 16,
+            "height": 16
+        },
+        "mini-obelisk": {
+            "sprite": "./img/tiles/mini-obelisk.png",
+            "width": 16,
+            "height": 16
+        },
+        "solar-panel": {
+            "sprite": "./img/tiles/solar-panel.png",
+            "width": 16,
+            "height": 16
+        },
+        "stone-chest": {
+            "sprite": "./img/tiles/stone-chest.png",
             "width": 16,
             "height": 16
         },
@@ -508,6 +575,11 @@ var data = {
             "width": 3*16,
             "height": 2*16,
             "sprite": "./img/tiles/desert-obelisk.png"
+        },
+        'island-obelisk': {
+            "width": 3*16,
+            "height": 2*16,
+            "sprite": "./img/tiles/island-obelisk.png"
         },
         'gold-clock': {
             "width": 3*16,
