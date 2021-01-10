@@ -645,6 +645,9 @@ ul.submenu li {
 .sprite-icon.desert-obelisk {
     background-image: url('/planner/img/tiles/desert-obelisk.png');
 }
+.sprite-icon.island-obelisk {
+    background-image: url('/planner/img/tiles/island-obelisk.png');
+}
 .sprite-icon.gold-clock {
     background-image: url('/planner/img/tiles/gold-clock.png');
 }
@@ -716,6 +719,39 @@ ul.submenu li {
 .sprite-icon.workbench {
     background-image: url('/planner/img/tiles/workbench.png');
 }
+.sprite-icon.farm-computer {
+    background-image: url('/planner/img/tiles/farm-computer.png');
+}
+.sprite-icon.solar-panel {
+    background-image: url('/planner/img/tiles/solar-panel.png');
+}
+.sprite-icon.stone-chest {
+    background-image: url('/planner/img/tiles/stone-chest.png');
+}
+.sprite-icon.mini-obelisk {
+    background-image: url('/planner/img/tiles/mini-obelisk.png');
+}
+.sprite-icon.mini-shipping-bin {
+    background-image: url('/planner/img/tiles/mini-shipping-bin.png');
+}
+.sprite-icon.heavy-tapper {
+    background-image: url('/planner/img/tiles/heavy-tapper.png');
+}
+.sprite-icon.geode-crusher {
+    background-image: url('/planner/img/tiles/geode-crusher.png');
+}
+.sprite-icon.bone-mill {
+    background-image: url('/planner/img/tiles/bone-mill.png');
+}
+.sprite-icon.dark-sign {
+    background-image: url('/planner/img/tiles/dark-sign.png');
+}
+.sprite-icon.auto-petter {
+    background-image: url('/planner/img/tiles/auto-petter.png');
+}
+.sprite-icon.hopper {
+    background-image: url('/planner/img/tiles/hopper.png');
+}
 .sprite-icon.mini-jukebox {
     background-image: url('/planner/img/tiles/mini-jukebox.png');
 }
@@ -747,6 +783,15 @@ ul.submenu li {
 }
 .sprite-icon.apple-tree {
     background-image: url('/planner/img/tiles/apple.png');
+}
+.sprite-icon.banana-tree {
+    background-image: url('/planner/img/tiles/banana-tree.png');
+}
+.sprite-icon.mahogany-tree {
+    background-image: url('/planner/img/tiles/mahogany-tree.png');
+}
+.sprite-icon.mango-tree {
+    background-image: url('/planner/img/tiles/mango-tree.png');
 }
 .sprite-icon.mushroom-tree {
     background-image: url('/planner/img/tiles/mushroom-tree.png');
@@ -856,6 +901,12 @@ ul.submenu li {
 }
 .sprite-icon.crystal-floor {
     background-image: url('/planner/img/tiles/crystal-floor.png');
+}
+.sprite-icon.rustic-plank-floor {
+    background-image: url('/planner/img/tiles/rustic-plank-floor.png');
+}
+.sprite-icon.stone-walkway {
+    background-image: url('/planner/img/tiles/stone-walkway.png');
 }
 
 
