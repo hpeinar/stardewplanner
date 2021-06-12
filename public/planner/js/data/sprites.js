@@ -440,8 +440,8 @@ var data = {
             "width": 16,
             "height": 16
         },
-        "mini-shopping-bin": {
-            "sprite": "./img/tiles/mini-shopping-bin.png",
+        "mini-shipping-bin": {
+            "sprite": "./img/tiles/mini-shipping-bin.png",
             "width": 16,
             "height": 16
         },
