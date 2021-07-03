@@ -94,6 +94,13 @@ var layouts = {
         width: 1760,
         height: 1760
     },
+    ginger_island: {
+        name: 'ginger_island',
+        backgroundImage: 'ginger_island.jpg',
+        official: true,
+        width: 1760,
+        height: 1760
+    },
     fourcorners: {
         name: 'fourcorners',
         backgroundImage: 'farm_fourcorners.jpg',
