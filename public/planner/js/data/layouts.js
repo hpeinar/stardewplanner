@@ -123,6 +123,24 @@ var layouts = {
         width: 2160,
         height: 656
     },
+    "larger-hilltop": {
+        name: 'larger-hilltop',
+        author: 'Draylon',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/6286',
+        prettyName: 'Larger Hilltop',
+        backgroundImage: 'larger-hilltop.jpg',
+        official: false,
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 2400,
+        height: 1280
+    },
     "wonderful-farm-life": {
         author: 'taintedwheat & JinxieWinxie',
         url: 'http://community.playstarbound.com/threads/wonderful-farm-life-smapi-version-updated-7-2-now-with-grandpas-memorial-make-your-farm-sick.115384/',
