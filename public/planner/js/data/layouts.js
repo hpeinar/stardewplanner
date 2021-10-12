@@ -670,6 +670,23 @@ var layouts = {
         width: 1920,
         height: 1552
     },
+    "tiny-garden-farm": {
+        author: 'DaisyNiko',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/4635',
+        name: 'tiny-garden-farm',
+        prettyName: 'Tiny Garden Farm',
+        backgroundImage: 'tiny-garden-farm.png',
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1280,
+        height: 592
+    },
     // inside layouts
     greenhouse: {
         name: 'greenhouse',
