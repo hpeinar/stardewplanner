@@ -462,6 +462,24 @@ var layouts = {
       width: 1856,
       height: 1920
     },
+    "forest-meadow": {
+        author: 'DaisyNiko',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/6949',
+        name: 'forest-meadow',
+        prettyName: 'Forest Meadow',
+        backgroundImage: 'forest_meadow.jpg',
+        restrictionPath: null,
+        house: {
+          x: 59,
+          y: 8
+        },
+        greenhouse: {
+          x: 25,
+          y: 6
+        },
+      width: 1280,
+      height: 1040
+    },
     "immersive-farm-2-remastered": {
         author: 'FlashShifter',
         url: 'https://www.nexusmods.com/stardewvalley/mods/3753',
