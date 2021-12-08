@@ -688,6 +688,15 @@ var layouts = {
         width: 1920,
         height: 1552
     },
+    "everfarm": {
+        author: 'Draylon',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/9347',
+        name: 'everfarm',
+        prettyName: 'Everfarm',
+        backgroundImage: 'everfarm.jpg',
+        width: 3200,
+        height: 2492
+    },
     // inside layouts
     greenhouse: {
         name: 'greenhouse',
