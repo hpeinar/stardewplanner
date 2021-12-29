@@ -146,6 +146,7 @@ module.exports = () => {
             request({
                 method: 'POST',
                 uri: 'https://upload.farm/api/v1/plan',
+                strictSSL: false,
                 body: {
                     plan_json: req.body,
                     season: req.body.options.season || 'spring',
