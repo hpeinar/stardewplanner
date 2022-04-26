@@ -688,6 +688,40 @@ var layouts = {
         width: 1920,
         height: 1552
     },
+    "waff": {
+        author: 'Archibald_TK',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3753?tab=files',
+        name: 'waff',
+        prettyName: 'WaFF',
+        backgroundImage: 'waff_farm.jpg',
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 2000,
+        height: 1760
+    },
+    "waffle": {
+        author: 'Archibald_TK',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/3753?tab=files',
+        name: 'waffle',
+        prettyName: 'WaFFLE',
+        backgroundImage: 'waffle_farm.jpg',
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 2560,
+        height: 1760
+    },
     "everfarm": {
         author: 'Draylon',
         url: 'https://www.nexusmods.com/stardewvalley/mods/9347',
