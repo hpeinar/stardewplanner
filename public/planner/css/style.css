@@ -663,6 +663,15 @@ ul.submenu li {
 .sprite-icon.q-sprinkler {
     background-image: url('/planner/img/tiles/q-sprinkler.png');
 }
+.sprite-icon.pressured-sprinkler {
+    background-image: url('/planner/img/tiles/sprinkler-pressured.png');
+}
+.sprite-icon.irid-pressured-sprinkler {
+    background-image: url('/planner/img/tiles/irid-sprinkler-pressured.png');
+}
+.sprite-icon.q-pressured-sprinkler {
+    background-image: url('/planner/img/tiles/q-sprinkler-pressured.png');
+}
 .sprite-icon.scarecrow {
     background-image: url('/planner/img/tiles/scarecrow.png');
 }
