@@ -134,6 +134,16 @@ var data = {
                 "height": 48
             }
         },
+        "pressured-sprinkler": {
+            "sprite": "./img/tiles/sprinkler-pressured.png",
+            "width": 16,
+            "height": 16,
+            "highlight": {
+                "path": ["M0,0", "L0,48", "L48,48", "L48,0", "z"],
+                "width": 48,
+                "height": 48
+            }
+        },
         "q-sprinkler": {
             "sprite": "./img/tiles/q-sprinkler.png",
             "width": 16,
@@ -144,6 +154,16 @@ var data = {
                 "height": 48
             }
         },
+        "q-pressured-sprinkler": {
+            "sprite": "./img/tiles/q-sprinkler-pressured.png",
+            "width": 16,
+            "height": 16,
+            "highlight": {
+                "path": ["M0,0", "L0,80", "L80,80", "L80,0", "z"],
+                "width": 80,
+                "height": 80
+            }
+        },
         "irid-sprinkler": {
             "sprite": "./img/tiles/irid-sprinkler.png",
             "width": 16,
@@ -152,6 +172,16 @@ var data = {
                 "path": ["M0,0", "L0,80", "L80,80", "L80,0", "z"],
                 "width": 80,
                 "height": 80
+            }
+        },
+        "irid-pressured-sprinkler": {
+            "sprite": "./img/tiles/irid-sprinkler-pressured.png",
+            "width": 16,
+            "height": 16,
+            "highlight": {
+                "path": ["M0,0", "L0,112", "L112,112", "L112,0", "z"],
+                "width": 112,
+                "height": 112
             }
         },
         "scarecrow": {
