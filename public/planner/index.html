@@ -25,9 +25,6 @@
     </script>
 </head>
 <body class="saveImportDrop">
-<!-- StarDewPlanner - Rich Media (606307e2e8fdeb39324f4f72) - 1x1 - Place in <BODY> of page where ad should appear -->
-<div class="vm-placement" data-id="606307e2e8fdeb39324f4f72" style="display:none"></div>
-<!-- / StarDewPlanner - Rich Media (606307e2e8fdeb39324f4f72) -->
     <div class="off-canvas-wrap move-right" data-offcanvas>
         <div class="inner-wrap">
 
@@ -392,6 +389,8 @@
 
             <!--main editor-->
             <div class="editor">
+                <!-- Sticky add -->
+                <div id="video-ad-1" style="position: absolute; bottom: 5px; left: 5px;"></div>
                 <div class="discord-link">
                     <a href="https://discord.gg/QBqBAzp" target="_blank"><img src="/planner/img/discord-logo.png" title="Come chat with us!" /></a>
                 </div>
@@ -472,9 +471,7 @@
                     <a href="https://stardew.info/privacy-policy.html" target="_blank">Privacy Policy</a>
                 </div>
                 <div class="panel info" id="google" style="text-align: center;">
-                    <!-- StarDewPlanner - 300x250 Dynamic (606307ede8fdeb39324f4f74) - 300x250, 300x600, 160x600 - Place in <BODY> of page where ad should appear -->
-<div class="vm-placement" data-id="606307ede8fdeb39324f4f74"></div>
-<!-- / StarDewPlanner - 300x250 Dynamic (606307ede8fdeb39324f4f74) -->
+                    <div id="banner-ad-1"></div>
                 </div>
                 <div class="panel info changelog" id="changelog">
                     <h3>Changelog:</h3>
@@ -879,6 +876,103 @@
         ga('create', 'UA-74517445-1', 'auto');
         ga('send', 'pageview');
 
+    </script>
+
+    <!-- <script>
+        window['nitroAds'].createAd('side-rail-ad-1', {
+        "refreshLimit": 10,
+        "refreshTime": 90,
+        "format": "rail",
+        "rail": "left",
+        "railOffsetTop": 60,
+        "railOffsetBottom": 0,
+        "railCollisionWhitelist": [
+            "*"
+        ],
+        "sizes": [
+            [
+            "160",
+            "600"
+            ],
+            [
+            "300",
+            "600"
+            ],
+            [
+            "300",
+            "250"
+            ]
+        ],
+        "report": {
+            "enabled": true,
+            "icon": true,
+            "wording": "Report Ad",
+            "position": "bottom-right"
+        },
+        "mediaQuery": "(min-width: 1280px)"
+        });
+    </script> -->
+
+    <script>
+        window['nitroAds'].createAd('banner-ad-1', {
+            "refreshLimit": 10,
+            "refreshTime": 90,
+            "renderVisibleOnly": false,
+            "refreshVisibleOnly": true,
+            "sizes": [
+                [
+                "970",
+                "250"
+                ],
+                [
+                "728",
+                "90"
+                ],
+                [
+                "970",
+                "90"
+                ]
+            ],
+            "report": {
+                "enabled": true,
+                "icon": true,
+                "wording": "Report Ad",
+                "position": "bottom-right"
+            },
+            "mediaQuery": "(min-width: 1025px), (min-width: 768px) and (max-width: 1024px), (min-width: 320px) and (max-width: 767px)"
+        });
+    </script>
+
+    <script>
+        window['nitroAds'].createAd('video-ad-1', {
+            "format": "video-nc",
+            "report": {
+                "enabled": true,
+                "icon": true,
+                "wording": "Report Ad",
+                "position": "top-right"
+            },
+            "video": {
+                "float": "never"
+            }
+        });
+    </script>
+
+    <script>
+        window['nitroAds'].createAd('anchor-ad-1', {
+        "refreshLimit": 10,
+        "refreshTime": 90,
+        "format": "anchor",
+        "anchor": "bottom",
+        "anchorPersistClose": true,
+        "report": {
+            "enabled": true,
+            "icon": true,
+            "wording": "Report Ad",
+            "position": "top-right"
+        },
+        "mediaQuery": "(min-width: 1025px), (min-width: 768px) and (max-width: 1024px), (min-width: 320px) and (max-width: 767px)"
+        });
     </script>
 </body>
 </html>
