@@ -389,8 +389,6 @@
 
             <!--main editor-->
             <div class="editor">
-                <!-- Sticky add -->
-                <div id="video-ad-1" style="position: absolute; bottom: 5px; left: 5px;"></div>
                 <div class="discord-link">
                     <a href="https://discord.gg/QBqBAzp" target="_blank"><img src="/planner/img/discord-logo.png" title="Come chat with us!" /></a>
                 </div>
@@ -845,6 +843,8 @@
         </div>
     </div>
 
+    <div id="video-ad-1"></div>
+
     <!-- jquery -->
     <script src="/planner/vendor/jquery.min.js"></script>
     <!-- raphael -->
@@ -943,20 +943,23 @@
         });
     </script>
 
-    <!-- <script>
-        window['nitroAds'].createAd('video-ad-1', {
-            "format": "video-nc",
-            "report": {
-                "enabled": true,
-                "icon": true,
-                "wording": "Report Ad",
-                "position": "top-right"
-            },
-            "video": {
-                "float": "never"
-            }
-        });
-    </script> -->
+    <script>
+    window['nitroAds'].createAd('video-ad-1', {
+        "format": "video-nc",
+        "report": {
+            "enabled": true,
+            "icon": true,
+            "wording": "Report Ad",
+            "position": "bottom-right"
+        },
+        "mediaQuery": "(min-width: 1025px), (min-width: 768px) and (max-width: 1024px), (min-width: 320px) and (max-width: 767px)",
+        "video": {
+            "float": "always",
+            "mobile": "compact"
+        }
+    });
+    </script>
+
 
     <script>
         window['nitroAds'].createAd('anchor-ad-1', {
