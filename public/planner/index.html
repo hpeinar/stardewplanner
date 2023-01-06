@@ -885,6 +885,7 @@
         "refreshTime": 30,
         "format": "rail",
         "rail": "left",
+        "railStack": true,
         "railOffsetTop": 60,
         "railOffsetBottom": 0,
         "railCollisionWhitelist": [
@@ -944,7 +945,7 @@
         });
     </script>
 
-    <script>
+    <!-- <script>
     window['nitroAds'].createAd('video-ad-1', {
         "format": "video-nc",
         "report": {
@@ -959,8 +960,21 @@
             "mobile": "compact"
         }
     });
-    </script>
+    </script> -->
 
+    <script>
+    window['nitroAds'].createAd('video-ad-2', {
+        "refreshLimit": 20,
+        "refreshTime": 60,
+        "format": "floating",
+        "report": {
+          "enabled": true,
+          "icon": true,
+          "wording": "Report Ad",
+          "position": "bottom-left-side"
+        }
+      });
+    </script>
 
     <script>
         window['nitroAds'].createAd('anchor-ad-1', {
@@ -977,6 +991,6 @@
         },
         "mediaQuery": "(min-width: 1025px), (min-width: 768px) and (max-width: 1024px), (min-width: 320px) and (max-width: 767px)"
         });
-    </script>
+    </>
 </body>
 </html>
