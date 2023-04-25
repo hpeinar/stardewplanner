@@ -13,6 +13,8 @@ function Building(board, id, x, y, dontPlace, disabled, restriction) {
     this.placed = false;
     this.restriction = restriction || 'buildable';
     this.disabled = disabled;
+    this.x = x;
+    this.y = y;
 
     if (!this.data) {
         console.log('Unable to add building, using placeholder ', id);
@@ -120,10 +122,26 @@ Building.prototype.moveHighlight = function moveHighlight(noFill) {
 };
 
 Building.prototype.mouseover = function mouseover(e) {
+    if (this.placed) {
+        const x = +this.sprite.attr('x');
+        const y = +this.sprite.attr('y');
+
+        const tooltip = document.createElement('div');
+        tooltip.style = `position: absolute; top: ${y - 30}px; left: ${x}px; background-color: #fff; color: #000;`;
+        const editor = document.querySelector('.editor');
+        tooltip.textContent = this.type;
+        this.tooltip = tooltip;
+        editor.appendChild(tooltip);
+    }
+
     this.moveHighlight();
 };
 
 Building.prototype.mouseout = function mouseout(e) {
+    if (this.placed && Boolean(this.tooltip)) {
+        this.tooltip.parentNode.removeChild(this.tooltip);
+    }
+
     this.hidehighlight();
 };
 
