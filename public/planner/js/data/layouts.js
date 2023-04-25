@@ -185,12 +185,12 @@ var layouts = {
         backgroundImage: 'alis_farm_map_edit.jpg',
         restrictionPath: null,
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: {
-          x: 25,
-          y: 6
+            x: 25,
+            y: 6
         },
         width: 1280,
         height: 1040
@@ -203,12 +203,12 @@ var layouts = {
         backgroundImage: 'alis_flower_farm_map.jpg',
         restrictionPath: null,
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: {
-          x: 25,
-          y: 6
+            x: 25,
+            y: 6
         },
         width: 1280,
         height: 1040
@@ -221,33 +221,33 @@ var layouts = {
         backgroundImage: 'alis_foraging_map.jpg',
         restrictionPath: null,
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: {
-          x: 25,
-          y: 6
+            x: 25,
+            y: 6
         },
         width: 1280,
         height: 1040
     },
     "alis-mountain-map": {
-      author: 'Mushfae',
-      url: 'http://www.nexusmods.com/stardewvalley/mods/1095/',
-      name: 'alis-mountain-map',
-      prettyName: 'Ali\'s Mountain Farm',
-      backgroundImage: 'alis_mountain_map.jpg',
-      restrictionPath: null,
-      house: {
-        x: 59,
-        y: 8
-      },
-      greenhouse: {
-        x: 25,
-        y: 6
-      },
-      width: 1280,
-      height: 1040
+        author: 'Mushfae',
+        url: 'http://www.nexusmods.com/stardewvalley/mods/1095/',
+        name: 'alis-mountain-map',
+        prettyName: 'Ali\'s Mountain Farm',
+        backgroundImage: 'alis_mountain_map.jpg',
+        restrictionPath: null,
+        house: {
+            x: 59,
+            y: 8
+        },
+        greenhouse: {
+            x: 25,
+            y: 6
+        },
+        width: 1280,
+        height: 1040
     },
     "secret-forest": {
         author: 'Mushfae',
@@ -311,12 +311,12 @@ var layouts = {
         backgroundImage: 'white-farm.jpg',
         restrictionPath: null,
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: {
-          x: 25,
-          y: 6
+            x: 25,
+            y: 6
         },
         width: 1280,
         height: 1040
@@ -329,8 +329,8 @@ var layouts = {
         backgroundImage: 'immersive_farm_2.jpg',
         restrictionPath: null,
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: null,
         width: 2880,
@@ -343,16 +343,16 @@ var layouts = {
         prettyName: 'Community Farm',
         backgroundImage: 'community_farm.jpg',
         restrictionPath: null,
-      house: {
-        x: 108,
-        y: 20
-      },
-      greenhouse: {
-        x: 60,
-        y: 109
-      },
-      width: 2496,
-      height: 2496
+        house: {
+            x: 108,
+            y: 20
+        },
+        greenhouse: {
+            x: 60,
+            y: 109
+        },
+        width: 2496,
+        height: 2496
     },
     "farm-extended": {
         author: 'Forkmaster',
@@ -362,12 +362,12 @@ var layouts = {
         backgroundImage: 'farm_extended.png',
         restrictionPath: null,
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: {
-          x: 25,
-          y: 6
+            x: 25,
+            y: 6
         },
         width: 1712,
         height: 1375
@@ -380,17 +380,17 @@ var layouts = {
         backgroundImage: 'memory_farm_standard.jpg',
         restrictionPath: null,
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: {
-          x: 25,
-          y: 6
+            x: 25,
+            y: 6
         },
-      width: 1280,
-      height: 1040
+        width: 1280,
+        height: 1040
     },
-	  "memory-farm-fishing": {
+    "memory-farm-fishing": {
         author: 'Attitude Rains',
         url: 'https://www.nexusmods.com/stardewvalley/mods/1703',
         name: 'memory-farm-standard',
@@ -398,15 +398,15 @@ var layouts = {
         backgroundImage: 'memory_farm_fishing.jpg',
         restrictionPath: null,
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: {
-          x: 25,
-          y: 6
+            x: 25,
+            y: 6
         },
-      width: 1280,
-      height: 1040
+        width: 1280,
+        height: 1040
     },
     "memory-farm-foraging": {
         author: 'Attitude Rains',
@@ -416,15 +416,15 @@ var layouts = {
         backgroundImage: 'memory_farm_foraging.jpg',
         restrictionPath: null,
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: {
-          x: 25,
-          y: 6
+            x: 25,
+            y: 6
         },
-      width: 1280,
-      height: 1040
+        width: 1280,
+        height: 1040
     },
     "memory-farm-mining": {
         author: 'Attitude Rains',
@@ -434,15 +434,15 @@ var layouts = {
         backgroundImage: 'memory_farm_mining.jpg',
         restrictionPath: null,
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: {
-          x: 25,
-          y: 6
+            x: 25,
+            y: 6
         },
-      width: 1280,
-      height: 1040
+        width: 1280,
+        height: 1040
     },
     "capitalist-dream": {
         author: 'DaisyNiko',
@@ -452,15 +452,15 @@ var layouts = {
         backgroundImage: 'capitalist-dream.jpg',
         restrictionPath: null,
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: {
-          x: 25,
-          y: 6
+            x: 25,
+            y: 6
         },
-      width: 1856,
-      height: 1920
+        width: 1856,
+        height: 1920
     },
     "forest-meadow": {
         author: 'DaisyNiko',
@@ -470,15 +470,15 @@ var layouts = {
         backgroundImage: 'forest_meadow.jpg',
         restrictionPath: null,
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: {
-          x: 25,
-          y: 6
+            x: 25,
+            y: 6
         },
-      width: 1280,
-      height: 1040
+        width: 1280,
+        height: 1040
     },
     "immersive-farm-2-remastered": {
         author: 'FlashShifter',
@@ -627,12 +627,12 @@ var layouts = {
         prettyName: 'Ace\'s Cherryblossonhh Farm',
         backgroundImage: 'Cherryblossonhh.png',
         house: {
-          x: 59,
-          y: 8
+            x: 59,
+            y: 8
         },
         greenhouse: {
-          x: 25,
-          y: 6
+            x: 25,
+            y: 6
         },
         width: 2368,
         height: 2368
@@ -803,5 +803,13 @@ var layouts = {
         backgroundImage: 'shed-big.png',
         width: 304,
         height: 272
+    },
+    "slime-hutch": {
+        name: 'slime-hutch',
+        prettyName: 'Slime Hutch',
+        official: true,
+        backgroundImage: 'Slimehutchinterior.png',
+        width: 309,
+        height: 240
     }
 };
