@@ -74,16 +74,22 @@ Building.prototype.putDown = function putDown() {
         pointerEvents: 'all',
         opacity: 1
     });
+    
 
     this.hidehighlight();
 };
 
 Building.prototype.pickUp = function pickUp() {
+    if(this.tooltip){
+        this.tooltip.parentNode.removeChild(this.tooltip);
+        this.tooltip = undefined;
+    }
     this.placed = false;
     this.sprite.attr({
         // pointerEvents: 'none',
         opacity: .7
     });
+    
 };
 
 Building.prototype.drawHighlight = function drawHighlight() {
@@ -122,24 +128,33 @@ Building.prototype.moveHighlight = function moveHighlight(noFill) {
 };
 
 Building.prototype.mouseover = function mouseover(e) {
+
     if (this.placed) {
         const x = +this.sprite.attr('x');
         const y = +this.sprite.attr('y');
 
         const tooltip = document.createElement('div');
-        tooltip.style = `position: absolute; top: ${y - 30}px; left: ${x}px; background-color: #fff; color: #000;`;
+        tooltip.style = `position: absolute; top: ${y - 30}px; left: ${x}px;`;
         const editor = document.querySelector('.editor');
-        tooltip.textContent = this.type;
-        this.tooltip = tooltip;
+        let name = this.type.replace(new RegExp('-', 'g'), ' ');
+        let words = name.split(' ');
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+        }
+        name = words.join(' ');
+        tooltip.textContent = name;
+        tooltip.classList.add("tooltip");
         editor.appendChild(tooltip);
+        this.tooltip = tooltip;
     }
 
     this.moveHighlight();
 };
 
 Building.prototype.mouseout = function mouseout(e) {
-    if (this.placed && Boolean(this.tooltip)) {
+    if (Boolean(this.tooltip)) {
         this.tooltip.parentNode.removeChild(this.tooltip);
+        this.tooltip = undefined;
     }
 
     this.hidehighlight();

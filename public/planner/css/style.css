@@ -9,6 +9,21 @@ body.dz-drag-hover {
     opacity: .4;
 }
 
+.tooltip {
+    font-family: "Helvetica Neue", Helvetica;
+    display: block;
+    clear: both;
+    line-height: 1.5;
+    width: fit-content;
+    position: relative;
+    background: #555555;
+    color: #CCCCCC;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 1px;
+    padding-bottom: 1px; 
+}
+
 .editor-loader,
 .upload-loader,
 .save-loader {
