@@ -19,16 +19,15 @@
     "greg": "0.0.2",
     "human-readable-ids": "^1.0.1",
     "knex": "^0.19.5",
-    "libxmljs": "^0.18.0",
+    "libxmljs": "^1.0.8",
     "moment": "^2.22.1",
     "mysql": "^2.15.0",
     "request": "^2.75.0",
     "serve-favicon": "^2.3.0",
     "uuid": "^2.0.1"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "start": "node ."
   },
   "author": "Henrik Peinar",
   "license": "ISC"
