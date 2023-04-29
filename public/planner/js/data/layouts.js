@@ -731,6 +731,15 @@ var layouts = {
         width: 3200,
         height: 2492
     },
+    "hippos-cliffside-falls-farm": {
+        author: 'acearohippo',
+        url: 'https://www.nexusmods.com/stardewvalley/mods/10379',
+        name: 'hippos-cliffside-falls-farm',
+        prettyName: 'Hippo\'s Cliffsidde Falls Farm',
+        backgroundImage: 'hippos_cliffside_falls.png',
+        width: 1280,
+        height: 1040
+    },
     // inside layouts
     greenhouse: {
         name: 'greenhouse',
