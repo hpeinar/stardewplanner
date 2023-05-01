@@ -81,8 +81,7 @@ Building.prototype.putDown = function putDown() {
 
 Building.prototype.pickUp = function pickUp() {
     if(this.tooltip){
-        this.tooltip.parentNode.removeChild(this.tooltip);
-        this.tooltip = undefined;
+        this.board.hideBuildingTooltip(this);
     }
     this.placed = false;
     this.sprite.attr({
@@ -114,7 +113,7 @@ Building.prototype.move = function move(pos) {
     this.moveHighlight();
 };
 
-Building.prototype.moveHighlight = function moveHighlight(noFill) {
+Building.prototype.moveHighlight = function moveHighlight(noFill) {    
     if (this.highlight) {
         var highlightX = this.sprite.attr('x') - (this.data.highlight.width / 2 - (this.data.width / 2));
         var highlightY = this.sprite.attr('y') - (this.data.highlight.height / 2 - (this.data.height / 2));
@@ -129,23 +128,9 @@ Building.prototype.moveHighlight = function moveHighlight(noFill) {
 
 Building.prototype.mouseover = function mouseover(e) {
 
+    
     if (this.placed) {
-        const x = +this.sprite.attr('x');
-        const y = +this.sprite.attr('y');
-
-        const tooltip = document.createElement('div');
-        tooltip.style = `position: absolute; top: ${y - 30}px; left: ${x}px;`;
-        const editor = document.querySelector('.editor');
-        let name = this.type.replace(new RegExp('-', 'g'), ' ');
-        let words = name.split(' ');
-        for (let i = 0; i < words.length; i++) {
-            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
-        }
-        name = words.join(' ');
-        tooltip.textContent = name;
-        tooltip.classList.add("tooltip");
-        editor.appendChild(tooltip);
-        this.tooltip = tooltip;
+        this.board.showBuildingTooltip(this);
     }
 
     this.moveHighlight();
@@ -153,8 +138,7 @@ Building.prototype.mouseover = function mouseover(e) {
 
 Building.prototype.mouseout = function mouseout(e) {
     if (Boolean(this.tooltip)) {
-        this.tooltip.parentNode.removeChild(this.tooltip);
-        this.tooltip = undefined;
+        this.board.hideBuildingTooltip(this);
     }
 
     this.hidehighlight();
@@ -173,6 +157,9 @@ Building.prototype.hidehighlight = function () {
 
 Building.prototype.mousedown = function mouseodwn(e) {
     var building = this;
+    if (Boolean(this.tooltip)) {
+        this.board.hideBuildingTooltip(this);
+    }
     if (this.placed) {
         // nasty timeout but is needed to stop clicking issue
         setTimeout(function () {
