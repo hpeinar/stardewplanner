@@ -153,6 +153,7 @@ $().ready(function () {
             hidestuff: $('.hide-stuff').hasClass('active'),
             overwriting: $('.brush-overwrite').hasClass('active'),
             objectCount: $('.count-switch').hasClass('active')
+            
         };
 
 
@@ -257,10 +258,11 @@ $().ready(function () {
     });
 
     function toggleMenuItem(e, item, onFn, offFn, state) {
+        
         if (e) {
             e.preventDefault();
         }
-
+        
         var $i = $(item);
         if (state === undefined) {
             $i.toggleClass('active');
@@ -275,12 +277,14 @@ $().ready(function () {
         if ($i.hasClass('active')) {
             $i.find('i').addClass('fa-check').removeClass('fa-remove');
             if (typeof onFn === 'function') {
+                
                 onFn();
             }
         } else {
             $i.find('i').addClass('fa-remove').removeClass('fa-check');
             if (typeof offFn === 'function') {
-                offFn();
+                
+               offFn();
             }
         }
 
@@ -311,6 +315,10 @@ $().ready(function () {
 
     $('.count-switch').click(function (e) {
         toggleMenuItem(e, '.count-switch', toggleCountDisplay, toggleCountDisplay);
+    });
+
+    $('.tooltip-switch').click(function (e) {
+        toggleMenuItem(e, '.tooltip-switch', board.tooltipsOn.bind(board), board.tooltipsOff.bind(board));
     });
 
     $('.brush-overwrite').click(function (e) {
@@ -494,6 +502,7 @@ $().ready(function () {
             // other options
             toggleMenuItem(null, '.hide-stuff', board.showStuff.bind(board), board.hideStuff.bind(board), data.options.hidestuff);
             toggleMenuItem(null, '.count-switch', function () { $('.count-report-notification').show(); }, function () { $('.count-report-notification').hide(); }, data.options.objectCount);
+            toggleMenuItem(null, '.tooltip-switch', board.tooltipsOn(), board.tooltipsOff(), board.showTooltip);
             toggleMenuItem(null, '.coordinates', board.showCoords.bind(board), board.hideCoords.bind(board), data.options.coordinates);
             toggleMenuItem(null, '.brush-overwrite', function () {
                 board.brush.overwriting = true;

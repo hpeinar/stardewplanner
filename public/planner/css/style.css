@@ -9,6 +9,55 @@ body.dz-drag-hover {
     opacity: .4;
 }
 
+.tooltip {
+    font-family: Helvetica;
+    display: block;
+    clear: both;
+    width: fit-content;
+    position: relative;
+    background: #444444;
+    color: #E2E2E2;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 1px;
+    padding-bottom: 1px; 
+    line-height: 25px;
+    font-size: 11px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.tileTooltip {
+    /* font-family: "Helvetica Neue", Helvetica;
+    display: block;
+    clear: both;
+    line-height: 1.5;
+    width: fit-content;
+    position: relative;
+    background: #a73636;
+    color: #CCCCCC;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 1px;
+    padding-bottom: 1px;  */
+
+    font-family: Helvetica;
+    display: block;
+    clear: both;
+    width: fit-content;
+    position: relative;
+    background: #444444;
+    color: #E2E2E2;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 1px;
+    padding-bottom: 1px; 
+    line-height: 25px;
+    font-size: 11px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
 .editor-loader,
 .upload-loader,
 .save-loader {
