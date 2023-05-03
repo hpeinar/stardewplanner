@@ -128,11 +128,9 @@ Building.prototype.moveHighlight = function moveHighlight(noFill) {
 
 Building.prototype.mouseover = function mouseover(e) {
 
-    
     if (this.placed) {
         this.board.showBuildingTooltip(this);
     }
-
     this.moveHighlight();
 };
 

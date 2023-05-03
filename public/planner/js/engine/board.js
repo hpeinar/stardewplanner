@@ -35,6 +35,7 @@ function Board (containerId, width, height) {
     this.house = null;
     this.greenhouse = null;
     this.lastTile;
+    this.showTooltip = true;
 
     // load regular layout by default
     this.loadLayout(layouts.regular);
@@ -573,91 +574,97 @@ Board.prototype.mousemove = function mousemove(e) {
     // move helpers
     this.moveHelpers(snappedPos);
 
-
     // Add a new tooltip only if the mouse has changed tiles
-    
-    //If the tile is empty
-    if (this && this.tiles && this.tiles[hardY] && this.tiles[hardY][hardX]) {
+    if(this.showTooltip){
+        //If the tile is empty
+        if (this && this.tiles && this.tiles[hardY] && this.tiles[hardY][hardX]) {
 
-        //If the new tile is different from the last one
-        if (this.lastTile !== this.tiles[hardY][hardX]) {
+            //If the new tile is different from the last one
+            if (this.lastTile !== this.tiles[hardY][hardX]) {
 
-            //
-            const oldtooltip = document.querySelector('.tileTooltip');
-            if(oldtooltip){
-                oldtooltip.remove();
-            }
-            
-            
-            const buildingTooltip = document.querySelector('.tooltip');
-            if(!buildingTooltip){
-            
-                const tileTooltip = document.createElement('div');
-                tileTooltip.style = `position: absolute; top: ${snappedPos.y - 30}px; left: ${snappedPos.x}px;`;
-                const editor = document.querySelector('.editor');
-                let name = this.tiles[hardY][hardX].attr('tileType').replace(new RegExp('-', 'g'), ' ');;
-                let words = name.split(' ');
-                for (let i = 0; i < words.length; i++) {
-                    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+                //
+                const oldtooltip = document.querySelector('.tileTooltip');
+                if(oldtooltip){
+                    oldtooltip.remove();
                 }
-                name = words.join(' ');
-                tileTooltip.textContent = name;
-                tileTooltip.classList.add("tileTooltip");
-                editor.appendChild(tileTooltip);
                 
-                // Save the last tile that the mouse was on
-                this.lastTile = this.tiles[hardY][hardX];
+                
+                const buildingTooltip = document.querySelector('.tooltip');
+                if(!buildingTooltip){
+                
+                    const tileTooltip = document.createElement('div');
+                    tileTooltip.style = `position: absolute; top: ${snappedPos.y - 30}px; left: ${snappedPos.x}px;`;
+                    const editor = document.querySelector('.editor');
+                    let name = this.tiles[hardY][hardX].attr('tileType').replace(new RegExp('-', 'g'), ' ');;
+                    let words = name.split(' ');
+                    for (let i = 0; i < words.length; i++) {
+                        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+                    }
+                    name = words.join(' ');
+                    tileTooltip.textContent = name;
+                    tileTooltip.classList.add("tileTooltip");
+                    editor.appendChild(tileTooltip);
+                    
+                    // Save the last tile that the mouse was on
+                    this.lastTile = this.tiles[hardY][hardX];
+                }
             }
+        } else {
+            // Remove tooltip and reset lastTile if the mouse is not on a tile
+            const tileTooltip = document.querySelector('.tileTooltip');
+            if (tileTooltip) {
+                tileTooltip.remove();
+            }
+            this.lastTile = null;
         }
-    } else {
-        // Remove tooltip and reset lastTile if the mouse is not on a tile
-        const tileTooltip = document.querySelector('.tileTooltip');
-        if (tileTooltip) {
-            tileTooltip.remove();
-        }
-        this.lastTile = null;
     }
     
 };
 
+Board.prototype.tooltipsOn = function tooltipsOn(){   
+    this.showTooltip = true;
+}
 
+Board.prototype.tooltipsOff = function tooltipsOff(){
+    this.showTooltip = false;
+}
 
 Board.prototype.showBuildingTooltip = function showBuildingTooltip(building){
+    if(this.showTooltip){
+        const oldtooltip = document.querySelector('.tooltip');
+        if(oldtooltip){
+            oldtooltip.remove();
+        }
 
-    const oldtooltip = document.querySelector('.tooltip');
-    if(oldtooltip){
-        oldtooltip.remove();
+        const tileTooltip = document.querySelector('.tileTooltip');
+        if(tileTooltip){
+            tileTooltip.remove();
+        }
+
+        const x = +building.sprite.attr('x');
+        const y = +building.sprite.attr('y');
+
+        const tooltip = document.createElement('div');
+        tooltip.style = `position: absolute; top: ${y - 30}px; left: ${x}px;`;
+        const editor = document.querySelector('.editor');
+        let name = building.type.replace(new RegExp('-', 'g'), ' ');
+        let words = name.split(' ');
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+        }
+        name = words.join(' ');
+        tooltip.textContent = name;
+        tooltip.classList.add("tooltip");
+        editor.appendChild(tooltip);
+        building.tooltip = tooltip;
     }
-
-    const tileTooltip = document.querySelector('.tileTooltip');
-    if(tileTooltip){
-        tileTooltip.remove();
-    }
-
-    const x = +building.sprite.attr('x');
-    const y = +building.sprite.attr('y');
-
-    const tooltip = document.createElement('div');
-    tooltip.style = `position: absolute; top: ${y - 30}px; left: ${x}px;`;
-    const editor = document.querySelector('.editor');
-    let name = building.type.replace(new RegExp('-', 'g'), ' ');
-    let words = name.split(' ');
-    for (let i = 0; i < words.length; i++) {
-        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
-    }
-    name = words.join(' ');
-    tooltip.textContent = name;
-    tooltip.classList.add("tooltip");
-    editor.appendChild(tooltip);
-    building.tooltip = tooltip;
-
 };
 
 Board.prototype.hideBuildingTooltip = function showBuildingTooltip(building){
-
-    building.tooltip.parentNode.removeChild(building.tooltip);
-    building.tooltip = undefined;
-
+    if(this.showTooltip){
+        building.tooltip.parentNode.removeChild(building.tooltip);
+        building.tooltip = undefined;
+    }
 };
 
 
