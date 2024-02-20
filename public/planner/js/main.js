@@ -26,19 +26,24 @@ $().ready(function () {
     }
 
     // notification
-    if (checkLocal() && !localStorage.getItem('stardew:facebookNotification')) {
-        $('.facebook-notification').show();
-        $('.count-report-notification').css('top', $('.facebook-notification').height() + 20);
-    }
+    // if (checkLocal() && !localStorage.getItem('stardew:facebookNotification')) {
+    //     $('.facebook-notification').show();
+    //     $('.count-report-notification').css('top', $('.facebook-notification').height() + 20);
+    // }
 
-    if (checkLocal() && !localStorage.getItem('stardew:frontpageNotification')) {
-      $('.front-page-notification').show();
-      $('.count-report-notification').css('top', $('.front-page-notification').height() + 20);
-    }
+    // if (checkLocal() && !localStorage.getItem('stardew:frontpageNotification')) {
+    //   $('.front-page-notification').show();
+    //   $('.count-report-notification').css('top', $('.front-page-notification').height() + 20);
+    // }
 
-    if (checkLocal() && !localStorage.getItem('stardew:nexusNotification')) {
-      $('.nexus-notification').show();
-      $('.count-report-notification').css('top', $('.nexus-notification').height() + 20);
+    // if (checkLocal() && !localStorage.getItem('stardew:nexusNotification')) {
+    //   $('.nexus-notification').show();
+    //   $('.count-report-notification').css('top', $('.nexus-notification').height() + 20);
+    // }
+
+    if (checkLocal() && !localStorage.getItem('stardew:v3Notification')) {
+      $('.v3-notification').show();
+      $('.count-report-notification').css('top', $('.v3-notification').height() + 20);
     }
 
     $('.hide-front-page-notification').click(function (e) {
@@ -56,6 +61,12 @@ $().ready(function () {
     $('.hide-nexus-notification').click(function (e) {
         localStorage.setItem('stardew:nexusNotification', true);
         $('.nexus-notification').hide();
+        $('.count-report-notification').css('top', 10);
+    });
+
+    $('.hide-v3-notification').click(function (e) {
+        localStorage.setItem('stardew:v3notification', true);
+        $('.v3-notification').hide();
         $('.count-report-notification').css('top', 10);
     });
 
