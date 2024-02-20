@@ -252,13 +252,13 @@ body.dz-drag-hover {
 }
 
 .notification a {
-    color: #999;
+    color: #dcdcdc;
     text-decoration: underline;
 }
 
 .notification .header {
     background-color: #333;
-    padding: 5px;
+    padding: 10px;
 }
 
 .notification .header .hide-notification {
@@ -271,7 +271,7 @@ body.dz-drag-hover {
 
 .notification .content {
     background-color: #555;
-    padding: 5px;
+    padding: 20px;
     border: 1px solid #333;
 }
 
