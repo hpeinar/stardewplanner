@@ -187,6 +187,7 @@ body.dz-drag-hover {
 /** Version notification **/
 .facebook-notification,
 .nexus-notification,
+.v3-notification,
 .front-page-notification,
 .us-notification,
 .version-notification,
@@ -245,6 +246,7 @@ body.dz-drag-hover {
     position: absolute;
     font-family: "Helvetica Neue", Helvetica;
     font-size: 12px;
+    padding: 20px;
     color: #ccc;
     display: none;
 }
