@@ -79,6 +79,21 @@ var layouts = {
         width: 1280,
         height: 1040
     },
+    ranching: {
+        name: 'ranching',
+        backgroundImage: 'farm_ranching.jpg',
+        official: true,
+        house: {
+            x: 76,
+            y: 12
+        },
+        greenhouse: {
+            x: 37,
+            y: 15
+        },
+        width: 1600,
+        height: 1200
+    },
     beach: {
         name: 'beach',
         backgroundImage: 'farm_beach.jpg',
